@@ -26,11 +26,22 @@ Sheets'e kaydeder.
    python bot_sheets.py
    ```
 
+## Mimari (güncel)
+
+- `common.py` — paylaşılan Telegram/Sheets yardımcı fonksiyonları
+- `gonder.py` — proaktif mesaj gönderir (sabah/hafta ortası/pazar), GitHub Actions tarafından zamanlanır
+- `dinle.py` — buton basımlarını kontrol eder, işler, Sheets'e yazar; her 5 dakikada bir Actions tarafından tetiklenir
+- `bot_sheets.py` — yerel geliştirme/test için sürekli-açık (polling) versiyon, artık üretimde kullanılmıyor
+- `.github/workflows/gonder.yml` ve `dinle.yml` — zamanlama, laptop'tan tamamen bağımsız çalışır
+
+Tüm secrets (`BOT_TOKEN`, `CHAT_ID`, `SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_JSON`)
+GitHub Actions Secrets üzerinden yönetiliyor, kodda hiçbir yerde açık yazılı değil.
+
 ## Durum
 
 - [x] Telegram bot mesaj/buton akışı
 - [x] Google Sheets'e loglama
-- [ ] Zamanlanmış (GitHub Actions) tetikleme — laptop'tan bağımsız çalışma
+- [x] Zamanlanmış (GitHub Actions) tetikleme — laptop'tan bağımsız çalışma
 - [ ] Yerel SLM entegrasyonu (karar/analiz katmanı)
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli
