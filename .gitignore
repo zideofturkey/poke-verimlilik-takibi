@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Bota özel hassas dosyalar
+service_account.json
+last_update_id.txt
+.env
