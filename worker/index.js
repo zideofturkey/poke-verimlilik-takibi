@@ -23,8 +23,11 @@ export default {
       return new Response("Bad request", { status: 400 });
     }
 
-    // Sadece buton basımlarını (callback_query) ilgilendiriyoruz
-    if (update.callback_query) {
+    // Buton basımı VEYA serbest metin mesajı - ikisini de ilet
+    if (update.callback_query || update.message) {
+      const eventType = update.callback_query
+        ? "telegram_callback"
+        : "telegram_message";
       const githubResp = await fetch(
         "https://api.github.com/repos/zideofturkey/poke-verimlilik-takibi/dispatches",
         {
@@ -35,7 +38,7 @@ export default {
             "User-Agent": "poke-webhook-worker",
           },
           body: JSON.stringify({
-            event_type: "telegram_callback",
+            event_type: "telegram_update",
             client_payload: { update },
           }),
         }

@@ -29,7 +29,66 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive",
 ]
 
-_sheet_cache = None
+_gorevler_cache = None
+_durum_cache = None
+_haftalik_cache = None
+
+
+def get_gorevler_sheet():
+    """Günlük görevlerin (sabah tanımlanan) tutulduğu sheet."""
+    global _gorevler_cache
+    if _gorevler_cache is not None:
+        return _gorevler_cache
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("GunlukGorevler")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="GunlukGorevler", rows=2000, cols=5)
+        ws.append_row(["Tarih", "GorevID", "GorevMetni", "Durum"])
+    _gorevler_cache = ws
+    return ws
+
+
+def get_durum_sheet():
+    """Tek satırlık basit key-value durum tablosu (ör. hangi soruyu bekliyoruz)."""
+    global _durum_cache
+    if _durum_cache is not None:
+        return _durum_cache
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("Durum")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="Durum", rows=10, cols=2)
+        ws.append_row(["anahtar", "deger"])
+        ws.append_row(["bekleyen_soru", ""])
+    _durum_cache = ws
+    return ws
+
+
+def get_haftalik_sheet():
+    global _haftalik_cache
+    if _haftalik_cache is not None:
+        return _haftalik_cache
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("HaftalikHedefler")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="HaftalikHedefler", rows=200, cols=2)
+        ws.append_row(["HaftaBaslangic", "Hedefler"])
+    _haftalik_cache = ws
+    return ws
+
+
+def set_bekleyen_soru(deger):
+    """Hangi serbest-metin sorusunun cevabını beklediğimizi kaydeder
+    (ör. 'gunluk_gorev', 'haftalik_hedef', ya da bekleme yoksa '')."""
+    ws = get_durum_sheet()
+    ws.update_acell("B2", deger)
+
+
+def get_bekleyen_soru():
+    ws = get_durum_sheet()
+    return ws.acell("B2").value or ""
 
 
 def get_sheet():

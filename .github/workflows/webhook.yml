@@ -2,7 +2,7 @@ name: Webhook - Anlık Buton İşleme
 
 on:
   repository_dispatch:
-    types: [telegram_callback]
+    types: [telegram_update]
 
 permissions:
   contents: write
@@ -31,7 +31,7 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
           CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
-        run: python handle_callback.py
+        run: python handle_update.py
 
       - name: service_account.json'ı sil (güvenlik)
         if: always()

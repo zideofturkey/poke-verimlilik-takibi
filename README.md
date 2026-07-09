@@ -28,20 +28,26 @@ Sheets'e kaydeder.
 
 ## Mimari (güncel)
 
-- `common.py` — paylaşılan Telegram/Sheets yardımcı fonksiyonları
-- `gonder.py` — proaktif mesaj gönderir (sabah/hafta ortası/pazar), GitHub Actions tarafından zamanlanır
-- `dinle.py` — buton basımlarını kontrol eder, işler, Sheets'e yazar; her 5 dakikada bir Actions tarafından tetiklenir
-- `bot_sheets.py` — yerel geliştirme/test için sürekli-açık (polling) versiyon, artık üretimde kullanılmıyor
-- `.github/workflows/gonder.yml` ve `dinle.yml` — zamanlama, laptop'tan tamamen bağımsız çalışır
+- `common.py` — paylaşılan Telegram/Sheets yardımcı fonksiyonları + genel görev/durum yönetimi
+- `gonder.py` — proaktif mesajlar: `sabah` (serbest metin görev sorusu + telafi hatırlatması), `aksam` (bugünkü görevleri kutucuklu sorar), `pazar` (haftalık hedef), `hafta_ortasi`
+- `handle_update.py` — buton basımlarını VE serbest metin cevaplarını işler (webhook tarafından anlık tetiklenir)
+- `dinle.py` — webhook başarısız olursa diye saatte bir çalışan yedek (aynı işleme mantığını kullanır)
+- `worker/` — Cloudflare Worker, Telegram webhook'unu GitHub Actions'a anlık iletir
+- `.github/workflows/` — `gonder.yml` (zamanlama), `webhook.yml` (anlık işleme), `dinle.yml` (yedek)
 
-Tüm secrets (`BOT_TOKEN`, `CHAT_ID`, `SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_JSON`)
-GitHub Actions Secrets üzerinden yönetiliyor, kodda hiçbir yerde açık yazılı değil.
+**Google Sheets sekmeleri:**
+- `Takip` — tüm tamamlanan/kaçırılan görevlerin log'u
+- `GunlukGorevler` — her günün serbest-metinle tanımlanan görev listesi + durumu
+- `HaftalikHedefler` — haftalık hedef metinleri
+- `Durum` — hangi serbest-metin sorusunun cevabı bekleniyor (basit key-value)
 
 ## Durum
 
 - [x] Telegram bot mesaj/buton akışı
-- [x] Google Sheets'e loglama
+- [x] Google Sheets'e loglama (doğru saat dilimi)
 - [x] Zamanlanmış (GitHub Actions) tetikleme — laptop'tan bağımsız çalışma
+- [x] Anlık tepki (Cloudflare Worker webhook)
+- [x] Genel görev akışı: sabah serbest metin → akşam kutucuklu kontrol → telafi mantığı → haftalık hedef
 - [ ] Yerel SLM entegrasyonu (karar/analiz katmanı)
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli
