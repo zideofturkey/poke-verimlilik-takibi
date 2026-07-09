@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: telegram-webhook
+  cancel-in-progress: false
+
 jobs:
   handle:
     runs-on: ubuntu-latest
@@ -44,7 +48,14 @@ jobs:
           if ! git diff --quiet last_update_id.txt 2>/dev/null; then
             git add last_update_id.txt
             git commit -m "chore: webhook offset güncelle [skip ci]"
-            git push
+            for i in 1 2 3 4 5; do
+              if git push; then
+                break
+              fi
+              echo "Push reddedildi, pull --rebase ile tekrar deneniyor ($i/5)..."
+              git pull --rebase
+              sleep 2
+            done
           else
             echo "Değişiklik yok."
           fi
