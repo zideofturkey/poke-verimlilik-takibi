@@ -6,6 +6,7 @@ güncellemeyi (buton basımı YA DA serbest metin mesaj) işler.
 
 import json
 import os
+import re
 import datetime
 from common import (
     send_message,
@@ -83,7 +84,18 @@ def process_message(message):
     bekleyen = get_bekleyen_soru()
 
     if bekleyen == "gunluk_gorev":
-        gorevler = [g.strip() for g in text.replace("\n", ",").split(",") if g.strip()]
+        gorevler = []
+        for satir in text.split("\n"):
+            satir = satir.strip()
+            # Baştaki "1.", "1)", "1-" gibi numaralandırmayı temizle
+            satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir)
+            if satir:
+                gorevler.append(satir)
+
+        if not gorevler:
+            send_message("Boş görünüyor, en az bir satıra görev yazman lazım 🙂")
+            return
+
         ws = get_gorevler_sheet()
         bugun = bugun_str()
         for gorev in gorevler:

@@ -36,7 +36,13 @@ def sabah():
         r for r in rows if r["Tarih"] == dun_str() and r["Durum"] == "Yapılmadı"
     ]
 
-    mesaj = "🌅 Günaydın! Bugün ne yapacaksın? (Görevlerini yaz, virgülle ayırabilirsin)"
+    sablon = "\n".join(f"{i}. " for i in range(1, 6))
+    mesaj = (
+        "🌅 Günaydın! Bugün ne yapacaksın?\n\n"
+        "Her satıra bir görev yaz (satır silebilir ya da gerekirse "
+        "yeni numarayla ekleyebilirsin):\n\n"
+        f"{sablon}"
+    )
     send_message(mesaj)
     set_bekleyen_soru("gunluk_gorev")
 
@@ -44,8 +50,8 @@ def sabah():
         gorev_listesi = ", ".join(r["GorevMetni"] for r in kacirilanlar)
         send_message(
             f"📌 Not: dün şunları kaçırmıştın: {gorev_listesi}\n"
-            "Bugün bunları da eklemek ister misin? (Cevabını yukarıdaki mesaja "
-            "eklersen yeterli)"
+            "Bugün bunları da eklemek istersen, yukarıdaki listeye bir "
+            "satır olarak ekleyebilirsin."
         )
 
 
