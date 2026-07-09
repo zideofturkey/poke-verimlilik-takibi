@@ -6,6 +6,7 @@ bunlar workflow dosyası tarafından secrets'tan enjekte edilir.
 
 import os
 import datetime
+from datetime import timezone, timedelta
 import requests
 import gspread
 from dotenv import load_dotenv
@@ -20,6 +21,8 @@ CREDENTIALS_FILE = os.environ.get("CREDENTIALS_FILE", "service_account.json")
 OFFSET_FILE = "last_update_id.txt"
 
 BASE_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
+
+TR_TZ = timezone(timedelta(hours=3))  # Türkiye sabit UTC+3, DST yok
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -46,7 +49,7 @@ def get_sheet():
 
 
 def log_to_sheet(gorev, durum, detay=""):
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(TR_TZ)
     get_sheet().append_row(
         [now.strftime("%Y-%m-%d"), now.strftime("%H:%M"), gorev, durum, detay]
     )
