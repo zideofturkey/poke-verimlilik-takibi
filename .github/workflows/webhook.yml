@@ -1,15 +1,14 @@
-name: Dinle - Buton Kontrolü
+name: Webhook - Anlık Buton İşleme
 
 on:
-  schedule:
-    - cron: "0 * * * *"  # Saatte bir - artık sadece webhook başarısız olursa yedek
-  workflow_dispatch:        # Manuel tetikleme (test için)
+  repository_dispatch:
+    types: [telegram_callback]
 
 permissions:
-  contents: write  # last_update_id.txt'yi geri commit'leyebilmek için
+  contents: write
 
 jobs:
-  dinle:
+  handle:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,12 +25,13 @@ jobs:
           SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
 
-      - name: Yeni buton basımlarını kontrol et
+      - name: Callback'i işle
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python dinle.py
+          CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: python handle_callback.py
 
       - name: service_account.json'ı sil (güvenlik)
         if: always()
@@ -43,8 +43,8 @@ jobs:
           git config user.email "poke-bot@users.noreply.github.com"
           if ! git diff --quiet last_update_id.txt 2>/dev/null; then
             git add last_update_id.txt
-            git commit -m "chore: offset güncelle [skip ci]"
+            git commit -m "chore: webhook offset güncelle [skip ci]"
             git push
           else
-            echo "Değişiklik yok, commit atlanıyor."
+            echo "Değişiklik yok."
           fi
