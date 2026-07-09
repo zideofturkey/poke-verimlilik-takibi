@@ -29,6 +29,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive",
 ]
 
+_sheet_cache = None
 _gorevler_cache = None
 _durum_cache = None
 _haftalik_cache = None
