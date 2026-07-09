@@ -1,0 +1,35 @@
+name: Temizle - Eski Veri
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"  # Her Pazartesi 06:00 TR
+  workflow_dispatch:      # Manuel tetikleme (test/tek seferlik temizlik için)
+
+jobs:
+  temizle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bağımlılıkları kur
+        run: pip install requests gspread google-auth python-dotenv
+
+      - name: Service account dosyasını oluştur
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
+
+      - name: Eski verileri temizle
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python temizle.py
+
+      - name: service_account.json'ı sil (güvenlik)
+        if: always()
+        run: rm -f service_account.json

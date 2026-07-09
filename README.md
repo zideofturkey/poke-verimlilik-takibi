@@ -41,6 +41,12 @@ Sheets'e kaydeder.
 - `HaftalikHedefler` — haftalık hedef metinleri
 - `Durum` — hangi serbest-metin sorusunun cevabı bekleniyor (basit key-value)
 
+**Veri saklama:**
+- `GunlukGorevler`: 15 günden eski satırlar otomatik silinir (haftalık, Pazartesi)
+- `HaftalikHedefler`: 14 günden eski satırlar otomatik silinir (bu hafta + geçen hafta yeterli)
+- `Takip` (ana log): asla silinmez — uzun vadeli istatistik/streak/pattern analizi için kalıcı
+- Telafi hatırlatması son 3 güne kadar geriye bakar ("dün", "2 gün önce" gibi etiketlerle)
+
 ## Durum
 
 - [x] Telegram bot mesaj/buton akışı

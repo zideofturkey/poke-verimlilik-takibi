@@ -18,6 +18,9 @@ from common import (
 )
 
 
+TELAFI_GUN_SAYISI = 3  # Kaç güne kadar geriye bakıp "kaçırdın" hatırlatması yapılsın
+
+
 def bugun_str():
     return datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
 
@@ -28,13 +31,29 @@ def dun_str():
     )
 
 
+def gun_etiketi(fark):
+    if fark == 1:
+        return "dün"
+    return f"{fark} gün önce"
+
+
 def sabah():
-    # Dünkü kaçırılan görevler var mı diye bak (telafi mantığı)
+    # Son birkaç günün kaçırılan görevlerine bak (telafi mantığı)
     ws = get_gorevler_sheet()
     rows = ws.get_all_records()
-    kacirilanlar = [
-        r for r in rows if r["Tarih"] == dun_str() and r["Durum"] == "Yapılmadı"
-    ]
+    bugun = datetime.datetime.now(TR_TZ).date()
+
+    kacirilanlar = []  # (gun_farki, gorev_metni)
+    for r in rows:
+        if r["Durum"] != "Yapılmadı":
+            continue
+        try:
+            tarih = datetime.datetime.strptime(r["Tarih"], "%Y-%m-%d").date()
+        except (ValueError, KeyError):
+            continue
+        fark = (bugun - tarih).days
+        if 1 <= fark <= TELAFI_GUN_SAYISI:
+            kacirilanlar.append((fark, r["GorevMetni"]))
 
     sablon = "\n".join(f"{i}. " for i in range(1, 6))
     mesaj = (
@@ -47,11 +66,14 @@ def sabah():
     set_bekleyen_soru("gunluk_gorev")
 
     if kacirilanlar:
-        gorev_listesi = ", ".join(r["GorevMetni"] for r in kacirilanlar)
+        kacirilanlar.sort(key=lambda x: x[0])
+        satirlar = "\n".join(
+            f"• {gorev} ({gun_etiketi(fark)})" for fark, gorev in kacirilanlar
+        )
         send_message(
-            f"📌 Not: dün şunları kaçırmıştın: {gorev_listesi}\n"
-            "Bugün bunları da eklemek istersen, yukarıdaki listeye bir "
-            "satır olarak ekleyebilirsin."
+            f"📌 Kaçırdıkların:\n{satirlar}\n\n"
+            "Bugün bunlardan birini de eklemek istersen, yukarıdaki listeye "
+            "bir satır olarak yazman yeterli."
         )
 
 
