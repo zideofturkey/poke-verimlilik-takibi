@@ -1,9 +1,12 @@
-from common import get_sheet
+from common import get_sheet, send_message
 ws = get_sheet()
-print("Worksheet basligi:", ws.title)
 values = ws.get_all_values()
-print("Toplam satir sayisi:", len(values))
-print("Baslik satiri:", values[0] if values else "YOK")
-print("Son 10 satir:")
-for row in values[-10:]:
-    print(row)
+baslik = values[0] if values else []
+son_satirlar = values[-8:] if values else []
+
+rapor = f"🔍 Teşhis:\nSekme: {ws.title}\nToplam satır: {len(values)}\nBaşlık: {baslik}\n\nSon satırlar:\n"
+for row in son_satirlar:
+    rapor += f"{row}\n"
+
+print(rapor)
+send_message(rapor)
