@@ -20,6 +20,6 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python teshis.py
+        run: python duzelt_baslik.py
       - if: always()
         run: rm -f service_account.json
