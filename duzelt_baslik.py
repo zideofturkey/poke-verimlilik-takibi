@@ -1,14 +1,26 @@
-from common import get_sheet, send_message
+from common import get_gorevler_sheet, get_haftalik_sheet, get_durum_sheet, send_message
 
-ws = get_sheet()
-values = ws.get_all_values()
+duzeltmeler = []
 
-beklenen_baslik = ["Tarih", "Saat", "Görev", "Durum", "Detay"]
+ws = get_gorevler_sheet()
+if not ws.get_all_values():
+    ws.append_row(["Tarih", "GorevID", "GorevMetni", "Durum"])
+    duzeltmeler.append("GunlukGorevler")
 
-if values and values[0] == beklenen_baslik:
-    send_message("Başlık zaten doğru, düzeltmeye gerek yok.")
+ws = get_haftalik_sheet()
+if not ws.get_all_values():
+    ws.append_row(["HaftaBaslangic", "HedefMetni", "Durum"])
+    duzeltmeler.append("HaftalikHedefler")
+
+ws = get_durum_sheet()
+if not ws.get_all_values():
+    ws.append_row(["anahtar", "deger"])
+    ws.append_row(["bekleyen_soru", ""])
+    duzeltmeler.append("Durum")
+
+if duzeltmeler:
+    send_message(f"✅ Başlıkları geri eklendi: {', '.join(duzeltmeler)}")
 else:
-    ws.insert_row(beklenen_baslik, 1)
-    send_message(f"✅ Başlık satırı geri eklendi: {beklenen_baslik}")
+    send_message("Tüm sekmeler zaten doğru, düzeltmeye gerek yoktu.")
 
-print("Islem tamamlandi")
+print("Tamamlandi:", duzeltmeler)
