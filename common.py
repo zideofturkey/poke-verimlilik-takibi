@@ -5,10 +5,12 @@ bunlar workflow dosyası tarafından secrets'tan enjekte edilir.
 """
 
 import os
+import time
 import datetime
 from datetime import timezone, timedelta
 import requests
 import gspread
+from gspread.exceptions import APIError
 from dotenv import load_dotenv
 from google.oauth2.service_account import Credentials
 
@@ -28,6 +30,27 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive",
 ]
+
+# Her gün otomatik sorulan sabit rutinler. Kullanıcı bunları sabah
+# yazmaz - sistem her akşam otomatik sorar.
+RUTINLER = [
+    {"id": "fransizca", "isim": "Fransızca çalışma", "soru": "Bugün Fransızca çalıştın mı?"},
+    {"id": "sabah_telefon", "isim": "Sabah telefon rutini", "soru": "Sabah kalkınca telefona bakmadın mı?"},
+    {"id": "aksam_telefon", "isim": "Akşam telefon rutini", "soru": "Gece yatmadan telefona bakmadın mı?"},
+    {"id": "verimli_video", "isim": "Verimli video izleme", "soru": "En az 1 verimli video izledin mi?"},
+]
+
+
+def _retry(fn, deneme=3, bekleme=3):
+    """Google API'nin geçici (503 gibi) hatalarına karşı birkaç kez dener."""
+    for i in range(deneme):
+        try:
+            return fn()
+        except APIError as e:
+            if i == deneme - 1:
+                raise
+            print(f"Google API hatası (deneme {i+1}/{deneme}), tekrar denenecek: {e}")
+            time.sleep(bekleme)
 
 _sheet_cache = None
 _gorevler_cache = None
@@ -74,8 +97,8 @@ def get_haftalik_sheet():
     try:
         ws = spreadsheet.worksheet("HaftalikHedefler")
     except gspread.WorksheetNotFound:
-        ws = spreadsheet.add_worksheet(title="HaftalikHedefler", rows=200, cols=2)
-        ws.append_row(["HaftaBaslangic", "Hedefler"])
+        ws = spreadsheet.add_worksheet(title="HaftalikHedefler", rows=500, cols=3)
+        ws.append_row(["HaftaBaslangic", "HedefMetni", "Durum"])
     _haftalik_cache = ws
     return ws
 
@@ -85,6 +108,12 @@ def set_bekleyen_soru(deger):
     (ör. 'gunluk_gorev', 'haftalik_hedef', ya da bekleme yoksa '')."""
     ws = get_durum_sheet()
     ws.update_acell("B2", deger)
+
+
+def hafta_baslangic_str():
+    now = datetime.datetime.now(TR_TZ)
+    pazartesi = now - datetime.timedelta(days=now.weekday())
+    return pazartesi.strftime("%Y-%m-%d")
 
 
 def get_bekleyen_soru():
@@ -98,7 +127,7 @@ def get_sheet():
         return _sheet_cache
     creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
     client = gspread.authorize(creds)
-    spreadsheet = client.open_by_key(SHEET_ID)
+    spreadsheet = _retry(lambda: client.open_by_key(SHEET_ID))
     try:
         worksheet = spreadsheet.worksheet("Takip")
     except gspread.WorksheetNotFound:

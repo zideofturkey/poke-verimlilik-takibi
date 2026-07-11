@@ -17,18 +17,14 @@ from common import (
     get_haftalik_sheet,
     get_bekleyen_soru,
     set_bekleyen_soru,
+    hafta_baslangic_str,
+    RUTINLER,
     TR_TZ,
 )
 
 
 def bugun_str():
     return datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
-
-
-def hafta_baslangic_str():
-    now = datetime.datetime.now(TR_TZ)
-    pazartesi = now - datetime.timedelta(days=now.weekday())
-    return pazartesi.strftime("%Y-%m-%d")
 
 
 def process_callback(cq):
@@ -61,6 +57,24 @@ def process_callback(cq):
     elif callback_data == "hafta_geride":
         log_to_sheet("Haftalık Kontrol", "Geride")
         send_message("Sorun değil, kalan günlerde toparlarız 👍")
+    elif callback_data.startswith("rutin_"):
+        # format: rutin_<id>_evet / rutin_<id>_hayir / rutin_<id>_telafi
+        # <id> kendisi alt çizgi içerebilir (ör. "sabah_telefon"), bu yüzden
+        # sondan ayırıyoruz: ilk parça "rutin", son parça sonuç, arası id.
+        parcalar = callback_data.split("_")
+        sonuc = parcalar[-1]
+        rutin_id = "_".join(parcalar[1:-1])
+        rutin = next((r for r in RUTINLER if r["id"] == rutin_id), None)
+        isim = rutin["isim"] if rutin else rutin_id
+        if sonuc == "evet":
+            log_to_sheet(isim, "Yapıldı")
+            send_message(f"✅ '{isim}' kaydedildi. Tebrikler!")
+        elif sonuc == "hayir":
+            log_to_sheet(isim, "Yapılmadı")
+            send_message(f"Sorun değil, '{isim}' için yarın devam edelim 👍")
+        elif sonuc == "telafi":
+            log_to_sheet(isim, "Yapıldı", "dünkü eksik telafi edildi")
+            send_message(f"🔁 Harika, '{isim}' için dünkü eksik telafi edildi olarak kaydedildi!")
     elif callback_data.startswith("gorev_"):
         # format: gorev_<satirNo>_evet / gorev_<satirNo>_hayir
         _, satir_no, sonuc = callback_data.split("_")

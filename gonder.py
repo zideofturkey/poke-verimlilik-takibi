@@ -14,11 +14,15 @@ from common import (
     send_message,
     set_bekleyen_soru,
     get_gorevler_sheet,
+    get_haftalik_sheet,
+    get_sheet,
+    hafta_baslangic_str,
+    RUTINLER,
     TR_TZ,
 )
 
 
-TELAFI_GUN_SAYISI = 3  # Kaç güne kadar geriye bakıp "kaçırdın" hatırlatması yapılsın
+TELAFI_GUN_SAYISI = 1  # Günlük (ad-hoc) görevler için: sadece 1 gün hatırlatılır, sonra düşer
 
 
 def bugun_str():
@@ -77,7 +81,32 @@ def sabah():
         )
 
 
+def dun_kacirildi_mi(rutin_isim):
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    dun = dun_str()
+    for r in rows:
+        if r.get("Görev") == rutin_isim and r.get("Tarih") == dun and r.get("Durum") == "Yapılmadı":
+            return True
+    return False
+
+
 def aksam():
+    # 1) Sabit rutinler - her gün otomatik sorulur, kullanıcı yazmaz
+    send_message("🌙 Akşam kontrolü — günlük rutinlerin:")
+    for rutin in RUTINLER:
+        butonlar = [
+            {"text": "✅ Yaptım", "callback_data": f"rutin_{rutin['id']}_evet"},
+            {"text": "❌ Yapmadım", "callback_data": f"rutin_{rutin['id']}_hayir"},
+        ]
+        satirlar = [butonlar]
+        if dun_kacirildi_mi(rutin["isim"]):
+            satirlar.append(
+                [{"text": "🔁 Dünkü eksiği bugün telafi ettim", "callback_data": f"rutin_{rutin['id']}_telafi"}]
+            )
+        send_message(f"• {rutin['soru']}", buttons=satirlar)
+
+    # 2) Ad-hoc (sabah tanımlanan) günlük görevler
     ws = get_gorevler_sheet()
     rows = ws.get_all_records()
     bugunku = [
@@ -87,13 +116,9 @@ def aksam():
     ]
 
     if not bugunku:
-        send_message(
-            "Bugün için tanımlı bir görev bulamadım — sabah mesajına cevap "
-            "vermeyi unuttun mu? 🤔"
-        )
         return
 
-    send_message("🌙 Akşam kontrolü — bugünkü görevlerin durumu:")
+    send_message("📋 Bugün için yazdığın görevler:")
     for row_num, r in bugunku:
         send_message(
             f"• {r['GorevMetni']}",
@@ -107,20 +132,44 @@ def aksam():
 
 
 def pazar():
-    send_message("🗓️ Yeni hafta başlıyor. Bu haftaki hedeflerin neler?")
+    sablon = "\n".join(f"{i}. " for i in range(1, 4))
+    mesaj = (
+        "🗓️ Yeni hafta başlıyor. Bu haftaki hedeflerin neler?\n\n"
+        "Her satıra bir hedef yaz:\n\n"
+        f"{sablon}"
+    )
+    send_message(mesaj)
     set_bekleyen_soru("haftalik_hedef")
 
 
 def hafta_ortasi():
-    send_message(
-        "📊 Hafta ortası kontrol: bu hafta hedeflerinin neresindesin?",
-        buttons=[
-            [
-                {"text": "İyi gidiyorum", "callback_data": "hafta_iyi"},
-                {"text": "Geride kaldım", "callback_data": "hafta_geride"},
-            ]
-        ],
-    )
+    ws = get_haftalik_sheet()
+    rows = ws.get_all_records()
+    hafta = hafta_baslangic_str()
+    bu_haftaki = [
+        (i + 2, r)
+        for i, r in enumerate(rows)
+        if r["HaftaBaslangic"] == hafta and r["Durum"] == "Bekliyor"
+    ]
+
+    if not bu_haftaki:
+        send_message(
+            "Bu hafta için tanımlı bir hedef bulamadım — Pazar mesajına cevap "
+            "vermeyi unuttun mu? 🤔"
+        )
+        return
+
+    send_message("📊 Hafta ortası kontrol — hedeflerinin durumu:")
+    for row_num, r in bu_haftaki:
+        send_message(
+            f"• {r['HedefMetni']}",
+            buttons=[
+                [
+                    {"text": "✅ Yolunda", "callback_data": f"hedef_{row_num}_evet"},
+                    {"text": "❌ Geride", "callback_data": f"hedef_{row_num}_hayir"},
+                ]
+            ],
+        )
 
 
 GOREVLER = {

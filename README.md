@@ -26,6 +26,10 @@ Sheets'e kaydeder.
    python bot_sheets.py
    ```
 
+**Rutinler vs. Günlük Görevler (önemli ayrım):**
+- **Rutinler** (`common.py` içinde `RUTINLER` listesi — Fransızca, sabah/akşam telefon, verimli video) her akşam **otomatik** sorulur, kullanıcı yazmaz. Kaçırılırsa, ertesi akşam "🔁 Dünkü eksiği telafi ettim" butonu görünür.
+- **Günlük görevler** kullanıcının sabah yazdığı tek seferlik işlerdir (ör. "halı saha"). Kaçırılırsa sadece **1 gün** hatırlatılır, sonra düşer — sürekli nag etmez.
+
 ## Mimari (güncel)
 
 - `common.py` — paylaşılan Telegram/Sheets yardımcı fonksiyonları + genel görev/durum yönetimi
