@@ -30,6 +30,21 @@ Sheets'e kaydeder.
 - **Rutinler** (`common.py` içinde `RUTINLER` listesi — Fransızca, sabah/akşam telefon, verimli video) her akşam **otomatik** sorulur, kullanıcı yazmaz. Kaçırılırsa, ertesi akşam "🔁 Dünkü eksiği telafi ettim" butonu görünür.
 - **Günlük görevler** kullanıcının sabah yazdığı tek seferlik işlerdir (ör. "halı saha"). Kaçırılırsa sadece **1 gün** hatırlatılır, sonra düşer — sürekli nag etmez.
 
+## SLM Entegrasyonu — Mimari Kararı
+
+Sistem, **yerel dil modelini (SLM) GitHub Actions'ın geçici bulut runner'ı
+içinde** çalıştırır (Ollama + qwen2.5:3b), her hafta bir kez ayağa
+kaldırılıp iş bitince kapatılır.
+
+**Bu, katı anlamda "on-premise" değildir** — bilinçli bir tercih:
+gerçek bir 7/24 açık yerel cihaz (laptop veya Raspberry Pi) gerektirmek,
+projenin başında çözdüğümüz "laptop'tan bağımsızlık" kazanımını geri
+alırdı. Sürdürülebilirlik ve otomasyon, katı on-premise tanımına sadık
+kalmaktan önceliklendirildi. Model yine de açık kaynak ve küçük (SLM)
+kategorisinde — sadece barındığı altyapı bulut, hesaplama bulutta
+üçüncü parti bir API'ye değil, bizim kontrolümüzdeki bir runner'da
+gerçekleşiyor.
+
 ## Mimari (güncel)
 
 - `common.py` — paylaşılan Telegram/Sheets yardımcı fonksiyonları + genel görev/durum yönetimi
@@ -58,7 +73,7 @@ Sheets'e kaydeder.
 - [x] Zamanlanmış (GitHub Actions) tetikleme — laptop'tan bağımsız çalışma
 - [x] Anlık tepki (Cloudflare Worker webhook)
 - [x] Genel görev akışı: sabah serbest metin → akşam kutucuklu kontrol → telafi mantığı → haftalık hedef
-- [ ] Yerel SLM entegrasyonu (karar/analiz katmanı)
+- [x] Yerel SLM entegrasyonu (haftalık pattern analizi — Ollama, GitHub Actions runner'ında)
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli
 

@@ -1,0 +1,52 @@
+name: Analiz - Haftalık SLM Özeti
+
+on:
+  schedule:
+    - cron: "0 18 * * 0"  # Her Pazar 21:00 TR
+  workflow_dispatch:        # Manuel tetikleme (test için)
+
+jobs:
+  analiz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python bağımlılıklarını kur
+        run: pip install requests gspread google-auth python-dotenv
+
+      - name: Ollama model önbelleğini yükle (varsa)
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-models-qwen2.5-3b
+
+      - name: Ollama'yı kur
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Ollama servisini başlat
+        run: |
+          ollama serve &
+          sleep 5
+
+      - name: Modeli çek (önbellekte yoksa indirir)
+        run: ollama pull qwen2.5:3b
+
+      - name: Service account dosyasını oluştur
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
+
+      - name: Analizi çalıştır ve gönder
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python analiz.py
+
+      - name: service_account.json'ı sil (güvenlik)
+        if: always()
+        run: rm -f service_account.json
