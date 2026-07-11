@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
-          key: ollama-models-qwen2.5-3b
+          key: ollama-models-qwen2.5-7b
 
       - name: Ollama'yı kur
         run: curl -fsSL https://ollama.com/install.sh | sh
@@ -33,7 +33,7 @@ jobs:
           sleep 5
 
       - name: Modeli çek (önbellekte yoksa indirir)
-        run: ollama pull qwen2.5:3b
+        run: ollama pull qwen2.5:7b
 
       - name: Service account dosyasını oluştur
         env:

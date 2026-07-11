@@ -15,7 +15,7 @@ import requests
 from common import get_sheet, send_message, TR_TZ
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "qwen2.5:3b"
+MODEL = "qwen2.5:7b"
 ANALIZ_GUN_SAYISI = 7
 
 
@@ -36,28 +36,51 @@ def son_hafta_verisi():
     return son_veriler
 
 
+def istatistik_cikar(veriler):
+    """Görev bazında yapıldı/yapılmadı sayılarını Python'da hesaplar -
+    modelin kendi başına sayım yapıp hata yapmasını (ve çelişkili
+    cümleler kurmasını) önlemek için."""
+    sayaclar = {}
+    for r in veriler:
+        gorev = r["Görev"]
+        durum = r["Durum"]
+        if gorev not in sayaclar:
+            sayaclar[gorev] = {"Yapıldı": 0, "Yapılmadı": 0}
+        if durum in sayaclar[gorev]:
+            sayaclar[gorev][durum] += 1
+    return sayaclar
+
+
 def prompt_olustur(veriler):
     if not veriler:
         return None
 
+    sayaclar = istatistik_cikar(veriler)
     satirlar = "\n".join(
-        f"- {r['Tarih']}: {r['Görev']} -> {r['Durum']}" for r in veriler
+        f"- {gorev}: {s['Yapıldı']} kez yapıldı, {s['Yapılmadı']} kez yapılmadı"
+        for gorev, s in sayaclar.items()
     )
     return (
-        "Aşağıda bir kişinin son 7 günlük verimlilik takip verisi var. "
-        "Bu veriye bakarak 3-4 cümlelik, samimi ve motive edici bir Türkçe "
-        "özet yaz. Hangi rutin/görevlerde iyi gittiğini, hangisinde "
-        "zorlandığını ve varsa dikkat çeken bir örüntüyü belirt. "
-        "Sadece özeti yaz, başka açıklama ekleme.\n\n"
-        f"Veri:\n{satirlar}"
+        "Aşağıda bir kişinin son 7 günlük verimlilik istatistiği var. "
+        "SADECE verilen sayılara dayanarak, 3-4 cümlelik akıcı ve tutarlı "
+        "bir Türkçe özet yaz. Birbirini çelişen ifadeler kullanma. "
+        "En yüksek 'yapıldı' oranına sahip görev(ler)i öv, en yüksek "
+        "'yapılmadı' oranına sahip görev(ler)i nazikçe hatırlat. "
+        "Sadece özeti yaz, başka açıklama, başlık ya da giriş cümlesi ekleme.\n\n"
+        f"İstatistik:\n{satirlar}"
     )
 
 
 def ollama_sorgula(prompt):
     resp = requests.post(
         OLLAMA_URL,
-        json={"model": MODEL, "prompt": prompt, "stream": False},
-        timeout=120,
+        json={
+            "model": MODEL,
+            "prompt": prompt,
+            "stream": False,
+            "options": {"temperature": 0.3},
+        },
+        timeout=180,
     )
     resp.raise_for_status()
     return resp.json()["response"].strip()

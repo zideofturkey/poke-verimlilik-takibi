@@ -33,7 +33,7 @@ Sheets'e kaydeder.
 ## SLM Entegrasyonu — Mimari Kararı
 
 Sistem, **yerel dil modelini (SLM) GitHub Actions'ın geçici bulut runner'ı
-içinde** çalıştırır (Ollama + qwen2.5:3b), her hafta bir kez ayağa
+içinde** çalıştırır (Ollama + qwen2.5:7b), her hafta bir kez ayağa
 kaldırılıp iş bitince kapatılır.
 
 **Bu, katı anlamda "on-premise" değildir** — bilinçli bir tercih:
