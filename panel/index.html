@@ -94,7 +94,7 @@
 
   .brand-text p {
     color: rgba(255,255,255,0.78);
-    font-size: 13px;
+    font-size: 15px;
     margin: 2px 0 0;
     font-weight: 500;
   }
@@ -335,12 +335,19 @@
     padding: 10px 32px 40px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    opacity: 0.5;
   }
 
-  footer img { width: 20px; height: 20px; border-radius: 5px; }
-  footer span { font-size: 12px; color: var(--text-muted); }
+  .footer-side {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.55;
+  }
+
+  .footer-side img { height: 20px; width: auto; }
+  .footer-side span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
   @media (max-width: 640px) {
     .content { margin-top: -36px; padding: 0 16px; }
@@ -357,7 +364,7 @@
     <div class="brand">
       <img src="assets/poke-logo.png" alt="Poke">
       <div class="brand-text">
-        <h1>Poke Panel</h1>
+        <h1>Poke</h1>
         <p>Verimlilik takip sistemi &middot; gözlemlenebilirlik</p>
       </div>
     </div>
@@ -470,8 +477,14 @@
 </div>
 
 <footer>
-  <img src="assets/poke-logo.png" alt="">
-  <span>Poke &middot; HexaWorks staj projesi</span>
+  <div class="footer-side">
+    <img src="assets/poke-logo.png" alt="">
+    <span>Poke &middot; Ediz</span>
+  </div>
+  <div class="footer-side">
+    <span>Hexaworks</span>
+    <img src="assets/hexaworks-logo.png" alt="">
+  </div>
 </footer>
 
 <script>
