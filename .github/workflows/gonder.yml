@@ -4,6 +4,8 @@ on:
   schedule:
     # Saatler UTC - Türkiye (UTC+3) için:
     - cron: "0 6 * * *"   # Her gün 09:00 TR - sabah check-in
+    - cron: "0 10 * * *"  # Her gün 13:00 TR - öğle hatırlatması (sadece cevapsızlar)
+    - cron: "0 14 * * *"  # Her gün 17:00 TR - akşamüstü hatırlatması (sadece cevapsızlar)
     - cron: "0 18 * * *"  # Her gün 21:00 TR - akşam kontrol
     - cron: "0 17 * * 3"  # Çarşamba 20:00 TR - hafta ortası kontrol
     - cron: "0 7 * * 0"   # Pazar 10:00 TR - haftalık hedef sorusu
@@ -15,6 +17,7 @@ on:
         type: choice
         options:
           - sabah
+          - hatirlat
           - aksam
           - hafta_ortasi
           - pazar
@@ -47,6 +50,10 @@ jobs:
             GOREV="${{ inputs.gorev }}"
           elif [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
             GOREV="sabah"
+          elif [ "${{ github.event.schedule }}" = "0 10 * * *" ]; then
+            GOREV="hatirlat"
+          elif [ "${{ github.event.schedule }}" = "0 14 * * *" ]; then
+            GOREV="hatirlat"
           elif [ "${{ github.event.schedule }}" = "0 18 * * *" ]; then
             GOREV="aksam"
           elif [ "${{ github.event.schedule }}" = "0 17 * * 3" ]; then

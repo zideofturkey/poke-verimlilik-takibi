@@ -100,40 +100,65 @@ def dun_kacirildi_mi(rutin_isim):
     return False
 
 
-def aksam():
-    # 1) Sheets'teki rutinler - hepsi TEK mesajda, çok satırlı butonlarla.
-    # En riskli (en çok kaçırılan) rutin en üste alınır.
+def _bugun_cevaplanan_rutinler():
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    bugun = bugun_str()
+    return {r["Görev"] for r in rows if r.get("Tarih") == bugun}
+
+
+def rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın rutinler:"):
+    """Sadece BUGÜN için henüz cevaplanmamış rutinleri sorar. Zaten
+    cevaplanmışsa (buton basılmış ya da serbest metinle bildirilmişse)
+    bir daha sorulmaz - sessiz kalır. Hem akşam kontrolünde hem günün
+    farklı saatlerindeki periyodik hatırlatmalarda kullanılır."""
     rutinler = get_aktif_rutinler()
-    if rutinler:
-        rutinler_ile_seri = [
-            (rutin, rutin_serisi_hesapla(rutin["isim"])) for rutin in rutinler
+    cevaplanan = _bugun_cevaplanan_rutinler()
+    cevaplanmamislar = [r for r in rutinler if r["isim"] not in cevaplanan]
+
+    if not cevaplanmamislar:
+        print("Tüm rutinler bugün için zaten cevaplanmış, hatırlatma gönderilmiyor.")
+        return
+
+    rutinler_ile_seri = [
+        (rutin, rutin_serisi_hesapla(rutin["isim"])) for rutin in cevaplanmamislar
+    ]
+    rutinler_ile_seri.sort(key=lambda x: x[1][1], reverse=True)
+
+    satir_metinleri = []
+    buton_satirlari = []
+    for i, (rutin, (streak, miss_streak)) in enumerate(rutinler_ile_seri, start=1):
+        if streak >= 5:
+            on_ek = f"🔥 {streak} gündür kesintisiz! "
+        elif miss_streak >= 3:
+            on_ek = f"⚠️ {miss_streak} gündür kaçırıyorsun. "
+        else:
+            on_ek = ""
+        satir_metinleri.append(f"{i}. {on_ek}{rutin['soru']}")
+
+        butonlar = [
+            {"text": f"{i}️⃣ ✅", "callback_data": f"rutin_{rutin['id']}_evet"},
+            {"text": f"{i}️⃣ ❌", "callback_data": f"rutin_{rutin['id']}_hayir"},
         ]
-        # miss_streak büyükten küçüğe sırala (en riskli en üstte)
-        rutinler_ile_seri.sort(key=lambda x: x[1][1], reverse=True)
+        if dun_kacirildi_mi(rutin["isim"]):
+            butonlar.append(
+                {"text": f"{i}️⃣ 🔁", "callback_data": f"rutin_{rutin['id']}_telafi"}
+            )
+        buton_satirlari.append(butonlar)
 
-        satir_metinleri = []
-        buton_satirlari = []
-        for i, (rutin, (streak, miss_streak)) in enumerate(rutinler_ile_seri, start=1):
-            if streak >= 5:
-                on_ek = f"🔥 {streak} gündür kesintisiz! "
-            elif miss_streak >= 3:
-                on_ek = f"⚠️ {miss_streak} gündür kaçırıyorsun. "
-            else:
-                on_ek = ""
-            satir_metinleri.append(f"{i}. {on_ek}{rutin['soru']}")
+    mesaj = f"{baslik}\n\n" + "\n".join(satir_metinleri)
+    send_message(mesaj, buttons=buton_satirlari)
 
-            butonlar = [
-                {"text": f"{i}️⃣ ✅", "callback_data": f"rutin_{rutin['id']}_evet"},
-                {"text": f"{i}️⃣ ❌", "callback_data": f"rutin_{rutin['id']}_hayir"},
-            ]
-            if dun_kacirildi_mi(rutin["isim"]):
-                butonlar.append(
-                    {"text": f"{i}️⃣ 🔁", "callback_data": f"rutin_{rutin['id']}_telafi"}
-                )
-            buton_satirlari.append(butonlar)
 
-        mesaj = "🌙 Akşam kontrolü — günlük rutinlerin:\n\n" + "\n".join(satir_metinleri)
-        send_message(mesaj, buttons=buton_satirlari)
+def hatirlat():
+    """Gün içinde birkaç kez (öğle/akşam üstü) tetiklenir. Sadece o ana
+    kadar cevaplanmamış rutinleri sorar."""
+    rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın rutinler:")
+
+
+def aksam():
+    # 1) Rutinler - sadece bugün henüz cevaplanmamış olanlar sorulur
+    rutin_sorulari_gonder(baslik="🌙 Akşam kontrolü — günlük rutinlerin:")
 
     # 2) Ad-hoc (sabah tanımlanan) günlük görevler - hepsi TEK mesajda
     ws = get_gorevler_sheet()
@@ -227,6 +252,7 @@ GOREVLER = {
     "aksam": aksam,
     "pazar": pazar,
     "hafta_ortasi": hafta_ortasi,
+    "hatirlat": hatirlat,
 }
 
 
