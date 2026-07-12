@@ -18,7 +18,7 @@ from common import (
     get_haftalik_sheet,
     get_sheet,
     hafta_baslangic_str,
-    RUTINLER,
+    get_aktif_rutinler,
     TR_TZ,
 )
 
@@ -99,10 +99,58 @@ def dun_kacirildi_mi(rutin_isim):
     return False
 
 
+def rutin_serisi_hesapla(rutin_isim):
+    """Dünden geriye doğru gidip kaç gündür kesintisiz yapıldığını
+    (streak) ya da kaç gündür kesintisiz kaçırıldığını (miss_streak)
+    hesaplar. İkisi aynı anda pozitif olamaz."""
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    gunluk_durum = {}
+    for r in rows:
+        if r.get("Görev") != rutin_isim:
+            continue
+        try:
+            tarih = datetime.datetime.strptime(r["Tarih"], "%Y-%m-%d").date()
+        except (ValueError, KeyError):
+            continue
+        gunluk_durum[tarih] = r.get("Durum")  # aynı gün tekrar yazılırsa son kazanır
+
+    bugun = datetime.datetime.now(TR_TZ).date()
+    streak = 0
+    miss_streak = 0
+    gun = bugun - datetime.timedelta(days=1)
+    while True:
+        durum = gunluk_durum.get(gun)
+        if durum is None:
+            break
+        if durum == "Yapıldı":
+            if miss_streak > 0:
+                break
+            streak += 1
+        else:
+            if streak > 0:
+                break
+            miss_streak += 1
+        gun -= datetime.timedelta(days=1)
+    return streak, miss_streak
+
+
+def _rutin_mesaji_olustur(rutin):
+    """Seri/kaçırma durumuna göre soruya bir ön ek ekler - sabit kural
+    tabanlı (AI çağrısı yok, akşam mesajları hızlı kalsın diye)."""
+    streak, miss_streak = rutin_serisi_hesapla(rutin["isim"])
+    if streak >= 5:
+        return f"🔥 {streak} gündür kesintisizsin! {rutin['soru']}"
+    elif miss_streak >= 3:
+        return f"⚠️ {miss_streak} gündür bunu kaçırıyorsun. {rutin['soru']}"
+    return f"• {rutin['soru']}"
+
+
 def aksam():
-    # 1) Sabit rutinler - her gün otomatik sorulur, kullanıcı yazmaz
+    # 1) Sheets'teki rutinler - her gün otomatik sorulur, kullanıcı yazmaz
     send_message("🌙 Akşam kontrolü — günlük rutinlerin:")
-    for rutin in RUTINLER:
+    for rutin in get_aktif_rutinler():
+        mesaj = _rutin_mesaji_olustur(rutin)
         butonlar = [
             {"text": "✅ Yaptım", "callback_data": f"rutin_{rutin['id']}_evet"},
             {"text": "❌ Yapmadım", "callback_data": f"rutin_{rutin['id']}_hayir"},
@@ -112,7 +160,7 @@ def aksam():
             satirlar.append(
                 [{"text": "🔁 Dünkü eksiği bugün telafi ettim", "callback_data": f"rutin_{rutin['id']}_telafi"}]
             )
-        send_message(f"• {rutin['soru']}", buttons=satirlar)
+        send_message(mesaj, buttons=satirlar)
 
     # 2) Ad-hoc (sabah tanımlanan) günlük görevler
     ws = get_gorevler_sheet()

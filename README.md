@@ -78,6 +78,19 @@ gerçekleşiyor.
 - [x] Günlük serbest-metin yorumlama (SLM) — "boşa vakit" cevabındaki soruları anlar, doğal bir yanıt üretir
 - [x] Her an mesaj gönderme desteği — bekleyen soru olmasa bile SLM, mesajın görev ekleme mi yoksa sohbet mi olduğunu ayırt eder
 - [x] Birleşik SLM sınıflandırma mimarisi — "bekleyen soru" artık katı bir kural değil, sadece AI'a bağlam ipucu; hangi kategoriye ait olduğuna (günlük görev/haftalık hedef/boşa vakit/yeni görev/sohbet) her zaman AI karar veriyor, sabit durum makinesi değil
+- [x] Rutinler artık kodda değil, Sheets'te (`Rutinler` sekmesi) — kullanıcı doğrudan görüp düzenleyebilir, yeni rutin ekleyebilir, geçici durdurabilir (Aktif sütunu)
+- [x] Seri/kaçırma bilgisine göre ton değişimi (kural tabanlı, AI'sız - hızlı kalması için): 5+ gündür kesintisizse kutlama, 3+ gündür kaçırılıyorsa daha dikkat çekici mesaj
+
+## Multi-Agent Yol Haritası (sıradaki adım)
+
+Bugüne kadarki her şey (buton akışı, SLM sınıflandırma, haftalık analiz, seri
+hesaplama) gerçek bir "Koç" agent'ının üzerine oturacağı veri ve altyapıyı
+hazırladı. Sıradaki adım, haftalık analizdeki bulguların **gerçek aksiyona**
+dönüşmesi:
+- Seviye 1 (✅ tamamlandı): mesaj/ton değişimi
+- Seviye 2 (kuruluyor): Rutinler sekmesi üzerinden gerçek ayar değişikliği
+  (ör. "bu rutini 2 haftadır kaçırıyorsun, hedefi küçültelim mi?")
+- Seviye 3 (ileride, onaylı): zamanlama (cron) değişikliği
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli
 

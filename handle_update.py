@@ -37,7 +37,7 @@ from common import (
     set_bekleyen_soru,
     hafta_baslangic_str,
     slm_sorgula,
-    RUTINLER,
+    get_aktif_rutinler,
     TR_TZ,
 )
 
@@ -83,7 +83,7 @@ def process_callback(cq):
         parcalar = callback_data.split("_")
         sonuc = parcalar[-1]
         rutin_id = "_".join(parcalar[1:-1])
-        rutin = next((r for r in RUTINLER if r["id"] == rutin_id), None)
+        rutin = next((r for r in get_aktif_rutinler() if r["id"] == rutin_id), None)
         isim = rutin["isim"] if rutin else rutin_id
         if sonuc == "evet":
             log_to_sheet(isim, "Yapıldı")
