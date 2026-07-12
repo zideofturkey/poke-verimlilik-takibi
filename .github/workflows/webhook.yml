@@ -7,10 +7,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: telegram-webhook
-  cancel-in-progress: false
-
 jobs:
   handle:
     runs-on: ubuntu-latest
