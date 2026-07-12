@@ -116,6 +116,7 @@ def aksam():
     ]
 
     if not bugunku:
+        _bosa_vakit_sor()
         return
 
     send_message("📋 Bugün için yazdığın görevler:")
@@ -129,6 +130,17 @@ def aksam():
                 ]
             ],
         )
+
+    _bosa_vakit_sor()
+
+
+def _bosa_vakit_sor():
+    send_message(
+        "Son bir soru: bugün ne kadar boşa vakit geçirdin (YouTube, sosyal "
+        "medya vb.)? Kendi cümlelerinle yazabilirsin, ör. \"yaklaşık 40 "
+        "dakika Instagram\" gibi."
+    )
+    set_bekleyen_soru("bosa_vakit")
 
 
 def pazar():

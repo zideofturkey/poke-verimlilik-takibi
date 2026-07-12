@@ -119,10 +119,31 @@ def process_message(message):
         send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
 
     elif bekleyen == "haftalik_hedef":
+        hedefler = []
+        for satir in text.split("\n"):
+            satir = satir.strip()
+            satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir)
+            if satir:
+                hedefler.append(satir)
+
+        if not hedefler:
+            send_message("Boş görünüyor, en az bir satıra hedef yazman lazım 🙂")
+            return
+
         ws = get_haftalik_sheet()
-        ws.append_row([hafta_baslangic_str(), text])
+        hafta = hafta_baslangic_str()
+        for hedef in hedefler:
+            ws.append_row([hafta, hedef, "Bekliyor"])
         set_bekleyen_soru("")
-        send_message("Haftalık hedeflerin kaydedildi 📝 Hafta ortasında kontrol edeceğim.")
+        liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
+        send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
+
+    elif bekleyen == "bosa_vakit":
+        # Ham metni olduğu gibi kaydediyoruz - süre/nitelik çıkarımı
+        # (SLM ile serbest metin yorumlama) sonraki aşamada eklenecek.
+        log_to_sheet("Boşa geçen vakit", "Beyan", text)
+        set_bekleyen_soru("")
+        send_message("Not edildi, teşekkürler 📝")
 
     else:
         print(f"Beklenmeyen serbest metin (bekleyen soru yok): {text}")
