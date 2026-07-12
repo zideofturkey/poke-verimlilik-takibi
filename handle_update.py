@@ -154,6 +154,8 @@ def process_message(message):
         )
         try:
             cevap = slm_sorgula(prompt)
+            if _turkce_disi_karakter_var_mi(cevap):
+                cevap = "Not edildi, teşekkürler 📝"
         except Exception as e:
             print(f"SLM hatası (bosa_vakit): {e}")
             cevap = "Not edildi, teşekkürler 📝"
@@ -162,6 +164,18 @@ def process_message(message):
 
     else:
         _niyet_tespit_et_ve_isle(text)
+
+
+def _turkce_disi_karakter_var_mi(metin):
+    """Çince, Arapça, Kiril vb. beklenmedik alfabelerden karakter olup
+    olmadığını kontrol eder - model 'dil kayması' yaşarsa yakalamak için."""
+    for ch in metin:
+        kod = ord(ch)
+        # Temel Latin + Türkçe özel karakterler + yaygın noktalama/rakam dışında
+        # bir şey varsa (ör. CJK, Kiril, Arapça aralıkları) şüpheli say.
+        if kod > 0x2FF and kod not in (0x2018, 0x2019, 0x201C, 0x201D, 0x2026):
+            return True
+    return False
 
 
 def _niyet_tespit_et_ve_isle(text):
@@ -179,6 +193,9 @@ def _niyet_tespit_et_ve_isle(text):
         "SADECE şu formatta cevap ver:\n"
         "SOHBET: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi "
         "Türkçe cevap>\n\n"
+        "ÖNEMLİ: Kullanıcı hangi dilde yazarsa yazsın (Türkçe, İngilizce, "
+        "vb.), SEN her zaman SADECE Türkçe ve Latin alfabesiyle cevap ver. "
+        "Çince, Arapça, Kiril veya başka bir alfabe/dil KESİNLİKLE KULLANMA. "
         "Başka hiçbir açıklama ekleme, sadece bu iki formattan birini kullan."
     )
 
@@ -194,11 +211,17 @@ def _niyet_tespit_et_ve_isle(text):
 
     if cevap.startswith("GOREV:"):
         gorev_metni = cevap.replace("GOREV:", "", 1).strip()
+        if _turkce_disi_karakter_var_mi(gorev_metni):
+            print(f"Model beklenmedik alfabe üretti, orijinal metne dönülüyor: {gorev_metni!r}")
+            gorev_metni = text  # güvenlik ağı: modelin bozuk çıktısı yerine kullanıcının kendi metnini kullan
         ws = get_gorevler_sheet()
         ws.append_row([bugun_str(), "", gorev_metni, "Bekliyor"])
         send_message(f"✅ Bugünün görev listesine eklendi: '{gorev_metni}'. Akşam soracağım!")
     elif cevap.startswith("SOHBET:"):
-        send_message(cevap.replace("SOHBET:", "", 1).strip())
+        cevap_metni = cevap.replace("SOHBET:", "", 1).strip()
+        if _turkce_disi_karakter_var_mi(cevap_metni):
+            cevap_metni = "Not aldım 👍"
+        send_message(cevap_metni)
     else:
         # Model beklenen formatı kullanmadıysa, olduğu gibi gönder
         send_message(cevap)
