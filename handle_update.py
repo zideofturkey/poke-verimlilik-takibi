@@ -219,17 +219,20 @@ def _siniflandir_ve_isle(text, bekleyen):
         send_message(cevap)
 
     elif tip == "YENI_GOREV":
-        gorevler = []
-        if gorevler_match:
+        # Tırnak varsa önce deterministik olarak yakala (güvenilir) - model
+        # kendi çıkarımını sadece tırnak yokken devreye sokar.
+        tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+        if tirnak_ici:
+            gorevler = tirnak_ici
+        elif gorevler_match:
             aday = gorevler_match.group(1).strip()
             gorevler = [g.strip() for g in aday.split("|") if g.strip()]
             gorevler = [g for g in gorevler if not _turkce_disi_karakter_var_mi(g)]
+        else:
+            gorevler = []
 
         if not gorevler:
-            # Güvenlik ağı: model çıktısı boş/bozuksa, orijinal metindeki
-            # tırnak içi ifadeleri deterministik olarak yakalamayı dene
-            tirnak_ici = re.findall(r'"([^"]+)"', text)
-            gorevler = tirnak_ici if tirnak_ici else [text]
+            gorevler = [text]  # son çare: tüm cümleyi tek görev olarak al
 
         ws = get_gorevler_sheet()
         bugun = bugun_str()
