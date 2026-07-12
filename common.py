@@ -248,6 +248,16 @@ def rutin_serisi_hesapla(rutin_isim):
     return streak, miss_streak
 
 
+def turkce_disi_karakter_var_mi(metin):
+    """Çince, Arapça, Kiril vb. beklenmedik alfabelerden karakter olup
+    olmadığını kontrol eder - model 'dil kayması' yaşarsa yakalamak için."""
+    for ch in metin:
+        kod = ord(ch)
+        if kod > 0x2FF and kod not in (0x2018, 0x2019, 0x201C, 0x201D, 0x2026):
+            return True
+    return False
+
+
 def get_bekleyen_soru():
     ws = get_durum_sheet()
     return ws.acell("B2").value or ""

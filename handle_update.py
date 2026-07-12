@@ -37,8 +37,10 @@ from common import (
     set_bekleyen_soru,
     hafta_baslangic_str,
     slm_sorgula,
+    turkce_disi_karakter_var_mi,
     get_aktif_rutinler,
     get_rutinler_sheet,
+    rutin_serisi_hesapla,
     TR_TZ,
 )
 
@@ -101,6 +103,10 @@ def process_callback(cq):
         sonuc = parcalar[-1]
         rutin_id = "_".join(parcalar[2:-1])
 
+        rutin = next((r for r in get_aktif_rutinler() if r["id"] == rutin_id), None)
+        isim = rutin["isim"] if rutin else rutin_id
+        _, miss_streak = rutin_serisi_hesapla(isim)
+
         if sonuc == "evet":
             ws = get_rutinler_sheet()
             rows = ws.get_all_values()
@@ -111,12 +117,30 @@ def process_callback(cq):
                     bulundu = True
                     break
             if bulundu:
-                send_message("🧑‍🏫 Tamam, o rutini duraklattım. İstediğin zaman Rutinler sekmesinden Aktif=TRUE yaparak geri açabilirsin.")
                 log_to_sheet(f"Koç kararı: {rutin_id}", "Duraklatıldı")
-            else:
-                send_message("Bu rutini Rutinler sekmesinde bulamadım, garip.")
+            durum_metni = "duraklatmayı kabul etti" if bulundu else "duraklatmak istedi ama bir hata oldu"
         else:
-            send_message("🧑‍🏫 Tamam, aynen devam ediyoruz 💪")
+            durum_metni = "devam etmeyi seçti (duraklatmadı)"
+
+        prompt = (
+            "Sen bir verimlilik koçu botusun (adın Poke). Kullanıcı "
+            f"'{isim}' rutinini {miss_streak} gündür kaçırıyordu, sen ona "
+            f"duraklatmayı önermiştin, o da {durum_metni}. "
+            "Ona kısa (2-3 cümle), destekleyici, pratik bir tavsiye ver - "
+            "yargılamadan, samimi bir dille. SADECE mesajı yaz, başka "
+            "açıklama ekleme."
+        )
+        try:
+            cevap_mesaji = slm_sorgula(prompt)
+            if turkce_disi_karakter_var_mi(cevap_mesaji):
+                raise ValueError("dil kayması")
+        except Exception as e:
+            print(f"SLM hatası (koç cevabı): {e}")
+            cevap_mesaji = (
+                "🧑‍🏫 Tamam, kaydettim." if sonuc == "evet" else "🧑‍🏫 Tamam, aynen devam ediyoruz 💪"
+            )
+
+        send_message(cevap_mesaji)
 
     elif callback_data.startswith("gorev_"):
         # format: gorev_<satirNo>_evet / gorev_<satirNo>_hayir
@@ -142,14 +166,7 @@ def process_message(message):
     _siniflandir_ve_isle(text, bekleyen)
 
 
-def _turkce_disi_karakter_var_mi(metin):
-    """Çince, Arapça, Kiril vb. beklenmedik alfabelerden karakter olup
-    olmadığını kontrol eder - model 'dil kayması' yaşarsa yakalamak için."""
-    for ch in metin:
-        kod = ord(ch)
-        if kod > 0x2FF and kod not in (0x2018, 0x2019, 0x201C, 0x201D, 0x2026):
-            return True
-    return False
+_turkce_disi_karakter_var_mi = turkce_disi_karakter_var_mi
 
 
 BEKLEYEN_ACIKLAMA = {

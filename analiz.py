@@ -11,7 +11,7 @@ otomatik bir sistem kurmak için. Detaylar için Sistem Dokümantasyonu'na bakı
 """
 
 import datetime
-from common import get_sheet, send_message, slm_sorgula, get_aktif_rutinler, rutin_serisi_hesapla, TR_TZ
+from common import get_sheet, send_message, slm_sorgula, get_aktif_rutinler, rutin_serisi_hesapla, turkce_disi_karakter_var_mi, TR_TZ
 
 ANALIZ_GUN_SAYISI = 7
 KOC_DURAKLAMA_ESIGI = 5  # kaç gün üst üste kaçırılırsa duraklatma önerilsin
@@ -71,14 +71,32 @@ def prompt_olustur(veriler):
 
 def koc_onerisi_sun():
     """Sürekli kaçırılan rutinler için duraklatma önerisi sunar.
-    HİÇBİR ZAMAN kendi kendine değiştirmez - her zaman onay ister."""
+    Mesajın içeriğini SLM üretir (kural: EŞİK sabit/kod tabanlı, İÇERİK
+    AI tabanlı). HİÇBİR ZAMAN kendi kendine değiştirmez - her zaman onay ister."""
     for rutin in get_aktif_rutinler():
         _, miss_streak = rutin_serisi_hesapla(rutin["isim"])
         if miss_streak >= KOC_DURAKLAMA_ESIGI:
+            prompt = (
+                "Sen bir verimlilik koçu botusun (adın Poke). Kullanıcı "
+                f"'{rutin['isim']}' rutinini {miss_streak} gündür üst üste "
+                "kaçırıyor. Ona bunu nazikçe, yargılamadan belirt ve bir "
+                "süreliğine bu rutini duraklatmayı önererek onay iste. "
+                "Kısa (2-3 cümle), samimi, destekleyici bir Türkçe mesaj "
+                "yaz. SADECE mesajı yaz, başka açıklama ekleme."
+            )
+            try:
+                mesaj = slm_sorgula(prompt)
+                if turkce_disi_karakter_var_mi(mesaj):
+                    raise ValueError("dil kayması tespit edildi")
+            except Exception as e:
+                print(f"SLM hatası (koç önerisi): {e}")
+                mesaj = (
+                    f"🧑‍🏫 '{rutin['isim']}' rutinini {miss_streak} gündür "
+                    "kaçırıyorsun. Bir süreliğine duraklatalım mı?"
+                )
+
             send_message(
-                f"🧑‍🏫 Koç önerisi: '{rutin['isim']}' rutinini {miss_streak} "
-                "gündür üst üste kaçırıyorsun. Bir süreliğine duraklatalım "
-                "mı? (İstediğin zaman Rutinler sekmesinden tekrar açabilirsin)",
+                mesaj,
                 buttons=[
                     [
                         {"text": "✅ Evet, duraklat", "callback_data": f"koc_duraklat_{rutin['id']}_evet"},
@@ -98,6 +116,8 @@ def main():
 
     try:
         ozet = slm_sorgula(prompt)
+        if turkce_disi_karakter_var_mi(ozet):
+            raise ValueError("dil kayması tespit edildi")
     except Exception as e:
         print(f"SLM hatası: {e}")
         send_message(
