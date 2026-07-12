@@ -74,7 +74,8 @@ gerçekleşiyor.
 - [x] Anlık tepki (Cloudflare Worker webhook)
 - [x] Genel görev akışı: sabah serbest metin → akşam kutucuklu kontrol → telafi mantığı → haftalık hedef
 - [x] Yerel SLM entegrasyonu (haftalık pattern analizi — Ollama, GitHub Actions runner'ında)
-- [x] "Boşa geçen vakit" serbest-metin self-report (korelasyon analizi için veri toplama — yorumlama SLM'e bağlanacak)
+- [x] "Boşa geçen vakit" serbest-metin self-report (korelasyon analizi için veri toplama)
+- [x] Günlük serbest-metin yorumlama (SLM) — "boşa vakit" cevabındaki soruları anlar, doğal bir yanıt üretir (sadece serbest metin mesajlarında Ollama kurulur, buton akışı hızlı kalır; yedek `dinle.yml` yolunda SLM yoksa kanıtlı mesaja düşer)
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli
 

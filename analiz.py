@@ -11,11 +11,8 @@ otomatik bir sistem kurmak için. Detaylar için Sistem Dokümantasyonu'na bakı
 """
 
 import datetime
-import requests
-from common import get_sheet, send_message, TR_TZ
+from common import get_sheet, send_message, slm_sorgula, TR_TZ
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "qwen2.5:7b"
 ANALIZ_GUN_SAYISI = 7
 
 
@@ -71,21 +68,6 @@ def prompt_olustur(veriler):
     )
 
 
-def ollama_sorgula(prompt):
-    resp = requests.post(
-        OLLAMA_URL,
-        json={
-            "model": MODEL,
-            "prompt": prompt,
-            "stream": False,
-            "options": {"temperature": 0.3},
-        },
-        timeout=180,
-    )
-    resp.raise_for_status()
-    return resp.json()["response"].strip()
-
-
 def main():
     veriler = son_hafta_verisi()
     prompt = prompt_olustur(veriler)
@@ -95,9 +77,9 @@ def main():
         return
 
     try:
-        ozet = ollama_sorgula(prompt)
+        ozet = slm_sorgula(prompt)
     except Exception as e:
-        print(f"Ollama hatası: {e}")
+        print(f"SLM hatası: {e}")
         send_message(
             "📊 Haftalık analiz şu an oluşturulamadı (teknik bir sorun oldu), "
             "gelecek hafta tekrar denenecek."

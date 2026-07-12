@@ -18,6 +18,7 @@ from common import (
     get_bekleyen_soru,
     set_bekleyen_soru,
     hafta_baslangic_str,
+    slm_sorgula,
     RUTINLER,
     TR_TZ,
 )
@@ -139,11 +140,25 @@ def process_message(message):
         send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
 
     elif bekleyen == "bosa_vakit":
-        # Ham metni olduğu gibi kaydediyoruz - süre/nitelik çıkarımı
-        # (SLM ile serbest metin yorumlama) sonraki aşamada eklenecek.
         log_to_sheet("Boşa geçen vakit", "Beyan", text)
         set_bekleyen_soru("")
-        send_message("Not edildi, teşekkürler 📝")
+
+        prompt = (
+            "Sen bir verimlilik koçu asistanısın (adın Poke). Kullanıcı akşam "
+            f"check-in'inde şunu yazdı:\n\n\"{text}\"\n\n"
+            "Görevlerin:\n"
+            "1. Eğer cümlede bir soru varsa, kısa ve yararlı şekilde cevapla.\n"
+            "2. Kısa (1-2 cümle), samimi, doğal bir Türkçe yanıt yaz - "
+            "robotik bir onay cümlesi değil, gerçek bir konuşma gibi.\n"
+            "Sadece kullanıcıya gönderilecek yanıtı yaz, başka açıklama ekleme."
+        )
+        try:
+            cevap = slm_sorgula(prompt)
+        except Exception as e:
+            print(f"SLM hatası (bosa_vakit): {e}")
+            cevap = "Not edildi, teşekkürler 📝"
+
+        send_message(cevap)
 
     else:
         print(f"Beklenmeyen serbest metin (bekleyen soru yok): {text}")

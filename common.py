@@ -116,6 +116,27 @@ def hafta_baslangic_str():
     return pazartesi.strftime("%Y-%m-%d")
 
 
+SLM_MODEL = "qwen2.5:7b"
+SLM_URL = "http://localhost:11434/api/generate"
+
+
+def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120):
+    """Yerel Ollama modeline (GitHub Actions runner'ında geçici olarak
+    ayağa kaldırılmış) bir prompt gönderir, metin cevabını döndürür."""
+    resp = requests.post(
+        SLM_URL,
+        json={
+            "model": SLM_MODEL,
+            "prompt": prompt,
+            "stream": False,
+            "options": {"temperature": sicaklik},
+        },
+        timeout=zaman_asimi,
+    )
+    resp.raise_for_status()
+    return resp.json()["response"].strip()
+
+
 def get_bekleyen_soru():
     ws = get_durum_sheet()
     return ws.acell("B2").value or ""
