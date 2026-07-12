@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poke Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #5CCFCB;
+    --blue-mid: #59B0D3;
+    --navy: #30537E;
+    --navy-deep: #1B3A5C;
+    --white: #FFFFFF;
+    --bg: #F3F9FA;
+    --card: #FFFFFF;
+    --text-primary: #14273B;
+    --text-secondary: #4C6478;
+    --text-muted: #8AA0B2;
+    --border: #DCE9EC;
+    --ok: #2E9E7F;
+    --ok-bg: #E4F5EF;
+    --warn: #D9743C;
+    --warn-bg: #FBEAE0;
+    --radius: 14px;
+    --gradient: linear-gradient(160deg, var(--teal) 0%, var(--blue-mid) 45%, var(--navy) 78%, var(--navy-deep) 100%);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .brand-font {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- HERO / HEADER ---------- */
+  .hero {
+    background: var(--gradient);
+    position: relative;
+    overflow: hidden;
+    padding: 28px 32px 84px;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/poke-logo.png');
+    background-repeat: repeat;
+    background-size: 140px;
+    opacity: 0.06;
+    transform: rotate(-8deg) scale(1.4);
+    pointer-events: none;
+  }
+
+  .hero-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand img {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+
+  .brand-text h1 {
+    color: var(--white);
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .brand-text p {
+    color: rgba(255,255,255,0.78);
+    font-size: 13px;
+    margin: 2px 0 0;
+    font-weight: 500;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.16);
+    padding: 4px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  .tab-btn {
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .tab-btn.active {
+    background: var(--white);
+    color: var(--navy-deep);
+  }
+
+  .hero-stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-top: 26px;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+
+  .hero-stat .num {
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.1;
+  }
+
+  .hero-stat .label {
+    color: rgba(255,255,255,0.75);
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ---------- BODY ---------- */
+  .content {
+    max-width: 1080px;
+    margin: -52px auto 60px;
+    padding: 0 32px;
+    position: relative;
+  }
+
+  .panel-view { display: none; }
+  .panel-view.active { display: block; }
+
+  .section {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(27, 58, 92, 0.06);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .section-head h2 {
+    font-size: 16px;
+    margin: 0;
+    color: var(--navy-deep);
+  }
+
+  select, input[type="text"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+    color: var(--text-primary);
+    background: var(--white);
+  }
+
+  /* ---------- HEATMAP ---------- */
+  .heatmap {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 5px;
+  }
+
+  .hm-cell {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background: #E9F1F3;
+    cursor: default;
+  }
+
+  .hm-cell[data-level="1"] { background: #C9E9E2; }
+  .hm-cell[data-level="2"] { background: #8FD3C7; }
+  .hm-cell[data-level="3"] { background: #4FB6A8; }
+  .hm-cell[data-level="4"] { background: var(--navy); }
+
+  .heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  /* ---------- ROUTINE PROGRESS ---------- */
+  .routine-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 60px;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .routine-row:last-child { border-bottom: none; }
+
+  .routine-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .bar-track {
+    height: 8px;
+    background: #EAF3F4;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--teal), var(--navy));
+  }
+
+  .routine-pct {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+    color: var(--navy-deep);
+  }
+
+  /* ---------- LOG TABLE ---------- */
+  .log-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .log-table th {
+    text-align: left;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .log-row td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .log-row:hover td { background: #F6FBFB; }
+  .log-row td:first-child { color: var(--text-primary); font-weight: 600; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .badge.ok { background: var(--ok-bg); color: var(--ok); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn); }
+
+  .detail-row td {
+    background: #F6FBFB;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    display: none;
+    cursor: default;
+  }
+  .detail-row.open td { display: table-cell; }
+  .detail-row pre {
+    white-space: pre-wrap;
+    margin: 6px 0 0;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+
+  .empty-hint {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  footer {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 10px 32px 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.5;
+  }
+
+  footer img { width: 20px; height: 20px; border-radius: 5px; }
+  footer span { font-size: 12px; color: var(--text-muted); }
+
+  @media (max-width: 640px) {
+    .content { margin-top: -36px; padding: 0 16px; }
+    .hero { padding: 22px 16px 68px; }
+    .routine-row { grid-template-columns: 110px 1fr 44px; }
+    .heatmap { grid-template-columns: repeat(10, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="brand">
+      <img src="assets/poke-logo.png" alt="Poke">
+      <div class="brand-text">
+        <h1>Poke Panel</h1>
+        <p>Verimlilik takip sistemi &middot; gözlemlenebilirlik</p>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="kisisel">Kişisel</button>
+      <button class="tab-btn" data-tab="teknik">Teknik</button>
+    </div>
+  </div>
+
+  <div class="hero-stats" id="heroStats">
+    <!-- JS ile doldurulur -->
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ============ KİŞİSEL SEKME ============ -->
+  <div class="panel-view active" id="view-kisisel">
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Son 45 gün</h2>
+        <span class="empty-hint">Her kutu bir gün &middot; koyu = daha fazla rutin tamamlandı</span>
+      </div>
+      <div class="heatmap" id="heatmap"></div>
+      <div class="heatmap-legend">
+        Az <span class="legend-swatch" style="background:#E9F1F3"></span>
+        <span class="legend-swatch" style="background:#C9E9E2"></span>
+        <span class="legend-swatch" style="background:#8FD3C7"></span>
+        <span class="legend-swatch" style="background:#4FB6A8"></span>
+        <span class="legend-swatch" style="background:#30537E"></span> Çok
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Rutin tamamlama oranı (son 30 gün)</h2>
+      </div>
+      <div id="routineList"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Haftalık hedef geçmişi</h2>
+        <select id="hedefFiltre">
+          <option value="all">Tüm haftalar</option>
+          <option value="done">Tutturulanlar</option>
+          <option value="missed">Kaçırılanlar</option>
+        </select>
+      </div>
+      <table class="log-table">
+        <thead>
+          <tr><th>Hafta</th><th>Hedef</th><th>Durum</th></tr>
+        </thead>
+        <tbody id="hedefTablo"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ============ TEKNİK SEKME ============ -->
+  <div class="panel-view" id="view-teknik">
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Workflow çalıştırmaları</h2>
+        <select id="workflowFiltre">
+          <option value="all">Tümü</option>
+          <option value="Gönder">Gönder</option>
+          <option value="Webhook">Webhook</option>
+          <option value="Analiz">Analiz</option>
+          <option value="Dinle">Dinle</option>
+        </select>
+      </div>
+      <table class="log-table">
+        <thead>
+          <tr><th>Workflow</th><th>Tetiklenme</th><th>Süre</th><th>Durum</th></tr>
+        </thead>
+        <tbody id="workflowTablo"></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>SLM sınıflandırma kararları</h2>
+        <span class="empty-hint">Bir satıra tıkla, tam prompt/cevabı gör</span>
+      </div>
+      <table class="log-table">
+        <thead>
+          <tr><th>Zaman</th><th>Mesaj (özet)</th><th>Kategori</th></tr>
+        </thead>
+        <tbody id="slmTablo"></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Koç kararları</h2>
+      </div>
+      <table class="log-table">
+        <thead>
+          <tr><th>Rutin</th><th>Tetikleyici</th><th>Kullanıcı cevabı</th><th>Sonuç</th></tr>
+        </thead>
+        <tbody id="kocTablo"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <img src="assets/poke-logo.png" alt="">
+  <span>Poke &middot; HexaWorks staj projesi</span>
+</footer>
+
+<script>
+  // ---------- ÖRNEK VERİ (mockup - gerçek entegrasyon sonraki aşamada) ----------
+  const rutinler = [
+    { isim: "Fransızca çalışma", oran: 82 },
+    { isim: "Sabah telefon rutini", oran: 57 },
+    { isim: "Akşam telefon rutini", oran: 64 },
+    { isim: "Verimli video izleme", oran: 91 },
+  ];
+
+  const hedefler = [
+    { hafta: "6 Tem - 12 Tem", hedef: "Portföy dağılımı güncelle", durum: "done" },
+    { hafta: "6 Tem - 12 Tem", hedef: "Matrix 2 izle", durum: "missed" },
+    { hafta: "6 Tem - 12 Tem", hedef: "Bir kitap bitir", durum: "done" },
+    { hafta: "29 Haz - 5 Tem", hedef: "Portföy analizi yap", durum: "done" },
+  ];
+
+  const workflowlar = [
+    { ad: "Gönder", tip: "Gönder", zaman: "Bugün 09:00", sure: "14s", durum: "ok" },
+    { ad: "Webhook", tip: "Webhook", zaman: "Bugün 14:32", sure: "6s", durum: "ok" },
+    { ad: "Analiz", tip: "Analiz", zaman: "Pazar 21:00", sure: "3dk 12s", durum: "ok" },
+    { ad: "Dinle", tip: "Dinle", zaman: "Bugün 13:29", sure: "4s", durum: "warn" },
+  ];
+
+  const slmKararlari = [
+    { zaman: "14:32", ozet: "bugün için yeni bir görev ekliyorum...", kategori: "YENI_GOREV",
+      detay: "PROMPT: Kullanıcı mesajını sınıflandır...\n\nCEVAP: TIP: YENI_GOREV\nGOREVLER: piyano kursuna git | makale oku" },
+    { zaman: "09:14", ozet: "1. Fransızca çalış 2. spora git...", kategori: "GUNLUK_GOREV",
+      detay: "PROMPT: Kullanıcı mesajını sınıflandır...\n\nCEVAP: TIP: GUNLUK_GOREV" },
+  ];
+
+  const kocKararlari = [
+    { rutin: "Verimli video izleme", tetik: "5 gün üst üste kaçırıldı", cevap: "Hayır, devam", sonuc: "Değişmedi" },
+  ];
+
+  // ---------- HERO STATLARI ----------
+  document.getElementById('heroStats').innerHTML = `
+    <div class="hero-stat"><div class="num">12</div><div class="label">Günlük seri (Fransızca)</div></div>
+    <div class="hero-stat"><div class="num">%73</div><div class="label">Bu hafta rutin tamamlama</div></div>
+    <div class="hero-stat"><div class="num">2 / 3</div><div class="label">Haftalık hedef tutturuldu</div></div>
+    <div class="hero-stat"><div class="num">1</div><div class="label">Bekleyen Koç önerisi</div></div>
+  `;
+
+  // ---------- ISI HARİTASI (mock, rastgele ama tutarlı) ----------
+  const hmEl = document.getElementById('heatmap');
+  let seed = 42;
+  function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  for (let i = 0; i < 45; i++) {
+    const level = Math.floor(rnd() * 5);
+    const div = document.createElement('div');
+    div.className = 'hm-cell';
+    div.setAttribute('data-level', level);
+    hmEl.appendChild(div);
+  }
+
+  // ---------- RUTİN İLERLEME ----------
+  document.getElementById('routineList').innerHTML = rutinler.map(r => `
+    <div class="routine-row">
+      <div class="routine-name">${r.isim}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${r.oran}%"></div></div>
+      <div class="routine-pct">%${r.oran}</div>
+    </div>
+  `).join('');
+
+  // ---------- HAFTALIK HEDEF TABLOSU ----------
+  function hedefRenderla(filtre) {
+    const liste = filtre === 'all' ? hedefler : hedefler.filter(h => h.durum === filtre);
+    document.getElementById('hedefTablo').innerHTML = liste.map(h => `
+      <tr class="log-row">
+        <td>${h.hafta}</td>
+        <td>${h.hedef}</td>
+        <td><span class="badge ${h.durum === 'done' ? 'ok' : 'warn'}">${h.durum === 'done' ? 'Tutturuldu' : 'Kaçırıldı'}</span></td>
+      </tr>
+    `).join('');
+  }
+  hedefRenderla('all');
+  document.getElementById('hedefFiltre').addEventListener('change', e => hedefRenderla(e.target.value));
+
+  // ---------- WORKFLOW TABLOSU ----------
+  function workflowRenderla(filtre) {
+    const liste = filtre === 'all' ? workflowlar : workflowlar.filter(w => w.tip === filtre);
+    document.getElementById('workflowTablo').innerHTML = liste.map(w => `
+      <tr class="log-row">
+        <td>${w.ad}</td>
+        <td>${w.zaman}</td>
+        <td>${w.sure}</td>
+        <td><span class="badge ${w.durum}">${w.durum === 'ok' ? 'Başarılı' : 'Uyarı'}</span></td>
+      </tr>
+    `).join('');
+  }
+  workflowRenderla('all');
+  document.getElementById('workflowFiltre').addEventListener('change', e => workflowRenderla(e.target.value));
+
+  // ---------- SLM KARAR TABLOSU (tıkla-detay-gör) ----------
+  const slmBody = document.getElementById('slmTablo');
+  slmKararlari.forEach((k, idx) => {
+    const row = document.createElement('tr');
+    row.className = 'log-row';
+    row.innerHTML = `<td>${k.zaman}</td><td>${k.ozet}</td><td><span class="badge ok">${k.kategori}</span></td>`;
+    const detail = document.createElement('tr');
+    detail.className = 'detail-row';
+    detail.innerHTML = `<td colspan="3"><pre>${k.detay}</pre></td>`;
+    row.addEventListener('click', () => detail.classList.toggle('open'));
+    slmBody.appendChild(row);
+    slmBody.appendChild(detail);
+  });
+
+  // ---------- KOÇ KARAR TABLOSU ----------
+  document.getElementById('kocTablo').innerHTML = kocKararlari.map(k => `
+    <tr class="log-row">
+      <td>${k.rutin}</td>
+      <td>${k.tetik}</td>
+      <td>${k.cevap}</td>
+      <td>${k.sonuc}</td>
+    </tr>
+  `).join('');
+
+  // ---------- SEKME GEÇİŞİ ----------
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel-view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
