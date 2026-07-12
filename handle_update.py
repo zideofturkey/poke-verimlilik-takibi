@@ -160,8 +160,12 @@ def process_callback(cq):
 
 def _sorguyu_cevapla(text):
     """Kullanıcı bir şey sorguladığında (ör. 'bugünkü görevlerimi hatırlatır
-    mısın') GERÇEK veriyi Sheets'ten okuyup, SLM'e sadece bu veriyi doğal
-    dile çevirtir. Model veride olmayan hiçbir şey uydurmamalı."""
+    mısın') GERÇEK veriyi Sheets'ten okuyup, DOĞRUDAN Python'da (SLM'e
+    yazdırmadan) net bir liste hâlinde cevap verir. Bunun iki sebebi var:
+    (1) kullanıcı direkt liste formatını daha verimli buluyor,
+    (2) SLM serbest metin üretirken bazen yazım hatası yapıyordu (ör.
+    'rutin' yerine 'rutün') - deterministik formatlama bunu tamamen ortadan
+    kaldırıyor."""
     bugun = bugun_str()
 
     ws_gorev = get_gorevler_sheet()
@@ -178,34 +182,36 @@ def _sorguyu_cevapla(text):
         send_message("Bugün için henüz kayıtlı bir görev ya da rutin durumu yok.")
         return
 
+    # Kullanıcı sadece eksikleri mi soruyor, yoksa genel durumu mu?
+    eksik_kelimeler = ["yapmadığ", "yapmadık", "kaçır", "eksik", "tamamlamadığ", "unuttuğ"]
+    sadece_eksikler = any(k in text.lower() for k in eksik_kelimeler)
+
     satirlar = []
-    if gorevler:
-        satirlar.append("Bugünkü ad-hoc görevler:")
-        for r in gorevler:
-            satirlar.append(f"- {r['GorevMetni']}: {r['Durum']}")
-    if takip_bugun:
-        satirlar.append("Bugünkü rutin durumu:")
-        for r in takip_bugun:
-            satirlar.append(f"- {r['Görev']}: {r['Durum']}")
-    veri_metni = "\n".join(satirlar)
+    for r in takip_bugun:
+        if sadece_eksikler and r["Durum"] != "Yapılmadı":
+            continue
+        isaret = "✅" if r["Durum"] == "Yapıldı" else "❌"
+        satirlar.append(f"{isaret} {r['Görev']}")
+    for r in gorevler:
+        if sadece_eksikler and r["Durum"] != "Bekliyor":
+            continue
+        if r["Durum"] == "Yapıldı":
+            isaret = "✅"
+        elif r["Durum"] == "Yapılmadı":
+            isaret = "❌"
+        else:
+            isaret = "⏳"
+        satirlar.append(f"{isaret} {r['GorevMetni']}")
 
-    prompt = (
-        "Sen bir verimlilik takip botusun (adın Poke). Kullanıcı sana bir "
-        f"soru sordu: \"{text}\"\n\n"
-        "Aşağıda GERÇEK, güncel veri var. SADECE bu veriye dayanarak kısa "
-        "ve doğal bir Türkçe cevap ver. Veride olmayan hiçbir şeyi UYDURMA, "
-        "sadece verilenleri özetle. SADECE cevabı yaz, başka açıklama ekleme.\n\n"
-        f"Veri:\n{veri_metni}"
-    )
-    try:
-        cevap = slm_sorgula(prompt)
-        if turkce_disi_karakter_var_mi(cevap):
-            raise ValueError("dil kayması")
-    except Exception as e:
-        print(f"SLM hatası (sorgula): {e}")
-        cevap = veri_metni  # yedek: en azından ham veriyi doğru göster
+    if not satirlar:
+        if sadece_eksikler:
+            send_message("Harika, bugün için kaçırdığın bir şey görünmüyor! 🎉")
+        else:
+            send_message("Bugün için henüz kayıtlı bir görev ya da rutin durumu yok.")
+        return
 
-    send_message(cevap)
+    baslik = "Bugün henüz yapmadıkların:" if sadece_eksikler else "Bugünkü durumun:"
+    send_message(f"{baslik}\n" + "\n".join(satirlar))
 
 
 def process_message(message):
@@ -241,6 +247,9 @@ def _siniflandir_ve_isle(text, bekleyen):
         "Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok."
     )
 
+    aktif_rutinler = get_aktif_rutinler()
+    rutin_isim_listesi = ", ".join(f"'{r['isim']}'" for r in aktif_rutinler)
+
     prompt = (
         "Sen bir verimlilik takip botusun (adın Poke). "
         f"{baglam}\n\n"
@@ -255,6 +264,10 @@ def _siniflandir_ve_isle(text, bekleyen):
         "Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, "
         "ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden "
         "fazla görev aynı mesajda olabilir\n"
+        f"- RUTIN_TAMAMLA: kullanıcı şu sabit rutinlerden birini tamamladığını "
+        f"bildiriyor: {rutin_isim_listesi}. Ör: 'Fransızca rutinimi tamamladım', "
+        "'bugün spor yaptım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - "
+        "bu kategori sadece yukarıdaki listedeki rutinler için\n"
         "- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/"
         "HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', "
         "'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım'. Bu ifadelerde "
@@ -265,6 +278,8 @@ def _siniflandir_ve_isle(text, bekleyen):
         "TIP: <KATEGORI>\n"
         "GOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile "
         "ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\n"
+        f"RUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listeden BİREBİR aynı "
+        f"şekilde yaz: {rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
         "CEVAP: <kullanıcıya vereceğin kısa (1 cümle), doğal, samimi Türkçe "
         "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK>"
     )
@@ -278,13 +293,26 @@ def _siniflandir_ve_isle(text, bekleyen):
 
     tip_match = re.search(r"TIP:\s*(\w+)", sonuc)
     gorevler_match = re.search(r"GOREVLER:\s*(.+)", sonuc)
+    rutin_match = re.search(r"RUTIN:\s*(.+)", sonuc)
     cevap_match = re.search(r"CEVAP:\s*(.+)", sonuc, re.DOTALL)
     tip = tip_match.group(1).upper() if tip_match else "SOHBET"
     cevap = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
     if _turkce_disi_karakter_var_mi(cevap):
         cevap = "Not aldım 👍"
 
-    if tip == "GUNLUK_GOREV":
+    if tip == "RUTIN_TAMAMLA":
+        rutin_ismi_ham = rutin_match.group(1).strip().strip("'\"") if rutin_match else ""
+        eslesen = next((r for r in aktif_rutinler if r["isim"] == rutin_ismi_ham), None)
+        if eslesen:
+            log_to_sheet(eslesen["isim"], "Yapıldı")
+            send_message(f"✅ '{eslesen['isim']}' tamamlandı olarak kaydedildi. Tebrikler!")
+        else:
+            send_message(
+                "Hangi rutinden bahsettiğini tam anlayamadım — akşam kontrolünde "
+                "butonla işaretleyebilirsin, orası her zaman güvenilir çalışır 👍"
+            )
+
+    elif tip == "GUNLUK_GOREV":
         gorevler = satirlari_ayikla(text)
         if not gorevler:
             send_message("Bunu görev listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
