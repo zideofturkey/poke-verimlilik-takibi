@@ -159,10 +159,15 @@ def _siniflandir_ve_isle(text, bekleyen):
         "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor\n"
         "- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor\n"
         "- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n"
-        "- YENI_GOREV: herhangi bir an kendiliğinden yeni, tek bir görev/iş ekliyor\n"
+        "- YENI_GOREV: herhangi bir an kendiliğinden yeni görev/iş ekliyor. "
+        "Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, "
+        "ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden "
+        "fazla görev aynı mesajda olabilir\n"
         "- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\n"
         "SADECE şu formatta cevap ver, başka hiçbir şey ekleme:\n"
         "TIP: <KATEGORI>\n"
+        "GOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile "
+        "ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\n"
         "CEVAP: <kullanıcıya vereceğin kısa (1 cümle), doğal, samimi Türkçe "
         "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK>"
     )
@@ -175,6 +180,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         return
 
     tip_match = re.search(r"TIP:\s*(\w+)", sonuc)
+    gorevler_match = re.search(r"GOREVLER:\s*(.+)", sonuc)
     cevap_match = re.search(r"CEVAP:\s*(.+)", sonuc, re.DOTALL)
     tip = tip_match.group(1).upper() if tip_match else "SOHBET"
     cevap = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
@@ -213,9 +219,24 @@ def _siniflandir_ve_isle(text, bekleyen):
         send_message(cevap)
 
     elif tip == "YENI_GOREV":
+        gorevler = []
+        if gorevler_match:
+            aday = gorevler_match.group(1).strip()
+            gorevler = [g.strip() for g in aday.split("|") if g.strip()]
+            gorevler = [g for g in gorevler if not _turkce_disi_karakter_var_mi(g)]
+
+        if not gorevler:
+            # Güvenlik ağı: model çıktısı boş/bozuksa, orijinal metindeki
+            # tırnak içi ifadeleri deterministik olarak yakalamayı dene
+            tirnak_ici = re.findall(r'"([^"]+)"', text)
+            gorevler = tirnak_ici if tirnak_ici else [text]
+
         ws = get_gorevler_sheet()
-        ws.append_row([bugun_str(), "", text, "Bekliyor"])
-        send_message(f"✅ Bugünün görev listesine eklendi: '{text}'. Akşam soracağım!")
+        bugun = bugun_str()
+        for gorev in gorevler:
+            ws.append_row([bugun, "", gorev, "Bekliyor"])
+        liste = ", ".join(f"'{g}'" for g in gorevler)
+        send_message(f"✅ Bugünün görev listesine eklendi: {liste}. Akşam soracağım!")
 
     else:  # SOHBET
         send_message(cevap)
