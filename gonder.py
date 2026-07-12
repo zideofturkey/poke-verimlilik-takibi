@@ -135,34 +135,41 @@ def rutin_serisi_hesapla(rutin_isim):
     return streak, miss_streak
 
 
-def _rutin_mesaji_olustur(rutin):
-    """Seri/kaçırma durumuna göre soruya bir ön ek ekler - sabit kural
+def _rutin_on_eki(rutin):
+    """Seri/kaçırma durumuna göre kısa bir ön ek döndürür - sabit kural
     tabanlı (AI çağrısı yok, akşam mesajları hızlı kalsın diye)."""
     streak, miss_streak = rutin_serisi_hesapla(rutin["isim"])
     if streak >= 5:
-        return f"🔥 {streak} gündür kesintisizsin! {rutin['soru']}"
+        return f"🔥 {streak} gündür kesintisiz! "
     elif miss_streak >= 3:
-        return f"⚠️ {miss_streak} gündür bunu kaçırıyorsun. {rutin['soru']}"
-    return f"• {rutin['soru']}"
+        return f"⚠️ {miss_streak} gündür kaçırıyorsun. "
+    return ""
 
 
 def aksam():
-    # 1) Sheets'teki rutinler - her gün otomatik sorulur, kullanıcı yazmaz
-    send_message("🌙 Akşam kontrolü — günlük rutinlerin:")
-    for rutin in get_aktif_rutinler():
-        mesaj = _rutin_mesaji_olustur(rutin)
-        butonlar = [
-            {"text": "✅ Yaptım", "callback_data": f"rutin_{rutin['id']}_evet"},
-            {"text": "❌ Yapmadım", "callback_data": f"rutin_{rutin['id']}_hayir"},
-        ]
-        satirlar = [butonlar]
-        if dun_kacirildi_mi(rutin["isim"]):
-            satirlar.append(
-                [{"text": "🔁 Dünkü eksiği bugün telafi ettim", "callback_data": f"rutin_{rutin['id']}_telafi"}]
-            )
-        send_message(mesaj, buttons=satirlar)
+    # 1) Sheets'teki rutinler - hepsi TEK mesajda, çok satırlı butonlarla
+    rutinler = get_aktif_rutinler()
+    if rutinler:
+        satir_metinleri = []
+        buton_satirlari = []
+        for i, rutin in enumerate(rutinler, start=1):
+            on_ek = _rutin_on_eki(rutin)
+            satir_metinleri.append(f"{i}. {on_ek}{rutin['soru']}")
 
-    # 2) Ad-hoc (sabah tanımlanan) günlük görevler
+            butonlar = [
+                {"text": f"{i}️⃣ ✅", "callback_data": f"rutin_{rutin['id']}_evet"},
+                {"text": f"{i}️⃣ ❌", "callback_data": f"rutin_{rutin['id']}_hayir"},
+            ]
+            if dun_kacirildi_mi(rutin["isim"]):
+                butonlar.append(
+                    {"text": f"{i}️⃣ 🔁", "callback_data": f"rutin_{rutin['id']}_telafi"}
+                )
+            buton_satirlari.append(butonlar)
+
+        mesaj = "🌙 Akşam kontrolü — günlük rutinlerin:\n\n" + "\n".join(satir_metinleri)
+        send_message(mesaj, buttons=buton_satirlari)
+
+    # 2) Ad-hoc (sabah tanımlanan) günlük görevler - hepsi TEK mesajda
     ws = get_gorevler_sheet()
     rows = ws.get_all_records()
     bugunku = [
@@ -175,17 +182,16 @@ def aksam():
         _bosa_vakit_sor()
         return
 
-    send_message("📋 Bugün için yazdığın görevler:")
-    for row_num, r in bugunku:
-        send_message(
-            f"• {r['GorevMetni']}",
-            buttons=[
-                [
-                    {"text": "✅ Yaptım", "callback_data": f"gorev_{row_num}_evet"},
-                    {"text": "❌ Yapmadım", "callback_data": f"gorev_{row_num}_hayir"},
-                ]
-            ],
-        )
+    satir_metinleri = [f"{i+1}. {r['GorevMetni']}" for i, (_, r) in enumerate(bugunku)]
+    buton_satirlari = [
+        [
+            {"text": f"{i+1}️⃣ ✅", "callback_data": f"gorev_{row_num}_evet"},
+            {"text": f"{i+1}️⃣ ❌", "callback_data": f"gorev_{row_num}_hayir"},
+        ]
+        for i, (row_num, r) in enumerate(bugunku)
+    ]
+    mesaj = "📋 Bugün için yazdığın görevler:\n\n" + "\n".join(satir_metinleri)
+    send_message(mesaj, buttons=buton_satirlari)
 
     _bosa_vakit_sor()
 
