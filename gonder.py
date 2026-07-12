@@ -135,25 +135,26 @@ def rutin_serisi_hesapla(rutin_isim):
     return streak, miss_streak
 
 
-def _rutin_on_eki(rutin):
-    """Seri/kaçırma durumuna göre kısa bir ön ek döndürür - sabit kural
-    tabanlı (AI çağrısı yok, akşam mesajları hızlı kalsın diye)."""
-    streak, miss_streak = rutin_serisi_hesapla(rutin["isim"])
-    if streak >= 5:
-        return f"🔥 {streak} gündür kesintisiz! "
-    elif miss_streak >= 3:
-        return f"⚠️ {miss_streak} gündür kaçırıyorsun. "
-    return ""
-
-
 def aksam():
-    # 1) Sheets'teki rutinler - hepsi TEK mesajda, çok satırlı butonlarla
+    # 1) Sheets'teki rutinler - hepsi TEK mesajda, çok satırlı butonlarla.
+    # En riskli (en çok kaçırılan) rutin en üste alınır.
     rutinler = get_aktif_rutinler()
     if rutinler:
+        rutinler_ile_seri = [
+            (rutin, rutin_serisi_hesapla(rutin["isim"])) for rutin in rutinler
+        ]
+        # miss_streak büyükten küçüğe sırala (en riskli en üstte)
+        rutinler_ile_seri.sort(key=lambda x: x[1][1], reverse=True)
+
         satir_metinleri = []
         buton_satirlari = []
-        for i, rutin in enumerate(rutinler, start=1):
-            on_ek = _rutin_on_eki(rutin)
+        for i, (rutin, (streak, miss_streak)) in enumerate(rutinler_ile_seri, start=1):
+            if streak >= 5:
+                on_ek = f"🔥 {streak} gündür kesintisiz! "
+            elif miss_streak >= 3:
+                on_ek = f"⚠️ {miss_streak} gündür kaçırıyorsun. "
+            else:
+                on_ek = ""
             satir_metinleri.append(f"{i}. {on_ek}{rutin['soru']}")
 
             butonlar = [

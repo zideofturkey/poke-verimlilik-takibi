@@ -87,7 +87,7 @@ Bugüne kadarki her şey (buton akışı, SLM sınıflandırma, haftalık analiz
 hesaplama) gerçek bir "Koç" agent'ının üzerine oturacağı veri ve altyapıyı
 hazırladı. Sıradaki adım, haftalık analizdeki bulguların **gerçek aksiyona**
 dönüşmesi:
-- Seviye 1 (✅ tamamlandı): mesaj/ton değişimi
+- Seviye 1 (✅ tamamlandı: ton değişimi + en riskli rutin en üste sıralanır): mesaj/ton değişimi
 - Seviye 2 (kuruluyor): Rutinler sekmesi üzerinden gerçek ayar değişikliği
   (ör. "bu rutini 2 haftadır kaçırıyorsun, hedefi küçültelim mi?")
 - Seviye 3 (ileride, onaylı): zamanlama (cron) değişikliği
