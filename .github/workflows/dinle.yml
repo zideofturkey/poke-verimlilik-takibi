@@ -41,17 +41,35 @@ jobs:
         run: |
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
-          if ! git diff --quiet last_update_id.txt 2>/dev/null; then
-            git add last_update_id.txt
-            git commit -m "chore: offset güncelle [skip ci]"
+          LOKAL_DEGER=$(cat last_update_id.txt 2>/dev/null || echo "")
+
+          if [ -z "$LOKAL_DEGER" ]; then
+            echo "Yerel değer yok, commit atlanıyor."
+          else
             for i in 1 2 3 4 5; do
-              if git push; then
+              git fetch origin main -q
+              UZAK_DEGER=$(git show origin/main:last_update_id.txt 2>/dev/null || echo "0")
+              if [ "$LOKAL_DEGER" -gt "$UZAK_DEGER" ] 2>/dev/null; then
+                SONUC=$LOKAL_DEGER
+              else
+                SONUC=$UZAK_DEGER
+              fi
+
+              git reset --hard origin/main -q
+              echo "$SONUC" > last_update_id.txt
+
+              if git diff --quiet last_update_id.txt; then
+                echo "Değişiklik yok (uzak zaten güncel)."
                 break
               fi
-              echo "Push reddedildi, pull --rebase ile tekrar deneniyor ($i/5)..."
-              git pull --rebase
+
+              git add last_update_id.txt
+              git commit -m "chore: offset güncelle [skip ci]" -q
+              if git push -q; then
+                echo "Offset güncellendi: $SONUC"
+                break
+              fi
+              echo "Push reddedildi, tekrar deneniyor ($i/5)..."
               sleep 2
             done
-          else
-            echo "Değişiklik yok, commit atlanıyor."
           fi
