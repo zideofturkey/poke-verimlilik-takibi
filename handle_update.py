@@ -39,6 +39,7 @@ from common import (
     slm_sorgula,
     turkce_disi_karakter_var_mi,
     get_aktif_rutinler,
+    get_sheet,
     get_rutinler_sheet,
     rutin_serisi_hesapla,
     TR_TZ,
@@ -157,6 +158,56 @@ def process_callback(cq):
             send_message(f"Sorun değil, '{gorev_metni}' için yarın devam edelim 👍")
 
 
+def _sorguyu_cevapla(text):
+    """Kullanıcı bir şey sorguladığında (ör. 'bugünkü görevlerimi hatırlatır
+    mısın') GERÇEK veriyi Sheets'ten okuyup, SLM'e sadece bu veriyi doğal
+    dile çevirtir. Model veride olmayan hiçbir şey uydurmamalı."""
+    bugun = bugun_str()
+
+    ws_gorev = get_gorevler_sheet()
+    gorevler = [r for r in ws_gorev.get_all_records() if r.get("Tarih") == bugun]
+
+    rutin_isimleri = {r["isim"] for r in get_aktif_rutinler()}
+    ws_takip = get_sheet()
+    takip_bugun = [
+        r for r in ws_takip.get_all_records()
+        if r.get("Tarih") == bugun and r.get("Görev") in rutin_isimleri
+    ]
+
+    if not gorevler and not takip_bugun:
+        send_message("Bugün için henüz kayıtlı bir görev ya da rutin durumu yok.")
+        return
+
+    satirlar = []
+    if gorevler:
+        satirlar.append("Bugünkü ad-hoc görevler:")
+        for r in gorevler:
+            satirlar.append(f"- {r['GorevMetni']}: {r['Durum']}")
+    if takip_bugun:
+        satirlar.append("Bugünkü rutin durumu:")
+        for r in takip_bugun:
+            satirlar.append(f"- {r['Görev']}: {r['Durum']}")
+    veri_metni = "\n".join(satirlar)
+
+    prompt = (
+        "Sen bir verimlilik takip botusun (adın Poke). Kullanıcı sana bir "
+        f"soru sordu: \"{text}\"\n\n"
+        "Aşağıda GERÇEK, güncel veri var. SADECE bu veriye dayanarak kısa "
+        "ve doğal bir Türkçe cevap ver. Veride olmayan hiçbir şeyi UYDURMA, "
+        "sadece verilenleri özetle. SADECE cevabı yaz, başka açıklama ekleme.\n\n"
+        f"Veri:\n{veri_metni}"
+    )
+    try:
+        cevap = slm_sorgula(prompt)
+        if turkce_disi_karakter_var_mi(cevap):
+            raise ValueError("dil kayması")
+    except Exception as e:
+        print(f"SLM hatası (sorgula): {e}")
+        cevap = veri_metni  # yedek: en azından ham veriyi doğru göster
+
+    send_message(cevap)
+
+
 def process_message(message):
     text = message.get("text", "").strip()
     if not text:
@@ -204,6 +255,11 @@ def _siniflandir_ve_isle(text, bekleyen):
         "Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, "
         "ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden "
         "fazla görev aynı mesajda olabilir\n"
+        "- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/"
+        "HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', "
+        "'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım'. Bu ifadelerde "
+        "'görev'/'hedef' kelimesi geçebilir ama YENI_GOREV ile KARIŞTIRMA - "
+        "kullanıcı bir şey eklemiyor, sorguluyor\n"
         "- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\n"
         "SADECE şu formatta cevap ver, başka hiçbir şey ekleme:\n"
         "TIP: <KATEGORI>\n"
@@ -258,6 +314,9 @@ def _siniflandir_ve_isle(text, bekleyen):
         log_to_sheet("Boşa geçen vakit", "Beyan", text)
         set_bekleyen_soru("")
         send_message(cevap)
+
+    elif tip == "SORGULA":
+        _sorguyu_cevapla(text)
 
     elif tip == "YENI_GOREV":
         # Tırnak varsa önce deterministik olarak yakala (güvenilir) - model
