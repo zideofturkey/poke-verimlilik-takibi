@@ -115,14 +115,77 @@ def process_message(message):
         return
 
     bekleyen = get_bekleyen_soru()
+    _siniflandir_ve_isle(text, bekleyen)
 
-    if bekleyen == "gunluk_gorev":
+
+def _turkce_disi_karakter_var_mi(metin):
+    """Çince, Arapça, Kiril vb. beklenmedik alfabelerden karakter olup
+    olmadığını kontrol eder - model 'dil kayması' yaşarsa yakalamak için."""
+    for ch in metin:
+        kod = ord(ch)
+        if kod > 0x2FF and kod not in (0x2018, 0x2019, 0x201C, 0x201D, 0x2026):
+            return True
+    return False
+
+
+BEKLEYEN_ACIKLAMA = {
+    "gunluk_gorev": "sabah sorduğum 'bugün ne yapacaksın' sorusu",
+    "haftalik_hedef": "pazar günü sorduğum 'bu hafta hedeflerin ne' sorusu",
+    "bosa_vakit": "akşam sorduğum 'bugün ne kadar boşa vakit geçirdin' sorusu",
+}
+
+
+def _siniflandir_ve_isle(text, bekleyen):
+    """Gelen her serbest metni SLM'e sınıflandırtır. 'bekleyen' sadece bir
+    BAĞLAM/ipucu olarak veriliyor - kesin kural değil. Model, mesajın
+    içeriğine bakıp en uygun kategoriyi kendisi seçiyor. Bu, katı bir
+    durum makinesinin (sabit 'şu an şunu bekliyorum -> öyle işle' mantığının)
+    beklenmedik senaryolarda yanlış kategoriye yazması sorununu çözer."""
+
+    baglam = (
+        f"Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: "
+        f"{BEKLEYEN_ACIKLAMA.get(bekleyen, bekleyen)}."
+        if bekleyen else
+        "Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok."
+    )
+
+    prompt = (
+        "Sen bir verimlilik takip botusun (adın Poke). "
+        f"{baglam}\n\n"
+        f"Kullanıcı şunu yazdı:\n\"{text}\"\n\n"
+        "Bu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata "
+        "(bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre "
+        "karar ver - biri başka bir konuda yazmış olabilir):\n"
+        "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor\n"
+        "- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor\n"
+        "- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n"
+        "- YENI_GOREV: herhangi bir an kendiliğinden yeni, tek bir görev/iş ekliyor\n"
+        "- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\n"
+        "SADECE şu formatta cevap ver, başka hiçbir şey ekleme:\n"
+        "TIP: <KATEGORI>\n"
+        "CEVAP: <kullanıcıya vereceğin kısa (1 cümle), doğal, samimi Türkçe "
+        "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK>"
+    )
+
+    try:
+        sonuc = slm_sorgula(prompt)
+    except Exception as e:
+        print(f"SLM hatası (sınıflandırma): {e}")
+        send_message("Şu an bunu işleyemedim (teknik bir sorun oldu) — tekrar dener misin?")
+        return
+
+    tip_match = re.search(r"TIP:\s*(\w+)", sonuc)
+    cevap_match = re.search(r"CEVAP:\s*(.+)", sonuc, re.DOTALL)
+    tip = tip_match.group(1).upper() if tip_match else "SOHBET"
+    cevap = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
+    if _turkce_disi_karakter_var_mi(cevap):
+        cevap = "Not aldım 👍"
+
+    if tip == "GUNLUK_GOREV":
         gorevler = satirlari_ayikla(text)
-
         if not gorevler:
-            send_message("Boş görünüyor, en az bir satıra görev yazman lazım 🙂")
+            send_message("Bunu görev listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
             return
-
         ws = get_gorevler_sheet()
         bugun = bugun_str()
         for gorev in gorevler:
@@ -131,13 +194,11 @@ def process_message(message):
         liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
         send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
 
-    elif bekleyen == "haftalik_hedef":
+    elif tip == "HAFTALIK_HEDEF":
         hedefler = satirlari_ayikla(text)
-
         if not hedefler:
-            send_message("Boş görünüyor, en az bir satıra hedef yazman lazım 🙂")
+            send_message("Bunu hedef listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
             return
-
         ws = get_haftalik_sheet()
         hafta = hafta_baslangic_str()
         for hedef in hedefler:
@@ -146,91 +207,17 @@ def process_message(message):
         liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
         send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
 
-    elif bekleyen == "bosa_vakit":
+    elif tip == "BOSA_VAKIT":
         log_to_sheet("Boşa geçen vakit", "Beyan", text)
         set_bekleyen_soru("")
-
-        prompt = (
-            "Sen bir verimlilik koçu asistanısın (adın Poke). Kullanıcı akşam "
-            f"check-in'inde şunu yazdı:\n\n\"{text}\"\n\n"
-            "Görevlerin:\n"
-            "1. Eğer cümlede bir soru varsa, kısa ve yararlı şekilde cevapla.\n"
-            "2. Kısa (1-2 cümle), samimi, doğal bir Türkçe yanıt yaz - "
-            "robotik bir onay cümlesi değil, gerçek bir konuşma gibi.\n"
-            "Sadece kullanıcıya gönderilecek yanıtı yaz, başka açıklama ekleme."
-        )
-        try:
-            cevap = slm_sorgula(prompt)
-            if _turkce_disi_karakter_var_mi(cevap):
-                cevap = "Not edildi, teşekkürler 📝"
-        except Exception as e:
-            print(f"SLM hatası (bosa_vakit): {e}")
-            cevap = "Not edildi, teşekkürler 📝"
-
         send_message(cevap)
 
-    else:
-        _niyet_tespit_et_ve_isle(text)
-
-
-def _turkce_disi_karakter_var_mi(metin):
-    """Çince, Arapça, Kiril vb. beklenmedik alfabelerden karakter olup
-    olmadığını kontrol eder - model 'dil kayması' yaşarsa yakalamak için."""
-    for ch in metin:
-        kod = ord(ch)
-        # Temel Latin + Türkçe özel karakterler + yaygın noktalama/rakam dışında
-        # bir şey varsa (ör. CJK, Kiril, Arapça aralıkları) şüpheli say.
-        if kod > 0x2FF and kod not in (0x2018, 0x2019, 0x201C, 0x201D, 0x2026):
-            return True
-    return False
-
-
-def _niyet_tespit_et_ve_isle(text):
-    """Bekleyen bir soru yokken gelen serbest metni işler: bu bir görev
-    ekleme isteği mi (ör. 'bugün X yapacağım da ekleyeyim'), yoksa genel
-    bir sohbet/soru mu - SLM'e ayırt ettirir."""
-    prompt = (
-        "Sen bir verimlilik takip botusun (adın Poke). Kullanıcı sana şunu "
-        f"yazdı:\n\n\"{text}\"\n\n"
-        "Eğer bu mesaj kullanıcının BUGÜN için yeni bir görev/yapılacak iş "
-        "eklemek istediğini ifade ediyorsa, SADECE şu formatta cevap ver "
-        "(başka hiçbir şey ekleme):\n"
-        "GOREV: <görevin kısa ve net hali>\n\n"
-        "Eğer görev eklemekle ilgili değilse (sohbet, soru, yorum vb.), "
-        "SADECE şu formatta cevap ver:\n"
-        "SOHBET: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi "
-        "Türkçe cevap>\n\n"
-        "ÖNEMLİ: Kullanıcı hangi dilde yazarsa yazsın (Türkçe, İngilizce, "
-        "vb.), SEN her zaman SADECE Türkçe ve Latin alfabesiyle cevap ver. "
-        "Çince, Arapça, Kiril veya başka bir alfabe/dil KESİNLİKLE KULLANMA. "
-        "Başka hiçbir açıklama ekleme, sadece bu iki formattan birini kullan."
-    )
-
-    try:
-        cevap = slm_sorgula(prompt)
-    except Exception as e:
-        print(f"SLM hatası (niyet tespiti): {e}")
-        send_message(
-            "Şu an bunu işleyemedim (teknik bir sorun oldu) — istersen "
-            "tekrar dener misin?"
-        )
-        return
-
-    if cevap.startswith("GOREV:"):
-        gorev_metni = cevap.replace("GOREV:", "", 1).strip()
-        if _turkce_disi_karakter_var_mi(gorev_metni):
-            print(f"Model beklenmedik alfabe üretti, orijinal metne dönülüyor: {gorev_metni!r}")
-            gorev_metni = text  # güvenlik ağı: modelin bozuk çıktısı yerine kullanıcının kendi metnini kullan
+    elif tip == "YENI_GOREV":
         ws = get_gorevler_sheet()
-        ws.append_row([bugun_str(), "", gorev_metni, "Bekliyor"])
-        send_message(f"✅ Bugünün görev listesine eklendi: '{gorev_metni}'. Akşam soracağım!")
-    elif cevap.startswith("SOHBET:"):
-        cevap_metni = cevap.replace("SOHBET:", "", 1).strip()
-        if _turkce_disi_karakter_var_mi(cevap_metni):
-            cevap_metni = "Not aldım 👍"
-        send_message(cevap_metni)
-    else:
-        # Model beklenen formatı kullanmadıysa, olduğu gibi gönder
+        ws.append_row([bugun_str(), "", text, "Bekliyor"])
+        send_message(f"✅ Bugünün görev listesine eklendi: '{text}'. Akşam soracağım!")
+
+    else:  # SOHBET
         send_message(cevap)
 
 

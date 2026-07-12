@@ -77,6 +77,7 @@ gerçekleşiyor.
 - [x] "Boşa geçen vakit" serbest-metin self-report (korelasyon analizi için veri toplama)
 - [x] Günlük serbest-metin yorumlama (SLM) — "boşa vakit" cevabındaki soruları anlar, doğal bir yanıt üretir
 - [x] Her an mesaj gönderme desteği — bekleyen soru olmasa bile SLM, mesajın görev ekleme mi yoksa sohbet mi olduğunu ayırt eder
+- [x] Birleşik SLM sınıflandırma mimarisi — "bekleyen soru" artık katı bir kural değil, sadece AI'a bağlam ipucu; hangi kategoriye ait olduğuna (günlük görev/haftalık hedef/boşa vakit/yeni görev/sohbet) her zaman AI karar veriyor, sabit durum makinesi değil
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli
 
