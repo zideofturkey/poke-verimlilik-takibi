@@ -11,9 +11,10 @@ otomatik bir sistem kurmak için. Detaylar için Sistem Dokümantasyonu'na bakı
 """
 
 import datetime
-from common import get_sheet, send_message, slm_sorgula, TR_TZ
+from common import get_sheet, send_message, slm_sorgula, get_aktif_rutinler, rutin_serisi_hesapla, TR_TZ
 
 ANALIZ_GUN_SAYISI = 7
+KOC_DURAKLAMA_ESIGI = 5  # kaç gün üst üste kaçırılırsa duraklatma önerilsin
 
 
 def son_hafta_verisi():
@@ -68,6 +69,25 @@ def prompt_olustur(veriler):
     )
 
 
+def koc_onerisi_sun():
+    """Sürekli kaçırılan rutinler için duraklatma önerisi sunar.
+    HİÇBİR ZAMAN kendi kendine değiştirmez - her zaman onay ister."""
+    for rutin in get_aktif_rutinler():
+        _, miss_streak = rutin_serisi_hesapla(rutin["isim"])
+        if miss_streak >= KOC_DURAKLAMA_ESIGI:
+            send_message(
+                f"🧑‍🏫 Koç önerisi: '{rutin['isim']}' rutinini {miss_streak} "
+                "gündür üst üste kaçırıyorsun. Bir süreliğine duraklatalım "
+                "mı? (İstediğin zaman Rutinler sekmesinden tekrar açabilirsin)",
+                buttons=[
+                    [
+                        {"text": "✅ Evet, duraklat", "callback_data": f"koc_duraklat_{rutin['id']}_evet"},
+                        {"text": "❌ Hayır, devam", "callback_data": f"koc_duraklat_{rutin['id']}_hayir"},
+                    ]
+                ],
+            )
+
+
 def main():
     veriler = son_hafta_verisi()
     prompt = prompt_olustur(veriler)
@@ -88,6 +108,8 @@ def main():
 
     send_message(f"🧠 Haftalık Analiz (SLM):\n\n{ozet}")
     print("Analiz gönderildi.")
+
+    koc_onerisi_sun()
 
 
 if __name__ == "__main__":

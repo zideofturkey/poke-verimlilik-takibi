@@ -88,8 +88,7 @@ hesaplama) gerçek bir "Koç" agent'ının üzerine oturacağı veri ve altyapı
 hazırladı. Sıradaki adım, haftalık analizdeki bulguların **gerçek aksiyona**
 dönüşmesi:
 - Seviye 1 (✅ tamamlandı: ton değişimi + en riskli rutin en üste sıralanır): mesaj/ton değişimi
-- Seviye 2 (kuruluyor): Rutinler sekmesi üzerinden gerçek ayar değişikliği
-  (ör. "bu rutini 2 haftadır kaçırıyorsun, hedefi küçültelim mi?")
+- Seviye 2 (✅ tamamlandı): Koç, bir rutin 5+ gündür üst üste kaçırılırsa haftalık analiz sırasında "duraklatalım mı?" diye sorar; onaylarsan Rutinler sekmesindeki Aktif sütununu FALSE yapar. Onaysız hiçbir zaman kendi kendine değişiklik yapmaz.
 - Seviye 3 (ileride, onaylı): zamanlama (cron) değişikliği
 - [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
 - [ ] Observability paneli

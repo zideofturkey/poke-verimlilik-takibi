@@ -38,6 +38,7 @@ from common import (
     hafta_baslangic_str,
     slm_sorgula,
     get_aktif_rutinler,
+    get_rutinler_sheet,
     TR_TZ,
 )
 
@@ -94,6 +95,29 @@ def process_callback(cq):
         elif sonuc == "telafi":
             log_to_sheet(isim, "Yapıldı", "dünkü eksik telafi edildi")
             send_message(f"🔁 Harika, '{isim}' için dünkü eksik telafi edildi olarak kaydedildi!")
+    elif callback_data.startswith("koc_duraklat_"):
+        # format: koc_duraklat_<id>_evet / koc_duraklat_<id>_hayir
+        parcalar = callback_data.split("_")
+        sonuc = parcalar[-1]
+        rutin_id = "_".join(parcalar[2:-1])
+
+        if sonuc == "evet":
+            ws = get_rutinler_sheet()
+            rows = ws.get_all_values()
+            bulundu = False
+            for i, row in enumerate(rows[1:], start=2):
+                if row[0] == rutin_id:
+                    ws.update_cell(i, 4, "FALSE")
+                    bulundu = True
+                    break
+            if bulundu:
+                send_message("🧑‍🏫 Tamam, o rutini duraklattım. İstediğin zaman Rutinler sekmesinden Aktif=TRUE yaparak geri açabilirsin.")
+                log_to_sheet(f"Koç kararı: {rutin_id}", "Duraklatıldı")
+            else:
+                send_message("Bu rutini Rutinler sekmesinde bulamadım, garip.")
+        else:
+            send_message("🧑‍🏫 Tamam, aynen devam ediyoruz 💪")
+
     elif callback_data.startswith("gorev_"):
         # format: gorev_<satirNo>_evet / gorev_<satirNo>_hayir
         _, satir_no, sonuc = callback_data.split("_")

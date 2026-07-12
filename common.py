@@ -212,6 +212,42 @@ def get_aktif_rutinler():
     ]
 
 
+def rutin_serisi_hesapla(rutin_isim):
+    """Dünden geriye doğru gidip kaç gündür kesintisiz yapıldığını
+    (streak) ya da kaç gündür kesintisiz kaçırıldığını (miss_streak)
+    hesaplar. İkisi aynı anda pozitif olamaz."""
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    gunluk_durum = {}
+    for r in rows:
+        if r.get("Görev") != rutin_isim:
+            continue
+        try:
+            tarih = datetime.datetime.strptime(r["Tarih"], "%Y-%m-%d").date()
+        except (ValueError, KeyError):
+            continue
+        gunluk_durum[tarih] = r.get("Durum")
+
+    bugun = datetime.datetime.now(TR_TZ).date()
+    streak = 0
+    miss_streak = 0
+    gun = bugun - datetime.timedelta(days=1)
+    while True:
+        durum = gunluk_durum.get(gun)
+        if durum is None:
+            break
+        if durum == "Yapıldı":
+            if miss_streak > 0:
+                break
+            streak += 1
+        else:
+            if streak > 0:
+                break
+            miss_streak += 1
+        gun -= datetime.timedelta(days=1)
+    return streak, miss_streak
+
+
 def get_bekleyen_soru():
     ws = get_durum_sheet()
     return ws.acell("B2").value or ""
