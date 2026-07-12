@@ -161,7 +161,47 @@ def process_message(message):
         send_message(cevap)
 
     else:
-        print(f"Beklenmeyen serbest metin (bekleyen soru yok): {text}")
+        _niyet_tespit_et_ve_isle(text)
+
+
+def _niyet_tespit_et_ve_isle(text):
+    """Bekleyen bir soru yokken gelen serbest metni işler: bu bir görev
+    ekleme isteği mi (ör. 'bugün X yapacağım da ekleyeyim'), yoksa genel
+    bir sohbet/soru mu - SLM'e ayırt ettirir."""
+    prompt = (
+        "Sen bir verimlilik takip botusun (adın Poke). Kullanıcı sana şunu "
+        f"yazdı:\n\n\"{text}\"\n\n"
+        "Eğer bu mesaj kullanıcının BUGÜN için yeni bir görev/yapılacak iş "
+        "eklemek istediğini ifade ediyorsa, SADECE şu formatta cevap ver "
+        "(başka hiçbir şey ekleme):\n"
+        "GOREV: <görevin kısa ve net hali>\n\n"
+        "Eğer görev eklemekle ilgili değilse (sohbet, soru, yorum vb.), "
+        "SADECE şu formatta cevap ver:\n"
+        "SOHBET: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi "
+        "Türkçe cevap>\n\n"
+        "Başka hiçbir açıklama ekleme, sadece bu iki formattan birini kullan."
+    )
+
+    try:
+        cevap = slm_sorgula(prompt)
+    except Exception as e:
+        print(f"SLM hatası (niyet tespiti): {e}")
+        send_message(
+            "Şu an bunu işleyemedim (teknik bir sorun oldu) — istersen "
+            "tekrar dener misin?"
+        )
+        return
+
+    if cevap.startswith("GOREV:"):
+        gorev_metni = cevap.replace("GOREV:", "", 1).strip()
+        ws = get_gorevler_sheet()
+        ws.append_row([bugun_str(), "", gorev_metni, "Bekliyor"])
+        send_message(f"✅ Bugünün görev listesine eklendi: '{gorev_metni}'. Akşam soracağım!")
+    elif cevap.startswith("SOHBET:"):
+        send_message(cevap.replace("SOHBET:", "", 1).strip())
+    else:
+        # Model beklenen formatı kullanmadıysa, olduğu gibi gönder
+        send_message(cevap)
 
 
 def main():
