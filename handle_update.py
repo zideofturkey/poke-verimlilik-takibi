@@ -279,7 +279,8 @@ def _siniflandir_ve_isle(text, bekleyen):
         "GOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile "
         "ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\n"
         f"RUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listeden BİREBİR aynı "
-        f"şekilde yaz: {rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
+        f"şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: "
+        f"{rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
         "CEVAP: <kullanıcıya vereceğin kısa (1 cümle), doğal, samimi Türkçe "
         "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK>"
     )
@@ -301,11 +302,16 @@ def _siniflandir_ve_isle(text, bekleyen):
         cevap = "Not aldım 👍"
 
     if tip == "RUTIN_TAMAMLA":
-        rutin_ismi_ham = rutin_match.group(1).strip().strip("'\"") if rutin_match else ""
-        eslesen = next((r for r in aktif_rutinler if r["isim"] == rutin_ismi_ham), None)
-        if eslesen:
-            log_to_sheet(eslesen["isim"], "Yapıldı")
-            send_message(f"✅ '{eslesen['isim']}' tamamlandı olarak kaydedildi. Tebrikler!")
+        rutin_ham_liste = rutin_match.group(1).strip() if rutin_match else ""
+        adaylar = [r.strip().strip("'\"") for r in rutin_ham_liste.split("|") if r.strip()]
+        aktif_isimler = {r["isim"] for r in aktif_rutinler}
+        eslesenler = [ad for ad in adaylar if ad in aktif_isimler]
+
+        if eslesenler:
+            for isim in eslesenler:
+                log_to_sheet(isim, "Yapıldı")
+            liste = ", ".join(f"'{i}'" for i in eslesenler)
+            send_message(f"✅ {liste} tamamlandı olarak kaydedildi. Tebrikler!")
         else:
             send_message(
                 "Hangi rutinden bahsettiğini tam anlayamadım — akşam kontrolünde "
