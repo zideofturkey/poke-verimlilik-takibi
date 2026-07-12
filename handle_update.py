@@ -8,6 +8,24 @@ import json
 import os
 import re
 import datetime
+
+
+def satirlari_ayikla(text):
+    """Serbest metinden madde listesi çıkarır: numaralandırmayı temizler,
+    boş satırları ve 'Haftalık hedeflerim:' gibi başlık satırlarını (rakamla
+    başlamayan, ':' ile biten, kısa satırlar) otomatik ayıklar."""
+    maddeler = []
+    for satir in text.split("\n"):
+        satir = satir.strip()
+        if not satir:
+            continue
+        # Başlık satırı mı? (numarasız, ':' ile bitiyor, kısa)
+        if not re.match(r"^\d", satir) and satir.endswith(":") and len(satir) < 40:
+            continue
+        satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir).strip()
+        if satir:
+            maddeler.append(satir)
+    return maddeler
 from common import (
     send_message,
     answer_callback,
@@ -99,13 +117,7 @@ def process_message(message):
     bekleyen = get_bekleyen_soru()
 
     if bekleyen == "gunluk_gorev":
-        gorevler = []
-        for satir in text.split("\n"):
-            satir = satir.strip()
-            # Baştaki "1.", "1)", "1-" gibi numaralandırmayı temizle
-            satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir)
-            if satir:
-                gorevler.append(satir)
+        gorevler = satirlari_ayikla(text)
 
         if not gorevler:
             send_message("Boş görünüyor, en az bir satıra görev yazman lazım 🙂")
@@ -120,12 +132,7 @@ def process_message(message):
         send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
 
     elif bekleyen == "haftalik_hedef":
-        hedefler = []
-        for satir in text.split("\n"):
-            satir = satir.strip()
-            satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir)
-            if satir:
-                hedefler.append(satir)
+        hedefler = satirlari_ayikla(text)
 
         if not hedefler:
             send_message("Boş görünüyor, en az bir satıra hedef yazman lazım 🙂")

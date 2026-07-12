@@ -13,6 +13,7 @@ import datetime
 from common import (
     send_message,
     set_bekleyen_soru,
+    get_bekleyen_soru,
     get_gorevler_sheet,
     get_haftalik_sheet,
     get_sheet,
@@ -58,6 +59,13 @@ def sabah():
         fark = (bugun - tarih).days
         if 1 <= fark <= TELAFI_GUN_SAYISI:
             kacirilanlar.append((fark, r["GorevMetni"]))
+
+    onceki = get_bekleyen_soru()
+    if onceki and onceki != "gunluk_gorev":
+        send_message(
+            f"⚠️ Not: bir önceki sorumu (\"{onceki}\" ile ilgili) cevaplamadığın "
+            "için artık geçersiz sayıyorum, en son bunu soruyorum:"
+        )
 
     sablon = "\n".join(f"{i}. " for i in range(1, 6))
     mesaj = (
@@ -135,6 +143,9 @@ def aksam():
 
 
 def _bosa_vakit_sor():
+    if get_bekleyen_soru():
+        print("Zaten bekleyen bir soru var, boşa vakit sorusu şimdilik atlanıyor.")
+        return
     send_message(
         "Son bir soru: bugün ne kadar boşa vakit geçirdin (YouTube, sosyal "
         "medya vb.)? Kendi cümlelerinle yazabilirsin, ör. \"yaklaşık 40 "
@@ -144,6 +155,13 @@ def _bosa_vakit_sor():
 
 
 def pazar():
+    onceki = get_bekleyen_soru()
+    if onceki and onceki != "haftalik_hedef":
+        send_message(
+            f"⚠️ Not: bir önceki sorumu (\"{onceki}\" ile ilgili) cevaplamadığın "
+            "için artık geçersiz sayıyorum, en son bunu soruyorum:"
+        )
+
     sablon = "\n".join(f"{i}. " for i in range(1, 4))
     mesaj = (
         "🗓️ Yeni hafta başlıyor. Bu haftaki hedeflerin neler?\n\n"
