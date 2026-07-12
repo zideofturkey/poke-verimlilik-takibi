@@ -25,22 +25,14 @@ jobs:
           SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
 
-      # Ollama sadece serbest metin mesajlarında gerekiyor (buton basımları
-      # AI gerektirmez) - bu yüzden koşullu kuruluyor, buton akışı yavaşlamaz.
+      # Ollama'nın kendisi artık Python içinde (common.py) ihtiyaç anında
+      # kuruluyor - burada sadece model önbelleğini hazır tutuyoruz
+      # (varsa hızlı restore, yoksa maliyeti Python tarafı üstleniyor).
       - name: Ollama model önbelleğini yükle (varsa)
-        if: github.event.client_payload.update.message
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
           key: ollama-models-qwen2.5-7b
-
-      - name: Ollama'yı kur (sadece serbest metin mesajlarında)
-        if: github.event.client_payload.update.message
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          ollama serve &
-          sleep 5
-          ollama pull qwen2.5:7b
 
       - name: Callback'i işle
         env:

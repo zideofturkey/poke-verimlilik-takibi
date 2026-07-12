@@ -24,17 +24,6 @@ jobs:
           path: ~/.ollama/models
           key: ollama-models-qwen2.5-7b
 
-      - name: Ollama'yı kur
-        run: curl -fsSL https://ollama.com/install.sh | sh
-
-      - name: Ollama servisini başlat
-        run: |
-          ollama serve &
-          sleep 5
-
-      - name: Modeli çek (önbellekte yoksa indirir)
-        run: ollama pull qwen2.5:7b
-
       - name: Service account dosyasını oluştur
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}

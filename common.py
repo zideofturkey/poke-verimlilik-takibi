@@ -120,9 +120,47 @@ SLM_MODEL = "qwen2.5:7b"
 SLM_URL = "http://localhost:11434/api/generate"
 
 
+def _ollama_hazir_mi():
+    try:
+        requests.get("http://localhost:11434/api/tags", timeout=2)
+        return True
+    except requests.exceptions.RequestException:
+        return False
+
+
+def _ollama_kur_ve_baslat():
+    import subprocess
+    import shutil
+
+    if shutil.which("ollama") is None:
+        print("Ollama kuruluyor...")
+        subprocess.run(
+            "curl -fsSL https://ollama.com/install.sh | sh",
+            shell=True, check=True,
+        )
+
+    print("Ollama servisi başlatılıyor...")
+    subprocess.Popen(
+        ["ollama", "serve"],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    for _ in range(15):
+        if _ollama_hazir_mi():
+            break
+        time.sleep(1)
+
+    print(f"{SLM_MODEL} modeli çekiliyor (önbellekte yoksa indirir)...")
+    subprocess.run(["ollama", "pull", SLM_MODEL], check=True)
+
+
 def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120):
-    """Yerel Ollama modeline (GitHub Actions runner'ında geçici olarak
-    ayağa kaldırılmış) bir prompt gönderir, metin cevabını döndürür."""
+    """Yerel Ollama modeline bir prompt gönderir, metin cevabını döndürür.
+    Ollama çalışmıyorsa (ör. GitHub Actions runner'ında ilk kullanım),
+    kendisi kurup başlatır - böylece bu maliyet sadece SLM'e gerçekten
+    ihtiyaç duyulan anda ödenir, her serbest-metin mesajında değil."""
+    if not _ollama_hazir_mi():
+        _ollama_kur_ve_baslat()
+
     resp = requests.post(
         SLM_URL,
         json={
