@@ -316,10 +316,23 @@ def get_sheet():
 
 
 def log_to_sheet(gorev, durum, detay=""):
+    """Aynı gün için aynı görev/rutin adına ikinci bir kayıt gelirse
+    (ör. çift tıklama, ya da önce Evet sonra Hayır basılması) YENİ satır
+    açmaz - var olan satırın üzerine yazar. Son basılan her zaman kazanır,
+    kopya satır asla oluşmaz."""
     now = datetime.datetime.now(TR_TZ)
-    get_sheet().append_row(
-        [now.strftime("%Y-%m-%d"), now.strftime("%H:%M"), gorev, durum, detay]
-    )
+    bugun = now.strftime("%Y-%m-%d")
+    saat = now.strftime("%H:%M")
+
+    ws = get_sheet()
+    rows = ws.get_all_values()
+    for i, row in enumerate(rows[1:], start=2):
+        if len(row) >= 3 and row[0] == bugun and row[2] == gorev:
+            ws.update(values=[[bugun, saat, gorev, durum, detay]], range_name=f"A{i}:E{i}")
+            print(f"Sheets'te güncellendi (üzerine yazıldı): {gorev} | {durum} | {detay}")
+            return
+
+    ws.append_row([bugun, saat, gorev, durum, detay])
     print(f"Sheets'e yazıldı: {gorev} | {durum} | {detay}")
 
 
