@@ -117,9 +117,13 @@ def set_deger(anahtar, deger):
 
 def set_bekleyen_soru(deger):
     """Hangi serbest-metin sorusunun cevabını beklediğimizi kaydeder
-    (ör. 'gunluk_gorev', 'haftalik_hedef', ya da bekleme yoksa '')."""
+    (ör. 'gunluk_gorev', 'haftalik_hedef', ya da bekleme yoksa '').
+    Ne zaman set edildiğini de kaydeder - bayat (birkaç günlük) bir
+    bekleme sonsuza kadar yeni soruları engellemesin diye."""
     ws = get_durum_sheet()
     ws.update_acell("B2", deger)
+    if deger:
+        set_deger("bekleyen_soru_tarihi", datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d"))
 
 
 def hafta_baslangic_str():
@@ -295,8 +299,20 @@ def turkce_disi_karakter_var_mi(metin):
 
 
 def get_bekleyen_soru():
+    """Bekleyen soruyu döndürür - ama BAYATSA (bugünden değilse) otomatik
+    olarak geçersiz sayar ve temizler. Bu, bir cevabın işlenmemesi/hata
+    vermesi yüzünden sonsuza kadar takılı kalmasını önler."""
     ws = get_durum_sheet()
-    return ws.acell("B2").value or ""
+    deger = ws.acell("B2").value or ""
+    if not deger:
+        return ""
+    tarih = get_deger("bekleyen_soru_tarihi")
+    bugun = datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
+    if tarih and tarih != bugun:
+        print(f"Bayat bekleyen_soru ('{deger}', {tarih} tarihli) bulundu, temizleniyor.")
+        ws.update_acell("B2", "")
+        return ""
+    return deger
 
 
 def get_sheet():
