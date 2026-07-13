@@ -94,6 +94,27 @@ def get_haftalik_sheet():
     return ws
 
 
+def get_deger(anahtar, varsayilan=""):
+    """Durum sekmesinden genel amaçlı bir anahtar-değer okur (ör. 'sabah
+    en son ne zaman çalıştı' gibi bekçi/watchdog kontrolleri için)."""
+    ws = get_durum_sheet()
+    rows = ws.get_all_records()
+    for r in rows:
+        if r.get("anahtar") == anahtar:
+            return r.get("deger", varsayilan)
+    return varsayilan
+
+
+def set_deger(anahtar, deger):
+    ws = get_durum_sheet()
+    values = ws.get_all_values()
+    for i, row in enumerate(values[1:], start=2):
+        if row and row[0] == anahtar:
+            ws.update_cell(i, 2, deger)
+            return
+    ws.append_row([anahtar, deger])
+
+
 def set_bekleyen_soru(deger):
     """Hangi serbest-metin sorusunun cevabını beklediğimizi kaydeder
     (ör. 'gunluk_gorev', 'haftalik_hedef', ya da bekleme yoksa '')."""

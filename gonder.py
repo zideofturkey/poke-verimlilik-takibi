@@ -20,6 +20,8 @@ from common import (
     hafta_baslangic_str,
     get_aktif_rutinler,
     rutin_serisi_hesapla,
+    get_deger,
+    set_deger,
     TR_TZ,
 )
 
@@ -77,6 +79,7 @@ def sabah():
     )
     send_message(mesaj)
     set_bekleyen_soru("gunluk_gorev")
+    set_deger("son_sabah_tarihi", bugun_str())
 
     if kacirilanlar:
         kacirilanlar.sort(key=lambda x: x[0])
@@ -150,13 +153,26 @@ def rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın 
     send_message(mesaj, buttons=buton_satirlari)
 
 
+def _sabah_kacti_mi_kontrol_et():
+    """Bekçi: GitHub Actions'ın zamanlanmış tetiklemeyi atlamış (drop
+    etmiş) olma ihtimaline karşı, sabah mesajının bugün gerçekten
+    gidip gitmediğini kontrol eder. Gitmediyse kendisi tetikler."""
+    if get_deger("son_sabah_tarihi") != bugun_str():
+        print("Sabah mesajı bugün için hiç gitmemiş, bekçi devreye giriyor.")
+        send_message("🔧 Fark ettim ki bugünkü sabah mesajım gitmemiş (muhtemelen bir aksaklık oldu), şimdi gönderiyorum:")
+        sabah()
+
+
 def hatirlat():
     """Gün içinde birkaç kez (öğle/akşam üstü) tetiklenir. Sadece o ana
     kadar cevaplanmamış rutinleri sorar."""
+    _sabah_kacti_mi_kontrol_et()
     rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın rutinler:")
 
 
 def aksam():
+    _sabah_kacti_mi_kontrol_et()
+
     # 1) Rutinler - sadece bugün henüz cevaplanmamış olanlar sorulur
     rutin_sorulari_gonder(baslik="🌙 Akşam kontrolü — günlük rutinlerin:")
 
