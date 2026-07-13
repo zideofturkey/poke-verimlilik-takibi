@@ -241,7 +241,11 @@ def get_aktif_rutinler():
 
 
 def rutin_serisi_hesapla(rutin_isim):
-    """Dünden geriye doğru gidip kaç gündür kesintisiz yapıldığını
+    """[MULTI-AGENT ROL: DEĞERLENDİRİCİ] Bu fonksiyon Değerlendirici
+    agent'ının çekirdeği - ham veriyi (Takip) örüntüye (seri/kaçırma)
+    çevirir. gonder.py (Toplayıcı) ve analiz.py (Koç) bu fonksiyonu çağırır.
+
+    Dünden geriye doğru gidip kaç gündür kesintisiz yapıldığını
     (streak) ya da kaç gündür kesintisiz kaçırıldığını (miss_streak)
     hesaplar. 'Telafi' durumu nötr bir sıfırlama noktasıdır - ne seriyi
     uzatır (tam kaliteli tamamlama değil) ne de kaçırma sayılır (bir şey

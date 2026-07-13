@@ -1,4 +1,11 @@
 """
+[MULTI-AGENT ROL: TOPLAYICI (Collector) — soru sorma tarafı]
+Bu dosya, Toplayıcı agent'ının "veri isteme" yarısıdır: zamanlanmış
+tetiklemelerle kullanıcıya soru sorar (rutin, günlük görev, haftalık hedef).
+Cevapları işleyip ortak hafızaya (Sheets) yazan diğer yarı handle_update.py'de.
+Diğer agent'larla (Değerlendirici/Koç/Rapor) DOĞRUDAN konuşmaz - hepsi
+ortak Sheets üzerinden dolaylı haberleşir (blackboard mimarisi).
+
 GitHub Actions tarafından zamanlanmış olarak çalıştırılır.
 
 Kullanım:

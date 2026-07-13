@@ -85,17 +85,34 @@ gerçekleşiyor.
 - [x] Rutinler artık kodda değil, Sheets'te (`Rutinler` sekmesi) — kullanıcı doğrudan görüp düzenleyebilir, yeni rutin ekleyebilir, geçici durdurabilir (Aktif sütunu)
 - [x] Seri/kaçırma bilgisine göre ton değişimi (kural tabanlı, AI'sız - hızlı kalması için): 5+ gündür kesintisizse kutlama, 3+ gündür kaçırılıyorsa daha dikkat çekici mesaj
 
-## Multi-Agent Yol Haritası (sıradaki adım)
+## Multi-Agent Mimarisi
 
-Bugüne kadarki her şey (buton akışı, SLM sınıflandırma, haftalık analiz, seri
-hesaplama) gerçek bir "Koç" agent'ının üzerine oturacağı veri ve altyapıyı
-hazırladı. Sıradaki adım, haftalık analizdeki bulguların **gerçek aksiyona**
-dönüşmesi:
-- Seviye 1 (✅ tamamlandı: ton değişimi + en riskli rutin en üste sıralanır): mesaj/ton değişimi
+Sistem, **blackboard (ortak pano) deseni** ile tasarlanmış 4 agent'tan
+oluşur. Agent'lar birbirini doğrudan çağırmaz — hepsi ortak bir hafızayı
+(Google Sheets) okuyup yazarak dolaylı haberleşir. Bu, klasik multi-agent
+sistemlerinde tanınan bir mimari desendir.
+
+```
+Telegram → Toplayıcı → [Ortak Hafıza: Google Sheets] → Değerlendirici, Koç, Rapor
+```
+
+| Agent | Kod karşılığı | Sorumluluğu |
+|---|---|---|
+| **Toplayıcı** (Collector) | `gonder.py` + `handle_update.py` | Zamanlanmış/anlık her türlü girdiyi (buton, serbest metin, SLM sınıflandırması) ortak hafızaya doğru şekilde yazar |
+| **Değerlendirici** (Evaluator) | `common.py: rutin_serisi_hesapla`, `analiz.py: istatistik_cikar` | Ham veriyi örüntüye çevirir (seri, kaçırma sayısı, tamamlama oranı) |
+| **Koç** (Coach) | `analiz.py: koc_onerisi_sun` + `handle_update.py`'deki onay işleme | Örüntüye göre öneri sunar, SLM ile kişiselleştirir; **onay olmadan asla** ortak hafızayı değiştirmez |
+| **Rapor** (Reporter) | `analiz.py`'deki haftalık özet + `panel/` | Her şeyi insan-okunabilir/görsel hale getirir (Telegram mesajı, panel) |
+
+Her dosyanın başında `[MULTI-AGENT ROL: ...]` etiketiyle hangi agent'ı
+temsil ettiği açıkça belirtilmiştir.
+
+## Roadmap Durumu
+
+- Seviye 1 (✅ tamamlandı): mesaj/ton değişimi + en riskli rutin en üste sıralanır
 - Seviye 2 (✅ tamamlandı): Koç, bir rutin 5+ gündür üst üste kaçırılırsa haftalık analiz sırasında duraklatma önerir. **Eşik kod-tabanlı (ne zaman devreye gireceği sabit), ama mesajın içeriği ve cevabına verdiği tavsiye SLM tarafından üretiliyor** — kullanıcının evet/hayır cevabına göre kişiselleştirilmiş, bağlama uygun bir tavsiye veriyor. Onay olmadan Rutinler sekmesini asla değiştirmiyor.
 - Seviye 3 (ileride, onaylı): zamanlama (cron) değişikliği
-- [ ] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor)
-- [ ] Observability paneli
+- [x] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor) — yukarıda dokümante edildi
+- [ ] Observability paneli — tasarım tamamlandı, gerçek veriye bağlanması bekliyor
 
 ## Güvenlik notu
 

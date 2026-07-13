@@ -1,4 +1,11 @@
 """
+[MULTI-AGENT ROL: TOPLAYICI (Collector) — veri kaydetme + sınıflandırma tarafı]
+Toplayıcı agent'ının diğer yarısı (soru soran yarı gonder.py'de). Bu dosya,
+kullanıcıdan gelen HER TÜRLÜ girdiyi (buton, serbest metin) SLM ile
+sınıflandırıp ortak hafızaya (Google Sheets) doğru şekilde yazar. Ayrıca
+Koç'un sunduğu önerilere kullanıcı cevabını işleyip Rutinler sekmesini
+GÜNCELLER (onay sonrası) - yani Koç'un kararının uygulanma noktası burasıdır.
+
 GitHub Actions'ın repository_dispatch (telegram_update) event'i ile
 ANINDA tetiklenir. Cloudflare Worker'ın webhook üzerinden ilettiği
 güncellemeyi (buton basımı YA DA serbest metin mesaj) işler.

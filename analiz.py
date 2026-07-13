@@ -1,4 +1,10 @@
 """
+[MULTI-AGENT ROL: DEĞERLENDİRİCİ + KOÇ + RAPOR — üç rol bu dosyada birleşiyor]
+- Değerlendirici: istatistik_cikar() ham veriyi (Takip) örüntüye çevirir
+- Koç: koc_onerisi_sun() örüntüye göre öneri sunar, SLM ile kişiselleştirir,
+  onay ister ama BURADA karar uygulanmaz - onay handle_update.py'de işlenir
+- Rapor: haftalık özet mesajı, verinin insan-okunabilir hâle gelmesi
+
 Haftalık SLM analizi. Takip sekmesindeki son 7 günün verisini toplar,
 GitHub Actions runner'ında geçici olarak çalışan yerel bir Ollama modeline
 gönderir, çıkan doğal-dil özeti Telegram'a yollar.
