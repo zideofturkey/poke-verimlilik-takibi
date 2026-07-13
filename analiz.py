@@ -43,7 +43,7 @@ def istatistik_cikar(veriler):
         gorev = r["Görev"]
         durum = r["Durum"]
         if gorev not in sayaclar:
-            sayaclar[gorev] = {"Yapıldı": 0, "Yapılmadı": 0}
+            sayaclar[gorev] = {"Yapıldı": 0, "Yapılmadı": 0, "Telafi": 0}
         if durum in sayaclar[gorev]:
             sayaclar[gorev][durum] += 1
     return sayaclar
@@ -55,7 +55,8 @@ def prompt_olustur(veriler):
 
     sayaclar = istatistik_cikar(veriler)
     satirlar = "\n".join(
-        f"- {gorev}: {s['Yapıldı']} kez yapıldı, {s['Yapılmadı']} kez yapılmadı"
+        f"- {gorev}: {s['Yapıldı']} kez zamanında yapıldı, {s['Telafi']} kez "
+        f"gecikmeli telafi edildi, {s['Yapılmadı']} kez hiç yapılmadı"
         for gorev, s in sayaclar.items()
     )
     return (

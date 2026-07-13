@@ -96,7 +96,7 @@ def process_callback(cq):
             log_to_sheet(isim, "Yapılmadı")
             send_message(f"Sorun değil, '{isim}' için yarın devam edelim 👍")
         elif sonuc == "telafi":
-            log_to_sheet(isim, "Yapıldı", "dünkü eksik telafi edildi")
+            log_to_sheet(isim, "Telafi", "dünkü eksik için bugün telafi edildi")
             send_message(f"🔁 Harika, '{isim}' için dünkü eksik telafi edildi olarak kaydedildi!")
     elif callback_data.startswith("koc_duraklat_"):
         # format: koc_duraklat_<id>_evet / koc_duraklat_<id>_hayir
@@ -190,7 +190,12 @@ def _sorguyu_cevapla(text):
     for r in takip_bugun:
         if sadece_eksikler and r["Durum"] != "Yapılmadı":
             continue
-        isaret = "✅" if r["Durum"] == "Yapıldı" else "❌"
+        if r["Durum"] == "Yapıldı":
+            isaret = "✅"
+        elif r["Durum"] == "Telafi":
+            isaret = "🔁"
+        else:
+            isaret = "❌"
         satirlar.append(f"{isaret} {r['Görev']}")
     for r in gorevler:
         if sadece_eksikler and r["Durum"] != "Bekliyor":

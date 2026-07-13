@@ -243,7 +243,9 @@ def get_aktif_rutinler():
 def rutin_serisi_hesapla(rutin_isim):
     """Dünden geriye doğru gidip kaç gündür kesintisiz yapıldığını
     (streak) ya da kaç gündür kesintisiz kaçırıldığını (miss_streak)
-    hesaplar. İkisi aynı anda pozitif olamaz."""
+    hesaplar. 'Telafi' durumu nötr bir sıfırlama noktasıdır - ne seriyi
+    uzatır (tam kaliteli tamamlama değil) ne de kaçırma sayılır (bir şey
+    yapılmıştır) - o günde durma noktası olur."""
     ws = get_sheet()
     rows = ws.get_all_records()
     gunluk_durum = {}
@@ -264,11 +266,13 @@ def rutin_serisi_hesapla(rutin_isim):
         durum = gunluk_durum.get(gun)
         if durum is None:
             break
+        if durum == "Telafi":
+            break  # nötr durak noktası - ne uzat ne kaçırma say
         if durum == "Yapıldı":
             if miss_streak > 0:
                 break
             streak += 1
-        else:
+        else:  # "Yapılmadı"
             if streak > 0:
                 break
             miss_streak += 1
