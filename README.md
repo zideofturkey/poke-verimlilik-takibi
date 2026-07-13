@@ -82,6 +82,8 @@ gerçekleşiyor.
 - [x] Bekçi (watchdog) mekanizması — GitHub Actions'ın zamanlanmış tetiklemeyi bazen atlaması (drop etmesi) ihtimaline karşı, öğle/akşamüstü/akşam kontrollerinden önce "sabah mesajı bugün gerçekten gitti mi" diye kontrol edilir, gitmediyse otomatik olarak gönderilir
 - [x] SLM güvenilirlik düzeltmesi: günlük sınıflandırma/cevaplar artık daha küçük/hızlı model (qwen2.5:3b) kullanıyor (büyük modelin soğuk-başlangıç süresi zaman zaman zaman aşımına uğruyordu), haftalık analiz + Koç önerileri kalite öncelikli büyük modelde (qwen2.5:7b) kalıyor. Ollama'nın kendi kurulumu da artık önbelleğe alınıyor (önceden sadece model önbelleğe alınıyordu).
 - [x] Üçüncü durum: "Telafi" — dünkü kaçırmayı bugün telafi etmek, ne tam zamanında yapmış (Yapıldı) ne de hiç yapmamış (Yapılmadı) gibi sayılmaz; ayrı, nötr bir kategori. Seri (streak) hesabında nötr durak noktası, panelde ayrı bir rozetle (🔁, amber renk), haftalık analizde ayrı bir istatistik olarak gösteriliyor.
+- [x] Çift log düzeltmesi: aynı gün + aynı görev için ikinci bir kayıt gelirse (çift tıklama, önce Evet sonra Hayır) YENİ satır açılmaz, var olan satır güncellenir
+- [x] Bayat "bekleyen soru" düzeltmesi: bir soru cevaplanmadan günler geçerse, otomatik olarak geçersiz sayılıp temizlenir - sonsuza kadar sonraki soruları (ör. boşa vakit) engellemez
 - [x] Rutinler artık kodda değil, Sheets'te (`Rutinler` sekmesi) — kullanıcı doğrudan görüp düzenleyebilir, yeni rutin ekleyebilir, geçici durdurabilir (Aktif sütunu)
 - [x] Seri/kaçırma bilgisine göre ton değişimi (kural tabanlı, AI'sız - hızlı kalması için): 5+ gündür kesintisizse kutlama, 3+ gündür kaçırılıyorsa daha dikkat çekici mesaj
 
