@@ -85,12 +85,26 @@ gerçekleşiyor.
 - [x] Rutinler artık kodda değil, Sheets'te (`Rutinler` sekmesi) — kullanıcı doğrudan görüp düzenleyebilir, yeni rutin ekleyebilir, geçici durdurabilir (Aktif sütunu)
 - [x] Seri/kaçırma bilgisine göre ton değişimi (kural tabanlı, AI'sız - hızlı kalması için): 5+ gündür kesintisizse kutlama, 3+ gündür kaçırılıyorsa daha dikkat çekici mesaj
 
-## Multi-Agent Mimarisi
+## Multi-Agent Mimarisi (dürüst not)
 
-Sistem, **blackboard (ortak pano) deseni** ile tasarlanmış 4 agent'tan
-oluşur. Agent'lar birbirini doğrudan çağırmaz — hepsi ortak bir hafızayı
-(Google Sheets) okuyup yazarak dolaylı haberleşir. Bu, klasik multi-agent
-sistemlerinde tanınan bir mimari desendir.
+Sistem, **kavramsal/mantıksal olarak** 4 role ayrılmış tek bir koordineli
+pipeline'dır — Ali Bey'in tanımındaki "birbiriyle konuşan, iş bölümü yapan
+bağımsız ajanlar" anlamında **gerçek anlamda ayrı, bağımsız çalışan 4 ajan
+değildir.** Bu bilinçli bir tercih: bağımsız ajanlar (her biri kendi
+zamanlamasıyla, birbirinden habersiz çalışan) burada koordinasyon
+sorunlarını (ör. aynı veriye eşzamanlı yazma, "bu zaten yapıldı mı"
+kontrolünün tutarsızlaşması) azaltmaz, artırırdı — zaten yaşadığımız
+gerçek hataların çoğu (çift mesaj, git çakışması) tam da koordinasyon
+eksikliğinden kaynaklanmıştı. Tek kullanıcılı, tek paylaşılan veri
+kaynaklı (Google Sheets) bir sistemde asıl değer ayrışmadan değil,
+**sıkı koordinasyon ve tek doğruluk kaynağından (single source of
+truth)** geliyor.
+
+Yine de bu 4 rol ayrımı **gerçek ve faydalı** — kodun hangi parçasının
+hangi sorumluluğu taşıdığını netleştiriyor, blackboard deseniyle (ortak
+Sheets üzerinden dolaylı haberleşme) tutarlı, ve ileride gerçekten
+bağımsız ajanlara bölünmesi gerekirse (ör. çok kullanıcılı bir sisteme
+büyürse) bu ayrım zaten hazır bir temel oluşturuyor.
 
 ```
 Telegram → Toplayıcı → [Ortak Hafıza: Google Sheets] → Değerlendirici, Koç, Rapor
