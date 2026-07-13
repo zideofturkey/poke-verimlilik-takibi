@@ -6,12 +6,18 @@
  * workflow'unu ANINDA (saniyeler içinde) tetikler - 5 dk/1 saatlik
  * cron beklemesi ortadan kalkar.
  *
- * Secrets (wrangler ile ayarlanır, kodda yazılı DEĞİL):
+ * ONEMLI: Telegram'a 200 OK cevabi ANINDA doner, GitHub'a haber verme
+ * islemi arka planda (ctx.waitUntil ile) devam eder. Onceden bu islem
+ * Telegram'in cevabini BEKLETIYORDU - eger GitHub'in API'si yavas
+ * yanit verirse, Telegram zaman asimina ugrayip AYNI butonu tekrar
+ * gonderiyordu (tek tiklamanin cift sayilmasi sorununun kok nedeni buydu).
+ *
+ * Secrets (wrangler ile ayarlanir, kodda yazili DEGIL):
  *   - GITHUB_TOKEN: repository_dispatch tetikleme yetkisi olan GitHub token
  */
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method !== "POST") {
       return new Response("OK", { status: 200 });
     }
@@ -23,12 +29,8 @@ export default {
       return new Response("Bad request", { status: 400 });
     }
 
-    // Buton basımı VEYA serbest metin mesajı - ikisini de ilet
     if (update.callback_query || update.message) {
-      const eventType = update.callback_query
-        ? "telegram_callback"
-        : "telegram_message";
-      const githubResp = await fetch(
+      const dispatchPromise = fetch(
         "https://api.github.com/repos/zideofturkey/poke-verimlilik-takibi/dispatches",
         {
           method: "POST",
@@ -42,14 +44,17 @@ export default {
             client_payload: { update },
           }),
         }
-      );
+      ).then(async (githubResp) => {
+        if (!githubResp.ok) {
+          console.log("GitHub dispatch hatasi:", await githubResp.text());
+        }
+      }).catch((err) => {
+        console.log("GitHub dispatch fetch hatasi:", err.message);
+      });
 
-      if (!githubResp.ok) {
-        console.log("GitHub dispatch hatası:", await githubResp.text());
-      }
+      ctx.waitUntil(dispatchPromise);
     }
 
-    // Telegram'a hemen 200 dönmek önemli, yoksa tekrar tekrar dener
     return new Response("OK", { status: 200 });
   },
 };
