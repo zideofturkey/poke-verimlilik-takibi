@@ -128,7 +128,8 @@ def hafta_baslangic_str():
     return pazartesi.strftime("%Y-%m-%d")
 
 
-SLM_MODEL = "qwen2.5:7b"
+SLM_MODEL = "qwen2.5:3b"       # günlük sınıflandırma/cevap - hız/güvenilirlik öncelikli
+SLM_MODEL_KALITELI = "qwen2.5:7b"  # haftalık analiz - kalite öncelikli, hız kritik değil
 SLM_URL = "http://localhost:11434/api/generate"
 
 
@@ -161,22 +162,28 @@ def _ollama_kur_ve_baslat():
             break
         time.sleep(1)
 
-    print(f"{SLM_MODEL} modeli çekiliyor (önbellekte yoksa indirir)...")
-    subprocess.run(["ollama", "pull", SLM_MODEL], check=True)
 
-
-def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120):
+def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
     """Yerel Ollama modeline bir prompt gönderir, metin cevabını döndürür.
     Ollama çalışmıyorsa (ör. GitHub Actions runner'ında ilk kullanım),
     kendisi kurup başlatır - böylece bu maliyet sadece SLM'e gerçekten
-    ihtiyaç duyulan anda ödenir, her serbest-metin mesajında değil."""
+    ihtiyaç duyulan anda ödenir, her serbest-metin mesajında değil.
+
+    model: belirtilmezse hızlı (küçük) model kullanılır. Kalite öncelikli
+    işler (ör. haftalık analiz) için SLM_MODEL_KALITELI verilebilir."""
+    kullanilacak_model = model or SLM_MODEL
+
     if not _ollama_hazir_mi():
         _ollama_kur_ve_baslat()
+
+    print(f"Model çekiliyor (önbellekte yoksa indirir): {kullanilacak_model}")
+    import subprocess
+    subprocess.run(["ollama", "pull", kullanilacak_model], check=True)
 
     resp = requests.post(
         SLM_URL,
         json={
-            "model": SLM_MODEL,
+            "model": kullanilacak_model,
             "prompt": prompt,
             "stream": False,
             "options": {"temperature": sicaklik},

@@ -11,7 +11,7 @@ otomatik bir sistem kurmak için. Detaylar için Sistem Dokümantasyonu'na bakı
 """
 
 import datetime
-from common import get_sheet, send_message, slm_sorgula, get_aktif_rutinler, rutin_serisi_hesapla, turkce_disi_karakter_var_mi, TR_TZ
+from common import get_sheet, send_message, slm_sorgula, get_aktif_rutinler, rutin_serisi_hesapla, turkce_disi_karakter_var_mi, SLM_MODEL_KALITELI, TR_TZ
 
 ANALIZ_GUN_SAYISI = 7
 KOC_DURAKLAMA_ESIGI = 5  # kaç gün üst üste kaçırılırsa duraklatma önerilsin
@@ -85,7 +85,7 @@ def koc_onerisi_sun():
                 "yaz. SADECE mesajı yaz, başka açıklama ekleme."
             )
             try:
-                mesaj = slm_sorgula(prompt)
+                mesaj = slm_sorgula(prompt, model=SLM_MODEL_KALITELI)
                 if turkce_disi_karakter_var_mi(mesaj):
                     raise ValueError("dil kayması tespit edildi")
             except Exception as e:
@@ -115,7 +115,7 @@ def main():
         return
 
     try:
-        ozet = slm_sorgula(prompt)
+        ozet = slm_sorgula(prompt, model=SLM_MODEL_KALITELI)
         if turkce_disi_karakter_var_mi(ozet):
             raise ValueError("dil kayması tespit edildi")
     except Exception as e:

@@ -28,11 +28,14 @@ jobs:
       # Ollama'nın kendisi artık Python içinde (common.py) ihtiyaç anında
       # kuruluyor - burada sadece model önbelleğini hazır tutuyoruz
       # (varsa hızlı restore, yoksa maliyeti Python tarafı üstleniyor).
-      - name: Ollama model önbelleğini yükle (varsa)
+      - name: Ollama kurulumunu ve model önbelleğini yükle (varsa)
         uses: actions/cache@v4
         with:
-          path: ~/.ollama/models
-          key: ollama-models-qwen2.5-7b
+          path: |
+            ~/.ollama/models
+            /usr/local/bin/ollama
+            /usr/local/lib/ollama
+          key: ollama-cache-v2
 
       - name: Callback'i işle
         env:
