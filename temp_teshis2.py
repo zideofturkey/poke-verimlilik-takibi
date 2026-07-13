@@ -1,5 +1,4 @@
-from common import get_bekleyen_soru
-deger = get_bekleyen_soru()
-with open("teshis_sonucu.txt", "w") as f:
-    f.write(f"bekleyen_soru = '{deger}'\n")
-print(f"Yazildi: '{deger}'")
+from common import get_durum_sheet
+ws = get_durum_sheet()
+ws.update_acell("B2", "")
+print("bekleyen_soru temizlendi (bos yapildi)")
