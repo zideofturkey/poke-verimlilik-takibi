@@ -1,0 +1,1 @@
+bekleyen_soru = 'gunluk_gorev'
