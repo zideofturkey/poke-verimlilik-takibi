@@ -51,6 +51,14 @@ def sabah():
     rows = ws.get_all_records()
     bugun = datetime.datetime.now(TR_TZ).date()
 
+    # Bugün için zaten görev girilmiş mi? (ör. kullanıcı soru sorulmadan
+    # kendiliğinden yazmış olabilir) - öyleyse aynı soruyu tekrar sorma
+    bugun_zaten_var = any(r["Tarih"] == bugun_str() for r in rows)
+    if bugun_zaten_var:
+        print("Bugün için zaten görev listesi var, sabah mesajı atlanıyor.")
+        set_deger("son_sabah_tarihi", bugun_str())
+        return
+
     kacirilanlar = []  # (gun_farki, gorev_metni)
     for r in rows:
         if r["Durum"] != "Yapılmadı":
