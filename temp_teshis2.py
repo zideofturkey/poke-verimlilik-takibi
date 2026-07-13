@@ -1,3 +1,5 @@
 from common import get_bekleyen_soru
 deger = get_bekleyen_soru()
-print(f"Su anki bekleyen_soru degeri: '{deger}'")
+with open("teshis_sonucu.txt", "w") as f:
+    f.write(f"bekleyen_soru = '{deger}'\n")
+print(f"Yazildi: '{deger}'")
