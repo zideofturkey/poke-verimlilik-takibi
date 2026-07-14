@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-14T13:47:42.655649+03:00",
+  "uretim_zamani": "2026-07-14T15:14:11.879828+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 11
+    "haftaTamamlamaYuzdesi": 14
   },
   "heatmap": [
     {
@@ -1019,23 +1019,23 @@
     {
       "tarih": "14 July 2026",
       "tarih_iso": "2026-07-14",
-      "level": 0,
+      "level": 1,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1047,7 +1047,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 0
+      "oran": 100
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1164,8 +1164,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T10:47:29Z",
+      "zaman": "2026-07-14T12:14:00Z",
       "durum": "warn",
+      "runId": "29331729698"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T12:01:16Z",
+      "durum": "ok",
+      "runId": "29330951284"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T12:01:05Z",
+      "durum": "ok",
+      "runId": "29330939528"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-14T11:37:15Z",
+      "durum": "ok",
+      "runId": "29329535087"
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-14T11:26:22Z",
+      "durum": "ok",
+      "runId": "29328891847"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-14T10:47:29Z",
+      "durum": "ok",
       "runId": "29326603438"
     },
     {
@@ -1221,36 +1251,6 @@
       "zaman": "2026-07-14T08:00:00Z",
       "durum": "ok",
       "runId": "29316459025"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T07:57:33Z",
-      "durum": "ok",
-      "runId": "29316320620"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T07:49:47Z",
-      "durum": "ok",
-      "runId": "29315878216"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-14T06:18:37Z",
-      "durum": "ok",
-      "runId": "29310967489"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T06:12:00Z",
-      "durum": "ok",
-      "runId": "29310639688"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T03:44:25Z",
-      "durum": "ok",
-      "runId": "29304233389"
     }
   ],
   "kocKararlari": []
