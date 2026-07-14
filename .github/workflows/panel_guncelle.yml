@@ -47,7 +47,7 @@ jobs:
             git fetch origin main -q
             git reset --hard origin/main -q
             cp /tmp/data.json panel/data.json
-            if git diff --quiet panel/data.json; then
+            if [ -z "$(git status --porcelain panel/data.json)" ]; then
               echo "Değişiklik yok."
               break
             fi
