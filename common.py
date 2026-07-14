@@ -137,6 +137,19 @@ SLM_MODEL_KALITELI = "qwen2.5:7b"  # haftalık analiz - kalite öncelikli, hız 
 SLM_URL = "http://localhost:11434/api/generate"
 
 
+def hata_logla(baglam, hata_metni):
+    """Bir hata olduğunda, tahmin etmek yerine GERÇEK hatayı görebilmek
+    için son_hata.txt dosyasına yazar. Bu dosya webhook.yml'in commit
+    adımında otomatik olarak repoya kaydedilir."""
+    try:
+        with open("son_hata.txt", "w", encoding="utf-8") as f:
+            f.write(f"Zaman: {datetime.datetime.now(TR_TZ).isoformat()}\n")
+            f.write(f"Bağlam: {baglam}\n\n")
+            f.write(hata_metni)
+    except Exception as e:
+        print(f"Hata loglanamadı bile: {e}")
+
+
 def _ollama_hazir_mi():
     try:
         requests.get("http://localhost:11434/api/tags", timeout=2)
@@ -155,6 +168,13 @@ def _ollama_kur_ve_baslat():
             "curl -fsSL https://ollama.com/install.sh | sh",
             shell=True, check=True,
         )
+    else:
+        # Önbellekten gelen binary'nin çalıştırma izni kaybolmuş olabilir
+        yol = shutil.which("ollama")
+        try:
+            os.chmod(yol, 0o755)
+        except Exception:
+            pass
 
     print("Ollama servisi başlatılıyor...")
     subprocess.Popen(
@@ -175,27 +195,41 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
 
     model: belirtilmezse hızlı (küçük) model kullanılır. Kalite öncelikli
     işler (ör. haftalık analiz) için SLM_MODEL_KALITELI verilebilir."""
+    import subprocess
+
     kullanilacak_model = model or SLM_MODEL
 
-    if not _ollama_hazir_mi():
-        _ollama_kur_ve_baslat()
+    try:
+        if not _ollama_hazir_mi():
+            _ollama_kur_ve_baslat()
 
-    print(f"Model çekiliyor (önbellekte yoksa indirir): {kullanilacak_model}")
-    import subprocess
-    subprocess.run(["ollama", "pull", kullanilacak_model], check=True)
+        print(f"Model çekiliyor (önbellekte yoksa indirir): {kullanilacak_model}")
+        pull_sonuc = subprocess.run(
+            ["ollama", "pull", kullanilacak_model],
+            capture_output=True, text=True, timeout=180,
+        )
+        if pull_sonuc.returncode != 0:
+            raise RuntimeError(
+                f"ollama pull başarısız (kod {pull_sonuc.returncode}): "
+                f"stdout={pull_sonuc.stdout[-500:]} stderr={pull_sonuc.stderr[-500:]}"
+            )
 
-    resp = requests.post(
-        SLM_URL,
-        json={
-            "model": kullanilacak_model,
-            "prompt": prompt,
-            "stream": False,
-            "options": {"temperature": sicaklik},
-        },
-        timeout=zaman_asimi,
-    )
-    resp.raise_for_status()
-    return resp.json()["response"].strip()
+        resp = requests.post(
+            SLM_URL,
+            json={
+                "model": kullanilacak_model,
+                "prompt": prompt,
+                "stream": False,
+                "options": {"temperature": sicaklik},
+            },
+            timeout=zaman_asimi,
+        )
+        resp.raise_for_status()
+        return resp.json()["response"].strip()
+    except Exception as e:
+        import traceback
+        hata_logla(f"slm_sorgula (model={kullanilacak_model})", traceback.format_exc())
+        raise
 
 
 # Sheets'e taşınmadan önceki varsayılanlar - sadece ilk kurulumda

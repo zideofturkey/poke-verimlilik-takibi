@@ -49,6 +49,26 @@ jobs:
         if: always()
         run: rm -f service_account.json
 
+      - name: Hata logu varsa commit'le
+        if: always()
+        run: |
+          git config user.name "poke-bot"
+          git config user.email "poke-bot@users.noreply.github.com"
+          if [ -f son_hata.txt ]; then
+            for i in 1 2 3; do
+              git fetch origin main -q
+              git reset --hard origin/main -q
+              if [ ! -f son_hata.txt ]; then break; fi
+              git add son_hata.txt
+              git commit -m "chore: hata logu [skip ci]" -q || break
+              if git push -q; then
+                echo "Hata logu kaydedildi."
+                break
+              fi
+              sleep 2
+            done
+          fi
+
       - name: Offset dosyasını commit'le (değiştiyse)
         run: |
           git config user.name "poke-bot"
