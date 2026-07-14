@@ -1,0 +1,62 @@
+name: Panel - Veri Güncelle
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"  # Her 30 dakikada bir tazele
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bağımlılıkları kur
+        run: pip install requests gspread google-auth python-dotenv
+
+      - name: Service account dosyasını oluştur
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
+
+      - name: Panel verisini üret
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python panel_veri_uret.py
+
+      - name: service_account.json'ı sil (güvenlik)
+        if: always()
+        run: rm -f service_account.json
+
+      - name: data.json'ı commit'le (değiştiyse)
+        run: |
+          git config user.name "poke-bot"
+          git config user.email "poke-bot@users.noreply.github.com"
+          cp panel/data.json /tmp/data.json
+          for i in 1 2 3 4 5; do
+            git fetch origin main -q
+            git reset --hard origin/main -q
+            cp /tmp/data.json panel/data.json
+            if git diff --quiet panel/data.json; then
+              echo "Değişiklik yok."
+              break
+            fi
+            git add panel/data.json
+            git commit -m "chore: panel verisi güncellendi [skip ci]" -q
+            if git push -q; then
+              echo "Panel verisi güncellendi."
+              break
+            fi
+            echo "Push reddedildi, tekrar deneniyor ($i/5)..."
+            sleep 2
+          done
