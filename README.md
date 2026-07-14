@@ -85,6 +85,7 @@ gerçekleşiyor.
 - [x] Çift log düzeltmesi: aynı gün + aynı görev için ikinci bir kayıt gelirse (çift tıklama, önce Evet sonra Hayır) YENİ satır açılmaz, var olan satır güncellenir
 - [x] Bayat "bekleyen soru" düzeltmesi: bir soru cevaplanmadan günler geçerse, otomatik olarak geçersiz sayılıp temizlenir - sonsuza kadar sonraki soruları (ör. boşa vakit) engellemez
 - [x] Çift tıklama kök neden düzeltmesi: Cloudflare Worker artık Telegram'a ANINDA 200 dönüyor, GitHub'a haber verme işlemi arka planda (ctx.waitUntil) devam ediyor. Önceden Telegram'ın cevabı GitHub'ın yanıt vermesini bekliyordu, yavaş bir yanıt Telegram'ın aynı butonu tekrar göndermesine (çift sayılmasına) sebep oluyordu.
+- [x] Tarih tutarlılığı düzeltmesi: gece yarısından sonra bir önceki günün ad-hoc görevini işaretlersen, artık Takip'e görevin KENDİ tarihiyle (etkileşim anının tarihiyle değil) loglanıyor - GunlukGorevler ile Takip arasında tarih uyuşmazlığı olmaz
 - [x] Rutinler artık kodda değil, Sheets'te (`Rutinler` sekmesi) — kullanıcı doğrudan görüp düzenleyebilir, yeni rutin ekleyebilir, geçici durdurabilir (Aktif sütunu)
 - [x] Seri/kaçırma bilgisine göre ton değişimi (kural tabanlı, AI'sız - hızlı kalması için): 5+ gündür kesintisizse kutlama, 3+ gündür kaçırılıyorsa daha dikkat çekici mesaj
 

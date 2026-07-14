@@ -155,10 +155,11 @@ def process_callback(cq):
         _, satir_no, sonuc = callback_data.split("_")
         ws = get_gorevler_sheet()
         satir_no = int(satir_no)
+        gorev_tarihi = ws.cell(satir_no, 1).value
         gorev_metni = ws.cell(satir_no, 3).value
         durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
         ws.update_cell(satir_no, 4, durum)
-        log_to_sheet(gorev_metni, durum)
+        log_to_sheet(gorev_metni, durum, tarih=gorev_tarihi)
         if sonuc == "evet":
             send_message(f"✅ '{gorev_metni}' kaydedildi. Tebrikler!")
         else:

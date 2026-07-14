@@ -331,13 +331,18 @@ def get_sheet():
     return worksheet
 
 
-def log_to_sheet(gorev, durum, detay=""):
+def log_to_sheet(gorev, durum, detay="", tarih=None):
     """Aynı gün için aynı görev/rutin adına ikinci bir kayıt gelirse
     (ör. çift tıklama, ya da önce Evet sonra Hayır basılması) YENİ satır
     açmaz - var olan satırın üzerine yazar. Son basılan her zaman kazanır,
-    kopya satır asla oluşmaz."""
+    kopya satır asla oluşmaz.
+
+    tarih: belirtilmezse "şu an"ın tarihi kullanılır (rutinler için doğru
+    olan budur). Ad-hoc görevler için, görevin KENDİ tarihi verilmeli -
+    yoksa gece yarısından sonra işaretlenen bir görev, aslında ait olduğu
+    günden farklı bir tarihe loglanmış olur."""
     now = datetime.datetime.now(TR_TZ)
-    bugun = now.strftime("%Y-%m-%d")
+    bugun = tarih or now.strftime("%Y-%m-%d")
     saat = now.strftime("%H:%M")
 
     ws = get_sheet()
