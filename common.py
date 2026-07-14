@@ -184,6 +184,41 @@ def _ollama_kur_ve_baslat():
         time.sleep(1)
 
 
+def _slm_sorgula_tek_deneme(prompt, sicaklik, zaman_asimi, kullanilacak_model):
+    import subprocess
+
+    if not _ollama_hazir_mi():
+        _ollama_kur_ve_baslat()
+
+    print(f"Model çekiliyor (önbellekte yoksa indirir): {kullanilacak_model}")
+    pull_sonuc = subprocess.run(
+        ["ollama", "pull", kullanilacak_model],
+        capture_output=True, text=True, timeout=180,
+    )
+    if pull_sonuc.returncode != 0:
+        raise RuntimeError(
+            f"ollama pull başarısız (kod {pull_sonuc.returncode}): "
+            f"stdout={pull_sonuc.stdout[-500:]} stderr={pull_sonuc.stderr[-500:]}"
+        )
+
+    resp = requests.post(
+        SLM_URL,
+        json={
+            "model": kullanilacak_model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {"temperature": sicaklik},
+        },
+        timeout=zaman_asimi,
+    )
+    if resp.status_code != 200:
+        raise RuntimeError(
+            f"Ollama /api/generate {resp.status_code} döndü. "
+            f"Cevap gövdesi: {resp.text[:1000]}"
+        )
+    return resp.json()["response"].strip()
+
+
 def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
     """Yerel Ollama modeline bir prompt gönderir, metin cevabını döndürür.
     Ollama çalışmıyorsa (ör. GitHub Actions runner'ında ilk kullanım),
@@ -191,53 +226,37 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
     ihtiyaç duyulan anda ödenir, her serbest-metin mesajında değil.
 
     model: belirtilmezse hızlı (küçük) model kullanılır. Kalite öncelikli
-    işler (ör. haftalık analiz) için SLM_MODEL_KALITELI verilebilir."""
+    işler (ör. haftalık analiz) için SLM_MODEL_KALITELI verilebilir.
+
+    Ollama'nın alt süreci (llama-server) nadiren çöküyor (ör. segfault) -
+    bu durumda süreci tamamen öldürüp TAZE baştan başlatarak 1 kez daha
+    dener. Çoğu geçici çökme ikinci denemede düzeliyor."""
     import subprocess
 
     kullanilacak_model = model or SLM_MODEL
+    son_hata = None
 
-    try:
-        if not _ollama_hazir_mi():
-            _ollama_kur_ve_baslat()
-
-        print(f"Model çekiliyor (önbellekte yoksa indirir): {kullanilacak_model}")
-        pull_sonuc = subprocess.run(
-            ["ollama", "pull", kullanilacak_model],
-            capture_output=True, text=True, timeout=180,
-        )
-        if pull_sonuc.returncode != 0:
-            raise RuntimeError(
-                f"ollama pull başarısız (kod {pull_sonuc.returncode}): "
-                f"stdout={pull_sonuc.stdout[-500:]} stderr={pull_sonuc.stderr[-500:]}"
-            )
-
-        resp = requests.post(
-            SLM_URL,
-            json={
-                "model": kullanilacak_model,
-                "prompt": prompt,
-                "stream": False,
-                "options": {"temperature": sicaklik},
-            },
-            timeout=zaman_asimi,
-        )
-        if resp.status_code != 200:
-            raise RuntimeError(
-                f"Ollama /api/generate {resp.status_code} döndü. "
-                f"Cevap gövdesi: {resp.text[:1000]}"
-            )
-        return resp.json()["response"].strip()
-    except Exception as e:
-        import traceback
-        ek_bilgi = ""
+    for deneme in range(2):
         try:
-            with open("/tmp/ollama_serve.log", "r", encoding="utf-8", errors="replace") as f:
-                icerik = f.read()
-                ek_bilgi = f"\n\n--- ollama serve logu (son 2000 karakter) ---\n{icerik[-2000:]}"
-        except Exception:
-            pass
-        hata_logla(f"slm_sorgula (model={kullanilacak_model})", traceback.format_exc() + ek_bilgi)
-        raise
+            return _slm_sorgula_tek_deneme(prompt, sicaklik, zaman_asimi, kullanilacak_model)
+        except Exception as e:
+            son_hata = e
+            import traceback
+            ek_bilgi = ""
+            try:
+                with open("/tmp/ollama_serve.log", "r", encoding="utf-8", errors="replace") as f:
+                    icerik = f.read()
+                    ek_bilgi = f"\n\n--- ollama serve logu (son 2000 karakter) ---\n{icerik[-2000:]}"
+            except Exception:
+                pass
+            hata_logla(f"slm_sorgula deneme {deneme+1}/2 (model={kullanilacak_model})", traceback.format_exc() + ek_bilgi)
+
+            if deneme == 0:
+                print("İlk deneme başarısız, Ollama'yı tamamen kapatıp taze başlatarak tekrar deneniyor...")
+                subprocess.run(["pkill", "-9", "-f", "ollama"], capture_output=True)
+                time.sleep(2)
+
+    raise son_hata
 
 
 # Sheets'e taşınmadan önceki varsayılanlar - sadece ilk kurulumda
