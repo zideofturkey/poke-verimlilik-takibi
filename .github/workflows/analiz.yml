@@ -18,14 +18,11 @@ jobs:
       - name: Python bağımlılıklarını kur
         run: pip install requests gspread google-auth python-dotenv
 
-      - name: Ollama kurulumunu ve model önbelleğini yükle (varsa)
+      - name: Ollama model önbelleğini yükle (varsa) - sadece model dosyaları
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.ollama/models
-            /usr/local/bin/ollama
-            /usr/local/lib/ollama
-          key: ollama-cache-v2
+          path: ~/.ollama/models
+          key: ollama-models-v3
 
       - name: Service account dosyasını oluştur
         env:

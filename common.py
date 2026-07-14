@@ -160,21 +160,17 @@ def _ollama_hazir_mi():
 
 def _ollama_kur_ve_baslat():
     import subprocess
-    import shutil
 
-    if shutil.which("ollama") is None:
-        print("Ollama kuruluyor...")
-        subprocess.run(
-            "curl -fsSL https://ollama.com/install.sh | sh",
-            shell=True, check=True,
-        )
-    else:
-        # Önbellekten gelen binary'nin çalıştırma izni kaybolmuş olabilir
-        yol = shutil.which("ollama")
-        try:
-            os.chmod(yol, 0o755)
-        except Exception:
-            pass
+    # HER ZAMAN taze kurulum çalıştır (idempotent, birkaç saniye sürer).
+    # Önceden "zaten kurulu mu" diye kontrol edip atlıyorduk, ama bu
+    # yüzden önbellekten gelen EKSİK bir kurulum (llama-server alt
+    # programı olmadan) sürekli tekrar kullanılıp duruyordu. Artık
+    # programın kendisi hiç önbelleğe alınmıyor, sadece model dosyaları.
+    print("Ollama kuruluyor (taze kurulum)...")
+    subprocess.run(
+        "curl -fsSL https://ollama.com/install.sh | sh",
+        shell=True, check=True,
+    )
 
     print("Ollama servisi başlatılıyor...")
     log_dosyasi = open("/tmp/ollama_serve.log", "w")
