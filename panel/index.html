@@ -585,6 +585,7 @@
           <option value="Analiz">Analiz</option>
           <option value="Dinle">Dinle</option>
           <option value="Temizle">Temizle</option>
+          <option value="Panel - Veri Güncelle">Panel</option>
         </select>
       </div>
       <table class="log-table">
@@ -598,7 +599,7 @@
     <div class="section">
       <div class="section-head">
         <h2>SLM sınıflandırma kararları</h2>
-        <span class="empty-hint">Bir satıra tıkla, tam prompt/cevabı gör</span>
+        <span class="empty-hint">Yakında — ham prompt/cevap logu henüz tutulmuyor</span>
       </div>
       <table class="log-table">
         <thead>
@@ -651,68 +652,7 @@
 </div>
 
 <script>
-  // ---------- ÖRNEK VERİ (mockup - gerçek entegrasyon sonraki aşamada) ----------
   const REPO_URL = "https://github.com/zideofturkey/poke-verimlilik-takibi";
-
-  const rutinAdlari = ["Fransızca çalışma", "Sabah telefon rutini", "Akşam telefon rutini", "Verimli video izleme"];
-
-  const rutinler = [
-    { isim: "Fransızca çalışma", oran: 82 },
-    { isim: "Sabah telefon rutini", oran: 57 },
-    { isim: "Akşam telefon rutini", oran: 64 },
-    { isim: "Verimli video izleme", oran: 91 },
-  ];
-
-  const gunlukGorevGecmisi = [
-    { tarih: "12 Tem", gunAdi: "Cumartesi", gorevler: [
-      { metin: "piyano kursuna git", durum: "Yapıldı" },
-      { metin: "makale oku", durum: "Yapıldı" },
-      { metin: "yatırım listeni düzenle", durum: "Yapılmadı" },
-    ]},
-    { tarih: "11 Tem", gunAdi: "Cuma", gorevler: [
-      { metin: "book & coffee", durum: "Yapıldı" },
-      { metin: "The Bear izle", durum: "Yapıldı" },
-    ]},
-    { tarih: "10 Tem", gunAdi: "Perşembe", gorevler: [
-      { metin: "portföy analizi yap", durum: "Yapılmadı" },
-    ]},
-  ];
-
-  const hedefler = [
-    { hafta: "6 Tem - 12 Tem", hedef: "Portföy dağılımı güncelle", durum: "done" },
-    { hafta: "6 Tem - 12 Tem", hedef: "Matrix 2 izle", durum: "missed" },
-    { hafta: "6 Tem - 12 Tem", hedef: "Bir kitap bitir", durum: "done" },
-    { hafta: "29 Haz - 5 Tem", hedef: "Portföy analizi yap", durum: "done" },
-  ];
-
-  const workflowlar = [
-    { ad: "Gönder", tip: "Gönder", zaman: "Bugün 09:00", sure: "14s", durum: "ok", runId: "29169973025" },
-    { ad: "Webhook", tip: "Webhook", zaman: "Bugün 14:32", sure: "6s", durum: "ok", runId: "29181203441" },
-    { ad: "Analiz", tip: "Analiz", zaman: "Pazar 21:00", sure: "3dk 12s", durum: "ok", runId: "29169973000" },
-    { ad: "Dinle", tip: "Dinle", zaman: "Bugün 13:29", sure: "4s", durum: "warn", runId: "29175551234" },
-    { ad: "Temizle", tip: "Temizle", zaman: "Pazartesi 06:00", sure: "9s", durum: "ok", runId: "29100001111" },
-  ];
-
-  const slmKararlari = [
-    { zaman: "14:32", ozet: "bugün için yeni bir görev ekliyorum...", kategori: "YENI_GOREV",
-      prompt: "Sen bir verimlilik takip botusun (adın Poke). Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok.\n\nKullanıcı şunu yazdı:\n\"bugün için yeni bir görev daha ekliyorum: \\\"piyano kursuna git\\\", \\\"makale oku\\\"\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata...\n[GUNLUK_GOREV / HAFTALIK_HEDEF / BOSA_VAKIT / YENI_GOREV / SORGULA / SOHBET tanımları]\n\nSADECE şu formatta cevap ver:\nTIP: <KATEGORI>\nGOREVLER: <...>\nCEVAP: <...>",
-      cevap: "TIP: YENI_GOREV\nGOREVLER: piyano kursuna git | makale oku\nCEVAP: Bugünün listesine ekledim!" },
-    { zaman: "09:14", ozet: "1. Fransızca çalış 2. spora git...", kategori: "GUNLUK_GOREV",
-      prompt: "Sen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: sabah sorduğum 'bugün ne yapacaksın' sorusu.\n\nKullanıcı şunu yazdı:\n\"1. Fransızca çalış\\n2. spora git\\n3. yatırım listeni düzenle\"\n\n...",
-      cevap: "TIP: GUNLUK_GOREV\nGOREVLER:\nCEVAP: Not aldım, akşam bunları soracağım!" },
-  ];
-
-  const kocKararlari = [
-    { rutin: "Verimli video izleme", tetik: "5 gün üst üste kaçırıldı", cevap: "Hayır, devam", sonuc: "Değişmedi" },
-  ];
-
-  // ---------- HERO STATLARI ----------
-  document.getElementById('heroStats').innerHTML = `
-    <div class="hero-stat"><div class="num">12</div><div class="label">Günlük seri (Fransızca)</div></div>
-    <div class="hero-stat"><div class="num">%73</div><div class="label">Bu hafta rutin tamamlama</div></div>
-    <div class="hero-stat"><div class="num">2 / 3</div><div class="label">Haftalık hedef tutturuldu</div></div>
-    <div class="hero-stat"><div class="num">1</div><div class="label">Bekleyen Koç önerisi</div></div>
-  `;
 
   // ---------- MODAL YARDIMCI FONKSİYONLARI ----------
   const modalOverlay = document.getElementById('modalOverlay');
@@ -724,180 +664,20 @@
   document.getElementById('modalClose').addEventListener('click', () => modalOverlay.classList.remove('open'));
   modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) modalOverlay.classList.remove('open'); });
 
-  // ---------- ISI HARİTASI (mock ama gerçekçi gün-bazlı veri) ----------
-  const hmEl = document.getElementById('heatmap');
-  const tooltip = document.getElementById('hmTooltip');
-  let seed = 42;
-  function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-
-  const gunVerisi = [];
-  const bugunTarih = new Date(2026, 6, 12); // mockup referans tarihi
-  for (let i = 44; i >= 0; i--) {
-    const d = new Date(bugunTarih);
-    d.setDate(d.getDate() - i);
-    const tamamlananSayisi = Math.floor(rnd() * 5);
-    const telafiSansi = rnd();
-    const rutinDurumlari = rutinAdlari.map((isim, idx) => {
-      if (idx >= tamamlananSayisi && telafiSansi > 0.85 && idx === tamamlananSayisi) {
-        return { isim, durum: "Telafi" };
-      }
-      return { isim, durum: idx < tamamlananSayisi ? "Yapıldı" : "Yapılmadı" };
-    });
-    gunVerisi.push({
-      tarih: d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }),
-      level: tamamlananSayisi,
-      rutinler: rutinDurumlari,
-    });
+  function durumBadge(durum) {
+    if (durum === 'Yapıldı') return `<span class="badge ok">Yapıldı</span>`;
+    if (durum === 'Telafi') return `<span class="badge telafi">🔁 Telafi</span>`;
+    if (durum === 'Bekliyor') return `<span class="badge warn">Bekliyor</span>`;
+    if (durum == null) return `<span class="badge warn">Bilinmiyor</span>`;
+    return `<span class="badge warn">${durum}</span>`;
   }
 
-  gunVerisi.forEach(gun => {
-    const div = document.createElement('div');
-    div.className = 'hm-cell';
-    div.setAttribute('data-level', gun.level);
-
-    div.addEventListener('mouseenter', e => {
-      document.getElementById('ttDate').textContent = gun.tarih;
-      document.getElementById('ttSub').textContent = `Tamamlanan rutinler: ${gun.level}/${rutinAdlari.length}`;
-      tooltip.classList.add('visible');
-    });
-    div.addEventListener('mousemove', e => {
-      tooltip.style.left = e.clientX + 'px';
-      tooltip.style.top = (e.clientY - 44) + 'px';
-    });
-    div.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
-
-    div.addEventListener('click', () => {
-      const gövde = gun.rutinler.map(r => `
-        <div class="modal-item">
-          <span>${r.isim}</span>
-          <span class="badge ${r.durum === 'Yapıldı' ? 'ok' : r.durum === 'Telafi' ? 'telafi' : 'warn'}">${r.durum}</span>
-        </div>
-      `).join('');
-      modalAc(gun.tarih, gövde);
-    });
-
-    hmEl.appendChild(div);
-  });
-
-  // ---------- RUTİN İLERLEME ----------
-  document.getElementById('routineList').innerHTML = rutinler.map(r => `
-    <div class="routine-row">
-      <div class="routine-name">${r.isim}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${r.oran}%"></div></div>
-      <div class="routine-pct">%${r.oran}</div>
-    </div>
-  `).join('');
-
-  // ---------- GÜNLÜK HEDEF GEÇMİŞİ (tıkla-detay) ----------
-  document.getElementById('gunlukTablo').innerHTML = gunlukGorevGecmisi.map((g, idx) => {
-    const yapilan = g.gorevler.filter(x => x.durum === 'Yapıldı').length;
-    return `
-      <tr class="log-row" data-gun-idx="${idx}">
-        <td>${g.tarih} <span style="color:var(--text-muted); font-weight:500;">&middot; ${g.gunAdi}</span></td>
-        <td>${yapilan}/${g.gorevler.length} görev tamamlandı</td>
-        <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
-      </tr>
-    `;
-  }).join('');
-  document.querySelectorAll('#gunlukTablo tr').forEach(row => {
-    row.addEventListener('click', () => {
-      const g = gunlukGorevGecmisi[row.dataset.gunIdx];
-      const gövde = g.gorevler.map(t => `
-        <div class="modal-item">
-          <span>${t.metin}</span>
-          <span class="badge ${t.durum === 'Yapıldı' ? 'ok' : 'warn'}">${t.durum}</span>
-        </div>
-      `).join('');
-      modalAc(`${g.tarih} (${g.gunAdi})`, gövde);
-    });
-  });
-
-  // ---------- HAFTALIK HEDEF GEÇMİŞİ (hafta bazlı, tıkla-detay) ----------
-  const haftaGruplari = {};
-  hedefler.forEach(h => {
-    if (!haftaGruplari[h.hafta]) haftaGruplari[h.hafta] = [];
-    haftaGruplari[h.hafta].push(h);
-  });
-
-  document.getElementById('hedefTablo').innerHTML = Object.keys(haftaGruplari).map(hafta => {
-    const liste = haftaGruplari[hafta];
-    const tutturulan = liste.filter(h => h.durum === 'done').length;
-    return `
-      <tr class="log-row" data-hafta="${hafta}">
-        <td>${hafta}</td>
-        <td>${tutturulan}/${liste.length} hedef tutturuldu</td>
-        <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
-      </tr>
-    `;
-  }).join('');
-  document.querySelectorAll('#hedefTablo tr').forEach(row => {
-    row.addEventListener('click', () => {
-      const liste = haftaGruplari[row.dataset.hafta];
-      const gövde = liste.map(h => `
-        <div class="modal-item">
-          <span>${h.hedef}</span>
-          <span class="badge ${h.durum === 'done' ? 'ok' : 'warn'}">${h.durum === 'done' ? 'Tutturuldu' : 'Kaçırıldı'}</span>
-        </div>
-      `).join('');
-      modalAc(row.dataset.hafta, gövde);
-    });
-  });
-
-  // ---------- TEKNİK: GENEL BAKIŞ ----------
-  document.getElementById('techStats').innerHTML = `
-    <div class="tech-stat"><div class="num">38</div><div class="label">Toplam çalıştırma</div></div>
-    <div class="tech-stat"><div class="num">%97</div><div class="label">Başarı oranı</div></div>
-    <div class="tech-stat"><div class="num">1</div><div class="label">Uyarı/hata</div></div>
-    <div class="tech-stat"><div class="num">6.2s</div><div class="label">Ort. webhook tepki süresi</div></div>
-    <div class="tech-stat"><div class="num">9</div><div class="label">SLM çağrısı</div></div>
-  `;
-
-  // ---------- WORKFLOW TABLOSU (GitHub linkli) ----------
-  function workflowRenderla(filtre) {
-    const liste = filtre === 'all' ? workflowlar : workflowlar.filter(w => w.tip === filtre);
-    document.getElementById('workflowTablo').innerHTML = liste.map(w => `
-      <tr class="log-row">
-        <td>${w.ad}</td>
-        <td>${w.zaman}</td>
-        <td>${w.sure}</td>
-        <td><span class="badge ${w.durum}">${w.durum === 'ok' ? 'Başarılı' : 'Uyarı'}</span></td>
-        <td><a class="gh-link" href="${REPO_URL}/actions/runs/${w.runId}" target="_blank" rel="noopener">GitHub'da gör &rarr;</a></td>
-      </tr>
-    `).join('');
+  function zamanGoster(isoZaman) {
+    const d = new Date(isoZaman);
+    return d.toLocaleString('tr-TR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
   }
-  workflowRenderla('all');
-  document.getElementById('workflowFiltre').addEventListener('change', e => workflowRenderla(e.target.value));
 
-  // ---------- SLM KARAR TABLOSU (tıkla-detay: TAM prompt + cevap) ----------
-  const slmBody = document.getElementById('slmTablo');
-  slmKararlari.forEach(k => {
-    const row = document.createElement('tr');
-    row.className = 'log-row';
-    row.innerHTML = `<td>${k.zaman}</td><td>${k.ozet}</td><td><span class="badge ok">${k.kategori}</span></td>`;
-    const detail = document.createElement('tr');
-    detail.className = 'detail-row';
-    detail.innerHTML = `<td colspan="3">
-      <strong style="color:var(--navy-deep);">Gönderilen prompt (tam):</strong>
-      <pre>${k.prompt}</pre>
-      <strong style="color:var(--navy-deep); display:block; margin-top:10px;">Model cevabı (ham):</strong>
-      <pre>${k.cevap}</pre>
-    </td>`;
-    row.addEventListener('click', () => detail.classList.toggle('open'));
-    slmBody.appendChild(row);
-    slmBody.appendChild(detail);
-  });
-
-  // ---------- KOÇ KARAR TABLOSU ----------
-  document.getElementById('kocTablo').innerHTML = kocKararlari.map(k => `
-    <tr class="log-row">
-      <td>${k.rutin}</td>
-      <td>${k.tetik}</td>
-      <td>${k.cevap}</td>
-      <td>${k.sonuc}</td>
-    </tr>
-  `).join('');
-
-  // ---------- SEKME GEÇİŞİ ----------
+  // ---------- SEKME GEÇİŞİ (veri gelmeden de çalışsın) ----------
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -906,6 +686,155 @@
       document.getElementById('view-' + btn.dataset.tab).classList.add('active');
     });
   });
+
+  async function veriyiYukleVeCiz() {
+    let veri;
+    try {
+      const resp = await fetch('./data.json', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('data.json okunamadı');
+      veri = await resp.json();
+    } catch (e) {
+      document.querySelector('.content').innerHTML =
+        `<div class="section"><p>Veri şu an yüklenemedi (${e.message}). Birkaç dakika içinde otomatik güncellenir, tekrar dener misin?</p></div>`;
+      return;
+    }
+
+    // ---------- HERO STATLARI ----------
+    const sonHafta = veri.haftalikHedefGecmisi[0];
+    const hedefOzet = sonHafta
+      ? `${sonHafta.hedefler.filter(h => h.durum === 'Yapıldı').length} / ${sonHafta.hedefler.length}`
+      : "—";
+    document.getElementById('heroStats').innerHTML = `
+      <div class="hero-stat"><div class="num">%${veri.heroStats.haftaTamamlamaYuzdesi}</div><div class="label">Son 7 gün rutin tamamlama</div></div>
+      <div class="hero-stat"><div class="num">${hedefOzet}</div><div class="label">Bu hafta hedef tutturuldu</div></div>
+      <div class="hero-stat"><div class="num">${veri.kocKararlari.length}</div><div class="label">Koç kararı (toplam)</div></div>
+      <div class="hero-stat"><div class="num">${veri.workflowGecmisi.filter(w => w.durum === 'ok').length}/${veri.workflowGecmisi.length}</div><div class="label">Son çalıştırmalar başarılı</div></div>
+    `;
+
+    // ---------- ISI HARİTASI ----------
+    const hmEl = document.getElementById('heatmap');
+    const tooltip = document.getElementById('hmTooltip');
+    const rutinSayisi = veri.rutinOranlari.length || 1;
+
+    veri.heatmap.forEach(gun => {
+      const div = document.createElement('div');
+      div.className = 'hm-cell';
+      div.setAttribute('data-level', gun.level);
+
+      div.addEventListener('mouseenter', () => {
+        document.getElementById('ttDate').textContent = gun.tarih;
+        document.getElementById('ttSub').textContent = `Tamamlanan rutinler: ${gun.level}/${rutinSayisi}`;
+        tooltip.classList.add('visible');
+      });
+      div.addEventListener('mousemove', e => {
+        tooltip.style.left = e.clientX + 'px';
+        tooltip.style.top = (e.clientY - 44) + 'px';
+      });
+      div.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+
+      div.addEventListener('click', () => {
+        const gövde = gun.rutinler.map(r => `
+          <div class="modal-item"><span>${r.isim}</span>${durumBadge(r.durum)}</div>
+        `).join('');
+        modalAc(gun.tarih, gövde || '<p style="color:var(--text-muted);">Bu gün için kayıt yok.</p>');
+      });
+
+      hmEl.appendChild(div);
+    });
+
+    // ---------- RUTİN İLERLEME ----------
+    document.getElementById('routineList').innerHTML = veri.rutinOranlari.map(r => `
+      <div class="routine-row">
+        <div class="routine-name">${r.isim}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${r.oran}%"></div></div>
+        <div class="routine-pct">%${r.oran}</div>
+      </div>
+    `).join('') || '<p style="color:var(--text-muted);">Henüz rutin tanımlı değil.</p>';
+
+    // ---------- GÜNLÜK HEDEF GEÇMİŞİ ----------
+    document.getElementById('gunlukTablo').innerHTML = veri.gunlukGorevGecmisi.map((g, idx) => {
+      const yapilan = g.gorevler.filter(x => x.durum === 'Yapıldı').length;
+      return `
+        <tr class="log-row" data-gun-idx="${idx}">
+          <td>${g.tarih} <span style="color:var(--text-muted); font-weight:500;">&middot; ${g.gunAdi}</span></td>
+          <td>${yapilan}/${g.gorevler.length} görev tamamlandı</td>
+          <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
+        </tr>
+      `;
+    }).join('') || '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok.</td></tr>';
+    document.querySelectorAll('#gunlukTablo tr[data-gun-idx]').forEach(row => {
+      row.addEventListener('click', () => {
+        const g = veri.gunlukGorevGecmisi[row.dataset.gunIdx];
+        const gövde = g.gorevler.map(t => `
+          <div class="modal-item"><span>${t.metin}</span>${durumBadge(t.durum)}</div>
+        `).join('');
+        modalAc(`${g.tarih} (${g.gunAdi})`, gövde);
+      });
+    });
+
+    // ---------- HAFTALIK HEDEF GEÇMİŞİ ----------
+    document.getElementById('hedefTablo').innerHTML = veri.haftalikHedefGecmisi.map((h, idx) => {
+      const tutturulan = h.hedefler.filter(x => x.durum === 'Yapıldı').length;
+      return `
+        <tr class="log-row" data-hafta-idx="${idx}">
+          <td>${h.hafta}</td>
+          <td>${tutturulan}/${h.hedefler.length} hedef tutturuldu</td>
+          <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
+        </tr>
+      `;
+    }).join('') || '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok.</td></tr>';
+    document.querySelectorAll('#hedefTablo tr[data-hafta-idx]').forEach(row => {
+      row.addEventListener('click', () => {
+        const h = veri.haftalikHedefGecmisi[row.dataset.haftaIdx];
+        const gövde = h.hedefler.map(x => `
+          <div class="modal-item"><span>${x.hedef}</span>${durumBadge(x.durum)}</div>
+        `).join('');
+        modalAc(h.hafta, gövde);
+      });
+    });
+
+    // ---------- TEKNİK: GENEL BAKIŞ ----------
+    const basarili = veri.workflowGecmisi.filter(w => w.durum === 'ok').length;
+    const toplam = veri.workflowGecmisi.length;
+    const oran = toplam ? Math.round((basarili / toplam) * 100) : 0;
+    document.getElementById('techStats').innerHTML = `
+      <div class="tech-stat"><div class="num">${toplam}</div><div class="label">Son çalıştırmalar</div></div>
+      <div class="tech-stat"><div class="num">%${oran}</div><div class="label">Başarı oranı</div></div>
+      <div class="tech-stat"><div class="num">${toplam - basarili}</div><div class="label">Uyarı/hata</div></div>
+      <div class="tech-stat"><div class="num">${veri.kocKararlari.length}</div><div class="label">Koç kararı</div></div>
+    `;
+
+    // ---------- WORKFLOW TABLOSU ----------
+    function workflowRenderla(filtre) {
+      const liste = filtre === 'all' ? veri.workflowGecmisi : veri.workflowGecmisi.filter(w => w.ad === filtre);
+      document.getElementById('workflowTablo').innerHTML = liste.map(w => `
+        <tr class="log-row">
+          <td>${w.ad}</td>
+          <td>${zamanGoster(w.zaman)}</td>
+          <td>—</td>
+          <td>${durumBadge(w.durum === 'ok' ? 'Yapıldı' : 'Bekliyor')}</td>
+          <td><a class="gh-link" href="${REPO_URL}/actions/runs/${w.runId}" target="_blank" rel="noopener">GitHub'da gör &rarr;</a></td>
+        </tr>
+      `).join('') || '<tr><td colspan="5" style="color:var(--text-muted);">Kayıt yok.</td></tr>';
+    }
+    workflowRenderla('all');
+    document.getElementById('workflowFiltre').addEventListener('change', e => workflowRenderla(e.target.value));
+
+    // ---------- SLM KARAR TABLOSU (henüz veri yok - dürüst boş durum) ----------
+    document.getElementById('slmTablo').innerHTML =
+      '<tr><td colspan="3" style="color:var(--text-muted);">Bu log henüz tutulmuyor - yakında eklenecek.</td></tr>';
+
+    // ---------- KOÇ KARAR TABLOSU ----------
+    document.getElementById('kocTablo').innerHTML = veri.kocKararlari.map(k => `
+      <tr class="log-row">
+        <td>${k.rutin}</td>
+        <td>${k.tarih}</td>
+        <td colspan="2">${k.sonuc}</td>
+      </tr>
+    `).join('') || '<tr><td colspan="4" style="color:var(--text-muted);">Henüz bir Koç kararı yok.</td></tr>';
+  }
+
+  veriyiYukleVeCiz();
 </script>
 
 </body>
