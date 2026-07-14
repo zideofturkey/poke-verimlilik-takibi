@@ -1,32 +1,9 @@
 {
-  "uretim_zamani": "2026-07-14T23:12:49.209869+03:00",
+  "uretim_zamani": "2026-07-15T00:30:53.369556+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 14
   },
   "heatmap": [
-    {
-      "tarih": "31 May 2026",
-      "tarih_iso": "2026-05-31",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "01 June 2026",
       "tarih_iso": "2026-06-01",
@@ -1038,12 +1015,35 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "15 July 2026",
+      "tarih_iso": "2026-07-15",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
     {
       "isim": "Fransızca çalışma",
-      "oran": 100
+      "oran": 67
     },
     {
       "isim": "Sabah telefonsuzluğu",
@@ -1069,7 +1069,7 @@
         },
         {
           "metin": "11.00 work out",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Book & Coffee at home",
@@ -1081,7 +1081,7 @@
         },
         {
           "metin": "Little fixes on Poke System",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1164,8 +1164,50 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T20:12:34Z",
+      "zaman": "2026-07-14T21:30:41Z",
       "durum": "warn",
+      "runId": "29369789733"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-14T20:18:25Z",
+      "durum": "ok",
+      "runId": "29365193665"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T20:14:54Z",
+      "durum": "ok",
+      "runId": "29364963730"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T20:14:45Z",
+      "durum": "ok",
+      "runId": "29364955000"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T20:14:36Z",
+      "durum": "ok",
+      "runId": "29364945056"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T20:14:28Z",
+      "durum": "ok",
+      "runId": "29364936996"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T20:13:50Z",
+      "durum": "ok",
+      "runId": "29364895395"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-14T20:12:34Z",
+      "durum": "ok",
       "runId": "29364812735"
     },
     {
@@ -1209,48 +1251,6 @@
       "zaman": "2026-07-14T15:26:57Z",
       "durum": "ok",
       "runId": "29345370045"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T14:24:24Z",
-      "durum": "ok",
-      "runId": "29340697965"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-14T14:02:07Z",
-      "durum": "ok",
-      "runId": "29339048286"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T12:14:00Z",
-      "durum": "ok",
-      "runId": "29331729698"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T12:01:16Z",
-      "durum": "ok",
-      "runId": "29330951284"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T12:01:05Z",
-      "durum": "ok",
-      "runId": "29330939528"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-14T11:37:15Z",
-      "durum": "ok",
-      "runId": "29329535087"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-14T11:26:22Z",
-      "durum": "ok",
-      "runId": "29328891847"
     }
   ],
   "kocKararlari": []
