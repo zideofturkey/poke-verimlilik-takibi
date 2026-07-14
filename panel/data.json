@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-14T09:12:14.133213+03:00",
+  "uretim_zamani": "2026-07-14T11:36:49.229119+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 11
   },
@@ -1138,8 +1138,68 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T06:12:00Z",
+      "zaman": "2026-07-14T08:36:20Z",
       "durum": "warn",
+      "runId": "29318624729"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T08:16:51Z",
+      "durum": "warn",
+      "runId": "29317460885"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T08:12:48Z",
+      "durum": "ok",
+      "runId": "29317219760"
+    },
+    {
+      "ad": "Gecici Dogrula",
+      "zaman": "2026-07-14T08:07:42Z",
+      "durum": "ok",
+      "runId": "29316923688"
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-14T08:07:03Z",
+      "durum": "ok",
+      "runId": "29316882373"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T08:03:23Z",
+      "durum": "ok",
+      "runId": "29316665666"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T08:00:00Z",
+      "durum": "ok",
+      "runId": "29316459025"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T07:57:33Z",
+      "durum": "ok",
+      "runId": "29316320620"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T07:49:47Z",
+      "durum": "ok",
+      "runId": "29315878216"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-14T06:18:37Z",
+      "durum": "ok",
+      "runId": "29310967489"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-14T06:12:00Z",
+      "durum": "ok",
       "runId": "29310639688"
     },
     {
@@ -1165,66 +1225,6 @@
       "zaman": "2026-07-14T00:16:53Z",
       "durum": "ok",
       "runId": "29295491790"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T00:15:52Z",
-      "durum": "ok",
-      "runId": "29295445800"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-13T23:58:38Z",
-      "durum": "ok",
-      "runId": "29294608006"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-13T23:47:57Z",
-      "durum": "ok",
-      "runId": "29294105006"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-13T22:01:54Z",
-      "durum": "ok",
-      "runId": "29288493130"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-13T20:31:23Z",
-      "durum": "ok",
-      "runId": "29282712335"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-13T20:31:12Z",
-      "durum": "ok",
-      "runId": "29282699691"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-13T20:19:37Z",
-      "durum": "ok",
-      "runId": "29281935402"
-    },
-    {
-      "ad": "Gecici Teshis 2",
-      "zaman": "2026-07-13T20:00:52Z",
-      "durum": "ok",
-      "runId": "29280697315"
-    },
-    {
-      "ad": "Gecici Teshis 2",
-      "zaman": "2026-07-13T19:58:26Z",
-      "durum": "ok",
-      "runId": "29280533256"
-    },
-    {
-      "ad": "Gecici Kopya Temizle",
-      "zaman": "2026-07-13T19:26:52Z",
-      "durum": "ok",
-      "runId": "29278485938"
     }
   ],
   "kocKararlari": []
