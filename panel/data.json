@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-14T03:18:14.907428+03:00",
+  "uretim_zamani": "2026-07-14T06:44:36.394201+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 11
   },
@@ -1138,8 +1138,20 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T00:18:01Z",
+      "zaman": "2026-07-14T03:44:25Z",
       "durum": "warn",
+      "runId": "29304233389"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-14T03:24:53Z",
+      "durum": "ok",
+      "runId": "29303457284"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-14T00:18:01Z",
+      "durum": "ok",
       "runId": "29295541966"
     },
     {
@@ -1213,18 +1225,6 @@
       "zaman": "2026-07-13T19:17:13Z",
       "durum": "ok",
       "runId": "29277874470"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-13T19:17:06Z",
-      "durum": "ok",
-      "runId": "29277866775"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-13T19:17:04Z",
-      "durum": "ok",
-      "runId": "29277864550"
     }
   ],
   "kocKararlari": []
