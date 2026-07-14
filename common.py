@@ -177,9 +177,10 @@ def _ollama_kur_ve_baslat():
             pass
 
     print("Ollama servisi başlatılıyor...")
+    log_dosyasi = open("/tmp/ollama_serve.log", "w")
     subprocess.Popen(
         ["ollama", "serve"],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        stdout=log_dosyasi, stderr=log_dosyasi,
     )
     for _ in range(15):
         if _ollama_hazir_mi():
@@ -224,11 +225,22 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
             },
             timeout=zaman_asimi,
         )
-        resp.raise_for_status()
+        if resp.status_code != 200:
+            raise RuntimeError(
+                f"Ollama /api/generate {resp.status_code} döndü. "
+                f"Cevap gövdesi: {resp.text[:1000]}"
+            )
         return resp.json()["response"].strip()
     except Exception as e:
         import traceback
-        hata_logla(f"slm_sorgula (model={kullanilacak_model})", traceback.format_exc())
+        ek_bilgi = ""
+        try:
+            with open("/tmp/ollama_serve.log", "r", encoding="utf-8", errors="replace") as f:
+                icerik = f.read()
+                ek_bilgi = f"\n\n--- ollama serve logu (son 2000 karakter) ---\n{icerik[-2000:]}"
+        except Exception:
+            pass
+        hata_logla(f"slm_sorgula (model={kullanilacak_model})", traceback.format_exc() + ek_bilgi)
         raise
 
 
