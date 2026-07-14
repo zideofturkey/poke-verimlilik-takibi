@@ -1,0 +1,20 @@
+Zaman: 2026-07-14T11:04:19.914879+03:00
+Bağlam: slm_sorgula (model=qwen2.5:3b)
+
+Traceback (most recent call last):
+  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 229, in slm_sorgula
+    raise RuntimeError(
+RuntimeError: Ollama /api/generate 500 döndü. Cevap gövdesi: {"error":"error starting llama-server: llama-server binary not found (checked: /usr/local/bin/llama-server, /usr/local/lib/ollama/llama-server, /usr/local/bin/build/lib/ollama/llama-server, /usr/local/bin/dist/linux-amd64/lib/ollama/llama-server, /usr/local/bin/dist/linux_amd64/lib/ollama/llama-server, /home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/build/lib/ollama/llama-server, /home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/dist/linux-amd64/lib/ollama/llama-server, /home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/dist/linux_amd64/lib/ollama/llama-server). Run 'cmake -S llama/server --preset cpu \u0026\u0026 cmake --build --preset cpu' first "}
+
+
+--- ollama serve logu (son 2000 karakter) ---
+tion=cpu libdirs=ollama driver="" pci_id="" type="" total="7.8 GiB" available="6.9 GiB"
+time=2026-07-14T08:04:18.142Z level=INFO source=routes.go:2054 msg="vram-based default context" total_vram="0 B" default_num_ctx=4096
+time=2026-07-14T08:04:18.267Z level=INFO source=model_recommendations.go:177 msg="model recommendations cache sleep scheduled" wait=4h32m14.792846097s consecutive_failures=0
+[GIN] 2026/07/14 - 08:04:19 | 200 |     332.591µs |       127.0.0.1 | GET      "/api/tags"
+[GIN] 2026/07/14 - 08:04:19 | 200 |      41.077µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/07/14 - 08:04:19 | 200 |  450.126952ms |       127.0.0.1 | POST     "/api/pull"
+time=2026-07-14T08:04:19.913Z level=INFO source=sched.go:1158 msg="disabling mmap for llama-server load by default" model=/home/runner/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 reason=cpu
+time=2026-07-14T08:04:19.913Z level=INFO source=server.go:109 msg="using llama-server for model" model=/home/runner/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6
+time=2026-07-14T08:04:19.913Z level=INFO source=sched.go:601 msg="failed to create server" model=qwen2.5:3b error="error starting llama-server: llama-server binary not found (checked: /usr/local/bin/llama-server, /usr/local/lib/ollama/llama-server, /usr/local/bin/build/lib/ollama/llama-server, /usr/local/bin/dist/linux-amd64/lib/ollama/llama-server, /usr/local/bin/dist/linux_amd64/lib/ollama/llama-server, /home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/build/lib/ollama/llama-server, /home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/dist/linux-amd64/lib/ollama/llama-server, /home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/dist/linux_amd64/lib/ollama/llama-server). Run 'cmake -S llama/server --preset cpu && cmake --build --preset cpu' first "
+[GIN] 2026/07/14 - 08:04:19 | 500 |  318.886534ms |       127.0.0.1 | POST     "/api/generate"
