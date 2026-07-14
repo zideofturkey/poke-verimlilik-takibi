@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-14T11:36:49.229119+03:00",
+  "uretim_zamani": "2026-07-14T13:47:42.655649+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 11
   },
@@ -1060,6 +1060,32 @@
   ],
   "gunlukGorevGecmisi": [
     {
+      "tarih": "14 July",
+      "gunAdi": "Salı",
+      "gorevler": [
+        {
+          "metin": "Bugünün görevleri;",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "11.00 work out",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Book & Coffee at home",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Matrix 2",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Little fixes on Poke System",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
+    {
       "tarih": "13 July",
       "gunAdi": "Pazartesi",
       "gorevler": [
@@ -1138,8 +1164,26 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T08:36:20Z",
+      "zaman": "2026-07-14T10:47:29Z",
       "durum": "warn",
+      "runId": "29326603438"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-14T09:10:19Z",
+      "durum": "ok",
+      "runId": "29320723125"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-14T08:41:42Z",
+      "durum": "ok",
+      "runId": "29318942831"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-14T08:36:20Z",
+      "durum": "ok",
       "runId": "29318624729"
     },
     {
@@ -1207,24 +1251,6 @@
       "zaman": "2026-07-14T03:44:25Z",
       "durum": "ok",
       "runId": "29304233389"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-14T03:24:53Z",
-      "durum": "ok",
-      "runId": "29303457284"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T00:18:01Z",
-      "durum": "ok",
-      "runId": "29295541966"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T00:16:53Z",
-      "durum": "ok",
-      "runId": "29295491790"
     }
   ],
   "kocKararlari": []
