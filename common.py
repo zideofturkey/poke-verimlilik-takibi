@@ -172,6 +172,17 @@ def _ollama_kur_ve_baslat():
         shell=True, check=True,
     )
 
+    # install.sh bazı ortamlarda kendi arka plan servisini (systemd)
+    # OTOMATİK başlatabiliyor. Biz de üstüne kendi "ollama serve"
+    # sürecimizi başlatırsak port çakışması (ve muhtemelen kaynak
+    # çakışması/çökme) oluyor. Önce birkaç saniye bekleyip kurulumun
+    # kendisinin zaten hazır hâle gelip gelmediğine bakıyoruz.
+    for _ in range(5):
+        if _ollama_hazir_mi():
+            print("Ollama zaten (muhtemelen kurulum sırasında otomatik) çalışıyor, kendi sürecimizi başlatmıyoruz.")
+            return
+        time.sleep(1)
+
     print("Ollama servisi başlatılıyor...")
     log_dosyasi = open("/tmp/ollama_serve.log", "w")
     subprocess.Popen(
@@ -236,7 +247,8 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
     kullanilacak_model = model or SLM_MODEL
     son_hata = None
 
-    for deneme in range(2):
+    TOPLAM_DENEME = 3
+    for deneme in range(TOPLAM_DENEME):
         try:
             return _slm_sorgula_tek_deneme(prompt, sicaklik, zaman_asimi, kullanilacak_model)
         except Exception as e:
@@ -249,12 +261,13 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
                     ek_bilgi = f"\n\n--- ollama serve logu (son 2000 karakter) ---\n{icerik[-2000:]}"
             except Exception:
                 pass
-            hata_logla(f"slm_sorgula deneme {deneme+1}/2 (model={kullanilacak_model})", traceback.format_exc() + ek_bilgi)
+            hata_logla(f"slm_sorgula deneme {deneme+1}/{TOPLAM_DENEME} (model={kullanilacak_model})", traceback.format_exc() + ek_bilgi)
 
-            if deneme == 0:
-                print("İlk deneme başarısız, Ollama'yı tamamen kapatıp taze başlatarak tekrar deneniyor...")
+            if deneme < TOPLAM_DENEME - 1:
+                bekleme = 3 * (deneme + 1)
+                print(f"Deneme {deneme+1} başarısız, Ollama'yı tamamen kapatıp {bekleme}sn sonra taze başlatarak tekrar deneniyor...")
                 subprocess.run(["pkill", "-9", "-f", "ollama"], capture_output=True)
-                time.sleep(2)
+                time.sleep(bekleme)
 
     raise son_hata
 
