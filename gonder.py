@@ -264,8 +264,10 @@ def hafta_ortasi():
     if not bu_haftaki:
         send_message(
             "Bu hafta için tanımlı bir hedef bulamadım — Pazar mesajına cevap "
-            "vermeyi unuttun mu? 🤔"
+            "vermeyi unuttun mu? 🤔 Şimdi yazarsan (1. / 2. / 3. şeklinde) "
+            "onları da kaydederim."
         )
+        set_bekleyen_soru("haftalik_hedef")
         return
 
     send_message("📊 Hafta ortası kontrol — hedeflerinin durumu:")
