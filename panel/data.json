@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-15T13:42:41.114447+03:00",
+  "uretim_zamani": "2026-07-15T13:47:57.735609+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 14
   },
@@ -1064,10 +1064,6 @@
       "gunAdi": "Çarşamba",
       "gorevler": [
         {
-          "metin": "Günaydın, bugünün görevlerini yazıyorum",
-          "durum": "Bekliyor"
-        },
-        {
           "metin": "done the matrix 2",
           "durum": "Bekliyor"
         },
@@ -1182,8 +1178,26 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T10:42:21Z",
+      "zaman": "2026-07-15T10:47:42Z",
       "durum": "warn",
+      "runId": "29409362178"
+    },
+    {
+      "ad": "Gecici Teshis 4",
+      "zaman": "2026-07-15T10:46:55Z",
+      "durum": "ok",
+      "runId": "29409317965"
+    },
+    {
+      "ad": "Gecici Teshis 3",
+      "zaman": "2026-07-15T10:44:34Z",
+      "durum": "ok",
+      "runId": "29409180826"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-15T10:42:21Z",
+      "durum": "ok",
       "runId": "29409050872"
     },
     {
@@ -1251,24 +1265,6 @@
       "zaman": "2026-07-15T03:24:28Z",
       "durum": "ok",
       "runId": "29386450773"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T03:21:53Z",
-      "durum": "ok",
-      "runId": "29386344896"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T23:59:14Z",
-      "durum": "ok",
-      "runId": "29377722399"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-14T23:58:24Z",
-      "durum": "ok",
-      "runId": "29377684345"
     }
   ],
   "kocKararlari": [],
