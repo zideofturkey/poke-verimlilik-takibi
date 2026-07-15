@@ -18,17 +18,19 @@ import datetime
 
 
 def satirlari_ayikla(text):
-    """Serbest metinden madde listesi çıkarır: numaralandırmayı temizler,
-    boş satırları ve 'Haftalık hedeflerim:' gibi başlık satırlarını (rakamla
-    başlamayan, ':' ile biten, kısa satırlar) otomatik ayıklar."""
+    """Serbest metinden madde listesi çıkarır. Kural: eğer mesajda numaralı
+    satır(lar) varsa, SADECE numaralı satırlar madde sayılır - başlık,
+    giriş cümlesi ya da başka herhangi bir numarasız satır (ör. 'Günaydın,
+    bugünün görevlerini yazıyorum') otomatik göz ardı edilir. Numaralı
+    satır HİÇ yoksa (düz, numarasız liste), tüm dolu satırlar madde sayılır."""
+    satirlar_ham = [s.strip() for s in text.split("\n") if s.strip()]
+    numarali_var = any(re.match(r"^\d+[\.\)\-]", s) for s in satirlar_ham)
+
     maddeler = []
-    for satir in text.split("\n"):
-        satir = satir.strip()
-        if not satir:
-            continue
-        # Başlık satırı mı? (numarasız, ':' ile bitiyor, kısa)
-        if not re.match(r"^\d", satir) and satir.endswith(":") and len(satir) < 40:
-            continue
+    for satir in satirlar_ham:
+        numarali_mi = re.match(r"^\d+[\.\)\-]?\s*", satir)
+        if numarali_var and not numarali_mi:
+            continue  # numaralı liste varsa, numarasız satırlar (başlık/giriş) elenir
         satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir).strip()
         if satir:
             maddeler.append(satir)
@@ -45,6 +47,8 @@ from common import (
     hafta_baslangic_str,
     slm_sorgula,
     turkce_disi_karakter_var_mi,
+    update_zaten_islendi_mi,
+    log_slm_karari,
     get_aktif_rutinler,
     get_sheet,
     get_rutinler_sheet,
@@ -294,8 +298,11 @@ def _siniflandir_ve_isle(text, bekleyen):
         f"RUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listeden BİREBİR aynı "
         f"şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: "
         f"{rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
-        "CEVAP: <kullanıcıya vereceğin kısa (1 cümle), doğal, samimi Türkçe "
-        "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK>"
+        "CEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe "
+        "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. "
+        "TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - "
+        "kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) "
+        "gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap."
     )
 
     try:
@@ -313,6 +320,8 @@ def _siniflandir_ve_isle(text, bekleyen):
     cevap = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
     if _turkce_disi_karakter_var_mi(cevap):
         cevap = "Not aldım 👍"
+
+    log_slm_karari(tip, text, prompt, sonuc)
 
     if tip == "RUTIN_TAMAMLA":
         rutin_ham_liste = rutin_match.group(1).strip() if rutin_match else ""
@@ -399,6 +408,9 @@ def main():
 
     if "update_id" in update:
         save_last_update_id(update["update_id"])
+        if update_zaten_islendi_mi(update["update_id"]):
+            print(f"Update {update['update_id']} zaten işlenmiş (muhtemelen dinle.py ile çakıştı), atlanıyor.")
+            return
 
     if "callback_query" in update:
         process_callback(update["callback_query"])

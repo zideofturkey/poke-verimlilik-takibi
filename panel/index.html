@@ -599,7 +599,7 @@
     <div class="section">
       <div class="section-head">
         <h2>SLM sınıflandırma kararları</h2>
-        <span class="empty-hint">Yakında — ham prompt/cevap logu henüz tutulmuyor</span>
+        <span class="empty-hint">Bir satıra tıkla, tam prompt/cevabı gör (sadece bu tarihten sonrası)</span>
       </div>
       <table class="log-table">
         <thead>
@@ -820,9 +820,24 @@
     workflowRenderla('all');
     document.getElementById('workflowFiltre').addEventListener('change', e => workflowRenderla(e.target.value));
 
-    // ---------- SLM KARAR TABLOSU (henüz veri yok - dürüst boş durum) ----------
-    document.getElementById('slmTablo').innerHTML =
-      '<tr><td colspan="3" style="color:var(--text-muted);">Bu log henüz tutulmuyor - yakında eklenecek.</td></tr>';
+    // ---------- SLM KARAR TABLOSU ----------
+    const slmBody = document.getElementById('slmTablo');
+    if (!veri.slmKararlari || veri.slmKararlari.length === 0) {
+      slmBody.innerHTML = '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok (bu özellik yakın zamanda eklendi).</td></tr>';
+    } else {
+      slmBody.innerHTML = '';
+      veri.slmKararlari.forEach(k => {
+        const row = document.createElement('tr');
+        row.className = 'log-row';
+        row.innerHTML = `<td>${k.tarih} ${k.saat}</td><td>${(k.ozet || '').slice(0, 60)}</td><td><span class="badge ok">${k.kategori}</span></td>`;
+        const detail = document.createElement('tr');
+        detail.className = 'detail-row';
+        detail.innerHTML = `<td colspan="3"><pre>${(k.detay || '').replace(/</g, '&lt;')}</pre></td>`;
+        row.addEventListener('click', () => detail.classList.toggle('open'));
+        slmBody.appendChild(row);
+        slmBody.appendChild(detail);
+      });
+    }
 
     // ---------- KOÇ KARAR TABLOSU ----------
     document.getElementById('kocTablo').innerHTML = veri.kocKararlari.map(k => `

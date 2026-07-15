@@ -359,6 +359,34 @@ def turkce_disi_karakter_var_mi(metin):
     return False
 
 
+def get_slm_log_sheet():
+    """[MULTI-AGENT ROL: RAPOR] Sınıflandırma kararlarının ham prompt/cevap
+    kaydını tutar - panelin 'SLM sınıflandırma kararları' bölümü için.
+    Sadece bu fonksiyon eklendikten SONRAKİ kararlar burada olur, geçmişe
+    dönük değildir."""
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("SLMLog")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="SLMLog", rows=1000, cols=5)
+        ws.update(values=[["Tarih", "Saat", "Kategori", "MesajOzet", "Detay"]], range_name="A1:E1")
+    return ws
+
+
+def log_slm_karari(kategori, mesaj_ozet, prompt, cevap):
+    """Bir sınıflandırma kararının tam prompt+cevabını SLMLog'a ekler."""
+    try:
+        ws = get_slm_log_sheet()
+        now = datetime.datetime.now(TR_TZ)
+        detay = f"PROMPT:\n{prompt}\n\nCEVAP (ham):\n{cevap}"
+        ws.append_row([
+            now.strftime("%Y-%m-%d"), now.strftime("%H:%M"),
+            kategori, mesaj_ozet[:80], detay[:49000],
+        ])
+    except Exception as e:
+        print(f"SLM logu kaydedilemedi (kritik değil, devam ediliyor): {e}")
+
+
 def get_bekleyen_soru():
     """Bekleyen soruyu döndürür - ama BAYATSA (bugünden değilse) otomatik
     olarak geçersiz sayar ve temizler. Bu, bir cevabın işlenmemesi/hata
@@ -374,6 +402,18 @@ def get_bekleyen_soru():
         ws.update_acell("B2", "")
         return ""
     return deger
+
+
+def update_zaten_islendi_mi(update_id):
+    """dinle.py (saatlik yedek) ile anlık webhook işleyişinin AYNI update'i
+    nadiren aynı anda işlemesini önler (git commit'i işlem bittikten sonra
+    olduğu için git-offset kontrolü tek başına yeterli değil). Sheets
+    üzerinden hızlı, anlık bir 'bu update işlendi mi' kontrolü."""
+    anahtar = f"islendi_{update_id}"
+    if get_deger(anahtar):
+        return True
+    set_deger(anahtar, "1")
+    return False
 
 
 def get_sheet():

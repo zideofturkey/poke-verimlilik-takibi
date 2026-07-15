@@ -2,8 +2,9 @@
 [MULTI-AGENT ROL: RAPOR (Reporter) - veri üretme tarafı]
 Panel'in tükettiği panel/data.json dosyasını üretir. Kişisel sekme
 tamamen gerçek Sheets verisine dayanır. Teknik sekmede workflow geçmişi
-GitHub API'den gerçek veri çeker; SLM ham prompt/cevap logu henüz
-tutulmadığı için o kısım dürüstçe boş bırakılır (bkz. README).
+GitHub API'den gerçek veri çeker; SLM ham prompt/cevap logu artık
+tutuluyor (bkz. common.py: log_slm_karari) ama sadece bu özelliğin
+eklendiği tarihten sonrası için - geçmişe dönük veri yoktur.
 """
 
 import json
@@ -169,6 +170,26 @@ def koc_kararlari():
     return sonuc[-10:]
 
 
+def slm_karar_gecmisi():
+    from common import get_slm_log_sheet
+    try:
+        ws = get_slm_log_sheet()
+        rows = ws.get_all_records()
+    except Exception as e:
+        print(f"SLM log okunamadi: {e}")
+        return []
+    sonuc = []
+    for r in rows[-20:]:
+        sonuc.append({
+            "tarih": r.get("Tarih", ""),
+            "saat": r.get("Saat", ""),
+            "kategori": r.get("Kategori", ""),
+            "ozet": r.get("MesajOzet", ""),
+            "detay": r.get("Detay", ""),
+        })
+    return list(reversed(sonuc))
+
+
 def main():
     heatmap = gunluk_verileri_topla()
     rutin_oranlari = rutin_oranlari_hesapla()
@@ -188,6 +209,7 @@ def main():
         "haftalikHedefGecmisi": haftalik_hedef_gecmisi(),
         "workflowGecmisi": workflow_gecmisi(),
         "kocKararlari": koc_kararlari(),
+        "slmKararlari": slm_karar_gecmisi(),
     }
 
     with open("panel/data.json", "w", encoding="utf-8") as f:

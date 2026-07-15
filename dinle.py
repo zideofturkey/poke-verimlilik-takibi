@@ -4,7 +4,7 @@ saatte bir çalıştırılır. Asıl anlık tepki artık webhook.yml üzerinden 
 """
 
 import requests
-from common import BASE_URL, load_last_update_id, save_last_update_id
+from common import BASE_URL, load_last_update_id, save_last_update_id, update_zaten_islendi_mi
 from handle_update import process_callback, process_message
 
 
@@ -25,6 +25,9 @@ def main():
 
     for update in updates:
         save_last_update_id(update["update_id"])
+        if update_zaten_islendi_mi(update["update_id"]):
+            print(f"Update {update['update_id']} zaten işlenmiş (muhtemelen webhook ile çakıştı), atlanıyor.")
+            continue
         if "callback_query" in update:
             process_callback(update["callback_query"])
         elif "message" in update:

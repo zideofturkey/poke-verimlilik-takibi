@@ -43,16 +43,26 @@ def son_hafta_verisi():
 def istatistik_cikar(veriler):
     """Görev bazında yapıldı/yapılmadı sayılarını Python'da hesaplar -
     modelin kendi başına sayım yapıp hata yapmasını (ve çelişkili
-    cümleler kurmasını) önlemek için."""
+    cümleler kurmasını) önlemek için. 'Boşa geçen vakit' beyanları
+    bu istatistiğe DAHIL EDİLMEZ (o bir rutin değil, serbest metin
+    beyanı - ayrıca ele alınır, bkz. bosa_vakit_beyanlarini_topla)."""
     sayaclar = {}
     for r in veriler:
         gorev = r["Görev"]
+        if gorev == "Boşa geçen vakit":
+            continue
         durum = r["Durum"]
         if gorev not in sayaclar:
             sayaclar[gorev] = {"Yapıldı": 0, "Yapılmadı": 0, "Telafi": 0}
         if durum in sayaclar[gorev]:
             sayaclar[gorev][durum] += 1
     return sayaclar
+
+
+def bosa_vakit_beyanlarini_topla(veriler):
+    """Kullanıcının serbest metinle yazdığı 'boşa geçen vakit'
+    beyanlarını (varsa) toplar - haftalık özette gerçekten kullanılsın diye."""
+    return [r["Detay"] for r in veriler if r.get("Görev") == "Boşa geçen vakit" and r.get("Detay")]
 
 
 def prompt_olustur(veriler):
@@ -65,14 +75,25 @@ def prompt_olustur(veriler):
         f"gecikmeli telafi edildi, {s['Yapılmadı']} kez hiç yapılmadı"
         for gorev, s in sayaclar.items()
     )
+
+    beyanlar = bosa_vakit_beyanlarini_topla(veriler)
+    beyan_blok = ""
+    if beyanlar:
+        beyan_metni = "\n".join(f"- {b}" for b in beyanlar)
+        beyan_blok = (
+            "\n\nKullanıcının bu hafta 'boşa geçen vakit' hakkında kendi "
+            f"yazdığı beyanlar (varsa bunlara da kısaca değin, bir örüntü "
+            f"görüyorsan belirt):\n{beyan_metni}"
+        )
+
     return (
         "Aşağıda bir kişinin son 7 günlük verimlilik istatistiği var. "
-        "SADECE verilen sayılara dayanarak, 3-4 cümlelik akıcı ve tutarlı "
-        "bir Türkçe özet yaz. Birbirini çelişen ifadeler kullanma. "
+        "SADECE verilen sayılara ve beyanlara dayanarak, 3-4 cümlelik akıcı ve "
+        "tutarlı bir Türkçe özet yaz. Birbirini çelişen ifadeler kullanma. "
         "En yüksek 'yapıldı' oranına sahip görev(ler)i öv, en yüksek "
         "'yapılmadı' oranına sahip görev(ler)i nazikçe hatırlat. "
         "Sadece özeti yaz, başka açıklama, başlık ya da giriş cümlesi ekleme.\n\n"
-        f"İstatistik:\n{satirlar}"
+        f"İstatistik:\n{satirlar}{beyan_blok}"
     )
 
 
