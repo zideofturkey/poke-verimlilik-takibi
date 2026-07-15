@@ -177,13 +177,72 @@ def process_callback(cq):
 
 
 def _sorguyu_cevapla(text):
-    """Kullanıcı bir şey sorguladığında (ör. 'bugünkü görevlerimi hatırlatır
-    mısın') GERÇEK veriyi Sheets'ten okuyup, DOĞRUDAN Python'da (SLM'e
-    yazdırmadan) net bir liste hâlinde cevap verir. Bunun iki sebebi var:
-    (1) kullanıcı direkt liste formatını daha verimli buluyor,
-    (2) SLM serbest metin üretirken bazen yazım hatası yapıyordu (ör.
-    'rutin' yerine 'rutün') - deterministik formatlama bunu tamamen ortadan
-    kaldırıyor."""
+    """Kullanıcı bir şey sorguladığında GERÇEK veriyi Sheets'ten okuyup,
+    DOĞRUDAN Python'da (SLM'e yazdırmadan) net bir cevap verir - SLM
+    serbest metin üretirken yazım hatası yapabiliyordu, deterministik
+    formatlama bunu ortadan kaldırıyor. Üç sorgu türünü ayırt eder:
+    seri/streak soruları, haftalık genel bakış, ve varsayılan (bugün)."""
+    metin_kucuk = text.lower()
+
+    if any(k in metin_kucuk for k in ["seri", "streak", "kaç gündür"]):
+        _seri_sorusunu_cevapla()
+        return
+    if "hafta" in metin_kucuk and "hedef" not in metin_kucuk:
+        _haftalik_ozet_sorusunu_cevapla()
+        return
+
+    _bugunku_durumu_cevapla(text)
+
+
+def _seri_sorusunu_cevapla():
+    rutinler = get_aktif_rutinler()
+    if not rutinler:
+        send_message("Henüz tanımlı bir rutin yok.")
+        return
+    satirlar = []
+    for r in rutinler:
+        streak, miss_streak = rutin_serisi_hesapla(r["isim"])
+        if streak > 0:
+            satirlar.append(f"🔥 {r['isim']}: {streak} gündür kesintisiz")
+        elif miss_streak > 0:
+            satirlar.append(f"⚠️ {r['isim']}: {miss_streak} gündür kaçırılıyor")
+        else:
+            satirlar.append(f"• {r['isim']}: aktif bir seri yok")
+    send_message("Rutin serilerin:\n" + "\n".join(satirlar))
+
+
+def _haftalik_ozet_sorusunu_cevapla():
+    rutinler = get_aktif_rutinler()
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    bugun = datetime.datetime.now(TR_TZ).date()
+    sinir = bugun - datetime.timedelta(days=6)
+
+    satirlar = []
+    for r in rutinler:
+        toplam = 0
+        yapilan = 0
+        for row in rows:
+            if row.get("Görev") != r["isim"]:
+                continue
+            try:
+                tarih = datetime.datetime.strptime(row["Tarih"], "%Y-%m-%d").date()
+            except (ValueError, KeyError):
+                continue
+            if tarih < sinir:
+                continue
+            toplam += 1
+            if row["Durum"] in ("Yapıldı", "Telafi"):
+                yapilan += 1
+        if toplam:
+            satirlar.append(f"• {r['isim']}: {yapilan}/{toplam} gün")
+        else:
+            satirlar.append(f"• {r['isim']}: bu hafta hiç kayıt yok")
+
+    send_message("Bu haftaki (son 7 gün) rutin durumun:\n" + "\n".join(satirlar))
+
+
+def _bugunku_durumu_cevapla(text):
     bugun = bugun_str()
 
     ws_gorev = get_gorevler_sheet()
