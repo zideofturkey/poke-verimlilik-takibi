@@ -375,11 +375,18 @@ def _siniflandir_ve_isle(text, bekleyen):
         _sorguyu_cevapla(text)
 
     elif tip == "YENI_GOREV":
-        # Tırnak varsa önce deterministik olarak yakala (güvenilir) - model
-        # kendi çıkarımını sadece tırnak yokken devreye sokar.
+        # Öncelik sırası: (1) tırnak içi - en güvenilir, (2) numaralı satır
+        # yapısı varsa satirlari_ayikla - deterministik ve başlık/giriş
+        # cümlelerini zaten eliyor, (3) modelin kendi GOREVLER listesi -
+        # model bazen başlık cümlesini de listeye dahil edebiliyor, en
+        # az güvenilir seçenek bu yüzden en sona alındı.
         tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+        numarali_liste = satirlari_ayikla(text)
+
         if tirnak_ici:
             gorevler = tirnak_ici
+        elif len(numarali_liste) > 1:
+            gorevler = numarali_liste
         elif gorevler_match:
             aday = gorevler_match.group(1).strip()
             gorevler = [g.strip() for g in aday.split("|") if g.strip()]
