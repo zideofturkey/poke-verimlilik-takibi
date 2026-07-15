@@ -1,0 +1,7 @@
+Mesaj: bana bugünkü rutin tamamlama listemi gönderir misin
+
+Model cevabi:
+TIP: GUNLUK_GOREV
+GOREVLER: "bugünkü rutin tamamlama listemi gönderir misin"
+RUTIN: 
+CEVAP: Hangi rutinleri öğrenmek istiyorsun?
