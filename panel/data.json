@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-15T22:13:04.813952+03:00",
+  "uretim_zamani": "2026-07-15T23:34:04.215520+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 26
+    "haftaTamamlamaYuzdesi": 29
   },
   "heatmap": [
     {
@@ -1195,7 +1195,7 @@
     {
       "tarih": "15 July 2026",
       "tarih_iso": "2026-07-15",
-      "level": 2,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1215,7 +1215,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     }
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 0
+      "oran": 100
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1249,15 +1249,15 @@
       "gorevler": [
         {
           "metin": "done the matrix 2",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Book & Coffee",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Little trip on scooter",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1362,8 +1362,56 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T19:12:52Z",
+      "zaman": "2026-07-15T20:33:46Z",
       "durum": "warn",
+      "runId": "29448766911"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T19:22:58Z",
+      "durum": "ok",
+      "runId": "29444284361"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-15T19:22:52Z",
+      "durum": "ok",
+      "runId": "29444278911"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T19:22:32Z",
+      "durum": "ok",
+      "runId": "29444258317"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T19:22:28Z",
+      "durum": "ok",
+      "runId": "29444253775"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T19:22:20Z",
+      "durum": "ok",
+      "runId": "29444246143"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T19:22:18Z",
+      "durum": "ok",
+      "runId": "29444244010"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T19:22:17Z",
+      "durum": "ok",
+      "runId": "29444243346"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-15T19:12:52Z",
+      "durum": "ok",
       "runId": "29443656033"
     },
     {
@@ -1401,54 +1449,6 @@
       "zaman": "2026-07-15T15:42:16Z",
       "durum": "ok",
       "runId": "29429253942"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-15T15:40:46Z",
-      "durum": "ok",
-      "runId": "29429145146"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-15T15:38:26Z",
-      "durum": "ok",
-      "runId": "29428974659"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T14:02:36Z",
-      "durum": "ok",
-      "runId": "29421808080"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-15T13:59:01Z",
-      "durum": "ok",
-      "runId": "29421536933"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T11:59:22Z",
-      "durum": "ok",
-      "runId": "29413557526"
-    },
-    {
-      "ad": "Gecici Test Sorgula",
-      "zaman": "2026-07-15T11:41:25Z",
-      "durum": "ok",
-      "runId": "29412513829"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-15T11:40:50Z",
-      "durum": "ok",
-      "runId": "29412478395"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-15T11:36:38Z",
-      "durum": "ok",
-      "runId": "29412236508"
     }
   ],
   "kocKararlari": [],
