@@ -1,7 +1,21 @@
-Mesaj: bana bugünkü rutin tamamlama listemi gönderir misin
-
-Model cevabi:
-TIP: GUNLUK_GOREV
-GOREVLER: "bugünkü rutin tamamlama listemi gönderir misin"
+MESAJ: bana bugünkü rutin tamamlama listemi gönderir misin
+CEVAP:
+TIP: SORGULA
+GOREVLER: 
 RUTIN: 
-CEVAP: Hangi rutinleri öğrenmek istiyorsun?
+CEVAP: Hangi rutinleri tamamladığımıza dair bilgi veriyormusun? Eğer herhangi bir rutin tamamlandıysa, lütfen onları belirtir misiniz.
+========================================
+MESAJ: bugün nasıl gidiyorum genel olarak
+CEVAP:
+TIP: SORGULA
+GOREVLER: 
+RUTIN: 
+CEVAP: Durumum ne olduğunu sormadınız. Size nasıl yardımcı olabilirim?
+========================================
+MESAJ: en uzun serim hangi rutinde
+CEVAP:
+TIP: SORGULA
+GOREVLER: 
+RUTIN: 
+CEVAP: Bu mesajda kullanıcının sorduğu "en uzun serim hangi rutinde" hakkında bilgi vermek zorundayım, ancak Poke ben bir takip botum ve kullanıcıların gerçek durumu hakkında doğrudan bilgi edinemezsem. Ancak, en çok zaman geçiren rutinin belirlenebilir. Bu konuda size yardımcı olabilirim, sadece hangi rutinleri deneyimliyorum?
+========================================
