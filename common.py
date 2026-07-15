@@ -5,6 +5,7 @@ bunlar workflow dosyası tarafından secrets'tan enjekte edilir.
 """
 
 import os
+import re
 import time
 import datetime
 from datetime import timezone, timedelta
@@ -398,6 +399,42 @@ def log_slm_karari(kategori, mesaj_ozet, prompt, cevap):
         ])
     except Exception as e:
         print(f"SLM logu kaydedilemedi (kritik değil, devam ediliyor): {e}")
+
+
+_AY_ISIMLERI = {
+    "ocak": 1, "şubat": 2, "subat": 2, "mart": 3, "nisan": 4, "mayıs": 5,
+    "mayis": 5, "haziran": 6, "temmuz": 7, "ağustos": 8, "agustos": 8,
+    "eylül": 9, "eylul": 9, "ekim": 10, "kasım": 11, "kasim": 11,
+    "aralık": 12, "aralik": 12,
+}
+
+
+def metinden_tarih_cikar(text):
+    """Serbest metinde 'dün' ya da '15 Temmuz' gibi Türkçe bir tarih
+    referansı var mı diye bakar. Bulursa YYYY-MM-DD döndürür, yoksa None
+    (None = 'bugün' anlamına gelir, çağıran taraf varsayılan kullanır)."""
+    metin = text.lower()
+    bugun = datetime.datetime.now(TR_TZ).date()
+
+    if re.search(r"\bdün\b", metin):
+        return (bugun - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+
+    eslesme = re.search(r"\b(\d{1,2})\s+([a-zçğıöşü]+)\b", metin)
+    if eslesme:
+        gun = int(eslesme.group(1))
+        ay_adi = eslesme.group(2)
+        if ay_adi in _AY_ISIMLERI and 1 <= gun <= 31:
+            ay = _AY_ISIMLERI[ay_adi]
+            yil = bugun.year
+            try:
+                aday_tarih = datetime.date(yil, ay, gun)
+                if aday_tarih > bugun:
+                    aday_tarih = datetime.date(yil - 1, ay, gun)
+                return aday_tarih.strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+
+    return None
 
 
 def get_bekleyen_soru():

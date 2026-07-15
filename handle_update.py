@@ -49,6 +49,7 @@ from common import (
     turkce_disi_karakter_var_mi,
     update_zaten_islendi_mi,
     log_slm_karari,
+    metinden_tarih_cikar,
     get_aktif_rutinler,
     get_sheet,
     get_rutinler_sheet,
@@ -400,8 +401,9 @@ def _siniflandir_ve_isle(text, bekleyen):
         eslesenler = [ad for ad in adaylar if ad in aktif_isimler]
 
         if eslesenler:
+            tarih = metinden_tarih_cikar(text)
             for isim in eslesenler:
-                log_to_sheet(isim, "Yapıldı")
+                log_to_sheet(isim, "Yapıldı", tarih=tarih)
             liste = ", ".join(f"'{i}'" for i in eslesenler)
             send_message(f"✅ {liste} tamamlandı olarak kaydedildi. Tebrikler!")
         else:
@@ -437,7 +439,8 @@ def _siniflandir_ve_isle(text, bekleyen):
         send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
 
     elif tip == "BOSA_VAKIT":
-        log_to_sheet("Boşa geçen vakit", "Beyan", text)
+        tarih = metinden_tarih_cikar(text)
+        log_to_sheet("Boşa geçen vakit", "Beyan", text, tarih=tarih)
         set_bekleyen_soru("")
         send_message(cevap)
 
