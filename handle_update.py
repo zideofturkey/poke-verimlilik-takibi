@@ -114,8 +114,22 @@ def process_callback(cq):
             log_to_sheet(isim, "Yapılmadı", tarih=tarih)
             send_message(f"Sorun değil, '{isim}' için yarın devam edelim 👍")
         elif sonuc == "telafi":
-            log_to_sheet(isim, "Telafi", "dünkü eksik için bugün telafi edildi", tarih=tarih)
-            send_message(f"🔁 Harika, '{isim}' için dünkü eksik telafi edildi olarak kaydedildi!")
+            # Kullanıcı hem bugünkü kendi rutinini hem dünkü eksiği
+            # tamamladığını bildiriyor. Bugün "Yapıldı" (tam, gerçek
+            # anlamda tamamlanmış) sayılır; dün ise "Telafi" (nötr,
+            # kaçırma da sayılmaz) olarak işaretlenir - önceden sadece
+            # bugüne "Telafi" yazılıyordu, dün hiç düzeltilmiyordu.
+            bugun_referans = tarih or bugun_str()
+            try:
+                bugun_tarih_obj = datetime.datetime.strptime(bugun_referans, "%Y-%m-%d").date()
+                dun_str_deger = (bugun_tarih_obj - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+            except ValueError:
+                dun_str_deger = None
+
+            log_to_sheet(isim, "Yapıldı", tarih=bugun_referans)
+            if dun_str_deger:
+                log_to_sheet(isim, "Telafi", "ertesi gün telafi edildi", tarih=dun_str_deger)
+            send_message(f"🔁 Harika, '{isim}' bugün tamamlandı, dünkü eksik de telafi edildi olarak kaydedildi!")
     elif callback_data.startswith("koc_duraklat_"):
         # format: koc_duraklat_<id>_evet / koc_duraklat_<id>_hayir
         parcalar = callback_data.split("_")
