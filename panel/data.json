@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-15T11:12:47.828433+03:00",
+  "uretim_zamani": "2026-07-15T13:18:10.557649+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 14
   },
@@ -1060,24 +1060,42 @@
   ],
   "gunlukGorevGecmisi": [
     {
+      "tarih": "15 July",
+      "gunAdi": "Çarşamba",
+      "gorevler": [
+        {
+          "metin": "Günaydın, bugünün görevlerini yazıyorum",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "done the matrix 2",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Book & Coffee",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Little trip on scooter",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
+    {
       "tarih": "14 July",
       "gunAdi": "Salı",
       "gorevler": [
-        {
-          "metin": "Bugünün görevleri;",
-          "durum": "Bekliyor"
-        },
         {
           "metin": "11.00 work out",
           "durum": "Yapıldı"
         },
         {
           "metin": "Book & Coffee at home",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "Matrix 2",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "Little fixes on Poke System",
@@ -1164,8 +1182,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T08:12:26Z",
+      "zaman": "2026-07-15T10:17:55Z",
       "durum": "warn",
+      "runId": "29407629154"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T10:05:23Z",
+      "durum": "ok",
+      "runId": "29406885372"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T09:54:04Z",
+      "durum": "ok",
+      "runId": "29406197444"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T09:54:02Z",
+      "durum": "ok",
+      "runId": "29406195634"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-15T09:15:51Z",
+      "durum": "ok",
+      "runId": "29403847711"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-15T08:12:26Z",
+      "durum": "ok",
       "runId": "29399967112"
     },
     {
@@ -1221,37 +1269,8 @@
       "zaman": "2026-07-14T22:04:53Z",
       "durum": "ok",
       "runId": "29371796829"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-14T21:30:41Z",
-      "durum": "ok",
-      "runId": "29369789733"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-14T20:18:25Z",
-      "durum": "ok",
-      "runId": "29365193665"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T20:14:54Z",
-      "durum": "ok",
-      "runId": "29364963730"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T20:14:45Z",
-      "durum": "ok",
-      "runId": "29364955000"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-14T20:14:36Z",
-      "durum": "ok",
-      "runId": "29364945056"
     }
   ],
-  "kocKararlari": []
+  "kocKararlari": [],
+  "slmKararlari": []
 }
