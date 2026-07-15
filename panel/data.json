@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-16T02:16:43.559949+03:00",
+  "uretim_zamani": "2026-07-16T02:29:15.920796+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 29
+    "haftaTamamlamaYuzdesi": 31
   },
   "heatmap": [
     {
@@ -1145,7 +1145,7 @@
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Telafi"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1168,11 +1168,11 @@
     {
       "tarih": "15 July 2026",
       "tarih_iso": "2026-07-15",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Telafi"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1223,7 +1223,7 @@
   "rutinOranlari": [
     {
       "isim": "Fransızca çalışma",
-      "oran": 75
+      "oran": 100
     },
     {
       "isim": "Sabah telefonsuzluğu",
@@ -1362,8 +1362,26 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T23:16:25Z",
+      "zaman": "2026-07-15T23:29:02Z",
       "durum": "warn",
+      "runId": "29458662785"
+    },
+    {
+      "ad": "Gecici Bekleyen",
+      "zaman": "2026-07-15T23:26:32Z",
+      "durum": "ok",
+      "runId": "29458541563"
+    },
+    {
+      "ad": "Gecici Duzelt 6",
+      "zaman": "2026-07-15T23:24:43Z",
+      "durum": "ok",
+      "runId": "29458451735"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-15T23:16:25Z",
+      "durum": "ok",
       "runId": "29458037828"
     },
     {
@@ -1431,24 +1449,6 @@
       "zaman": "2026-07-15T19:22:32Z",
       "durum": "ok",
       "runId": "29444258317"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-15T19:22:28Z",
-      "durum": "ok",
-      "runId": "29444253775"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-15T19:22:20Z",
-      "durum": "ok",
-      "runId": "29444246143"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-15T19:22:18Z",
-      "durum": "ok",
-      "runId": "29444244010"
     }
   ],
   "kocKararlari": [],
