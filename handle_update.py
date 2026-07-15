@@ -92,22 +92,28 @@ def process_callback(cq):
         log_to_sheet("Haftalık Kontrol", "Geride")
         send_message("Sorun değil, kalan günlerde toparlarız 👍")
     elif callback_data.startswith("rutin_"):
-        # format: rutin_<id>_evet / rutin_<id>_hayir / rutin_<id>_telafi
-        # <id> kendisi alt çizgi içerebilir (ör. "sabah_telefon"), bu yüzden
-        # sondan ayırıyoruz: ilk parça "rutin", son parça sonuç, arası id.
+        # Yeni format: rutin_<id>_<YYYY-MM-DD>_evet/hayir/telafi
+        # Eski format (bu düzeltmeden önce gönderilmiş, henüz cevaplanmamış
+        # butonlar için geriye dönük uyumluluk): rutin_<id>_evet/hayir/telafi
         parcalar = callback_data.split("_")
         sonuc = parcalar[-1]
-        rutin_id = "_".join(parcalar[1:-1])
+        if len(parcalar) >= 3 and re.match(r"^\d{4}-\d{2}-\d{2}$", parcalar[-2]):
+            tarih = parcalar[-2]
+            rutin_id = "_".join(parcalar[1:-2])
+        else:
+            tarih = None  # eski format - log_to_sheet bugünü kullanır
+            rutin_id = "_".join(parcalar[1:-1])
+
         rutin = next((r for r in get_aktif_rutinler() if r["id"] == rutin_id), None)
         isim = rutin["isim"] if rutin else rutin_id
         if sonuc == "evet":
-            log_to_sheet(isim, "Yapıldı")
+            log_to_sheet(isim, "Yapıldı", tarih=tarih)
             send_message(f"✅ '{isim}' kaydedildi. Tebrikler!")
         elif sonuc == "hayir":
-            log_to_sheet(isim, "Yapılmadı")
+            log_to_sheet(isim, "Yapılmadı", tarih=tarih)
             send_message(f"Sorun değil, '{isim}' için yarın devam edelim 👍")
         elif sonuc == "telafi":
-            log_to_sheet(isim, "Telafi", "dünkü eksik için bugün telafi edildi")
+            log_to_sheet(isim, "Telafi", "dünkü eksik için bugün telafi edildi", tarih=tarih)
             send_message(f"🔁 Harika, '{isim}' için dünkü eksik telafi edildi olarak kaydedildi!")
     elif callback_data.startswith("koc_duraklat_"):
         # format: koc_duraklat_<id>_evet / koc_duraklat_<id>_hayir

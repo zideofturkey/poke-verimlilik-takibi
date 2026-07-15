@@ -143,6 +143,9 @@ def rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın 
     ]
     rutinler_ile_seri.sort(key=lambda x: x[1][1], reverse=True)
 
+    bugun = bugun_str()
+    butonlar_icin_bugun = bugun  # okunabilirlik için
+
     satir_metinleri = []
     buton_satirlari = []
     for i, (rutin, (streak, miss_streak)) in enumerate(rutinler_ile_seri, start=1):
@@ -155,12 +158,12 @@ def rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın 
         satir_metinleri.append(f"{i}. {on_ek}{rutin['soru']}")
 
         butonlar = [
-            {"text": f"{i}️⃣ ✅", "callback_data": f"rutin_{rutin['id']}_evet"},
-            {"text": f"{i}️⃣ ❌", "callback_data": f"rutin_{rutin['id']}_hayir"},
+            {"text": f"{i}️⃣ ✅", "callback_data": f"rutin_{rutin['id']}_{butonlar_icin_bugun}_evet"},
+            {"text": f"{i}️⃣ ❌", "callback_data": f"rutin_{rutin['id']}_{butonlar_icin_bugun}_hayir"},
         ]
         if dun_kacirildi_mi(rutin["isim"]):
             butonlar.append(
-                {"text": f"{i}️⃣ 🔁", "callback_data": f"rutin_{rutin['id']}_telafi"}
+                {"text": f"{i}️⃣ 🔁", "callback_data": f"rutin_{rutin['id']}_{butonlar_icin_bugun}_telafi"}
             )
         buton_satirlari.append(butonlar)
 
