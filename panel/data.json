@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-15T17:02:50.280459+03:00",
+  "uretim_zamani": "2026-07-15T19:02:41.337862+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 23
+    "haftaTamamlamaYuzdesi": 26
   },
   "heatmap": [
     {
@@ -1195,7 +1195,7 @@
     {
       "tarih": "15 July 2026",
       "tarih_iso": "2026-07-15",
-      "level": 1,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1203,7 +1203,7 @@
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 67
+      "oran": 75
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1362,8 +1362,32 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T14:02:36Z",
+      "zaman": "2026-07-15T16:02:22Z",
       "durum": "warn",
+      "runId": "29430723848"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-15T15:42:16Z",
+      "durum": "ok",
+      "runId": "29429253942"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-15T15:40:46Z",
+      "durum": "ok",
+      "runId": "29429145146"
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-15T15:38:26Z",
+      "durum": "ok",
+      "runId": "29428974659"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-15T14:02:36Z",
+      "durum": "ok",
       "runId": "29421808080"
     },
     {
@@ -1425,30 +1449,6 @@
       "zaman": "2026-07-15T11:11:52Z",
       "durum": "ok",
       "runId": "29410785532"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T10:47:42Z",
-      "durum": "ok",
-      "runId": "29409362178"
-    },
-    {
-      "ad": "Gecici Teshis 4",
-      "zaman": "2026-07-15T10:46:55Z",
-      "durum": "ok",
-      "runId": "29409317965"
-    },
-    {
-      "ad": "Gecici Teshis 3",
-      "zaman": "2026-07-15T10:44:34Z",
-      "durum": "ok",
-      "runId": "29409180826"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-15T10:42:21Z",
-      "durum": "ok",
-      "runId": "29409050872"
     }
   ],
   "kocKararlari": [],
