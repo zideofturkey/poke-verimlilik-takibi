@@ -1,7 +1,0 @@
-MESAJ: Haftalık hedeflere ek yapacağım. Şu görevleri haftalık hedeflere ekle:
-1. kitap oku
-2. spor yap
-CEVAP:
-TIP: HAFTALIK_HEDEF
-GOREVLER: "kitap oku" | "spor yap"
-RUTIN:
