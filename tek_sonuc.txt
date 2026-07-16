@@ -1,4 +1,12 @@
-Toplam satir sayisi: 19
-Sheet basligi/adi: GunlukGorevler
-Sutun sayisi (col_count): 5
-Satir sayisi (row_count): 1988
+Status: 200
+Body: {
+  "spreadsheetId": "1OG79C8K1TgEEstOKUF7qMpr6N4q0iezBXBuP5-8SiSs",
+  "tableRange": "GunlukGorevler!A1:D19",
+  "updates": {
+    "spreadsheetId": "1OG79C8K1TgEEstOKUF7qMpr6N4q0iezBXBuP5-8SiSs",
+    "updatedRange": "GunlukGorevler!A20:D20",
+    "updatedRows": 1,
+    "updatedColumns": 4,
+    "updatedCells": 4
+  }
+}
