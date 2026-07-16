@@ -27,18 +27,6 @@ jobs:
         run: |
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
-          for i in 1 2 3 4 5 6; do
-            git fetch origin main -q
-            git reset --hard origin/main -q
-            python -c "
-import shutil
-shutil.copy('/tmp/read2_backup.txt', 'read2_sonuc.txt')
-" 2>/dev/null || true
-            git add read2_sonuc.txt 2>/dev/null || true
-            if git diff --staged --quiet 2>/dev/null; then break; fi
-            git commit -m "chore: read2" -q
-            if git push -q; then break; fi
-            sleep 3
-          done
-      - if: always()
-        run: cp read2_sonuc.txt /tmp/read2_backup.txt || true
+          git add read2_sonuc.txt
+          git commit -m "chore: read2" -q || echo "nothing to commit"
+          git push -q || echo "push failed"
