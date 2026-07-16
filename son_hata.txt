@@ -1,0 +1,10 @@
+Zaman: 2026-07-16T12:34:53.036273+03:00
+Bağlam: slm_sorgula deneme 3/3 (model=qwen2.5:3b)
+
+Traceback (most recent call last):
+  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 254, in slm_sorgula
+    return _slm_sorgula_tek_deneme(prompt, sicaklik, zaman_asimi, kullanilacak_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 227, in _slm_sorgula_tek_deneme
+    raise RuntimeError(
+RuntimeError: Ollama /api/generate 500 döndü. Cevap gövdesi: {"error":"llama-server process has terminated: signal: segmentation fault (core dumped)"}
