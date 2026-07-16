@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-17T00:33:09.606623+03:00",
+  "uretim_zamani": "2026-07-17T01:57:31.723385+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 34
   },
@@ -1402,98 +1402,7 @@
       ]
     }
   ],
-  "workflowGecmisi": [
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T21:32:56Z",
-      "durum": "warn",
-      "runId": "29536447939"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-16T20:18:01Z",
-      "durum": "ok",
-      "runId": "29531479344"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T20:06:43Z",
-      "durum": "ok",
-      "runId": "29530693860"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T20:02:54Z",
-      "durum": "ok",
-      "runId": "29530427899"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-16T19:00:37Z",
-      "durum": "ok",
-      "runId": "29526286639"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T18:40:24Z",
-      "durum": "ok",
-      "runId": "29524904173"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T18:12:00Z",
-      "durum": "ok",
-      "runId": "29522962705"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T17:17:21Z",
-      "durum": "ok",
-      "runId": "29519153222"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T16:23:23Z",
-      "durum": "ok",
-      "runId": "29515355921"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-16T15:41:20Z",
-      "durum": "ok",
-      "runId": "29512282151"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T15:39:34Z",
-      "durum": "ok",
-      "runId": "29512146692"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T14:10:41Z",
-      "durum": "ok",
-      "runId": "29505410894"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T13:53:27Z",
-      "durum": "ok",
-      "runId": "29504135706"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T11:46:16Z",
-      "durum": "ok",
-      "runId": "29495633701"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-16T11:44:43Z",
-      "durum": "ok",
-      "runId": "29495538951"
-    }
-  ],
+  "workflowGecmisi": [],
   "kocKararlari": [],
   "slmKararlari": [
     {
