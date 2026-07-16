@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-16T12:35:06.467335+03:00",
+  "uretim_zamani": "2026-07-16T14:40:30.629377+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 31
   },
@@ -1244,6 +1244,32 @@
   ],
   "gunlukGorevGecmisi": [
     {
+      "tarih": "16 July",
+      "gunAdi": "Perşembe",
+      "gorevler": [
+        {
+          "metin": "13.00 Work out via Scooter",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "2 video ile Koşullu Milyoner Varsayımları",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Fitcheck Geliştirmeleri (Claude MCP Denemesi, Frontend'de çok sorun var)",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "The Bear Episode 5",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Poke Promotion on Chats",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
+    {
       "tarih": "15 July",
       "gunAdi": "Çarşamba",
       "gorevler": [
@@ -1379,8 +1405,80 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T09:34:50Z",
+      "zaman": "2026-07-16T11:40:13Z",
       "durum": "warn",
+      "runId": "29495264025"
+    },
+    {
+      "ad": "Gecici Son",
+      "zaman": "2026-07-16T11:12:08Z",
+      "durum": "ok",
+      "runId": "29493563086"
+    },
+    {
+      "ad": "Gecici Test 4",
+      "zaman": "2026-07-16T11:06:46Z",
+      "durum": "ok",
+      "runId": "29493239064"
+    },
+    {
+      "ad": "Gecici Basit",
+      "zaman": "2026-07-16T11:01:24Z",
+      "durum": "ok",
+      "runId": "29492906827"
+    },
+    {
+      "ad": "Gecici Kontrol 2",
+      "zaman": "2026-07-16T10:59:42Z",
+      "durum": "warn",
+      "runId": "29492796902"
+    },
+    {
+      "ad": "Gecici Kontrol 2",
+      "zaman": "2026-07-16T10:58:47Z",
+      "durum": "warn",
+      "runId": "29492743785"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-16T10:57:26Z",
+      "durum": "ok",
+      "runId": "29492664819"
+    },
+    {
+      "ad": "Gecici Tek",
+      "zaman": "2026-07-16T10:14:32Z",
+      "durum": "ok",
+      "runId": "29490117886"
+    },
+    {
+      "ad": "Gecici Tek",
+      "zaman": "2026-07-16T10:13:39Z",
+      "durum": "ok",
+      "runId": "29490066310"
+    },
+    {
+      "ad": "Gecici Tek",
+      "zaman": "2026-07-16T10:12:35Z",
+      "durum": "ok",
+      "runId": "29490001105"
+    },
+    {
+      "ad": "Gecici Tek",
+      "zaman": "2026-07-16T10:11:30Z",
+      "durum": "warn",
+      "runId": "29489933082"
+    },
+    {
+      "ad": "Gecici Tek",
+      "zaman": "2026-07-16T10:10:36Z",
+      "durum": "warn",
+      "runId": "29489878974"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-16T09:34:50Z",
+      "durum": "ok",
       "runId": "29487659658"
     },
     {
@@ -1394,82 +1492,17 @@
       "zaman": "2026-07-16T09:20:26Z",
       "durum": "ok",
       "runId": "29486775009"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-16T08:15:16Z",
-      "durum": "ok",
-      "runId": "29482807644"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T07:22:25Z",
-      "durum": "ok",
-      "runId": "29479702333"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T06:25:51Z",
-      "durum": "ok",
-      "runId": "29476679727"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T04:38:51Z",
-      "durum": "ok",
-      "runId": "29471871354"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-16T03:22:10Z",
-      "durum": "ok",
-      "runId": "29468811599"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:15:29Z",
-      "durum": "ok",
-      "runId": "29463667199"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:14:25Z",
-      "durum": "ok",
-      "runId": "29463619544"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:13:21Z",
-      "durum": "warn",
-      "runId": "29463573072"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:11:44Z",
-      "durum": "warn",
-      "runId": "29463503856"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:10:38Z",
-      "durum": "warn",
-      "runId": "29463456800"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:09:51Z",
-      "durum": "ok",
-      "runId": "29463420605"
-    },
-    {
-      "ad": "Gecici Tek",
-      "zaman": "2026-07-16T01:09:05Z",
-      "durum": "ok",
-      "runId": "29463388174"
     }
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-16",
+      "saat": "13:59",
+      "kategori": "HAFTALIK_HEDEF",
+      "ozet": "Bugünkü görevlerim:\n1. 13.00 Work out via Scooter\n2. 2 video ile Koşullu Milyone",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: sabah sorduğum 'bugün ne yapacaksın' sorusu.\n\nKullanıcı şunu yazdı:\n\"Bugünkü görevlerim:\n1. 13.00 Work out via Scooter\n2. 2 video ile Koşullu Milyoner Varsayımları\n3. Fitcheck Geliştirmeleri (Claude MCP Denemesi, Frontend'de çok sorun var)\n4. The Bear Episode 5\n5. Poke Promotion on Chats\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÖNEMLİ: 'bugün/bugünkü' kelimesi geçiyorsa ve 'hafta/haftalık' GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF DEĞİLDİR - liste veriyor olması (madde madde yazması) HAFTALIK_HEDEF sanmana sebep olmasın\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listedeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listeden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap.\n\nCEVAP (ham):\nCEVAP: Bu hafta hedeflerim neydi\n\nTIP: HAFTALIK_HEDEF\nGOREVLER:\nRUTIN:"
+    },
     {
       "tarih": "2026-07-16",
       "saat": "03:38",
