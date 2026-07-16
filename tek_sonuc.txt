@@ -1,12 +1,13 @@
+Test satiri silindi.
 Status: 200
 Body: {
   "spreadsheetId": "1OG79C8K1TgEEstOKUF7qMpr6N4q0iezBXBuP5-8SiSs",
   "tableRange": "GunlukGorevler!A1:D19",
   "updates": {
     "spreadsheetId": "1OG79C8K1TgEEstOKUF7qMpr6N4q0iezBXBuP5-8SiSs",
-    "updatedRange": "GunlukGorevler!A20:D20",
-    "updatedRows": 1,
+    "updatedRange": "GunlukGorevler!A20:D24",
+    "updatedRows": 5,
     "updatedColumns": 4,
-    "updatedCells": 4
+    "updatedCells": 20
   }
 }
