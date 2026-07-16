@@ -26,15 +26,14 @@ jobs:
       - run: |
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
+          cp teshis6_sonuc.txt /tmp/teshis6_sonuc.txt
           for i in 1 2 3 4 5; do
             git fetch origin main -q
             git reset --hard origin/main -q
-            cp /tmp/teshis6_sonuc.txt teshis6_sonuc.txt 2>/dev/null || true
+            cp /tmp/teshis6_sonuc.txt teshis6_sonuc.txt
             git add teshis6_sonuc.txt
             if git diff --staged --quiet; then break; fi
             git commit -m "chore: teshis6" -q
             if git push -q; then break; fi
             sleep 2
           done
-      - run: cp teshis6_sonuc.txt /tmp/teshis6_sonuc.txt
-        if: always()
