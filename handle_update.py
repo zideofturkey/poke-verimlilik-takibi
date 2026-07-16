@@ -50,6 +50,7 @@ from common import (
     update_zaten_islendi_mi,
     log_slm_karari,
     metinden_tarih_cikar,
+    guvenli_append_row,
     get_aktif_rutinler,
     get_sheet,
     get_rutinler_sheet,
@@ -443,7 +444,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         ws = get_gorevler_sheet()
         bugun = bugun_str()
         for gorev in gorevler:
-            ws.append_row([bugun, "", gorev, "Bekliyor"])
+            guvenli_append_row(ws, [bugun, "", gorev, "Bekliyor"])
         set_bekleyen_soru("")
         liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
         send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
@@ -456,7 +457,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         ws = get_haftalik_sheet()
         hafta = hafta_baslangic_str()
         for hedef in hedefler:
-            ws.append_row([hafta, hedef, "Bekliyor"])
+            guvenli_append_row(ws, [hafta, hedef, "Bekliyor"])
         set_bekleyen_soru("")
         liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
         send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
@@ -496,7 +497,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         ws = get_gorevler_sheet()
         bugun = bugun_str()
         for gorev in gorevler:
-            ws.append_row([bugun, "", gorev, "Bekliyor"])
+            guvenli_append_row(ws, [bugun, "", gorev, "Bekliyor"])
         liste = ", ".join(f"'{g}'" for g in gorevler)
         send_message(f"✅ Bugünün görev listesine eklendi: {liste}. Akşam soracağım!")
 

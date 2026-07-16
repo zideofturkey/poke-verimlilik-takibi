@@ -437,6 +437,30 @@ def metinden_tarih_cikar(text):
     return None
 
 
+def guvenli_append_row(ws, degerler):
+    """gspread'in append_row'u bazen (özellikle bir sekme Google Sheets'in
+    'Tabloya Dönüştür' özelliğiyle bir Tabloya çevrilmişse - bkz.
+    GunlukGorevler'de yaşanan gerçek olay) sessizce başarısız oluyor. Bu
+    fonksiyon önce normal append_row'u dener, başarısız olursa ham Google
+    Sheets API'siyle (values.append) tekrar dener - bu yöntem Tablo
+    yapısıyla daha uyumlu çalışıyor (gerçek olayda doğrulandı)."""
+    try:
+        ws.append_row(degerler)
+        return
+    except Exception as e:
+        print(f"append_row başarısız ({e}), ham API ile tekrar deneniyor...")
+
+    creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+    gc = gspread.authorize(creds)
+    url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}/values/{ws.title}!A:Z:append"
+    params = {"valueInputOption": "RAW", "insertDataOption": "INSERT_ROWS"}
+    body = {"values": [degerler]}
+    resp = gc.http_client.request("POST", url, params=params, json=body)
+    if resp.status_code != 200:
+        raise RuntimeError(f"Ham API de başarısız: {resp.status_code} {resp.text[:500]}")
+    print("Ham API ile başarıyla eklendi.")
+
+
 def get_bekleyen_soru():
     """Bekleyen soruyu döndürür - ama BAYATSA (bugünden değilse) otomatik
     olarak geçersiz sayar ve temizler. Bu, bir cevabın işlenmemesi/hata
