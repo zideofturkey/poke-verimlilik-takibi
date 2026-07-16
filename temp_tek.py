@@ -1,6 +1,5 @@
-from common import get_haftalik_sheet
-ws = get_haftalik_sheet()
-ws.delete_rows(8)
-with open("tek_sonuc.txt", "w") as f:
-    f.write("satir 8 silindi")
+from common import get_gorevler_sheet, bugun_str
+ws = get_gorevler_sheet()
+bugun = bugun_str()
+ws.append_row([bugun, "", "11.00 Work out via Scooter", "Bekliyor"])
 print("bitti")
