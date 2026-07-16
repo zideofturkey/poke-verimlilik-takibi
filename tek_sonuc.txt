@@ -1,0 +1,4 @@
+Toplam satir sayisi: 19
+Sheet basligi/adi: GunlukGorevler
+Sutun sayisi (col_count): 5
+Satir sayisi (row_count): 1988
