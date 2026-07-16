@@ -1,10 +1,10 @@
-name: Gecici Teshis 5
+name: Gecici Duzelt 8
 on:
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  teshis:
+  duzelt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,12 +20,12 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python temp_teshis5.py
+        run: python temp_duzelt8.py
       - if: always()
         run: rm -f service_account.json
       - run: |
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
-          git add teshis5_sonuc.txt
-          git commit -m "chore: teshis5" || echo yok
+          git add duzelt8_sonuc.txt
+          git commit -m "chore: duzelt8" || echo yok
           git push
