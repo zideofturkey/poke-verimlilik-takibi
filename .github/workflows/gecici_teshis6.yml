@@ -1,0 +1,40 @@
+name: Gecici Teshis 6
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  teshis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests gspread google-auth python-dotenv
+      - name: Service account dosyasını oluştur
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
+      - env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python temp_teshis6.py
+      - if: always()
+        run: rm -f service_account.json
+      - run: |
+          git config user.name "poke-bot"
+          git config user.email "poke-bot@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main -q
+            git reset --hard origin/main -q
+            cp /tmp/teshis6_sonuc.txt teshis6_sonuc.txt 2>/dev/null || true
+            git add teshis6_sonuc.txt
+            if git diff --staged --quiet; then break; fi
+            git commit -m "chore: teshis6" -q
+            if git push -q; then break; fi
+            sleep 2
+          done
+      - run: cp teshis6_sonuc.txt /tmp/teshis6_sonuc.txt
+        if: always()
