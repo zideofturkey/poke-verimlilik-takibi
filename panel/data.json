@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-16T23:03:06.958714+03:00",
+  "uretim_zamani": "2026-07-17T00:33:09.606623+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 34
   },
   "heatmap": [
-    {
-      "tarih": "02 June 2026",
-      "tarih_iso": "2026-06-02",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "03 June 2026",
       "tarih_iso": "2026-06-03",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "17 July 2026",
+      "tarih_iso": "2026-07-17",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1249,7 +1249,7 @@
       "gorevler": [
         {
           "metin": "13.00 Work out via Scooter",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "2 video ile Koşullu Milyoner Varsayımları",
@@ -1405,8 +1405,26 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T20:02:54Z",
+      "zaman": "2026-07-16T21:32:56Z",
       "durum": "warn",
+      "runId": "29536447939"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-16T20:18:01Z",
+      "durum": "ok",
+      "runId": "29531479344"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-16T20:06:43Z",
+      "durum": "ok",
+      "runId": "29530693860"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-16T20:02:54Z",
+      "durum": "ok",
       "runId": "29530427899"
     },
     {
@@ -1474,24 +1492,6 @@
       "zaman": "2026-07-16T11:44:43Z",
       "durum": "ok",
       "runId": "29495538951"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-16T11:41:26Z",
-      "durum": "ok",
-      "runId": "29495339060"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-16T11:40:13Z",
-      "durum": "ok",
-      "runId": "29495264025"
-    },
-    {
-      "ad": "Gecici Son",
-      "zaman": "2026-07-16T11:12:08Z",
-      "durum": "ok",
-      "runId": "29493563086"
     }
   ],
   "kocKararlari": [],
