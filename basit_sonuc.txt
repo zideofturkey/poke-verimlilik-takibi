@@ -1,0 +1,14 @@
+Toplam satir: 19
+
+8: ['2026-07-12', '', 'yatırım listeni düzenle', 'Yapıldı']
+9: ['2026-07-13', '', 'Staj 10.30', 'Yapıldı']
+10: ['2026-07-13', '', 'FitCheck Resumption', 'Yapıldı']
+11: ['2026-07-13', '', 'A bear episode', 'Yapıldı']
+12: ['2026-07-13', '', 'Poke tests & revisions', 'Yapıldı']
+13: ['2026-07-14', '', '11.00 work out', 'Yapıldı']
+14: ['2026-07-14', '', 'Book & Coffee at home', 'Yapılmadı']
+15: ['2026-07-14', '', 'Matrix 2', 'Yapılmadı']
+16: ['2026-07-14', '', 'Little fixes on Poke System', 'Yapıldı']
+17: ['2026-07-15', '', 'done the matrix 2', 'Yapıldı']
+18: ['2026-07-15', '', 'Book & Coffee', 'Yapıldı']
+19: ['2026-07-15', '', 'Little trip on scooter', 'Yapıldı']
