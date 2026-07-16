@@ -1,10 +1,10 @@
-name: Gecici Minimal
+name: Gecici Read 2
 on:
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  test:
+  read:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,11 +20,25 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python temp_minimal.py
+        run: python temp_read2.py
       - if: always()
         run: rm -f service_account.json
       - if: always()
         run: |
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
-          cat minimal_sonuc.txt || echo "dosya yok"
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main -q
+            git reset --hard origin/main -q
+            python -c "
+import shutil
+shutil.copy('/tmp/read2_backup.txt', 'read2_sonuc.txt')
+" 2>/dev/null || true
+            git add read2_sonuc.txt 2>/dev/null || true
+            if git diff --staged --quiet 2>/dev/null; then break; fi
+            git commit -m "chore: read2" -q
+            if git push -q; then break; fi
+            sleep 3
+          done
+      - if: always()
+        run: cp read2_sonuc.txt /tmp/read2_backup.txt || true
