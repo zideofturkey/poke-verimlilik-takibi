@@ -1,0 +1,16 @@
+MESAJ: Bu haftaki yapacaklarım:
+1. piyano kursuna git
+2. yatırım listemi düzenle
+CEVAP:
+TIP: HAFTALIK_HEDEF
+GOREVLER: "piyano kursuna git | yatırım listemi düzenle"
+RUTIN:
+========================================
+MESAJ: Haftalık hedeflere ek yapacağım. Şu görevleri haftalık hedeflere ekle:
+1. kitap oku
+2. spor yap
+CEVAP:
+TIP: YENI_GOREV
+GOREVLER: 'kitap oku', 'spor yap'
+RUTIN:
+========================================
