@@ -1,11 +1,11 @@
-name: Gecici Yavas
+name: Gecici Tek
 on:
   workflow_dispatch:
-permissions:
-  contents: write
 jobs:
-  duzelt:
+  test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,13 +20,6 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python temp_yavas.py
+        run: python temp_tek.py
       - if: always()
         run: rm -f service_account.json
-      - if: always()
-        run: |
-          git config user.name "poke-bot"
-          git config user.email "poke-bot@users.noreply.github.com"
-          git add yavas_sonuc.txt
-          git commit -m "chore: yavas sonuc" -q || echo "nothing"
-          git push -q || echo "push failed"
