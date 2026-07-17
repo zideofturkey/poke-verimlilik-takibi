@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-17T23:06:18.149098+03:00",
+  "uretim_zamani": "2026-07-18T00:21:34.393521+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
   "heatmap": [
-    {
-      "tarih": "03 June 2026",
-      "tarih_iso": "2026-06-03",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "04 June 2026",
       "tarih_iso": "2026-06-04",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "18 July 2026",
+      "tarih_iso": "2026-07-18",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1257,7 +1257,7 @@
         },
         {
           "metin": "The Bear Episode 5 (dün)",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Poke Promotion on Chats (dün)",
@@ -1427,8 +1427,26 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-17T20:06:03Z",
+      "zaman": "2026-07-17T21:21:20Z",
       "durum": "warn",
+      "runId": "29614429310"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-17T20:44:11Z",
+      "durum": "ok",
+      "runId": "29612278514"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-17T20:11:16Z",
+      "durum": "ok",
+      "runId": "29610282422"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-17T20:06:03Z",
+      "durum": "ok",
       "runId": "29609970828"
     },
     {
@@ -1496,24 +1514,6 @@
       "zaman": "2026-07-17T15:46:42Z",
       "durum": "ok",
       "runId": "29593504531"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-17T15:24:05Z",
-      "durum": "ok",
-      "runId": "29591948589"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-17T15:24:01Z",
-      "durum": "ok",
-      "runId": "29591944808"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-17T15:22:27Z",
-      "durum": "ok",
-      "runId": "29591836301"
     }
   ],
   "kocKararlari": [],
