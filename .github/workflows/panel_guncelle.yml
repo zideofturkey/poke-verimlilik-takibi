@@ -61,3 +61,14 @@ jobs:
             echo "Push reddedildi, tekrar deneniyor ($i/5)..."
             sleep 2
           done
+
+      - name: Node.js kur (wrangler için)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Paneli Cloudflare'e deploy et (gerçek veriyi canlıya yansıt)
+        working-directory: panel
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler deploy

@@ -65,7 +65,7 @@ bağlı - bkz. Roadmap).
 - `panel_veri_uret.py` — panel/data.json'ı gerçek Sheets/GitHub verisinden üretir
 - `panel/` — gözlemlenebilirlik paneli (statik HTML, Cloudflare Workers üzerinde barındırılıyor)
 - `worker/` — Cloudflare Worker, Telegram webhook'unu GitHub Actions'a anlık iletir
-- `.github/workflows/` — `gonder.yml` (zamanlama), `webhook.yml` (anlık işleme), `dinle.yml` (yedek), `analiz.yml` (haftalık), `temizle.yml` (haftalık), `panel_guncelle.yml` (panel verisi, 30dk hedefli ama GitHub'ın zamanlamasına bağlı)
+- `.github/workflows/` — `gonder.yml` (zamanlama), `webhook.yml` (anlık işleme), `dinle.yml` (yedek), `analiz.yml` (haftalık), `temizle.yml` (haftalık), `panel_guncelle.yml` (panel verisini üretir, commit'ler VE otomatik olarak Cloudflare'e `wrangler deploy` ile yayınlar — 30dk hedefli ama GitHub'ın zamanlamasına bağlı)
 
 **Google Sheets sekmeleri:**
 - `Takip` — tüm tamamlanan/kaçırılan görevlerin log'u
