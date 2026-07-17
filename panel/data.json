@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-17T21:34:04.698952+03:00",
+  "uretim_zamani": "2026-07-17T23:06:18.149098+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 40
+    "haftaTamamlamaYuzdesi": 43
   },
   "heatmap": [
     {
@@ -1195,7 +1195,7 @@
     {
       "tarih": "17 July 2026",
       "tarih_iso": "2026-07-17",
-      "level": 1,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1207,7 +1207,7 @@
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
@@ -1249,7 +1249,7 @@
       "gorevler": [
         {
           "metin": "2 video ile Koşullu Milyoner Varsayımları (dün)",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Fitcheck Geliştirmeleri (Claude MCP Denemesi, Frontend'de çok sorun var) (dün)",
@@ -1261,7 +1261,7 @@
         },
         {
           "metin": "Poke Promotion on Chats (dün)",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1427,8 +1427,44 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-17T18:33:52Z",
+      "zaman": "2026-07-17T20:06:03Z",
       "durum": "warn",
+      "runId": "29609970828"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-17T19:14:35Z",
+      "durum": "ok",
+      "runId": "29606805421"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-17T19:14:23Z",
+      "durum": "ok",
+      "runId": "29606793812"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-17T19:14:15Z",
+      "durum": "ok",
+      "runId": "29606785788"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-17T19:14:04Z",
+      "durum": "ok",
+      "runId": "29606774346"
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-17T18:58:00Z",
+      "durum": "ok",
+      "runId": "29605782099"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-17T18:33:52Z",
+      "durum": "ok",
       "runId": "29604275259"
     },
     {
@@ -1478,42 +1514,6 @@
       "zaman": "2026-07-17T15:22:27Z",
       "durum": "ok",
       "runId": "29591836301"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-17T15:18:22Z",
-      "durum": "ok",
-      "runId": "29591559860"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-17T14:48:48Z",
-      "durum": "ok",
-      "runId": "29589527283"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-17T14:12:24Z",
-      "durum": "ok",
-      "runId": "29587019780"
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-17T12:15:52Z",
-      "durum": "ok",
-      "runId": "29579625438"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-17T12:10:09Z",
-      "durum": "ok",
-      "runId": "29579294478"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-17T11:22:58Z",
-      "durum": "ok",
-      "runId": "29576650139"
     }
   ],
   "kocKararlari": [],
