@@ -21,20 +21,26 @@ Sheets'e kaydeder.
 3. Google Cloud service account JSON dosyanı `service_account.json` adıyla
    bu klasöre koy (bu dosya asla commit'lenmez, `.gitignore`'da).
 
-4. Çalıştır:
+4. Ana script'ler (elle test için, normalde GitHub Actions tetikler):
    ```
-   python bot_sheets.py
+   python gonder.py sabah|hatirlat|aksam|hafta_ortasi|pazar
+   python handle_update.py    # webhook tarafından CLIENT_PAYLOAD ile tetiklenir
+   python dinle.py            # saatlik yedek poller
+   python analiz.py           # haftalık SLM analizi + Koç önerileri
+   python temizle.py          # eski veri temizliği
+   python panel_veri_uret.py  # panel/data.json üretir
    ```
 
 **Rutinler vs. Günlük Görevler (önemli ayrım):**
-- **Rutinler** (`common.py` içinde `RUTINLER` listesi — Fransızca, sabah/akşam telefon, verimli video) her akşam **otomatik** sorulur, kullanıcı yazmaz. Kaçırılırsa, ertesi akşam "🔁 Dünkü eksiği telafi ettim" butonu görünür.
-- **Günlük görevler** kullanıcının sabah yazdığı tek seferlik işlerdir (ör. "halı saha"). Kaçırılırsa sadece **1 gün** hatırlatılır, sonra düşer — sürekli nag etmez.
+- **Rutinler** (Sheets'teki `Rutinler` sekmesi — kullanıcı doğrudan görüp düzenleyebilir) her akşam/gün içi hatırlatmada **otomatik** sorulur, kullanıcı yazmaz. Kaçırılırsa, ertesi gün "🔁 Dünkü eksiği telafi ettim" butonu görünür.
+- **Günlük görevler** kullanıcının sabah yazdığı (ya da istediği an serbest metinle eklediği) tek seferlik işlerdir. Kaçırılırsa sadece **1 gün** hatırlatılır, sonra düşer — sürekli nag etmez.
 
 ## SLM Entegrasyonu — Mimari Kararı
 
-Sistem, **yerel dil modelini (SLM) GitHub Actions'ın geçici bulut runner'ı
-içinde** çalıştırır (Ollama + qwen2.5:7b), her hafta bir kez ayağa
-kaldırılıp iş bitince kapatılır.
+Sistem **iki ayrı yerel model** kullanır, ikisi de Ollama üzerinden,
+GitHub Actions'ın geçici bulut runner'ı içinde çalışır:
+- **qwen2.5:3b** — günlük sınıflandırma ve serbest-metin cevapları (hız/güvenilirlik öncelikli, her mesajda çalışır)
+- **qwen2.5:7b** — haftalık analiz ve Koç önerileri (kalite öncelikli, haftada birkaç kez çalışır)
 
 **Bu, katı anlamda "on-premise" değildir** — bilinçli bir tercih:
 gerçek bir 7/24 açık yerel cihaz (laptop veya Raspberry Pi) gerektirmek,
@@ -43,22 +49,31 @@ alırdı. Sürdürülebilirlik ve otomasyon, katı on-premise tanımına sadık
 kalmaktan önceliklendirildi. Model yine de açık kaynak ve küçük (SLM)
 kategorisinde — sadece barındığı altyapı bulut, hesaplama bulutta
 üçüncü parti bir API'ye değil, bizim kontrolümüzdeki bir runner'da
-gerçekleşiyor.
+gerçekleşiyor. **VPS'e geçiş planlanıyor** — bu, hem gerçek on-premise
+tanımını karşılayacak hem de günlük model daha büyük/kaliteli bir
+modele yükseltilebilecek (şu an 3B'nin sınıflandırma hataları buna
+bağlı - bkz. Roadmap).
 
 ## Mimari (güncel)
 
 - `common.py` — paylaşılan Telegram/Sheets yardımcı fonksiyonları + genel görev/durum yönetimi
-- `gonder.py` — proaktif mesajlar: `sabah` (serbest metin görev sorusu + telafi hatırlatması), `aksam` (bugünkü görevleri kutucuklu sorar), `pazar` (haftalık hedef), `hafta_ortasi`
+- `gonder.py` — proaktif mesajlar: `sabah`, `hatirlat` (günde 3 kez, sadece cevapsız rutinler), `aksam`, `pazar`, `hafta_ortasi`
 - `handle_update.py` — buton basımlarını VE serbest metin cevaplarını işler (webhook tarafından anlık tetiklenir)
 - `dinle.py` — webhook başarısız olursa diye saatte bir çalışan yedek (aynı işleme mantığını kullanır)
+- `analiz.py` — haftalık SLM analizi (Değerlendirici + Koç + Rapor rolleri)
+- `temizle.py` — eski veri temizliği (haftalık)
+- `panel_veri_uret.py` — panel/data.json'ı gerçek Sheets/GitHub verisinden üretir
+- `panel/` — gözlemlenebilirlik paneli (statik HTML, Cloudflare Workers üzerinde barındırılıyor)
 - `worker/` — Cloudflare Worker, Telegram webhook'unu GitHub Actions'a anlık iletir
-- `.github/workflows/` — `gonder.yml` (zamanlama), `webhook.yml` (anlık işleme), `dinle.yml` (yedek)
+- `.github/workflows/` — `gonder.yml` (zamanlama), `webhook.yml` (anlık işleme), `dinle.yml` (yedek), `analiz.yml` (haftalık), `temizle.yml` (haftalık), `panel_guncelle.yml` (panel verisi, 30dk hedefli ama GitHub'ın zamanlamasına bağlı)
 
 **Google Sheets sekmeleri:**
 - `Takip` — tüm tamamlanan/kaçırılan görevlerin log'u
 - `GunlukGorevler` — her günün serbest-metinle tanımlanan görev listesi + durumu
 - `HaftalikHedefler` — haftalık hedef metinleri
+- `Rutinler` — kullanıcının doğrudan düzenleyebildiği rutin listesi (isim, soru, aktif/pasif)
 - `Durum` — hangi serbest-metin sorusunun cevabı bekleniyor (basit key-value)
+- `SLMLog` — sınıflandırma kararlarının tam prompt/cevap kaydı (panelin Teknik sekmesi için)
 
 **Veri saklama:**
 - `GunlukGorevler`: 15 günden eski satırlar otomatik silinir (haftalık, Pazartesi)
@@ -143,7 +158,7 @@ temsil ettiği açıkça belirtilmiştir.
 - Seviye 2 (✅ tamamlandı): Koç, bir rutin 5+ gündür üst üste kaçırılırsa haftalık analiz sırasında duraklatma önerir. **Eşik kod-tabanlı (ne zaman devreye gireceği sabit), ama mesajın içeriği ve cevabına verdiği tavsiye SLM tarafından üretiliyor** — kullanıcının evet/hayır cevabına göre kişiselleştirilmiş, bağlama uygun bir tavsiye veriyor. Onay olmadan Rutinler sekmesini asla değiştirmiyor.
 - Seviye 3 (ileride, onaylı): zamanlama (cron) değişikliği
 - [x] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor) — yukarıda dokümante edildi
-- [ ] Observability paneli — tasarım tamamlandı, gerçek veriye bağlanması bekliyor
+- [x] Observability paneli — Kişisel sekme tamamen gerçek veriye bağlı; Teknik sekme workflow geçmişi + Koç kararları gerçek, SLM karar logu sadece bu özelliğin eklendiği tarihten sonrası için mevcut. `https://poke-observability.ediz-kacmaz19.workers.dev` adresinde canlı.
 
 ## Güvenlik notu
 
