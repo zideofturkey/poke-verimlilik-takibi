@@ -579,7 +579,7 @@
     <div class="section">
       <div class="section-head">
         <h2>Workflow türüne göre başarı oranı</h2>
-        <span class="empty-hint">Son 40 çalıştırma üzerinden</span>
+        <span class="empty-hint">Bir workflow adına tıkla, ne işe yaradığını gör</span>
       </div>
       <table class="log-table">
         <thead>
@@ -858,14 +858,32 @@
     document.getElementById('workflowFiltre').addEventListener('change', e => workflowRenderla(e.target.value));
 
     // ---------- WORKFLOW TÜR ÖZETİ ----------
-    document.getElementById('turOzetTablo').innerHTML = (veri.workflowTurOzet || []).map(t => `
-      <tr class="log-row">
-        <td>${t.ad}</td>
+    const WORKFLOW_ACIKLAMALARI = {
+      "Gönder": "Zamanlanmış proaktif mesajları gönderir: sabah günlük görev sorusu, günde birkaç kez (sadece cevapsız olanlar için) rutin hatırlatması, akşam kontrolü, pazar haftalık hedef sorusu, hafta ortası kontrolü. Cron ile zamanlanmıştır.",
+      "Webhook": "Telegram'dan gelen bir buton basımını ya da serbest metin mesajını ANINDA işler. Cloudflare Worker tarafından, mesaj geldiği an tetiklenir - saniyeler içinde tepki verir, bekleme yoktur.",
+      "Analiz": "Haftada bir kez (pazar akşamı) çalışır. Son 7 günün verisini SLM ile analiz edip doğal-dil özet çıkarır, sürekli kaçırılan bir rutin varsa Koç önerisi sunar.",
+      "Dinle": "Webhook bir şekilde başarısız olursa diye saatte bir çalışan yedek mekanizma. Kaçırılmış olabilecek bir mesaj/buton var mı diye Telegram'ı kontrol eder, varsa işler.",
+      "Temizle": "Haftada bir (pazartesi) çalışır. Artık gerekli olmayan eski veriyi (15+ günlük günlük görevler, 14+ günlük haftalık hedefler) Sheets'ten temizler. Takip sekmesine hiç dokunmaz.",
+      "Panel": "Gözlemlenebilirlik panelinin gösterdiği veriyi (bu sayfayı) Sheets ve GitHub'dan üretir, commit'ler, ve Cloudflare'e otomatik olarak yeniden deploy eder.",
+      "Gecici Panel Test": "Geliştirme sırasında bir özelliği test etmek için oluşturulan geçici bir çalıştırma - kalıcı bir işlevi yok, zamanla geçmişten düşecek.",
+    };
+
+    document.getElementById('turOzetTablo').innerHTML = (veri.workflowTurOzet || []).map((t, idx) => `
+      <tr class="log-row" data-tur-idx="${idx}">
+        <td style="color:var(--navy); font-weight:600; text-decoration:underline dotted;">${t.ad}</td>
         <td>${t.toplam}</td>
         <td><span class="badge ${t.oran >= 90 ? 'ok' : 'warn'}">%${t.oran}</span></td>
         <td>${sureGoster(t.ortSureSn)}</td>
       </tr>
     `).join('') || '<tr><td colspan="4" style="color:var(--text-muted);">Kayıt yok.</td></tr>';
+
+    document.querySelectorAll('#turOzetTablo tr[data-tur-idx]').forEach(row => {
+      row.addEventListener('click', () => {
+        const t = veri.workflowTurOzet[row.dataset.turIdx];
+        const aciklama = WORKFLOW_ACIKLAMALARI[t.ad] || "Bu workflow için henüz bir açıklama eklenmedi.";
+        modalAc(t.ad, `<p style="font-size:13.5px; line-height:1.6; color:var(--text-secondary); margin:0;">${aciklama}</p>`);
+      });
+    });
 
     // ---------- SLM KATEGORİ DAĞILIMI ----------
     if (veri.slmDagilim && veri.slmDagilim.length) {
