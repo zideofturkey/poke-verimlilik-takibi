@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-18T03:55:43.139370+03:00",
+  "uretim_zamani": "2026-07-18T06:56:37.583161+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 43
+    "haftaTamamlamaYuzdesi": 49
   },
   "heatmap": [
     {
@@ -1145,7 +1145,7 @@
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Telafi"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1168,11 +1168,11 @@
     {
       "tarih": "17 July 2026",
       "tarih_iso": "2026-07-17",
-      "level": 2,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1188,7 +1188,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1223,7 +1223,7 @@
   "rutinOranlari": [
     {
       "isim": "Fransızca çalışma",
-      "oran": 80
+      "oran": 100
     },
     {
       "isim": "Sabah telefonsuzluğu",
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 50
+      "oran": 67
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1253,7 +1253,7 @@
         },
         {
           "metin": "Fitcheck Geliştirmeleri (Claude MCP Denemesi, Frontend'de çok sorun var) (dün)",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "The Bear Episode 5 (dün)",
@@ -1427,8 +1427,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-18T00:55:31Z",
+      "zaman": "2026-07-18T03:56:27Z",
       "durum": "warn",
+      "runId": "29629698705"
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-18T03:14:43Z",
+      "durum": "ok",
+      "runId": "29628478047"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T01:37:49Z",
+      "durum": "ok",
+      "runId": "29625564628"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T01:37:47Z",
+      "durum": "ok",
+      "runId": "29625563585"
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T01:37:34Z",
+      "durum": "ok",
+      "runId": "29625555647"
+    },
+    {
+      "ad": "Panel - Veri Güncelle",
+      "zaman": "2026-07-18T00:55:31Z",
+      "durum": "ok",
       "runId": "29624149202"
     },
     {
@@ -1484,36 +1514,6 @@
       "zaman": "2026-07-17T19:14:35Z",
       "durum": "ok",
       "runId": "29606805421"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-17T19:14:23Z",
-      "durum": "ok",
-      "runId": "29606793812"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-17T19:14:15Z",
-      "durum": "ok",
-      "runId": "29606785788"
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-17T19:14:04Z",
-      "durum": "ok",
-      "runId": "29606774346"
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-17T18:58:00Z",
-      "durum": "ok",
-      "runId": "29605782099"
-    },
-    {
-      "ad": "Panel - Veri Güncelle",
-      "zaman": "2026-07-17T18:33:52Z",
-      "durum": "ok",
-      "runId": "29604275259"
     }
   ],
   "kocKararlari": [],
