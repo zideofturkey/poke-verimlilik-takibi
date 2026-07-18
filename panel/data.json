@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-18T22:05:42.731017+03:00",
+  "uretim_zamani": "2026-07-18T23:12:37.043500+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 54
   },
@@ -1249,7 +1249,7 @@
       "gorevler": [
         {
           "metin": "Scooter repair",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "A fresh start to new book",
@@ -1257,7 +1257,7 @@
         },
         {
           "metin": "Bear E6",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Music for Ganzo",
@@ -1449,10 +1449,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-18T19:05:29Z",
+      "zaman": "2026-07-18T20:12:20Z",
       "durum": "warn",
+      "runId": "29659255053",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-18T19:14:17Z",
+      "durum": "ok",
+      "runId": "29657406707",
+      "sureSn": 25
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T19:10:39Z",
+      "durum": "ok",
+      "runId": "29657291737",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T19:10:37Z",
+      "durum": "ok",
+      "runId": "29657290530",
+      "sureSn": 32
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-18T19:05:29Z",
+      "durum": "ok",
       "runId": "29657128142",
-      "sureSn": 3
+      "sureSn": 40
     },
     {
       "ad": "Gönder",
@@ -1523,60 +1551,32 @@
       "durum": "ok",
       "runId": "29643917808",
       "sureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-18T11:57:42Z",
-      "durum": "ok",
-      "runId": "29643461945",
-      "sureSn": 36
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-18T11:38:23Z",
-      "durum": "ok",
-      "runId": "29642908727",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-18T11:38:22Z",
-      "durum": "ok",
-      "runId": "29642907863",
-      "sureSn": 26
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-18T11:37:57Z",
-      "durum": "ok",
-      "runId": "29642895793",
-      "sureSn": 36
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 17,
+      "toplam": 16,
       "oran": 94,
-      "ortSureSn": 49
+      "ortSureSn": 50
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 10,
+      "oran": 100,
+      "ortSureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 52
     },
     {
       "ad": "Gönder",
       "toplam": 4,
       "oran": 100,
       "ortSureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 10,
-      "oran": 100,
-      "ortSureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 57
     },
     {
       "ad": "Gecici Panel Test",
