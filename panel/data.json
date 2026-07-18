@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-18T14:09:16.375168+03:00",
+  "uretim_zamani": "2026-07-18T15:13:06.804223+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 49
+    "haftaTamamlamaYuzdesi": 54
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "18 July 2026",
       "tarih_iso": "2026-07-18",
-      "level": 0,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 67
+      "oran": 57
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1235,7 +1235,7 @@
     },
     {
       "isim": "Verimli video izleme",
-      "oran": 60
+      "oran": 67
     },
     {
       "isim": "Mewing",
@@ -1243,6 +1243,28 @@
     }
   ],
   "gunlukGorevGecmisi": [
+    {
+      "tarih": "18 July",
+      "gunAdi": "Cumartesi",
+      "gorevler": [
+        {
+          "metin": "Scooter repair",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "A fresh start to new book",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Bear E6",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Music for Ganzo",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
     {
       "tarih": "17 July",
       "gunAdi": "Cuma",
@@ -1427,10 +1449,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-18T11:09:02Z",
+      "zaman": "2026-07-18T12:12:52Z",
       "durum": "warn",
-      "runId": "29642060867",
+      "runId": "29643917808",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-18T11:57:42Z",
+      "durum": "ok",
+      "runId": "29643461945",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T11:38:23Z",
+      "durum": "ok",
+      "runId": "29642908727",
+      "sureSn": 37
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T11:38:22Z",
+      "durum": "ok",
+      "runId": "29642907863",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T11:37:57Z",
+      "durum": "ok",
+      "runId": "29642895793",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T11:20:39Z",
+      "durum": "ok",
+      "runId": "29642392577",
+      "sureSn": 214
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-18T11:09:02Z",
+      "durum": "ok",
+      "runId": "29642060867",
+      "sureSn": 38
     },
     {
       "ad": "Gönder",
@@ -1487,56 +1551,26 @@
       "durum": "ok",
       "runId": "29633543860",
       "sureSn": 31
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-18T06:09:07Z",
-      "durum": "ok",
-      "runId": "29633492768",
-      "sureSn": 37
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-18T05:39:40Z",
-      "durum": "ok",
-      "runId": "29632638938",
-      "sureSn": 41
-    },
-    {
-      "ad": "Gecici Panel Test",
-      "zaman": "2026-07-18T05:37:30Z",
-      "durum": "ok",
-      "runId": "29632574777",
-      "sureSn": 17
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-18T03:56:27Z",
-      "durum": "ok",
-      "runId": "29629698705",
-      "sureSn": 36
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-18T03:14:43Z",
-      "durum": "ok",
-      "runId": "29628478047",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-18T01:37:49Z",
-      "durum": "ok",
-      "runId": "29625564628",
-      "sureSn": 28
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 16,
-      "oran": 94,
-      "ortSureSn": 52
+      "toplam": 15,
+      "oran": 93,
+      "ortSureSn": 50
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 12,
+      "oran": 100,
+      "ortSureSn": 49
     },
     {
       "ad": "Gönder",
@@ -1545,26 +1579,21 @@
       "ortSureSn": 18
     },
     {
-      "ad": "Dinle",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 35
-    },
-    {
       "ad": "Gecici Panel Test",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 17
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 60
     }
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-18",
+      "saat": "14:24",
+      "kategori": "YENI_GOREV",
+      "ozet": "Günaydın, bugünkü görevlerimi kaydet lütfen:\n1. Scooter repair\n2. A fresh start ",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: sabah sorduğum 'bugün ne yapacaksın' sorusu.\n\nKullanıcı şunu yazdı:\n\"Günaydın, bugünkü görevlerimi kaydet lütfen:\n1. Scooter repair\n2. A fresh start to new book\n3. Bear E6\n4. Music for Ganzo\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÖNEMLİ: 'bugün/bugünkü' kelimesi geçiyorsa ve 'hafta/haftalık' GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF DEĞİLDİR - liste veriyor olması (madde madde yazması) HAFTALIK_HEDEF sanmana sebep olmasın\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listedeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listeden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap.\n\nCEVAP (ham):\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: YENI_GOREV\nGOREVLER: \"Scooter repair | A fresh start to new book | Bear E6 | Music for Ganzo\"\nRUTIN: \nCEVAP: Güneş doğmasıyla başladığımı hatırlatıyorum. Bu günün görevlerini kaydettim."
+    },
     {
       "tarih": "2026-07-17",
       "saat": "18:28",
@@ -1623,6 +1652,10 @@
     },
     {
       "kategori": "GUNLUK_GOREV",
+      "sayi": 1
+    },
+    {
+      "kategori": "YENI_GOREV",
       "sayi": 1
     }
   ],
