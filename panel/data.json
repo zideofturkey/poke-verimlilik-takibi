@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-18T16:57:41.534329+03:00",
+  "uretim_zamani": "2026-07-18T18:03:23.402737+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 54
   },
@@ -1449,10 +1449,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-18T13:57:30Z",
+      "zaman": "2026-07-18T15:03:07Z",
       "durum": "warn",
+      "runId": "29649221013",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-18T15:01:43Z",
+      "durum": "ok",
+      "runId": "29649176239",
+      "sureSn": 23
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-18T15:00:05Z",
+      "durum": "ok",
+      "runId": "29649116023",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-18T13:57:30Z",
+      "durum": "ok",
       "runId": "29647111425",
-      "sureSn": 2
+      "sureSn": 37
     },
     {
       "ad": "Dinle",
@@ -1530,27 +1551,6 @@
       "durum": "ok",
       "runId": "29640014413",
       "sureSn": 36
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-18T08:53:30Z",
-      "durum": "ok",
-      "runId": "29638226648",
-      "sureSn": 33
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-18T08:20:16Z",
-      "durum": "ok",
-      "runId": "29637284854",
-      "sureSn": 38
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-18T07:52:12Z",
-      "durum": "ok",
-      "runId": "29636483175",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
@@ -1562,21 +1562,21 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 9,
+      "toplam": 10,
       "oran": 100,
-      "ortSureSn": 34
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 12,
-      "oran": 100,
-      "ortSureSn": 49
+      "ortSureSn": 33
     },
     {
       "ad": "Gönder",
       "toplam": 3,
       "oran": 100,
-      "ortSureSn": 18
+      "ortSureSn": 17
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 51
     },
     {
       "ad": "Gecici Panel Test",
