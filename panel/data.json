@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-18T23:12:37.043500+03:00",
+  "uretim_zamani": "2026-07-19T00:24:12.156601+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 54
+    "haftaTamamlamaYuzdesi": 51
   },
   "heatmap": [
-    {
-      "tarih": "04 June 2026",
-      "tarih_iso": "2026-06-04",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "05 June 2026",
       "tarih_iso": "2026-06-05",
@@ -1195,11 +1168,11 @@
     {
       "tarih": "18 July 2026",
       "tarih_iso": "2026-07-18",
-      "level": 2,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1215,7 +1188,34 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
+        }
+      ]
+    },
+    {
+      "tarih": "19 July 2026",
+      "tarih_iso": "2026-07-19",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
         }
       ]
     }
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 67
+      "oran": 75
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1449,10 +1449,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-18T20:12:20Z",
+      "zaman": "2026-07-18T21:23:50Z",
       "durum": "warn",
+      "runId": "29661520601",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-18T20:59:20Z",
+      "durum": "ok",
+      "runId": "29660749509",
+      "sureSn": 38
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T20:46:06Z",
+      "durum": "ok",
+      "runId": "29660331688",
+      "sureSn": 38
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-18T20:13:04Z",
+      "durum": "ok",
+      "runId": "29659275933",
+      "sureSn": 26
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-18T20:12:20Z",
+      "durum": "ok",
       "runId": "29659255053",
-      "sureSn": 4
+      "sureSn": 43
     },
     {
       "ad": "Dinle",
@@ -1523,42 +1551,14 @@
       "durum": "ok",
       "runId": "29649176239",
       "sureSn": 23
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-18T15:00:05Z",
-      "durum": "ok",
-      "runId": "29649116023",
-      "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-18T13:57:30Z",
-      "durum": "ok",
-      "runId": "29647111425",
-      "sureSn": 37
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-18T13:41:17Z",
-      "durum": "ok",
-      "runId": "29646610197",
-      "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-18T12:12:52Z",
-      "durum": "ok",
-      "runId": "29643917808",
-      "sureSn": 38
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 16,
-      "oran": 94,
-      "ortSureSn": 50
+      "toplam": 15,
+      "oran": 93,
+      "ortSureSn": 38
     },
     {
       "ad": "Dinle",
@@ -1568,9 +1568,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 9,
+      "toplam": 10,
       "oran": 100,
-      "ortSureSn": 52
+      "ortSureSn": 50
     },
     {
       "ad": "Gönder",
