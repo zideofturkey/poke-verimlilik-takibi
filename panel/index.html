@@ -578,6 +578,19 @@
 
     <div class="section">
       <div class="section-head">
+        <h2>Workflow türüne göre başarı oranı</h2>
+        <span class="empty-hint">Son 40 çalıştırma üzerinden</span>
+      </div>
+      <table class="log-table">
+        <thead>
+          <tr><th>Workflow</th><th>Çalıştırma sayısı</th><th>Başarı oranı</th><th>Ort. süre</th></tr>
+        </thead>
+        <tbody id="turOzetTablo"></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
         <h2>Workflow çalıştırmaları</h2>
         <select id="workflowFiltre">
           <option value="all">Tümü</option>
@@ -586,7 +599,7 @@
           <option value="Analiz">Analiz</option>
           <option value="Dinle">Dinle</option>
           <option value="Temizle">Temizle</option>
-          <option value="Panel - Veri Güncelle">Panel</option>
+          <option value="Panel">Panel</option>
         </select>
       </div>
       <table class="log-table">
@@ -602,6 +615,7 @@
         <h2>SLM sınıflandırma kararları</h2>
         <span class="empty-hint">Bir satıra tıkla, tam prompt/cevabı gör (sadece bu tarihten sonrası)</span>
       </div>
+      <div id="slmDagilim" style="margin-bottom:16px;"></div>
       <table class="log-table">
         <thead>
           <tr><th>Zaman</th><th>Mesaj (özet)</th><th>Kategori</th></tr>
@@ -621,6 +635,20 @@
         <tbody id="kocTablo"></tbody>
       </table>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Hata geçmişi</h2>
+        <span class="empty-hint">Sadece bu özelliğin eklendiği tarihten sonrası için</span>
+      </div>
+      <table class="log-table">
+        <thead>
+          <tr><th>Zaman</th><th>Bağlam</th></tr>
+        </thead>
+        <tbody id="hataTablo"></tbody>
+      </table>
+    </div>
+
 
   </div>
 
@@ -806,13 +834,21 @@
     `;
 
     // ---------- WORKFLOW TABLOSU ----------
+    function sureGoster(sn) {
+      if (sn == null) return '—';
+      if (sn < 60) return `${sn}s`;
+      const dk = Math.floor(sn / 60);
+      const kalanSn = sn % 60;
+      return `${dk}dk ${kalanSn}s`;
+    }
+
     function workflowRenderla(filtre) {
       const liste = filtre === 'all' ? veri.workflowGecmisi : veri.workflowGecmisi.filter(w => w.ad === filtre);
       document.getElementById('workflowTablo').innerHTML = liste.map(w => `
         <tr class="log-row">
           <td>${w.ad}</td>
           <td>${zamanGoster(w.zaman)}</td>
-          <td>—</td>
+          <td>${sureGoster(w.sureSn)}</td>
           <td>${durumBadge(w.durum === 'ok' ? 'Yapıldı' : 'Bekliyor')}</td>
           <td><a class="gh-link" href="${REPO_URL}/actions/runs/${w.runId}" target="_blank" rel="noopener">GitHub'da gör &rarr;</a></td>
         </tr>
@@ -820,6 +856,39 @@
     }
     workflowRenderla('all');
     document.getElementById('workflowFiltre').addEventListener('change', e => workflowRenderla(e.target.value));
+
+    // ---------- WORKFLOW TÜR ÖZETİ ----------
+    document.getElementById('turOzetTablo').innerHTML = (veri.workflowTurOzet || []).map(t => `
+      <tr class="log-row">
+        <td>${t.ad}</td>
+        <td>${t.toplam}</td>
+        <td><span class="badge ${t.oran >= 90 ? 'ok' : 'warn'}">%${t.oran}</span></td>
+        <td>${sureGoster(t.ortSureSn)}</td>
+      </tr>
+    `).join('') || '<tr><td colspan="4" style="color:var(--text-muted);">Kayıt yok.</td></tr>';
+
+    // ---------- SLM KATEGORİ DAĞILIMI ----------
+    if (veri.slmDagilim && veri.slmDagilim.length) {
+      const toplam = veri.slmDagilim.reduce((a, b) => a + b.sayi, 0);
+      document.getElementById('slmDagilim').innerHTML = veri.slmDagilim.map(d => {
+        const yuzde = Math.round((d.sayi / toplam) * 100);
+        return `
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+            <span style="width:130px; font-size:12.5px; font-weight:600; color:var(--text-primary);">${d.kategori}</span>
+            <div class="bar-track" style="flex:1;"><div class="bar-fill" style="width:${yuzde}%"></div></div>
+            <span style="width:70px; text-align:right; font-size:12.5px; color:var(--text-muted);">${d.sayi} (%${yuzde})</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ---------- HATA GEÇMİŞİ ----------
+    document.getElementById('hataTablo').innerHTML = (veri.hataGecmisi || []).map(h => `
+      <tr class="log-row">
+        <td>${h.tarih} ${h.saat}</td>
+        <td>${h.baglam}</td>
+      </tr>
+    `).join('') || '<tr><td colspan="2" style="color:var(--text-muted);">Kayıtlı hata yok 🎉</td></tr>';
 
     // ---------- SLM KARAR TABLOSU ----------
     const slmBody = document.getElementById('slmTablo');

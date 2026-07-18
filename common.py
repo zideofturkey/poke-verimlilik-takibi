@@ -140,8 +140,11 @@ SLM_URL = "http://localhost:11434/api/generate"
 
 def hata_logla(baglam, hata_metni):
     """Bir hata olduğunda, tahmin etmek yerine GERÇEK hatayı görebilmek
-    için son_hata.txt dosyasına yazar. Bu dosya webhook.yml'in commit
-    adımında otomatik olarak repoya kaydedilir."""
+    için son_hata.txt dosyasına yazar (webhook.yml'in commit adımında
+    repoya kaydedilir - detaylı teşhis için). AYRICA kalıcı bir özet
+    HataLog sekmesine eklenir - panelin Teknik sekmesinde zaman içindeki
+    hata sıklığını görebilmek için (son_hata.txt her seferinde üzerine
+    yazıldığı için tek başına geçmişi tutmuyor)."""
     try:
         with open("son_hata.txt", "w", encoding="utf-8") as f:
             f.write(f"Zaman: {datetime.datetime.now(TR_TZ).isoformat()}\n")
@@ -149,6 +152,18 @@ def hata_logla(baglam, hata_metni):
             f.write(hata_metni)
     except Exception as e:
         print(f"Hata loglanamadı bile: {e}")
+
+    try:
+        spreadsheet = get_sheet().spreadsheet
+        try:
+            ws = spreadsheet.worksheet("HataLog")
+        except gspread.WorksheetNotFound:
+            ws = spreadsheet.add_worksheet(title="HataLog", rows=1000, cols=3)
+            ws.update(values=[["Tarih", "Saat", "Baglam"]], range_name="A1:C1")
+        now = datetime.datetime.now(TR_TZ)
+        guvenli_append_row(ws, [now.strftime("%Y-%m-%d"), now.strftime("%H:%M"), baglam[:200]])
+    except Exception as e:
+        print(f"HataLog'a yazılamadı (kritik değil): {e}")
 
 
 def _ollama_hazir_mi():

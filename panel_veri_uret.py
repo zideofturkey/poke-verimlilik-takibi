@@ -126,34 +126,68 @@ def haftalik_hedef_gecmisi():
 
 def workflow_gecmisi():
     if not GITHUB_TOKEN:
-        return []
+        return [], {}
     try:
         resp = requests.get(
             f"https://api.github.com/repos/{GITHUB_REPO}/actions/runs",
             headers={"Authorization": f"Bearer {GITHUB_TOKEN}", "Accept": "application/vnd.github+json"},
-            params={"per_page": 15},
+            params={"per_page": 40},
             timeout=15,
         )
         resp.raise_for_status()
         data = resp.json()
     except Exception as e:
         print(f"Workflow gecmisi cekilemedi: {e}")
-        return []
+        return [], {}
+
+    def kisa_ad(ham_ad):
+        return (ham_ad.replace("Gönder - Proaktif Mesajlar", "Gönder")
+                       .replace("Webhook - Anlık Buton İşleme", "Webhook")
+                       .replace("Analiz - Haftalık SLM Özeti", "Analiz")
+                       .replace("Dinle - Buton Kontrolü", "Dinle")
+                       .replace("Temizle - Eski Veri", "Temizle")
+                       .replace("Panel - Veri Güncelle", "Panel"))
 
     sonuc = []
+    tur_istatistik = {}  # ad -> {"toplam": n, "basarili": n, "sureler": [sn, ...]}
     for run in data.get("workflow_runs", []):
-        ad = run["name"].replace("Gönder - Proaktif Mesajlar", "Gönder") \
-                         .replace("Webhook - Anlık Buton İşleme", "Webhook") \
-                         .replace("Analiz - Haftalık SLM Özeti", "Analiz") \
-                         .replace("Dinle - Buton Kontrolü", "Dinle") \
-                         .replace("Temizle - Eski Veri", "Temizle")
+        ad = kisa_ad(run["name"])
+        sure_sn = None
+        try:
+            baslangic = datetime.datetime.fromisoformat(run["run_started_at"].replace("Z", "+00:00"))
+            bitis = datetime.datetime.fromisoformat(run["updated_at"].replace("Z", "+00:00"))
+            sure_sn = round((bitis - baslangic).total_seconds())
+        except Exception:
+            pass
+
+        basarili = run["conclusion"] == "success"
         sonuc.append({
             "ad": ad,
             "zaman": run["created_at"],
-            "durum": "ok" if run["conclusion"] == "success" else "warn",
+            "durum": "ok" if basarili else "warn",
             "runId": str(run["id"]),
+            "sureSn": sure_sn,
         })
-    return sonuc
+
+        if ad not in tur_istatistik:
+            tur_istatistik[ad] = {"toplam": 0, "basarili": 0, "sureler": []}
+        tur_istatistik[ad]["toplam"] += 1
+        if basarili:
+            tur_istatistik[ad]["basarili"] += 1
+        if sure_sn is not None:
+            tur_istatistik[ad]["sureler"].append(sure_sn)
+
+    tur_ozet = []
+    for ad, s in tur_istatistik.items():
+        ort_sure = round(sum(s["sureler"]) / len(s["sureler"])) if s["sureler"] else None
+        tur_ozet.append({
+            "ad": ad,
+            "toplam": s["toplam"],
+            "oran": round((s["basarili"] / s["toplam"]) * 100) if s["toplam"] else 0,
+            "ortSureSn": ort_sure,
+        })
+
+    return sonuc[:15], tur_ozet
 
 
 def koc_kararlari():
@@ -177,7 +211,7 @@ def slm_karar_gecmisi():
         rows = ws.get_all_records()
     except Exception as e:
         print(f"SLM log okunamadi: {e}")
-        return []
+        return [], []
     sonuc = []
     for r in rows[-20:]:
         sonuc.append({
@@ -187,7 +221,30 @@ def slm_karar_gecmisi():
             "ozet": r.get("MesajOzet", ""),
             "detay": r.get("Detay", ""),
         })
-    return list(reversed(sonuc))
+
+    dagilim = {}
+    for r in rows:
+        k = r.get("Kategori", "Bilinmiyor")
+        dagilim[k] = dagilim.get(k, 0) + 1
+    dagilim_listesi = sorted(
+        [{"kategori": k, "sayi": v} for k, v in dagilim.items()],
+        key=lambda x: x["sayi"], reverse=True,
+    )
+
+    return list(reversed(sonuc)), dagilim_listesi
+
+
+def hata_gecmisi():
+    try:
+        from common import get_sheet
+        spreadsheet = get_sheet().spreadsheet
+        ws = spreadsheet.worksheet("HataLog")
+        rows = ws.get_all_records()
+    except Exception as e:
+        print(f"HataLog okunamadi (henuz olusmamis olabilir): {e}")
+        return []
+    sonuc = [{"tarih": r.get("Tarih", ""), "saat": r.get("Saat", ""), "baglam": r.get("Baglam", "")} for r in rows]
+    return list(reversed(sonuc))[:15]
 
 
 def main():
@@ -198,6 +255,9 @@ def main():
     son_7_gun_toplam = len(get_aktif_rutinler()) * 7
     hafta_yuzdesi = round((son_7_gun_tamamlanan / son_7_gun_toplam) * 100) if son_7_gun_toplam else 0
 
+    workflow_liste, workflow_tur_ozet = workflow_gecmisi()
+    slm_liste, slm_dagilim = slm_karar_gecmisi()
+
     veri = {
         "uretim_zamani": datetime.datetime.now(TR_TZ).isoformat(),
         "heroStats": {
@@ -207,9 +267,12 @@ def main():
         "rutinOranlari": rutin_oranlari,
         "gunlukGorevGecmisi": gunluk_gorev_gecmisi(),
         "haftalikHedefGecmisi": haftalik_hedef_gecmisi(),
-        "workflowGecmisi": workflow_gecmisi(),
+        "workflowGecmisi": workflow_liste,
+        "workflowTurOzet": workflow_tur_ozet,
         "kocKararlari": koc_kararlari(),
-        "slmKararlari": slm_karar_gecmisi(),
+        "slmKararlari": slm_liste,
+        "slmDagilim": slm_dagilim,
+        "hataGecmisi": hata_gecmisi(),
     }
 
     with open("panel/data.json", "w", encoding="utf-8") as f:
