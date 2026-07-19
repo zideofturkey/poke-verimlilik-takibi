@@ -74,6 +74,9 @@ bağlı - bkz. Roadmap).
 - `Rutinler` — kullanıcının doğrudan düzenleyebildiği rutin listesi (isim, soru, aktif/pasif)
 - `Durum` — hangi serbest-metin sorusunun cevabı bekleniyor (basit key-value)
 - `SLMLog` — sınıflandırma kararlarının tam prompt/cevap kaydı (panelin Teknik sekmesi için)
+- `HataLog` — hataların kalıcı özet kaydı (panelin Teknik sekmesi için)
+- `HaftalikRutinler` — haftalık (tekrarlayan, günü önemsiz) rutin tanımları
+- `HaftalikRutinTakip` — her haftanın otomatik oluşan haftalık rutin takip kaydı
 
 **Veri saklama:**
 - `GunlukGorevler`: 15 günden eski satırlar otomatik silinir (haftalık, Pazartesi)
@@ -109,6 +112,7 @@ bağlı - bkz. Roadmap).
 - [x] KRİTİK DÜZELTME: `hedef_` (haftalık hedef Yolunda/Geride) butonları için hiç işleme kodu yoktu - tıklamak hiçbir şey yapmıyordu (ne Sheets güncelleniyordu ne cevap geliyordu). Artık işleniyor ve Sheets'e tutarlı şekilde (Yapıldı/Yapılmadı) yazıyor.
 - [x] Haftalık hedef hatırlatma mesajları artık (rutinler/görevler gibi) TEK mesajda, çok satırlı butonlarla geliyor - önceden her hedef ayrı mesaj olarak dağınık geliyordu.
 - [x] Rutinlere yeni bir `TelafiEdilebilir` sütunu eklendi (Sheets'te doğrudan düzenlenebilir) - bazı rutinler (ör. "sabah telefonsuzluğu" gibi bir şeyi YAPMAMAKLA ilgili olanlar) doğası gereği telafi edilemez, 🔁 butonu artık sadece bunun TRUE olduğu rutinlerde gösteriliyor.
+- [x] **Haftalık Rutinler** — günlük rutinlerin haftalık eşleniği eklendi. Yeni sekmeler: `HaftalikRutinler` (tanımlar, Sheets'ten düzenlenebilir - ör. "Oda tozu alma") ve `HaftalikRutinTakip` (her haftanın otomatik oluşan takip kaydı). Hangi gün tamamlandığı önemli değil, hafta içinde herhangi bir zaman. Hatırlatma haftalık hedeflerle aynı günlerde (Pzt/Çar/Cum) geliyor, buton VEYA serbest metinle ("oda tozunu aldım") tamamlanabiliyor.
 - [x] YENI_GOREV yolu artık önce numaralı-satır yapısını (satirlari_ayikla) kontrol ediyor - önceden sadece GUNLUK_GOREV/HAFTALIK_HEDEF yolları başlık cümlelerini doğru ayıklıyordu, YENI_GOREV kendi ayrı (daha az güvenilir) mantığını kullanıyordu.
 - [x] Rutin butonlarına tarih gömülmesi: artık her rutin butonu hangi güne ait olduğunu taşıyor - dünün cevaplanmamış bir sorusunu bugün (geç de olsa) işaretlersen, doğru güne (dün) kaydediliyor, bugüne değil. Eski (bu düzeltmeden önce gönderilmiş) butonlar için geriye dönük uyumluluk korunuyor.
 - [x] SORGULA sınıflandırması güçlendirildi: "bugünkü rutin tamamlama listemi gönderir misin" gibi soru-kipli cümleler artık yanlışlıkla GUNLUK_GOREV sanılmıyor (test edilip doğrulandı). SORGULA cevaplayıcı da genişletildi: artık "seri/streak" ve "bu hafta nasıl gidiyorum" tarzı sorular da (deterministik, gerçek veriye dayalı) cevaplanabiliyor - önceden sadece "bugün" kapsamı vardı.

@@ -481,6 +481,60 @@ def guvenli_append_row(ws, degerler):
     print("Ham API ile başarıyla eklendi.")
 
 
+_VARSAYILAN_HAFTALIK_RUTINLER = [
+    {"id": "oda_tozu", "isim": "Oda tozu alma"},
+]
+
+_haftalik_rutinler_cache = None
+
+
+def get_haftalik_rutinler_sheet():
+    """Haftalık rutinlerin TANIMLARINI tutar (günlük Rutinler sekmesinin
+    haftalık eşleniği). Günü önemli değil - hafta içinde herhangi bir
+    zaman tamamlanabilir."""
+    global _haftalik_rutinler_cache
+    if _haftalik_rutinler_cache is not None:
+        return _haftalik_rutinler_cache
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("HaftalikRutinler")
+        if not ws.get_all_values() or not any(ws.get_all_values()[0]):
+            raise gspread.WorksheetNotFound
+    except gspread.WorksheetNotFound:
+        try:
+            ws = spreadsheet.worksheet("HaftalikRutinler")
+        except gspread.WorksheetNotFound:
+            ws = spreadsheet.add_worksheet(title="HaftalikRutinler", rows=50, cols=3)
+        ws.update(values=[["RutinID", "Isim", "Aktif"]], range_name="A1:C1")
+        for r in _VARSAYILAN_HAFTALIK_RUTINLER:
+            ws.append_row([r["id"], r["isim"], "TRUE"])
+    _haftalik_rutinler_cache = ws
+    return ws
+
+
+def get_aktif_haftalik_rutinler():
+    ws = get_haftalik_rutinler_sheet()
+    rows = ws.get_all_records()
+    return [
+        {"id": r["RutinID"], "isim": r["Isim"]}
+        for r in rows
+        if str(r.get("Aktif", "TRUE")).strip().upper() != "FALSE"
+    ]
+
+
+def get_haftalik_rutin_takip_sheet():
+    """Her haftanın TAKİP kaydını tutar (HaftalikHedefler ile aynı desen -
+    HaftaBaslangic, RutinID, Isim, Durum). Yeni bir hafta başladığında
+    satırlar otomatik oluşturulur - kullanıcı elle bir şey yazmaz."""
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("HaftalikRutinTakip")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="HaftalikRutinTakip", rows=500, cols=4)
+        ws.update(values=[["HaftaBaslangic", "RutinID", "Isim", "Durum"]], range_name="A1:D1")
+    return ws
+
+
 def get_bekleyen_soru():
     """Bekleyen soruyu döndürür - ama BAYATSA (bugünden değilse) otomatik
     olarak geçersiz sayar ve temizler. Bu, bir cevabın işlenmemesi/hata

@@ -26,6 +26,8 @@ from common import (
     get_sheet,
     hafta_baslangic_str,
     get_aktif_rutinler,
+    get_aktif_haftalik_rutinler,
+    get_haftalik_rutin_takip_sheet,
     rutin_serisi_hesapla,
     get_deger,
     set_deger,
@@ -181,6 +183,48 @@ def _sabah_kacti_mi_kontrol_et():
         sabah()
 
 
+def haftalik_rutin_sorulari_gonder():
+    """Haftalık rutinlerin (ör. 'oda tozu alma') o haftaki durumunu
+    kontrol eder. Yeni bir hafta için henüz takip satırı yoksa otomatik
+    oluşturur (Bekliyor). Sadece hâlâ 'Bekliyor' olanları sorar, günü
+    önemli değil - hafta içinde herhangi bir gün tamamlanabilir."""
+    rutinler = get_aktif_haftalik_rutinler()
+    if not rutinler:
+        return
+
+    ws = get_haftalik_rutin_takip_sheet()
+    rows = ws.get_all_values()
+    hafta = hafta_baslangic_str()
+
+    mevcut_id_seti = {row[1] for row in rows[1:] if len(row) >= 2 and row[0] == hafta}
+    for rutin in rutinler:
+        if rutin["id"] not in mevcut_id_seti:
+            ws.append_row([hafta, rutin["id"], rutin["isim"], "Bekliyor"])
+
+    # Taze durumu tekrar oku (az önce eklenen satırlar dahil)
+    rows = ws.get_all_values()
+    bekleyenler = [
+        (i + 1, row[2])  # satır no (1-indexed, header dahil), isim
+        for i, row in enumerate(rows[1:], start=1)
+        if row[0] == hafta and row[3] == "Bekliyor"
+    ]
+
+    if not bekleyenler:
+        return
+
+    send_message(
+        "🗓️ Bu haftaki tekrarlayan işlerin durumu:\n\n" +
+        "\n".join(f"{i+1}. {isim}" for i, (_, isim) in enumerate(bekleyenler)),
+        buttons=[
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"haftarutin_{satir_no}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"haftarutin_{satir_no}_hayir"},
+            ]
+            for i, (satir_no, isim) in enumerate(bekleyenler)
+        ],
+    )
+
+
 def hatirlat():
     """Gün içinde birkaç kez (öğle/akşam üstü) tetiklenir. Sadece o ana
     kadar cevaplanmamış rutinleri sorar. Haftada 3 kez (Pazartesi/
@@ -193,6 +237,7 @@ def hatirlat():
     bugun_gun_no = datetime.datetime.now(TR_TZ).weekday()  # 0=Pazartesi, 4=Cuma
     if bugun_gun_no in (0, 2, 4):
         haftalik_hedef_sorulari_gonder()
+        haftalik_rutin_sorulari_gonder()
 
 
 def aksam():
@@ -241,10 +286,11 @@ def _bosa_vakit_sor():
 
 
 def pazar():
-    # Önce bitmekte olan haftanın hâlâ bekleyen hedefleri var mı diye
-    # son bir kez kontrol et (haftalık Koç analizinden ÖNCE) - hangi
+    # Önce bitmekte olan haftanın hâlâ bekleyen hedefleri/rutinleri var mı
+    # diye son bir kez kontrol et (haftalık Koç analizinden ÖNCE) - hangi
     # gün eklenmiş olurlarsa olsunlar.
     haftalik_hedef_sorulari_gonder()
+    haftalik_rutin_sorulari_gonder()
 
     onceki = get_bekleyen_soru()
     if onceki and onceki != "haftalik_hedef":

@@ -52,6 +52,8 @@ from common import (
     metinden_tarih_cikar,
     guvenli_append_row,
     get_aktif_rutinler,
+    get_aktif_haftalik_rutinler,
+    get_haftalik_rutin_takip_sheet,
     get_sheet,
     get_rutinler_sheet,
     rutin_serisi_hesapla,
@@ -203,6 +205,19 @@ def process_callback(cq):
             send_message(f"✅ '{hedef_metni}' yolunda olarak kaydedildi. Devam!")
         else:
             send_message(f"Not aldım, '{hedef_metni}' geride kalmış — toparlamaya çalış 💪")
+
+    elif callback_data.startswith("haftarutin_"):
+        # format: haftarutin_<satirNo>_evet / haftarutin_<satirNo>_hayir
+        _, satir_no, sonuc = callback_data.split("_")
+        ws = get_haftalik_rutin_takip_sheet()
+        satir_no = int(satir_no)
+        rutin_isim = ws.cell(satir_no, 3).value
+        durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
+        ws.update_cell(satir_no, 4, durum)
+        if sonuc == "evet":
+            send_message(f"✅ '{rutin_isim}' bu hafta için tamamlandı. Tebrikler!")
+        else:
+            send_message(f"Sorun değil, '{rutin_isim}' için hafta bitmeden hâlâ vaktin var 👍")
 
 
 def _sorguyu_cevapla(text):
@@ -360,6 +375,8 @@ def _siniflandir_ve_isle(text, bekleyen):
 
     aktif_rutinler = get_aktif_rutinler()
     rutin_isim_listesi = ", ".join(f"'{r['isim']}'" for r in aktif_rutinler)
+    aktif_haftalik_rutinler = get_aktif_haftalik_rutinler()
+    haftalik_rutin_isim_listesi = ", ".join(f"'{r['isim']}'" for r in aktif_haftalik_rutinler)
 
     prompt = (
         "Sen bir verimlilik takip botusun (adın Poke). "
@@ -384,10 +401,13 @@ def _siniflandir_ve_isle(text, bekleyen):
         "içinde yazar, "
         "ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden "
         "fazla görev aynı mesajda olabilir\n"
-        f"- RUTIN_TAMAMLA: kullanıcı şu sabit rutinlerden birini tamamladığını "
-        f"bildiriyor: {rutin_isim_listesi}. Ör: 'Fransızca rutinimi tamamladım', "
-        "'bugün spor yaptım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - "
-        "bu kategori sadece yukarıdaki listedeki rutinler için\n"
+        f"- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini "
+        f"tamamladığını bildiriyor: {rutin_isim_listesi}. VEYA şu HAFTALIK "
+        f"(tekrarlayan, hangi gün önemli değil) rutinlerden birini: "
+        f"{haftalik_rutin_isim_listesi or '(tanımlı yok)'}. Ör: 'Fransızca "
+        "rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi "
+        "doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece "
+        "yukarıdaki listelerdeki rutinler için\n"
         "- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/"
         "İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır "
         "mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', "
@@ -403,9 +423,9 @@ def _siniflandir_ve_isle(text, bekleyen):
         "TIP: <KATEGORI>\n"
         "GOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile "
         "ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\n"
-        f"RUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listeden BİREBİR aynı "
+        f"RUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı "
         f"şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: "
-        f"{rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
+        f"{rutin_isim_listesi}, {haftalik_rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
         "CEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe "
         "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. "
         "TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - "
@@ -434,14 +454,33 @@ def _siniflandir_ve_isle(text, bekleyen):
     if tip == "RUTIN_TAMAMLA":
         rutin_ham_liste = rutin_match.group(1).strip() if rutin_match else ""
         adaylar = [r.strip().strip("'\"") for r in rutin_ham_liste.split("|") if r.strip()]
-        aktif_isimler = {r["isim"] for r in aktif_rutinler}
-        eslesenler = [ad for ad in adaylar if ad in aktif_isimler]
+        gunluk_isimler = {r["isim"] for r in aktif_rutinler}
+        haftalik_isimler = {r["isim"]: r["id"] for r in aktif_haftalik_rutinler}
 
-        if eslesenler:
+        gunluk_eslesen = [ad for ad in adaylar if ad in gunluk_isimler]
+        haftalik_eslesen = [ad for ad in adaylar if ad in haftalik_isimler]
+
+        if gunluk_eslesen or haftalik_eslesen:
             tarih = metinden_tarih_cikar(text)
-            for isim in eslesenler:
+            for isim in gunluk_eslesen:
                 log_to_sheet(isim, "Yapıldı", tarih=tarih)
-            liste = ", ".join(f"'{i}'" for i in eslesenler)
+
+            if haftalik_eslesen:
+                ws_takip = get_haftalik_rutin_takip_sheet()
+                rows = ws_takip.get_all_values()
+                hafta = hafta_baslangic_str()
+                for isim in haftalik_eslesen:
+                    rutin_id = haftalik_isimler[isim]
+                    bulundu = False
+                    for i, row in enumerate(rows[1:], start=2):
+                        if row[0] == hafta and row[1] == rutin_id:
+                            ws_takip.update_cell(i, 4, "Yapıldı")
+                            bulundu = True
+                            break
+                    if not bulundu:
+                        guvenli_append_row(ws_takip, [hafta, rutin_id, isim, "Yapıldı"])
+
+            liste = ", ".join(f"'{i}'" for i in gunluk_eslesen + haftalik_eslesen)
             send_message(f"✅ {liste} tamamlandı olarak kaydedildi. Tebrikler!")
         else:
             send_message(
