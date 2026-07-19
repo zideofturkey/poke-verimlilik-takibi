@@ -18,11 +18,14 @@ import datetime
 
 
 def satirlari_ayikla(text):
-    """Serbest metinden madde listesi çıkarır. Kural: eğer mesajda numaralı
-    satır(lar) varsa, SADECE numaralı satırlar madde sayılır - başlık,
-    giriş cümlesi ya da başka herhangi bir numarasız satır (ör. 'Günaydın,
-    bugünün görevlerini yazıyorum') otomatik göz ardı edilir. Numaralı
-    satır HİÇ yoksa (düz, numarasız liste), tüm dolu satırlar madde sayılır."""
+    """Serbest metinden madde listesi çıkarır. İki kural birlikte çalışır:
+    (1) Eğer mesajda numaralı satır(lar) varsa, SADECE numaralı satırlar
+    madde sayılır - başlık/giriş cümlesi elenir.
+    (2) Numaralı satır HİÇ yoksa, yine de ':' ile biten kısa bir başlık/
+    talimat cümlesi (ör. 'günlük görevlere ekleme yap:') varsa o elenir -
+    geri kalan satırlar madde sayılır. Bu ikinci kural olmadan, numarasız
+    bir talimat + tek maddelik mesajlarda talimat cümlesinin kendisi de
+    yanlışlıkla bir madde sanılıyordu (gerçek bir hata, düzeltildi)."""
     satirlar_ham = [s.strip() for s in text.split("\n") if s.strip()]
     numarali_var = any(re.match(r"^\d+[\.\)\-]", s) for s in satirlar_ham)
 
@@ -31,6 +34,8 @@ def satirlari_ayikla(text):
         numarali_mi = re.match(r"^\d+[\.\)\-]?\s*", satir)
         if numarali_var and not numarali_mi:
             continue  # numaralı liste varsa, numarasız satırlar (başlık/giriş) elenir
+        if not numarali_var and not numarali_mi and satir.endswith(":") and len(satir) < 60:
+            continue  # numara yoksa da, ':' ile biten kısa bir başlık/talimat satırı elenir
         satir = re.sub(r"^\d+[\.\)\-]?\s*", "", satir).strip()
         if satir:
             maddeler.append(satir)
@@ -389,25 +394,34 @@ def _haftalik_hedef_isle(text):
 
 
 def _deterministik_on_siniflandir(text):
-    """SLM'e HİÇ SORMADAN, çok net kalıpları kod ile yakalar: numaralı/
-    çok satırlı bir liste + açık bir 'kaydet/ekle' niyeti. Küçük model bu
-    TAM kalıpta defalarca hata yaptı (SOHBET sanıp hayali bir cevap
+    """SLM'e HİÇ SORMADAN, çok net kalıpları kod ile yakalar: bir liste
+    (ya da tek madde) + açık bir 'kaydet/ekle' niyeti + 'günlük/bugün'
+    ya da 'hafta/haftalık' sinyali. Küçük model bu kalıplarda defalarca
+    hata yaptı (yanlış kategoriye yazdı, hatta bazen hayali bir cevap
     üretti) - bu, o riski tamamen ortadan kaldırır. Emin olunamayan her
-    durumda None döner, karar SLM'e bırakılır (sorgu, sohbet, tek görev
-    ekleme, rutin tamamlama, boşa vakit gibi belirsiz kalıplar için)."""
+    durumda None döner, karar SLM'e bırakılır (sorgu, sohbet, rutin
+    tamamlama gibi belirsiz kalıplar için)."""
     maddeler = satirlari_ayikla(text)
-    if len(maddeler) < 2:
-        return None  # numaralı/çok satırlı net bir liste yoksa emin olma
+    if not maddeler:
+        return None
 
     metin_kucuk = text.lower()
     niyet_var = any(k in metin_kucuk for k in [
-        "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "görevlerim",
-        "yapacaklarım", "hedeflerim",
+        "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "ekleme yap",
+        "ekle", "görevlerim", "yapacaklarım", "hedeflerim",
     ])
     if not niyet_var:
         return None
 
-    if "haftalık" in metin_kucuk or ("hafta" in metin_kucuk and "bugün" not in metin_kucuk):
+    gunluk_sinyali = "günlük" in metin_kucuk or "bugün" in metin_kucuk
+    haftalik_sinyali = "hafta" in metin_kucuk
+
+    # Tek maddelik VE hiçbir günlük/haftalık sinyali olmayan mesajlarda
+    # temkinli ol - RUTIN_TAMAMLA gibi başka bir kategori olabilir, SLM'e bırak.
+    if len(maddeler) == 1 and not gunluk_sinyali and not haftalik_sinyali:
+        return None
+
+    if haftalik_sinyali and not gunluk_sinyali:
         return "HAFTALIK_HEDEF"
     return "GUNLUK_GOREV"
 
@@ -449,11 +463,13 @@ def _siniflandir_ve_isle(text, bekleyen):
         "Bu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata "
         "(bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre "
         "karar ver - biri başka bir konuda yazmış olabilir):\n"
-        "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÖNEMLİ: "
-        "'bugün/bugünkü' kelimesi geçiyorsa ve 'hafta/haftalık' GEÇMİYORSA, "
-        "bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF DEĞİLDİR - liste "
-        "veriyor olması (madde madde yazması) HAFTALIK_HEDEF sanmana sebep "
-        "olmasın\n"
+        "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ "
+        "KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa "
+        "VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE "
+        "GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor "
+        "olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya "
+        "İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA "
+        "geçtiğinde kullanılır, başka hiçbir durumda değil\n"
         "- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut "
         "haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere "
         "ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti "
