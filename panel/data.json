@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-19T17:01:42.215899+03:00",
+  "uretim_zamani": "2026-07-19T18:31:42.387960+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1449,10 +1449,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-19T14:00:52Z",
+      "zaman": "2026-07-19T15:30:26Z",
       "durum": "warn",
+      "runId": "29692978187",
+      "sureSn": 65
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-19T15:03:31Z",
+      "durum": "ok",
+      "runId": "29692067268",
+      "sureSn": 36
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-19T15:02:17Z",
+      "durum": "ok",
+      "runId": "29692024408",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-19T14:00:52Z",
+      "durum": "ok",
       "runId": "29689989498",
-      "sureSn": 30
+      "sureSn": 79
     },
     {
       "ad": "Webhook",
@@ -1530,35 +1551,26 @@
       "durum": "ok",
       "runId": "29685015542",
       "sureSn": 29
-    },
-    {
-      "ad": "Gecici Telafi Ekle",
-      "zaman": "2026-07-19T11:21:44Z",
-      "durum": "ok",
-      "runId": "29684985958",
-      "sureSn": 16
-    },
-    {
-      "ad": "Gecici Telafi Ekle",
-      "zaman": "2026-07-19T11:20:46Z",
-      "durum": "warn",
-      "runId": "29684957973",
-      "sureSn": 18
-    },
-    {
-      "ad": "Gecici Telafi Ekle",
-      "zaman": "2026-07-19T11:19:56Z",
-      "durum": "warn",
-      "runId": "29684931223",
-      "sureSn": 13
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
+      "toplam": 5,
+      "oran": 80,
+      "ortSureSn": 54
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 33
+    },
+    {
+      "ad": "Gönder",
       "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 38
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "Webhook",
@@ -1567,22 +1579,10 @@
       "ortSureSn": 64
     },
     {
-      "ad": "Dinle",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 34
-    },
-    {
       "ad": "Gecici Test Haftalik",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 21
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 18
     },
     {
       "ad": "Gecici Telafi Ekle",
