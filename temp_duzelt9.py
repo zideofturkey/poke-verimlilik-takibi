@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import os
+from common import bugun_str
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 creds = Credentials.from_service_account_file("service_account.json", scopes=SCOPES)
@@ -16,13 +17,14 @@ for satir_no in sorted(silinecek, reverse=True):
     ws_hafta.delete_rows(satir_no)
 
 service = gc.http_client
-bugun = "2026-07-20"
+bugun = bugun_str()
 url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/GunlukGorevler!A:D:append"
 params = {"valueInputOption": "RAW", "insertDataOption": "INSERT_ROWS"}
 body = {"values": [[bugun, "", "portföy takip dosyası düzenlemesi", "Bekliyor"]]}
 resp = service.request("POST", url, params=params, json=body)
 
 with open("duzelt9_sonuc.txt", "w", encoding="utf-8") as f:
+    f.write(f"Gercek bugun: {bugun}\n")
     f.write(f"Silinen satirlar (HaftalikHedefler): {silinecek}\n")
     f.write(f"Ekleme status: {resp.status_code}\n{resp.text[:300]}")
 print("bitti")
