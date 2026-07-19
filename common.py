@@ -554,14 +554,17 @@ def get_bekleyen_soru():
 
 def update_zaten_islendi_mi(update_id):
     """dinle.py (saatlik yedek) ile anlık webhook işleyişinin AYNI update'i
-    nadiren aynı anda işlemesini önler (git commit'i işlem bittikten sonra
-    olduğu için git-offset kontrolü tek başına yeterli değil). Sheets
-    üzerinden hızlı, anlık bir 'bu update işlendi mi' kontrolü."""
-    anahtar = f"islendi_{update_id}"
-    if get_deger(anahtar):
-        return True
-    set_deger(anahtar, "1")
-    return False
+    nadiren aynı anda işlemesini önler. Sheets üzerinden hızlı, anlık bir
+    'bu update işlendi mi' kontrolü - SADECE kontrol eder, işaretlemez
+    (işaretleme işlem BAŞARIYLA bittikten sonra update_islendi_isaretle
+    ile ayrıca yapılır - böylece bir çökme durumunda mesaj kaybolmaz,
+    dinle.py hâlâ yeniden deneyebilir)."""
+    return bool(get_deger(f"islendi_{update_id}"))
+
+
+def update_islendi_isaretle(update_id):
+    """Bir update BAŞARIYLA işlendikten SONRA çağrılır."""
+    set_deger(f"islendi_{update_id}", "1")
 
 
 def get_sheet():

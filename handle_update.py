@@ -48,6 +48,7 @@ from common import (
     slm_sorgula,
     turkce_disi_karakter_var_mi,
     update_zaten_islendi_mi,
+    update_islendi_isaretle,
     log_slm_karari,
     metinden_tarih_cikar,
     guvenli_append_row,
@@ -359,12 +360,75 @@ BEKLEYEN_ACIKLAMA = {
 }
 
 
+def _gunluk_gorev_isle(text):
+    gorevler = satirlari_ayikla(text)
+    if not gorevler:
+        send_message("Bunu görev listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
+        return
+    ws = get_gorevler_sheet()
+    bugun = bugun_str()
+    for gorev in gorevler:
+        guvenli_append_row(ws, [bugun, "", gorev, "Bekliyor"])
+    set_bekleyen_soru("")
+    liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
+    send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
+
+
+def _haftalik_hedef_isle(text):
+    hedefler = satirlari_ayikla(text)
+    if not hedefler:
+        send_message("Bunu hedef listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
+        return
+    ws = get_haftalik_sheet()
+    hafta = hafta_baslangic_str()
+    for hedef in hedefler:
+        guvenli_append_row(ws, [hafta, hedef, "Bekliyor"])
+    set_bekleyen_soru("")
+    liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
+    send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
+
+
+def _deterministik_on_siniflandir(text):
+    """SLM'e HİÇ SORMADAN, çok net kalıpları kod ile yakalar: numaralı/
+    çok satırlı bir liste + açık bir 'kaydet/ekle' niyeti. Küçük model bu
+    TAM kalıpta defalarca hata yaptı (SOHBET sanıp hayali bir cevap
+    üretti) - bu, o riski tamamen ortadan kaldırır. Emin olunamayan her
+    durumda None döner, karar SLM'e bırakılır (sorgu, sohbet, tek görev
+    ekleme, rutin tamamlama, boşa vakit gibi belirsiz kalıplar için)."""
+    maddeler = satirlari_ayikla(text)
+    if len(maddeler) < 2:
+        return None  # numaralı/çok satırlı net bir liste yoksa emin olma
+
+    metin_kucuk = text.lower()
+    niyet_var = any(k in metin_kucuk for k in [
+        "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "görevlerim",
+        "yapacaklarım", "hedeflerim",
+    ])
+    if not niyet_var:
+        return None
+
+    if "haftalık" in metin_kucuk or ("hafta" in metin_kucuk and "bugün" not in metin_kucuk):
+        return "HAFTALIK_HEDEF"
+    return "GUNLUK_GOREV"
+
+
 def _siniflandir_ve_isle(text, bekleyen):
     """Gelen her serbest metni SLM'e sınıflandırtır. 'bekleyen' sadece bir
     BAĞLAM/ipucu olarak veriliyor - kesin kural değil. Model, mesajın
     içeriğine bakıp en uygun kategoriyi kendisi seçiyor. Bu, katı bir
     durum makinesinin (sabit 'şu an şunu bekliyorum -> öyle işle' mantığının)
     beklenmedik senaryolarda yanlış kategoriye yazması sorununu çözer."""
+
+    # Önce deterministik kontrol - net kalıplar için SLM'e hiç gitmiyoruz.
+    on_tip = _deterministik_on_siniflandir(text)
+    if on_tip == "GUNLUK_GOREV":
+        log_slm_karari("GUNLUK_GOREV", text, "(deterministik - SLM atlandı, net kalıp)", "GUNLUK_GOREV (deterministik)")
+        _gunluk_gorev_isle(text)
+        return
+    elif on_tip == "HAFTALIK_HEDEF":
+        log_slm_karari("HAFTALIK_HEDEF", text, "(deterministik - SLM atlandı, net kalıp)", "HAFTALIK_HEDEF (deterministik)")
+        _haftalik_hedef_isle(text)
+        return
 
     baglam = (
         f"Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: "
@@ -430,7 +494,11 @@ def _siniflandir_ve_isle(text, bekleyen):
         "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. "
         "TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - "
         "kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) "
-        "gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap."
+        "gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. "
+        "ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', "
+        "'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA "
+        "- bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı "
+        "verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK."
     )
 
     try:
@@ -489,30 +557,10 @@ def _siniflandir_ve_isle(text, bekleyen):
             )
 
     elif tip == "GUNLUK_GOREV":
-        gorevler = satirlari_ayikla(text)
-        if not gorevler:
-            send_message("Bunu görev listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
-            return
-        ws = get_gorevler_sheet()
-        bugun = bugun_str()
-        for gorev in gorevler:
-            guvenli_append_row(ws, [bugun, "", gorev, "Bekliyor"])
-        set_bekleyen_soru("")
-        liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
-        send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
+        _gunluk_gorev_isle(text)
 
     elif tip == "HAFTALIK_HEDEF":
-        hedefler = satirlari_ayikla(text)
-        if not hedefler:
-            send_message("Bunu hedef listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
-            return
-        ws = get_haftalik_sheet()
-        hafta = hafta_baslangic_str()
-        for hedef in hedefler:
-            guvenli_append_row(ws, [hafta, hedef, "Bekliyor"])
-        set_bekleyen_soru("")
-        liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
-        send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
+        _haftalik_hedef_isle(text)
 
     elif tip == "BOSA_VAKIT":
         tarih = metinden_tarih_cikar(text)
@@ -568,12 +616,30 @@ def main():
             print(f"Update {update['update_id']} zaten işlenmiş (muhtemelen dinle.py ile çakıştı), atlanıyor.")
             return
 
-    if "callback_query" in update:
-        process_callback(update["callback_query"])
-    elif "message" in update:
-        process_message(update["message"])
-    else:
-        print("İşlenecek bir şey yok.")
+    try:
+        if "callback_query" in update:
+            process_callback(update["callback_query"])
+        elif "message" in update:
+            process_message(update["message"])
+        else:
+            print("İşlenecek bir şey yok.")
+    except Exception as e:
+        # GÜVENLİK AĞI: ne olursa olsun (beklenmedik bir çökme bile),
+        # kullanıcı ASLA sessiz kalmamalı. Önceden bu try/except yoktu -
+        # bir çökme olursa hem kullanıcıya hiç cevap gitmiyordu hem de
+        # (işlendi damgası erken basıldığı için) dinle.py bir daha hiç
+        # denemiyordu, mesaj sessizce kayboluyordu.
+        import traceback
+        hata_logla("handle_update.main (beklenmedik çökme)", traceback.format_exc())
+        try:
+            send_message("Şu an bunu işleyemedim (teknik bir sorun oldu) — tekrar dener misin?")
+        except Exception:
+            pass
+        print(f"BEKLENMEDİK HATA: {e}")
+        return  # işlendi olarak İŞARETLEME - dinle.py tekrar denesin
+
+    if "update_id" in update:
+        update_islendi_isaretle(update["update_id"])
 
 
 if __name__ == "__main__":
