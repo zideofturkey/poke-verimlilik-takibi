@@ -161,7 +161,7 @@ def rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın 
             {"text": f"{i}️⃣ ✅", "callback_data": f"rutin_{rutin['id']}_{butonlar_icin_bugun}_evet"},
             {"text": f"{i}️⃣ ❌", "callback_data": f"rutin_{rutin['id']}_{butonlar_icin_bugun}_hayir"},
         ]
-        if dun_kacirildi_mi(rutin["isim"]):
+        if rutin.get("telafi_edilebilir", True) and dun_kacirildi_mi(rutin["isim"]):
             butonlar.append(
                 {"text": f"{i}️⃣ 🔁", "callback_data": f"rutin_{rutin['id']}_{butonlar_icin_bugun}_telafi"}
             )

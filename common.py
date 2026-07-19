@@ -291,10 +291,10 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
 # Sheets'e taşınmadan önceki varsayılanlar - sadece ilk kurulumda
 # (sekme boşsa) Rutinler sekmesini doldurmak için kullanılır.
 _VARSAYILAN_RUTINLER = [
-    {"id": "fransizca", "isim": "Fransızca çalışma", "soru": "Bugün Fransızca çalıştın mı?"},
-    {"id": "sabah_telefon", "isim": "Sabah telefon rutini", "soru": "Sabah kalkınca telefona bakmadın mı?"},
-    {"id": "aksam_telefon", "isim": "Akşam telefon rutini", "soru": "Gece yatmadan telefona bakmadın mı?"},
-    {"id": "verimli_video", "isim": "Verimli video izleme", "soru": "En az 1 verimli video izledin mi?"},
+    {"id": "fransizca", "isim": "Fransızca çalışma", "soru": "Bugün Fransızca çalıştın mı?", "telafi": "TRUE"},
+    {"id": "sabah_telefon", "isim": "Sabah telefon rutini", "soru": "Sabah kalkınca telefona bakmadın mı?", "telafi": "FALSE"},
+    {"id": "aksam_telefon", "isim": "Akşam telefon rutini", "soru": "Gece yatmadan telefona bakmadın mı?", "telafi": "FALSE"},
+    {"id": "verimli_video", "isim": "Verimli video izleme", "soru": "En az 1 verimli video izledin mi?", "telafi": "TRUE"},
 ]
 
 _rutinler_cache = None
@@ -313,10 +313,10 @@ def get_rutinler_sheet():
         try:
             ws = spreadsheet.worksheet("Rutinler")
         except gspread.WorksheetNotFound:
-            ws = spreadsheet.add_worksheet(title="Rutinler", rows=50, cols=4)
-        ws.update(values=[["RutinID", "Isim", "Soru", "Aktif"]], range_name="A1:D1")
+            ws = spreadsheet.add_worksheet(title="Rutinler", rows=50, cols=5)
+        ws.update(values=[["RutinID", "Isim", "Soru", "Aktif", "TelafiEdilebilir"]], range_name="A1:E1")
         for r in _VARSAYILAN_RUTINLER:
-            ws.append_row([r["id"], r["isim"], r["soru"], "TRUE"])
+            ws.append_row([r["id"], r["isim"], r["soru"], "TRUE", r["telafi"]])
     _rutinler_cache = ws
     return ws
 
@@ -324,11 +324,16 @@ def get_rutinler_sheet():
 def get_aktif_rutinler():
     """Rutinler sekmesinden Aktif=TRUE olan satırları döndürür.
     Kullanıcı bu sekmeyi Sheets'ten doğrudan düzenleyebilir (yeni rutin
-    ekleme, soru metnini değiştirme, geçici olarak durdurma)."""
+    ekleme, soru metnini değiştirme, geçici olarak durdurma).
+    TelafiEdilebilir sütunu yoksa (eski satırlar) varsayılan TRUE sayılır -
+    geriye dönük uyumluluk için."""
     ws = get_rutinler_sheet()
     rows = ws.get_all_records()
     return [
-        {"id": r["RutinID"], "isim": r["Isim"], "soru": r["Soru"]}
+        {
+            "id": r["RutinID"], "isim": r["Isim"], "soru": r["Soru"],
+            "telafi_edilebilir": str(r.get("TelafiEdilebilir", "TRUE")).strip().upper() != "FALSE",
+        }
         for r in rows
         if str(r.get("Aktif", "TRUE")).strip().upper() != "FALSE"
     ]
