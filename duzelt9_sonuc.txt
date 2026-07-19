@@ -1,0 +1,12 @@
+Gercek bugun: 2026-07-19
+Silinen satirlar (HaftalikHedefler): [8, 9]
+Ekleme status: 200
+{
+  "spreadsheetId": "1OG79C8K1TgEEstOKUF7qMpr6N4q0iezBXBuP5-8SiSs",
+  "tableRange": "GunlukGorevler!A1:D37",
+  "updates": {
+    "spreadsheetId": "1OG79C8K1TgEEstOKUF7qMpr6N4q0iezBXBuP5-8SiSs",
+    "updatedRange": "GunlukGorevler!A38:D38",
+    "updatedRows": 1,
+    "updatedColumns": 4,
+    "updatedC
