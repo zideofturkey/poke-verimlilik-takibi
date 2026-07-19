@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-19T22:41:07.316680+03:00",
+  "uretim_zamani": "2026-07-19T23:51:36.498676+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1475,10 +1475,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-19T19:40:52Z",
+      "zaman": "2026-07-19T20:51:18Z",
       "durum": "warn",
+      "runId": "29703286367",
+      "sureSn": 5
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-19T19:40:52Z",
+      "durum": "ok",
       "runId": "29701077733",
-      "sureSn": 3
+      "sureSn": 38
     },
     {
       "ad": "Dinle",
@@ -1570,21 +1577,14 @@
       "durum": "ok",
       "runId": "29695918501",
       "sureSn": 43
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-19T15:30:26Z",
-      "durum": "ok",
-      "runId": "29692978187",
-      "sureSn": 101
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 52
+      "toplam": 7,
+      "oran": 86,
+      "ortSureSn": 51
     },
     {
       "ad": "Dinle",
@@ -1606,9 +1606,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 12,
+      "toplam": 11,
       "oran": 100,
-      "ortSureSn": 82
+      "ortSureSn": 86
     },
     {
       "ad": "Gecici Duzelt 9",
