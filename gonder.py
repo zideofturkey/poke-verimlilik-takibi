@@ -183,9 +183,16 @@ def _sabah_kacti_mi_kontrol_et():
 
 def hatirlat():
     """Gün içinde birkaç kez (öğle/akşam üstü) tetiklenir. Sadece o ana
-    kadar cevaplanmamış rutinleri sorar."""
+    kadar cevaplanmamış rutinleri sorar. Haftada 3 kez (Pazartesi/
+    Çarşamba/Cuma) hâlâ bekleyen haftalık hedefleri de kontrol eder -
+    hangi gün eklenmiş olurlarsa olsunlar (ör. hedefler Perşembe günü
+    yazılmışsa bile artık kaçırılmıyor)."""
     _sabah_kacti_mi_kontrol_et()
     rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın rutinler:")
+
+    bugun_gun_no = datetime.datetime.now(TR_TZ).weekday()  # 0=Pazartesi, 4=Cuma
+    if bugun_gun_no in (0, 2, 4):
+        haftalik_hedef_sorulari_gonder()
 
 
 def aksam():
@@ -234,6 +241,11 @@ def _bosa_vakit_sor():
 
 
 def pazar():
+    # Önce bitmekte olan haftanın hâlâ bekleyen hedefleri var mı diye
+    # son bir kez kontrol et (haftalık Koç analizinden ÖNCE) - hangi
+    # gün eklenmiş olurlarsa olsunlar.
+    haftalik_hedef_sorulari_gonder()
+
     onceki = get_bekleyen_soru()
     if onceki and onceki != "haftalik_hedef":
         send_message(
@@ -251,7 +263,13 @@ def pazar():
     set_bekleyen_soru("haftalik_hedef")
 
 
-def hafta_ortasi():
+def haftalik_hedef_sorulari_gonder(sessiz_gecerse_hicbir_sey_yapma=True):
+    """Mevcut haftanın hâlâ 'Bekliyor' durumundaki hedeflerini sorar -
+    HANGİ GÜN eklenmiş olursa olsun (ör. hedefler Perşembe günü
+    yazılmışsa bile). Zaten cevaplanmışsa (hepsi Yolunda/Geride
+    işaretlenmişse) sessiz kalır, spam yapmaz. Hem periyodik hatırlatma
+    (hatirlat) hem hafta sonu son kontrolü (pazar) hem de hafta ortası
+    (hafta_ortasi) için tek, paylaşılan bir kod yolu."""
     ws = get_haftalik_sheet()
     rows = ws.get_all_records()
     hafta = hafta_baslangic_str()
@@ -262,15 +280,16 @@ def hafta_ortasi():
     ]
 
     if not bu_haftaki:
-        send_message(
-            "Bu hafta için tanımlı bir hedef bulamadım — Pazar mesajına cevap "
-            "vermeyi unuttun mu? 🤔 Şimdi yazarsan (1. / 2. / 3. şeklinde) "
-            "onları da kaydederim."
-        )
-        set_bekleyen_soru("haftalik_hedef")
+        if not sessiz_gecerse_hicbir_sey_yapma:
+            send_message(
+                "Bu hafta için tanımlı bir hedef bulamadım — Pazar mesajına cevap "
+                "vermeyi unuttun mu? 🤔 Şimdi yazarsan (1. / 2. / 3. şeklinde) "
+                "onları da kaydederim."
+            )
+            set_bekleyen_soru("haftalik_hedef")
         return
 
-    send_message("📊 Hafta ortası kontrol — hedeflerinin durumu:")
+    send_message("📊 Haftalık hedeflerinin durumu:")
     for row_num, r in bu_haftaki:
         send_message(
             f"• {r['HedefMetni']}",
@@ -281,6 +300,10 @@ def hafta_ortasi():
                 ]
             ],
         )
+
+
+def hafta_ortasi():
+    haftalik_hedef_sorulari_gonder(sessiz_gecerse_hicbir_sey_yapma=False)
 
 
 GOREVLER = {
