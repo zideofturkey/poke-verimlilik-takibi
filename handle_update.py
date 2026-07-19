@@ -191,6 +191,19 @@ def process_callback(cq):
         else:
             send_message(f"Sorun değil, '{gorev_metni}' için yarın devam edelim 👍")
 
+    elif callback_data.startswith("hedef_"):
+        # format: hedef_<satirNo>_evet / hedef_<satirNo>_hayir
+        _, satir_no, sonuc = callback_data.split("_")
+        ws = get_haftalik_sheet()
+        satir_no = int(satir_no)
+        hedef_metni = ws.cell(satir_no, 2).value
+        durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
+        ws.update_cell(satir_no, 3, durum)
+        if sonuc == "evet":
+            send_message(f"✅ '{hedef_metni}' yolunda olarak kaydedildi. Devam!")
+        else:
+            send_message(f"Not aldım, '{hedef_metni}' geride kalmış — toparlamaya çalış 💪")
+
 
 def _sorguyu_cevapla(text):
     """Kullanıcı bir şey sorguladığında GERÇEK veriyi Sheets'ten okuyup,

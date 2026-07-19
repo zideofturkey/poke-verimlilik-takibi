@@ -289,17 +289,17 @@ def haftalik_hedef_sorulari_gonder(sessiz_gecerse_hicbir_sey_yapma=True):
             set_bekleyen_soru("haftalik_hedef")
         return
 
-    send_message("📊 Haftalık hedeflerinin durumu:")
-    for row_num, r in bu_haftaki:
-        send_message(
-            f"• {r['HedefMetni']}",
-            buttons=[
-                [
-                    {"text": "✅ Yolunda", "callback_data": f"hedef_{row_num}_evet"},
-                    {"text": "❌ Geride", "callback_data": f"hedef_{row_num}_hayir"},
-                ]
-            ],
-        )
+    send_message(
+        "📊 Haftalık hedeflerinin durumu:\n\n" +
+        "\n".join(f"{i+1}. {r['HedefMetni']}" for i, (_, r) in enumerate(bu_haftaki)),
+        buttons=[
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"hedef_{row_num}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"hedef_{row_num}_hayir"},
+            ]
+            for i, (row_num, r) in enumerate(bu_haftaki)
+        ],
+    )
 
 
 def hafta_ortasi():
