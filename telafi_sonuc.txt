@@ -1,5 +1,0 @@
-E2 (fransizca) = TRUE
-E3 (sabah_telefon) = FALSE
-E4 (aksam_telefon) = FALSE
-E5 (verimli_video) = TRUE
-E6 (mewing) = TRUE
