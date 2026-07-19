@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-19T13:56:10.497192+03:00",
+  "uretim_zamani": "2026-07-19T15:01:24.231521+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 51
   },
@@ -1416,15 +1416,15 @@
       "hedefler": [
         {
           "hedef": "Verimlilik Takip Sistemi'ni Ali Bey'e Sun",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "1 Beat Tamamla",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "How to be a Millionere Scenarios",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1449,134 +1449,146 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-19T10:55:56Z",
+      "zaman": "2026-07-19T12:01:08Z",
       "durum": "warn",
-      "runId": "29684218671",
+      "runId": "29686206169",
       "sureSn": 3
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:51:43Z",
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:22:44Z",
       "durum": "ok",
-      "runId": "29684091115",
-      "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:51:41Z",
-      "durum": "ok",
-      "runId": "29684090154",
+      "runId": "29685015542",
       "sureSn": 29
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:51:37Z",
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:21:44Z",
       "durum": "ok",
-      "runId": "29684088290",
-      "sureSn": 28
+      "runId": "29684985958",
+      "sureSn": 16
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:44:12Z",
-      "durum": "ok",
-      "runId": "29683863660",
-      "sureSn": 42
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:20:46Z",
+      "durum": "warn",
+      "runId": "29684957973",
+      "sureSn": 18
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:44:09Z",
-      "durum": "ok",
-      "runId": "29683861758",
-      "sureSn": 37
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-19T10:43:30Z",
-      "durum": "ok",
-      "runId": "29683843267",
-      "sureSn": 15
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:23:52Z",
-      "durum": "ok",
-      "runId": "29683269764",
-      "sureSn": 39
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T10:23:45Z",
-      "durum": "ok",
-      "runId": "29683266255",
-      "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-19T09:28:34Z",
-      "durum": "ok",
-      "runId": "29681638902",
-      "sureSn": 36
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-19T09:09:07Z",
-      "durum": "ok",
-      "runId": "29681068059",
-      "sureSn": 22
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-19T09:06:58Z",
-      "durum": "ok",
-      "runId": "29681005236",
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:19:56Z",
+      "durum": "warn",
+      "runId": "29684931223",
       "sureSn": 13
     },
     {
-      "ad": "Gönder",
-      "zaman": "2026-07-19T08:20:45Z",
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:18:13Z",
+      "durum": "warn",
+      "runId": "29684883460",
+      "sureSn": 18
+    },
+    {
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:16:58Z",
+      "durum": "warn",
+      "runId": "29684847616",
+      "sureSn": 12
+    },
+    {
+      "ad": "Gecici Telafi Ekle",
+      "zaman": "2026-07-19T11:15:58Z",
+      "durum": "warn",
+      "runId": "29684820082",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-19T11:14:24Z",
       "durum": "ok",
-      "runId": "29679660919",
+      "runId": "29684772318",
+      "sureSn": 41
+    },
+    {
+      "ad": "Gecici Rutin Oku",
+      "zaman": "2026-07-19T11:13:11Z",
+      "durum": "ok",
+      "runId": "29684736854",
+      "sureSn": 14
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-19T11:09:46Z",
+      "durum": "ok",
+      "runId": "29684633869",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-19T11:09:44Z",
+      "durum": "ok",
+      "runId": "29684633050",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-19T11:09:35Z",
+      "durum": "ok",
+      "runId": "29684629390",
+      "sureSn": 39
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-19T11:09:31Z",
+      "durum": "ok",
+      "runId": "29684627478",
       "sureSn": 19
     },
     {
       "ad": "Panel",
-      "zaman": "2026-07-19T07:27:00Z",
+      "zaman": "2026-07-19T10:55:56Z",
       "durum": "ok",
-      "runId": "29678122793",
-      "sureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-19T06:37:22Z",
-      "durum": "ok",
-      "runId": "29676738935",
+      "runId": "29684218671",
       "sureSn": 37
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 14,
-      "oran": 93,
-      "ortSureSn": 39
+      "toplam": 9,
+      "oran": 89,
+      "ortSureSn": 37
+    },
+    {
+      "ad": "Gecici Telafi Ekle",
+      "toplam": 7,
+      "oran": 29,
+      "ortSureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 43
+    },
+    {
+      "ad": "Gecici Rutin Oku",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 14
     },
     {
       "ad": "Webhook",
-      "toplam": 11,
+      "toplam": 12,
       "oran": 100,
       "ortSureSn": 34
     },
     {
       "ad": "Gönder",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 10,
-      "oran": 100,
-      "ortSureSn": 36
     }
   ],
   "kocKararlari": [],
