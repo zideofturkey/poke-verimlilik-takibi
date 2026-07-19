@@ -1,6 +1,0 @@
-1: ['RutinID', 'Isim', 'Soru', 'Aktif']
-2: ['fransizca', 'Fransızca çalışma', 'Bugün Fransızca çalıştın mı?', 'TRUE']
-3: ['sabah_telefon', 'Sabah telefonsuzluğu', 'Sabah telefonsuzluk rutinini yapabildin mi?', 'TRUE']
-4: ['aksam_telefon', 'Gece telefonsuzluğu', 'Gece yatmadan telefona bakmadın değil mi?', 'TRUE']
-5: ['verimli_video', 'Verimli video izleme', 'En az 1 verimli video izledin mi?', 'TRUE']
-6: ['mewing', 'Mewing', '2 dakika mewing yaptın mı?', 'TRUE']
