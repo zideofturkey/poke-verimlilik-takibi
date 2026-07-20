@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-20T23:24:04.377936+03:00",
+  "uretim_zamani": "2026-07-21T00:43:46.766350+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 60
+    "haftaTamamlamaYuzdesi": 63
   },
   "heatmap": [
-    {
-      "tarih": "06 June 2026",
-      "tarih_iso": "2026-06-06",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "07 June 2026",
       "tarih_iso": "2026-06-07",
@@ -1195,11 +1168,11 @@
     {
       "tarih": "20 July 2026",
       "tarih_iso": "2026-07-20",
-      "level": 3,
+      "level": 5,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1215,7 +1188,34 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
+        }
+      ]
+    },
+    {
+      "tarih": "21 July 2026",
+      "tarih_iso": "2026-07-21",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
         }
       ]
     }
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 75
+      "oran": 80
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1509,10 +1509,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-20T20:23:45Z",
+      "zaman": "2026-07-20T21:43:28Z",
       "durum": "warn",
+      "runId": "29781280342",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T21:26:40Z",
+      "durum": "ok",
+      "runId": "29780198472",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T20:41:44Z",
+      "durum": "ok",
+      "runId": "29777188445",
+      "sureSn": 224
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T20:40:53Z",
+      "durum": "ok",
+      "runId": "29777130524",
+      "sureSn": 29
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-20T20:36:49Z",
+      "durum": "ok",
+      "runId": "29776850437",
+      "sureSn": 37
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-20T20:23:45Z",
+      "durum": "ok",
       "runId": "29775933981",
-      "sureSn": 5
+      "sureSn": 47
     },
     {
       "ad": "Webhook",
@@ -1576,67 +1611,32 @@
       "durum": "ok",
       "runId": "29769685532",
       "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T18:53:20Z",
-      "durum": "ok",
-      "runId": "29769678992",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T18:53:14Z",
-      "durum": "ok",
-      "runId": "29769671513",
-      "sureSn": 178
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T17:39:38Z",
-      "durum": "ok",
-      "runId": "29764519416",
-      "sureSn": 48
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T17:39:30Z",
-      "durum": "ok",
-      "runId": "29764511233",
-      "sureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T17:39:28Z",
-      "durum": "ok",
-      "runId": "29764509713",
-      "sureSn": 53
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
+      "toplam": 10,
+      "oran": 90,
       "ortSureSn": 40
     },
     {
       "ad": "Webhook",
-      "toplam": 15,
+      "toplam": 17,
       "oran": 100,
       "ortSureSn": 66
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 32
     },
     {
       "ad": "Gönder",
       "toplam": 4,
       "oran": 100,
       "ortSureSn": 24
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 31
     },
     {
       "ad": "Temizle",
@@ -1647,6 +1647,13 @@
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-20",
+      "saat": "23:45",
+      "kategori": "BOSA_VAKIT",
+      "ozet": "Bugün 1,5 saat boş vakit geçirdim ve instagram’a baktım. Yarım ssat de youtube i",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: akşam sorduğum 'bugün ne kadar boşa vakit geçirdin' sorusu.\n\nKullanıcı şunu yazdı:\n\"Bugün 1,5 saat boş vakit geçirdim ve instagram’a baktım. Yarım ssat de youtube izlemişimdir\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: BOSA_VAKIT\nGOREVLER: \nRUTIN: \nCEVAP: Not aldım, bugün 1 saat 30 dakika boş zaman geçirdin."
+    },
     {
       "tarih": "2026-07-20",
       "saat": "21:55",
@@ -1750,7 +1757,7 @@
     },
     {
       "kategori": "BOSA_VAKIT",
-      "sayi": 2
+      "sayi": 3
     },
     {
       "kategori": "SORGULA",
