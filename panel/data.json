@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-20T18:12:12.701487+03:00",
+  "uretim_zamani": "2026-07-20T19:56:41.361429+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 51
   },
@@ -1501,10 +1501,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-20T15:12:00Z",
+      "zaman": "2026-07-20T16:56:20Z",
       "durum": "warn",
+      "runId": "29761701426",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-20T16:37:53Z",
+      "durum": "ok",
+      "runId": "29760426046",
+      "sureSn": 38
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-20T15:55:28Z",
+      "durum": "ok",
+      "runId": "29757343724",
+      "sureSn": 25
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-20T15:12:00Z",
+      "durum": "ok",
       "runId": "29754080059",
-      "sureSn": 3
+      "sureSn": 37
     },
     {
       "ad": "Dinle",
@@ -1582,27 +1603,6 @@
       "durum": "ok",
       "runId": "29717463160",
       "sureSn": 33
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-20T03:53:55Z",
-      "durum": "ok",
-      "runId": "29715642143",
-      "sureSn": 43
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-20T00:03:23Z",
-      "durum": "ok",
-      "runId": "29708893841",
-      "sureSn": 23
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-19T23:58:30Z",
-      "durum": "ok",
-      "runId": "29708774034",
-      "sureSn": 44
     }
   ],
   "workflowTurOzet": [
@@ -1610,19 +1610,19 @@
       "ad": "Panel",
       "toplam": 12,
       "oran": 92,
-      "ortSureSn": 39
+      "ortSureSn": 38
     },
     {
       "ad": "Dinle",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 30
     },
     {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 43
+      "ortSureSn": 38
     },
     {
       "ad": "Webhook",
@@ -1647,12 +1647,6 @@
       "toplam": 3,
       "oran": 33,
       "ortSureSn": 16
-    },
-    {
-      "ad": "Gecici Kurtar",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
     }
   ],
   "kocKararlari": [],
