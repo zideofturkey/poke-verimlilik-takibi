@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-20T19:56:41.361429+03:00",
+  "uretim_zamani": "2026-07-20T21:56:08.136321+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 51
+    "haftaTamamlamaYuzdesi": 57
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "20 July 2026",
       "tarih_iso": "2026-07-20",
-      "level": 0,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 62
+      "oran": 67
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1265,6 +1265,14 @@
         },
         {
           "metin": "Finansal Özgürlük kitabına başlama",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Bugünkü görevlerimi sorguluyorum",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Sil son aldığın notu. Bugünkü görevlerimi listele",
           "durum": "Bekliyor"
         }
       ]
@@ -1501,10 +1509,80 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-20T16:56:20Z",
+      "zaman": "2026-07-20T18:55:51Z",
       "durum": "warn",
+      "runId": "29769863216",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T18:55:04Z",
+      "durum": "ok",
+      "runId": "29769805017",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T18:53:54Z",
+      "durum": "ok",
+      "runId": "29769720799",
+      "sureSn": 45
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T18:53:25Z",
+      "durum": "ok",
+      "runId": "29769685532",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T18:53:20Z",
+      "durum": "ok",
+      "runId": "29769678992",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T18:53:14Z",
+      "durum": "warn",
+      "runId": "29769671513",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T17:39:38Z",
+      "durum": "ok",
+      "runId": "29764519416",
+      "sureSn": 48
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T17:39:30Z",
+      "durum": "ok",
+      "runId": "29764511233",
+      "sureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T17:39:28Z",
+      "durum": "ok",
+      "runId": "29764509713",
+      "sureSn": 53
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T17:39:19Z",
+      "durum": "ok",
+      "runId": "29764500308",
+      "sureSn": 29
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-20T16:56:20Z",
+      "durum": "ok",
       "runId": "29761701426",
-      "sureSn": 4
+      "sureSn": 51
     },
     {
       "ad": "Dinle",
@@ -1533,76 +1611,6 @@
       "durum": "ok",
       "runId": "29750479676",
       "sureSn": 36
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-20T12:31:55Z",
-      "durum": "ok",
-      "runId": "29742561536",
-      "sureSn": 43
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-20T12:17:41Z",
-      "durum": "ok",
-      "runId": "29741667196",
-      "sureSn": 25
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-20T11:52:16Z",
-      "durum": "ok",
-      "runId": "29740065128",
-      "sureSn": 23
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T10:40:29Z",
-      "durum": "ok",
-      "runId": "29735869248",
-      "sureSn": 223
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-20T10:12:22Z",
-      "durum": "ok",
-      "runId": "29734246651",
-      "sureSn": 47
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-20T09:19:12Z",
-      "durum": "ok",
-      "runId": "29730982681",
-      "sureSn": 20
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-20T08:12:23Z",
-      "durum": "ok",
-      "runId": "29727083957",
-      "sureSn": 32
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-20T06:47:33Z",
-      "durum": "ok",
-      "runId": "29722667882",
-      "sureSn": 42
-    },
-    {
-      "ad": "Temizle",
-      "zaman": "2026-07-20T06:19:13Z",
-      "durum": "ok",
-      "runId": "29721332343",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-20T04:41:07Z",
-      "durum": "ok",
-      "runId": "29717463160",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
@@ -1610,47 +1618,49 @@
       "ad": "Panel",
       "toplam": 12,
       "oran": 92,
-      "ortSureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 30
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 38
+      "ortSureSn": 40
     },
     {
       "ad": "Webhook",
-      "toplam": 10,
+      "toplam": 16,
+      "oran": 94,
+      "ortSureSn": 53
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 76
+      "ortSureSn": 31
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Temizle",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 16
-    },
-    {
-      "ad": "Analiz",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 445
-    },
-    {
-      "ad": "Gecici Duzelt 9",
-      "toplam": 3,
-      "oran": 33,
-      "ortSureSn": 16
     }
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-20",
+      "saat": "21:55",
+      "kategori": "GUNLUK_GOREV",
+      "ozet": "Sil son aldığın notu. Bugünkü görevlerimi listele",
+      "detay": "PROMPT:\n(deterministik - SLM atlandı, net kalıp)\n\nCEVAP (ham):\nGUNLUK_GOREV (deterministik)"
+    },
+    {
+      "tarih": "2026-07-20",
+      "saat": "21:54",
+      "kategori": "GUNLUK_GOREV",
+      "ozet": "Bugünkü görevlerimi sorguluyorum",
+      "detay": "PROMPT:\n(deterministik - SLM atlandı, net kalıp)\n\nCEVAP (ham):\nGUNLUK_GOREV (deterministik)"
+    },
     {
       "tarih": "2026-07-20",
       "saat": "13:44",
@@ -1731,12 +1741,12 @@
   ],
   "slmDagilim": [
     {
-      "kategori": "HAFTALIK_HEDEF",
-      "sayi": 4
+      "kategori": "GUNLUK_GOREV",
+      "sayi": 5
     },
     {
-      "kategori": "GUNLUK_GOREV",
-      "sayi": 3
+      "kategori": "HAFTALIK_HEDEF",
+      "sayi": 4
     },
     {
       "kategori": "BOSA_VAKIT",
