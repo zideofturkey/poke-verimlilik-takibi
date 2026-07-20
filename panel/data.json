@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-20T21:56:08.136321+03:00",
+  "uretim_zamani": "2026-07-20T23:24:04.377936+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 57
+    "haftaTamamlamaYuzdesi": 60
   },
   "heatmap": [
     {
@@ -1195,7 +1195,7 @@
     {
       "tarih": "20 July 2026",
       "tarih_iso": "2026-07-20",
-      "level": 2,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1211,7 +1211,7 @@
         },
         {
           "isim": "Verimli video izleme",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Mewing",
@@ -1235,7 +1235,7 @@
     },
     {
       "isim": "Verimli video izleme",
-      "oran": 71
+      "oran": 75
     },
     {
       "isim": "Mewing",
@@ -1249,11 +1249,11 @@
       "gorevler": [
         {
           "metin": "10.00 sağlık ocağı",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Av Mevsimi bitirme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)",
@@ -1265,7 +1265,7 @@
         },
         {
           "metin": "Finansal Özgürlük kitabına başlama",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Bugünkü görevlerimi sorguluyorum",
@@ -1509,10 +1509,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-20T18:55:51Z",
+      "zaman": "2026-07-20T20:23:45Z",
       "durum": "warn",
+      "runId": "29775933981",
+      "sureSn": 5
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T20:01:08Z",
+      "durum": "ok",
+      "runId": "29774360757",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T20:01:03Z",
+      "durum": "ok",
+      "runId": "29774354605",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T20:01:00Z",
+      "durum": "ok",
+      "runId": "29774350990",
+      "sureSn": 41
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-20T19:29:39Z",
+      "durum": "ok",
+      "runId": "29772208542",
+      "sureSn": 24
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-20T18:58:22Z",
+      "durum": "ok",
+      "runId": "29770041661",
+      "sureSn": 32
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-20T18:55:51Z",
+      "durum": "ok",
       "runId": "29769863216",
-      "sureSn": 3
+      "sureSn": 45
     },
     {
       "ad": "Webhook",
@@ -1545,9 +1587,9 @@
     {
       "ad": "Webhook",
       "zaman": "2026-07-20T18:53:14Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "29769671513",
-      "sureSn": 3
+      "sureSn": 178
     },
     {
       "ad": "Webhook",
@@ -1569,74 +1611,32 @@
       "durum": "ok",
       "runId": "29764509713",
       "sureSn": 53
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-20T17:39:19Z",
-      "durum": "ok",
-      "runId": "29764500308",
-      "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-20T16:56:20Z",
-      "durum": "ok",
-      "runId": "29761701426",
-      "sureSn": 51
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-20T16:37:53Z",
-      "durum": "ok",
-      "runId": "29760426046",
-      "sureSn": 38
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-20T15:55:28Z",
-      "durum": "ok",
-      "runId": "29757343724",
-      "sureSn": 25
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-20T15:12:00Z",
-      "durum": "ok",
-      "runId": "29754080059",
-      "sureSn": 37
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-20T14:24:13Z",
-      "durum": "ok",
-      "runId": "29750479676",
-      "sureSn": 36
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
-      "oran": 92,
+      "toplam": 11,
+      "oran": 91,
       "ortSureSn": 40
     },
     {
       "ad": "Webhook",
-      "toplam": 16,
-      "oran": 94,
-      "ortSureSn": 53
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 8,
+      "toplam": 15,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 66
     },
     {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 23
+      "ortSureSn": 24
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 31
     },
     {
       "ad": "Temizle",
