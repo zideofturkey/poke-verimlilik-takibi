@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-20T13:12:36.209729+03:00",
+  "uretim_zamani": "2026-07-20T15:32:11.080252+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 51
   },
@@ -1244,6 +1244,32 @@
   ],
   "gunlukGorevGecmisi": [
     {
+      "tarih": "20 July",
+      "gunAdi": "Pazartesi",
+      "gorevler": [
+        {
+          "metin": "10.00 sağlık ocağı",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Av Mevsimi bitirme",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Finansal Özgürlük kitabına başlama",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
+    {
       "tarih": "19 July",
       "gunAdi": "Pazar",
       "gorevler": [
@@ -1475,10 +1501,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-20T10:12:22Z",
+      "zaman": "2026-07-20T12:31:55Z",
       "durum": "warn",
+      "runId": "29742561536",
+      "sureSn": 5
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-20T12:17:41Z",
+      "durum": "ok",
+      "runId": "29741667196",
+      "sureSn": 25
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-20T11:52:16Z",
+      "durum": "ok",
+      "runId": "29740065128",
+      "sureSn": 23
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-20T10:40:29Z",
+      "durum": "ok",
+      "runId": "29735869248",
+      "sureSn": 223
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-20T10:12:22Z",
+      "durum": "ok",
       "runId": "29734246651",
-      "sureSn": 3
+      "sureSn": 47
     },
     {
       "ad": "Gönder",
@@ -1549,34 +1603,6 @@
       "durum": "ok",
       "runId": "29706965562",
       "sureSn": 44
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-19T22:04:10Z",
-      "durum": "ok",
-      "runId": "29705484409",
-      "sureSn": 34
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-19T21:53:55Z",
-      "durum": "ok",
-      "runId": "29705174612",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-19T21:04:45Z",
-      "durum": "ok",
-      "runId": "29703709170",
-      "sureSn": 157
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-19T20:59:57Z",
-      "durum": "ok",
-      "runId": "29703547486",
-      "sureSn": 29
     }
   ],
   "workflowTurOzet": [
@@ -1584,31 +1610,31 @@
       "ad": "Panel",
       "toplam": 12,
       "oran": 92,
-      "ortSureSn": 46
+      "ortSureSn": 44
     },
     {
       "ad": "Gönder",
       "toplam": 3,
       "oran": 100,
-      "ortSureSn": 39
+      "ortSureSn": 43
     },
     {
       "ad": "Dinle",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 30
+      "ortSureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 10,
+      "oran": 100,
+      "ortSureSn": 76
     },
     {
       "ad": "Temizle",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 16
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 10,
-      "oran": 100,
-      "ortSureSn": 74
     },
     {
       "ad": "Analiz",
@@ -1631,6 +1657,13 @@
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-20",
+      "saat": "13:44",
+      "kategori": "GUNLUK_GOREV",
+      "ozet": "Günlük görevler:\n1. 10.00 sağlık ocağı\n2. Av Mevsimi bitirme \n3. DMLKT ediz için",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: sabah sorduğum 'bugün ne yapacaksın' sorusu.\n\nKullanıcı şunu yazdı:\n\"Günlük görevler:\n1. 10.00 sağlık ocağı\n2. Av Mevsimi bitirme \n3. DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)\n4. Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma\n5. Finansal Özgürlük kitabına başlama\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: GUNLUK_GOREV\nGOREVLER: \"sabah sağlık ocağı | av mevsimi bitirme | DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor) | Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma | finansal özgürlük kitabına başlama\"\nRUTIN: \nCEVAP: Günlük görevlerinizi tamamlamak için şu işler yapacağım."
+    },
     {
       "tarih": "2026-07-20",
       "saat": "00:07",
@@ -1708,11 +1741,11 @@
       "sayi": 4
     },
     {
-      "kategori": "BOSA_VAKIT",
-      "sayi": 2
+      "kategori": "GUNLUK_GOREV",
+      "sayi": 3
     },
     {
-      "kategori": "GUNLUK_GOREV",
+      "kategori": "BOSA_VAKIT",
       "sayi": 2
     },
     {
