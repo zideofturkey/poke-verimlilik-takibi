@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-22T23:38:41.160049+03:00",
+  "uretim_zamani": "2026-07-23T01:04:23.538195+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 66
+    "haftaTamamlamaYuzdesi": 60
   },
   "heatmap": [
-    {
-      "tarih": "08 June 2026",
-      "tarih_iso": "2026-06-08",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "09 June 2026",
       "tarih_iso": "2026-06-09",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "23 July 2026",
+      "tarih_iso": "2026-07-23",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1527,10 +1527,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-22T20:38:28Z",
+      "zaman": "2026-07-22T22:04:06Z",
       "durum": "warn",
+      "runId": "29961544182",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-22T22:02:14Z",
+      "durum": "warn",
+      "runId": "29961429210",
+      "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-22T20:38:28Z",
+      "durum": "ok",
       "runId": "29955967751",
-      "sureSn": 4
+      "sureSn": 38
     },
     {
       "ad": "Dinle",
@@ -1615,20 +1629,6 @@
       "durum": "ok",
       "runId": "29944804281",
       "sureSn": 20
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-22T17:48:47Z",
-      "durum": "ok",
-      "runId": "29943947953",
-      "sureSn": 44
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-22T16:25:41Z",
-      "durum": "ok",
-      "runId": "29937945259",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
@@ -1639,16 +1639,16 @@
       "ortSureSn": 37
     },
     {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 91,
+      "ortSureSn": 43
+    },
+    {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
       "ortSureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 46
     },
     {
       "ad": "GECICI - Dogrulama Testi (silinecek)",
