@@ -3,6 +3,9 @@ name: GECICI - Dogrulama Testi (silinecek)
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -29,6 +32,21 @@ jobs:
           CLIENT_PAYLOAD: '{"update": {"message": {"text": "günlük görevlerimi sorgula lütfen"}}}'
         run: python handle_update.py
 
+      - name: Sonucu doğrula (sheet'ten oku)
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python temp_dogrulama_check.py > dogrulama_ciktisi.txt 2>&1 || true
+
       - name: service_account.json'ı sil (güvenlik)
         if: always()
         run: rm -f service_account.json
+
+      - name: Çıktıyı commit et
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add dogrulama_ciktisi.txt
+          git commit -m "chore: doğrulama çıktısı [skip ci]" || echo "değişiklik yok"
+          git push
