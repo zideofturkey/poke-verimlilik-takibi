@@ -1,0 +1,11 @@
+HataLog toplam 8 kayıt içeriyor.
+Son 15 kayıt:
+['Tarih', 'Saat', 'Baglam']
+['2026-07-19', '16:17', 'slm_sorgula deneme 1/3 (model=qwen2.5:3b)']
+['2026-07-19', '16:18', 'slm_sorgula deneme 2/3 (model=qwen2.5:3b)']
+['2026-07-19', '16:18', 'slm_sorgula deneme 3/3 (model=qwen2.5:3b)']
+['2026-07-19', '21:48', 'slm_sorgula deneme 1/3 (model=qwen2.5:7b)']
+['2026-07-19', '21:50', 'slm_sorgula deneme 2/3 (model=qwen2.5:7b)']
+['2026-07-23', '01:07', 'slm_sorgula deneme 1/3 (model=qwen2.5:3b)']
+['2026-07-23', '01:07', 'slm_sorgula deneme 2/3 (model=qwen2.5:3b)']
+['2026-07-23', '01:08', 'slm_sorgula deneme 3/3 (model=qwen2.5:3b)']
