@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-22T20:49:02.340725+03:00",
+  "uretim_zamani": "2026-07-22T22:21:48.062736+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1249,11 +1249,11 @@
       "gorevler": [
         {
           "metin": "11.40 hastane randevusu",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Randevu ertesi sağlık ocağı pansumanı (gerekirse)",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "DMLKT araştırma",
@@ -1265,11 +1265,7 @@
         },
         {
           "metin": "Baba ig’s",
-          "durum": "Bekliyor"
-        },
-        {
-          "metin": "günlük görevlerimi sorgula lütfen",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1296,14 +1292,6 @@
         {
           "metin": "Finansal Özgürlük kitabına başlama",
           "durum": "Yapıldı"
-        },
-        {
-          "metin": "Bugünkü görevlerimi sorguluyorum",
-          "durum": "Bekliyor"
-        },
-        {
-          "metin": "Sil son aldığın notu. Bugünkü görevlerimi listele",
-          "durum": "Bekliyor"
         }
       ]
     },
@@ -1538,11 +1526,88 @@
   ],
   "workflowGecmisi": [
     {
+      "ad": "Webhook",
+      "zaman": "2026-07-22T19:21:34Z",
+      "durum": "warn",
+      "runId": "29950624096",
+      "sureSn": 4
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-22T19:21:32Z",
+      "durum": "warn",
+      "runId": "29950621280",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-22T19:20:44Z",
+      "durum": "ok",
+      "runId": "29950566474",
+      "sureSn": 37
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-22T19:20:42Z",
+      "durum": "ok",
+      "runId": "29950564715",
+      "sureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-22T19:20:41Z",
+      "durum": "ok",
+      "runId": "29950563196",
+      "sureSn": 39
+    },
+    {
+      "ad": "GECICI - Dogrulama Testi (silinecek)",
+      "zaman": "2026-07-22T19:13:24Z",
+      "durum": "ok",
+      "runId": "29950053639",
+      "sureSn": 199
+    },
+    {
+      "ad": "GECICI - Dogrulama Testi (silinecek)",
+      "zaman": "2026-07-22T19:08:52Z",
+      "durum": "ok",
+      "runId": "29949736284",
+      "sureSn": 138
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-22T19:02:06Z",
+      "durum": "ok",
+      "runId": "29949259421",
+      "sureSn": 21
+    },
+    {
+      "ad": "GECICI - Temizlik (silinecek)",
+      "zaman": "2026-07-22T18:25:46Z",
+      "durum": "ok",
+      "runId": "29946610396",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-22T18:14:14Z",
+      "durum": "ok",
+      "runId": "29945793686",
+      "sureSn": 30
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-22T18:00:31Z",
+      "durum": "ok",
+      "runId": "29944804281",
+      "sureSn": 20
+    },
+    {
       "ad": "Panel",
       "zaman": "2026-07-22T17:48:47Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "29943947953",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Dinle",
@@ -1564,95 +1629,42 @@
       "durum": "ok",
       "runId": "29935423287",
       "sureSn": 20
-    },
-    {
-      "ad": "GECICI - Teshis (silinecek)",
-      "zaman": "2026-07-22T15:51:02Z",
-      "durum": "warn",
-      "runId": "29935301907",
-      "sureSn": 15
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-22T15:45:23Z",
-      "durum": "ok",
-      "runId": "29934868342",
-      "sureSn": 17
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T15:43:07Z",
-      "durum": "ok",
-      "runId": "29934690084",
-      "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T15:43:03Z",
-      "durum": "ok",
-      "runId": "29934684114",
-      "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T15:43:02Z",
-      "durum": "ok",
-      "runId": "29934681522",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T15:43:01Z",
-      "durum": "ok",
-      "runId": "29934680124",
-      "sureSn": 39
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-22T14:34:19Z",
-      "durum": "ok",
-      "runId": "29929230099",
-      "sureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-22T14:12:34Z",
-      "durum": "ok",
-      "runId": "29927471581",
-      "sureSn": 34
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-22T12:12:22Z",
-      "durum": "warn",
-      "runId": "29918685080",
-      "sureSn": 37
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-22T11:54:03Z",
-      "durum": "ok",
-      "runId": "29917478631",
-      "sureSn": 31
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-22T11:48:43Z",
-      "durum": "ok",
-      "runId": "29917132117",
-      "sureSn": 19
     }
   ],
   "workflowTurOzet": [
     {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 91,
+      "ortSureSn": 32
+    },
+    {
       "ad": "Panel",
-      "toplam": 15,
-      "oran": 87,
-      "ortSureSn": 40
+      "toplam": 11,
+      "oran": 82,
+      "ortSureSn": 37
+    },
+    {
+      "ad": "GECICI - Dogrulama Testi (silinecek)",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 168
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 19
+    },
+    {
+      "ad": "GECICI - Temizlik (silinecek)",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 16
     },
     {
       "ad": "Dinle",
-      "toplam": 11,
+      "toplam": 8,
       "oran": 100,
       "ortSureSn": 32
     },
@@ -1661,22 +1673,24 @@
       "toplam": 2,
       "oran": 50,
       "ortSureSn": 18
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 20
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 34
     }
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-22",
+      "saat": "22:16",
+      "kategori": "SORGULA",
+      "ozet": "günlük görevlerimi sorgula lütfen",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: pazar günü sorduğum 'bu hafta hedeflerin ne' sorusu.\n\nKullanıcı şunu yazdı:\n\"günlük görevlerimi sorgula lütfen\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: SORGULA\nGOREVLER: \nRUTIN: \nCEVAP: Günlük görevlerinizi hatırlatmak için bu mesajı aldım, lütfen içeriğini kontrol edin ve gerekirse güncelleyin."
+    },
+    {
+      "tarih": "2026-07-22",
+      "saat": "22:11",
+      "kategori": "SORGULA",
+      "ozet": "günlük görevlerimi sorgula lütfen",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: pazar günü sorduğum 'bu hafta hedeflerin ne' sorusu.\n\nKullanıcı şunu yazdı:\n\"günlük görevlerimi sorgula lütfen\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: SORGULA\nGOREVLER: \nRUTIN: \nCEVAP: Bu hafta hedeflerin ne olduğunu sormadınız, ancak bugünün görevlerini görebilirim."
+    },
     {
       "tarih": "2026-07-22",
       "saat": "18:43",
@@ -1805,7 +1819,7 @@
     },
     {
       "kategori": "SORGULA",
-      "sayi": 1
+      "sayi": 3
     },
     {
       "kategori": "YENI_GOREV",
