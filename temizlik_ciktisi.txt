@@ -1,8 +1,0 @@
-Silinecek 3 satır bulundu:
-  (43, '2026-07-20', 'Bugünkü görevlerimi sorguluyorum')
-  (44, '2026-07-20', 'Sil son aldığın notu. Bugünkü görevlerimi listele')
-  (50, '2026-07-22', 'günlük görevlerimi sorgula lütfen')
-Silindi: satır 50 (2026-07-22 - günlük görevlerimi sorgula lütfen)
-Silindi: satır 44 (2026-07-20 - Sil son aldığın notu. Bugünkü görevlerimi listele)
-Silindi: satır 43 (2026-07-20 - Bugünkü görevlerimi sorguluyorum)
-Tamamlandı.
