@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-22T07:46:46.485170+03:00",
+  "uretim_zamani": "2026-07-22T10:34:41.089279+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 57
   },
@@ -1244,6 +1244,32 @@
   ],
   "gunlukGorevGecmisi": [
     {
+      "tarih": "22 July",
+      "gunAdi": "Çarşamba",
+      "gorevler": [
+        {
+          "metin": "11.40 hastane randevusu",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Randevu ertesi sağlık ocağı pansumanı (gerekirse)",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "DMLKT araştırma",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Yunsa - notebookLM analizi",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "Baba ig’s",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
+    {
       "tarih": "20 July",
       "gunAdi": "Pazartesi",
       "gorevler": [
@@ -1509,10 +1535,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-22T04:46:34Z",
+      "zaman": "2026-07-22T07:34:26Z",
       "durum": "warn",
-      "runId": "29891949175",
+      "runId": "29900698698",
       "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-22T07:12:11Z",
+      "durum": "ok",
+      "runId": "29899346055",
+      "sureSn": 28
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-22T06:36:35Z",
+      "durum": "ok",
+      "runId": "29897305080",
+      "sureSn": 38
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-22T04:46:34Z",
+      "durum": "ok",
+      "runId": "29891949175",
+      "sureSn": 38
     },
     {
       "ad": "Dinle",
@@ -1590,27 +1637,6 @@
       "durum": "ok",
       "runId": "29861364721",
       "sureSn": 51
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-21T19:08:18Z",
-      "durum": "ok",
-      "runId": "29860227904",
-      "sureSn": 23
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-21T17:53:36Z",
-      "durum": "ok",
-      "runId": "29854866460",
-      "sureSn": 43
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-21T17:36:52Z",
-      "durum": "ok",
-      "runId": "29853690799",
-      "sureSn": 39
     }
   ],
   "workflowTurOzet": [
@@ -1621,16 +1647,16 @@
       "ortSureSn": 41
     },
     {
+      "ad": "Webhook",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 65
+    },
+    {
       "ad": "Dinle",
       "toplam": 13,
       "oran": 100,
       "ortSureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 6,
-      "oran": 100,
-      "ortSureSn": 66
     },
     {
       "ad": "Gönder",
@@ -1641,6 +1667,13 @@
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-22",
+      "saat": "10:12",
+      "kategori": "GUNLUK_GOREV",
+      "ozet": "Bugünkü görevlerim:\n1. 11.40 hastane randevusu\n2. Randevu ertesi sağlık ocağı pa",
+      "detay": "PROMPT:\n(deterministik - SLM atlandı, net kalıp)\n\nCEVAP (ham):\nGUNLUK_GOREV (deterministik)"
+    },
     {
       "tarih": "2026-07-20",
       "saat": "23:45",
@@ -1743,7 +1776,7 @@
   "slmDagilim": [
     {
       "kategori": "GUNLUK_GOREV",
-      "sayi": 5
+      "sayi": 6
     },
     {
       "kategori": "HAFTALIK_HEDEF",
