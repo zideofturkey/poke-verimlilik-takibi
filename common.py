@@ -421,6 +421,36 @@ def log_slm_karari(kategori, mesaj_ozet, prompt, cevap):
         print(f"SLM logu kaydedilemedi (kritik değil, devam ediliyor): {e}")
 
 
+def get_anlasmazlik_log_sheet():
+    """[MULTI-AGENT ROL: RAPOR] Kural katmanı ile SLM(3b)'nin çeliştiği
+    (ve bu yüzden 7b'ye eskale edilen) anları kaydeder. Zamanla '3b hangi
+    kalıplarda gerçekten zayıf' sorusuna gerçek veriyle cevap vermek,
+    ileride prompt/kural ayarlaması yapmak için kullanılabilir."""
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("AnlasmazlikLog")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="AnlasmazlikLog", rows=500, cols=6)
+        ws.update(
+            values=[["Tarih", "Saat", "Mesaj", "KuralTahmini", "SLM3bKarari", "SLM7bKarari"]],
+            range_name="A1:F1",
+        )
+    return ws
+
+
+def log_anlasmazlik(mesaj, kural_tahmini, slm_3b_karari, slm_7b_karari):
+    """Kural katmanı ile 3b modelin sınıflandırma anlaşmazlığını kaydeder."""
+    try:
+        ws = get_anlasmazlik_log_sheet()
+        now = datetime.datetime.now(TR_TZ)
+        guvenli_append_row(ws, [
+            now.strftime("%Y-%m-%d"), now.strftime("%H:%M"),
+            mesaj[:200], kural_tahmini, slm_3b_karari, str(slm_7b_karari)[:200],
+        ])
+    except Exception as e:
+        print(f"Anlaşmazlık logu kaydedilemedi (kritik değil, devam ediliyor): {e}")
+
+
 _AY_ISIMLERI = {
     "ocak": 1, "şubat": 2, "subat": 2, "mart": 3, "nisan": 4, "mayıs": 5,
     "mayis": 5, "haziran": 6, "temmuz": 7, "ağustos": 8, "agustos": 8,

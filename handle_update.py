@@ -55,6 +55,8 @@ from common import (
     update_zaten_islendi_mi,
     update_islendi_isaretle,
     log_slm_karari,
+    log_anlasmazlik,
+    SLM_MODEL_KALITELI,
     metinden_tarih_cikar,
     guvenli_append_row,
     get_aktif_rutinler,
@@ -380,32 +382,108 @@ def _gunluk_gorev_isle(text):
 
 
 def _haftalik_hedef_isle(text):
-    hedefler = satirlari_ayikla(text)
+    """Hem 'bu haftanın hedefleri: ...' (tam liste, genelde Pazar) hem de
+    'haftalık görevlerime şunu ekle: \"...\"' (haftanın ortasında tek/az
+    sayıda ekleme) kalıplarını kapsar. Öncelik: (1) tırnak içi - en
+    güvenilir, (2) numaralı/çok satırlı liste, (3) tek satırlık 'ekle:
+    X' türü talimat cümlelerinde ':' sonrasını almak (talimatın kendisini
+    hedef metni sanmamak için)."""
+    tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+    numarali_liste = satirlari_ayikla(text)
+
+    if tirnak_ici:
+        hedefler = tirnak_ici
+    elif len(numarali_liste) > 1:
+        hedefler = numarali_liste
+    elif numarali_liste:
+        tek = numarali_liste[0]
+        if ":" in tek:
+            olasi_talimat, icerik = tek.split(":", 1)
+            talimat_kelimeleri = ["ekle", "kaydet", "yaz", "gir"]
+            if icerik.strip() and any(k in olasi_talimat.lower() for k in talimat_kelimeleri):
+                hedefler = [icerik.strip()]
+            else:
+                hedefler = [tek]
+        else:
+            hedefler = [tek]
+    else:
+        hedefler = []
+
     if not hedefler:
-        send_message("Bunu hedef listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
+        send_message("Bunu hedef listesi olarak anlayamadım, satır satır ya da tırnak içinde tekrar yazar mısın?")
         return
+
     ws = get_haftalik_sheet()
     hafta = hafta_baslangic_str()
+
+    # Eklemeden ÖNCE mevcut sayıyı al - "üzerine ekledim" gibi bağlam
+    # farkında bir cevap verebilmek için.
+    mevcut_satirlar = ws.get_all_values()
+    mevcut_sayisi = sum(1 for r in mevcut_satirlar[1:] if r and r[0] == hafta)
+
     for hedef in hedefler:
         guvenli_append_row(ws, [hafta, hedef, "Bekliyor"])
     set_bekleyen_soru("")
-    liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
-    send_message(f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝")
+
+    toplam = mevcut_sayisi + len(hedefler)
+    if mevcut_sayisi > 0:
+        if len(hedefler) == 1:
+            mesaj = (
+                f"Mevcut {mevcut_sayisi} haftalık hedefinin üzerine "
+                f"'{hedefler[0]}' hedefini ekledim, toplam {toplam} oldu. 📝"
+            )
+        else:
+            liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
+            mesaj = (
+                f"Mevcut {mevcut_sayisi} haftalık hedefinin üzerine {len(hedefler)} "
+                f"yeni hedef ekledim:\n{liste}\n\nToplam {toplam} oldu. 📝"
+            )
+    else:
+        liste = "\n".join(f"{i+1}) {h}" for i, h in enumerate(hedefler))
+        mesaj = f"Haftalık hedeflerin kaydedildi:\n{liste}\n\nHafta ortasında kontrol edeceğim. 📝"
+
+    send_message(mesaj)
 
 
-def _deterministik_on_siniflandir(text):
-    """SLM'e HİÇ SORMADAN, çok net kalıpları kod ile yakalar: bir liste
-    (ya da tek madde) + açık bir 'kaydet/ekle' niyeti + 'günlük/bugün'
-    ya da 'hafta/haftalık' sinyali. Küçük model bu kalıplarda defalarca
-    hata yaptı (yanlış kategoriye yazdı, hatta bazen hayali bir cevap
-    üretti) - bu, o riski tamamen ortadan kaldırır. Emin olunamayan her
-    durumda None döner, karar SLM'e bırakılır (sorgu, sohbet, rutin
-    tamamlama gibi belirsiz kalıplar için)."""
+def _sorgu_niyeti_var_mi(metin_kucuk):
+    """Kullanıcı bir şey EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR.
+    Bu True dönerse kural katmanı KESİNLİKLE bir tahminde bulunmamalı -
+    tam olarak 'günlük görevlerimi sorgula lütfen' gibi mesajların kendi
+    içeriğinde 'görevlerim' geçtiği için yanlışlıkla GUNLUK_GOREV
+    sayılmasına yol açan asıl kör nokta buydu."""
+    sorgu_kaliplari = [
+        "sorgula", "göster", "listele", "hatırlat", "nedir", "neydi",
+        "ne kadar", "hangi", "gönderir misin", "gönder misin",
+        "söyler misin", "yazar mısın", "durumum ne", "ilerledim mi",
+        "kaçırdım", "ne kadar ilerledim",
+    ]
+    if any(k in metin_kucuk for k in sorgu_kaliplari):
+        return True
+    # soru kipi eki (mı/mi/mu/mü ve türevleri) - SLM prompt'undaki
+    # SORGULA kuralıyla aynı mantık.
+    if re.search(r"\b\w*(mı|mi|mu|mü|mısın|misin|musun|müsün|mıydı|miydi)\b", metin_kucuk):
+        return True
+    return False
+
+
+def _kural_tahmini(text):
+    """ARTIK BİR ÖN-FİLTRE DEĞİL - SLM'in kararını DOĞRULAYAN bağımsız,
+    ikinci bir görüş. Sadece çok net kalıplarda (liste/madde + açık
+    'kaydet/ekle' niyeti + SORGU SİNYALİ YOK) kendinden emin bir tahmin
+    üretir; aksi halde None döner ('kararsızım, SLM'e güveniyorum'
+    anlamına gelir - None dönmesi ASLA bir anlaşmazlık sayılmaz).
+    _siniflandir_ve_isle bu fonksiyonu SLM'den SONRA çağırıp sonucu
+    karşılaştırır; sadece ikisi ÇELİŞİRSE daha güçlü modele (7b)
+    eskalasyon yapılır."""
+    metin_kucuk = text.lower()
+
+    if _sorgu_niyeti_var_mi(metin_kucuk):
+        return None
+
     maddeler = satirlari_ayikla(text)
     if not maddeler:
         return None
 
-    metin_kucuk = text.lower()
     niyet_var = any(k in metin_kucuk for k in [
         "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "ekleme yap",
         "ekle", "görevlerim", "yapacaklarım", "hedeflerim",
@@ -431,18 +509,17 @@ def _siniflandir_ve_isle(text, bekleyen):
     BAĞLAM/ipucu olarak veriliyor - kesin kural değil. Model, mesajın
     içeriğine bakıp en uygun kategoriyi kendisi seçiyor. Bu, katı bir
     durum makinesinin (sabit 'şu an şunu bekliyorum -> öyle işle' mantığının)
-    beklenmedik senaryolarda yanlış kategoriye yazması sorununu çözer."""
+    beklenmedik senaryolarda yanlış kategoriye yazması sorununu çözer.
 
-    # Önce deterministik kontrol - net kalıplar için SLM'e hiç gitmiyoruz.
-    on_tip = _deterministik_on_siniflandir(text)
-    if on_tip == "GUNLUK_GOREV":
-        log_slm_karari("GUNLUK_GOREV", text, "(deterministik - SLM atlandı, net kalıp)", "GUNLUK_GOREV (deterministik)")
-        _gunluk_gorev_isle(text)
-        return
-    elif on_tip == "HAFTALIK_HEDEF":
-        log_slm_karari("HAFTALIK_HEDEF", text, "(deterministik - SLM atlandı, net kalıp)", "HAFTALIK_HEDEF (deterministik)")
-        _haftalik_hedef_isle(text)
-        return
+    MİMARİ (güncel): Artık deterministik kural katmanı bir ÖN-FİLTRE değil,
+    SLM'in kararını sonradan DOĞRULAYAN bağımsız bir ikinci görüş. Önceden
+    kurallar SLM'e sormadan ÖNCE devreye girip mesajı kesebiliyordu - bu,
+    SLM'in bildiği bağlamdan (bekleyen soru, soru kipi tespiti vb.)
+    tamamen habersiz bir kaba anahtar-kelime eşleşmesinin, SLM zaten doğru
+    bilecek durumları (ör. sorgu cümleleri) ele geçirmesine yol açıyordu.
+    Şimdi SLM HER ZAMAN önce çalışır; kural katmanı sadece SLM'in kararıyla
+    ÇELİŞTİĞİ (ve kuralın kendinden gerçekten emin olduğu) nadir durumlarda
+    devreye girip daha güçlü modele (7b) ikinci bir görüş sorar."""
 
     baglam = (
         f"Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: "
@@ -517,6 +594,17 @@ def _siniflandir_ve_isle(text, bekleyen):
         "verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK."
     )
 
+    def _sonucu_parcala(sonuc_metni):
+        tip_match = re.search(r"TIP:\s*(\w+)", sonuc_metni)
+        gorevler_match = re.search(r"GOREVLER:\s*(.+)", sonuc_metni)
+        rutin_match = re.search(r"RUTIN:\s*(.+)", sonuc_metni)
+        cevap_match = re.search(r"CEVAP:\s*(.+)", sonuc_metni, re.DOTALL)
+        tip_ = tip_match.group(1).upper() if tip_match else "SOHBET"
+        cevap_ = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
+        if _turkce_disi_karakter_var_mi(cevap_):
+            cevap_ = "Not aldım 👍"
+        return tip_, gorevler_match, rutin_match, cevap_
+
     try:
         sonuc = slm_sorgula(prompt)
     except Exception as e:
@@ -524,14 +612,24 @@ def _siniflandir_ve_isle(text, bekleyen):
         send_message("Şu an bunu işleyemedim (teknik bir sorun oldu) — tekrar dener misin?")
         return
 
-    tip_match = re.search(r"TIP:\s*(\w+)", sonuc)
-    gorevler_match = re.search(r"GOREVLER:\s*(.+)", sonuc)
-    rutin_match = re.search(r"RUTIN:\s*(.+)", sonuc)
-    cevap_match = re.search(r"CEVAP:\s*(.+)", sonuc, re.DOTALL)
-    tip = tip_match.group(1).upper() if tip_match else "SOHBET"
-    cevap = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
-    if _turkce_disi_karakter_var_mi(cevap):
-        cevap = "Not aldım 👍"
+    tip, gorevler_match, rutin_match, cevap = _sonucu_parcala(sonuc)
+
+    # DOĞRULAMA: kural katmanı SLM'in kararına katılıyor mu? Kural sadece
+    # gerçekten emin olduğu durumlarda bir görüş bildirir (None dönerse
+    # bu ASLA anlaşmazlık sayılmaz - SLM'in kararı olduğu gibi kullanılır).
+    kural_tahmini = _kural_tahmini(text)
+    if kural_tahmini is not None and kural_tahmini != tip:
+        print(f"[sınıflandırma] Anlaşmazlık: kural={kural_tahmini} slm(3b)={tip} - 7b'ye eskale ediliyor")
+        try:
+            sonuc_7b = slm_sorgula(prompt, model=SLM_MODEL_KALITELI)
+            tip_7b, gorevler_match_7b, rutin_match_7b, cevap_7b = _sonucu_parcala(sonuc_7b)
+            log_anlasmazlik(text, kural_tahmini, tip, tip_7b)
+            tip, gorevler_match, rutin_match, cevap, sonuc = (
+                tip_7b, gorevler_match_7b, rutin_match_7b, cevap_7b, sonuc_7b
+            )
+        except Exception as e:
+            print(f"7b eskalasyonu başarısız oldu, 3b kararında kalınıyor: {e}")
+            log_anlasmazlik(text, kural_tahmini, tip, f"ESKALASYON BAŞARISIZ: {e}")
 
     log_slm_karari(tip, text, prompt, sonuc)
 
