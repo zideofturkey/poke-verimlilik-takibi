@@ -341,6 +341,37 @@ def get_aktif_rutinler():
     ]
 
 
+def cevaplanan_rutinler(tarih=None):
+    """Verilen tarih (varsayılan bugün) için hangi rutinlerin ZATEN
+    cevaplandığını (Görev isim kümesi) döndürür. gonder.py'deki
+    '_bugun_cevaplanan_rutinler' ile aynı mantık ama herhangi bir tarih
+    için çalışacak şekilde genelleştirildi - handle_update.py'nin geçmiş
+    tarihli sorgularda 'hangi rutinler hâlâ Bekliyor' diye sorabilmesi için."""
+    referans = tarih or bugun_str()
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    return {r["Görev"] for r in rows if r.get("Tarih") == referans}
+
+
+def dun_kacirildi_mi(rutin_isim, tarih=None):
+    """Verilen tarihten (varsayılan bugün) BİR ÖNCEKİ gün bu rutin
+    'Yapılmadı' olarak mı işaretlenmiş - telafi butonu sunup
+    sunmayacağımıza karar vermek için kullanılır. gonder.py'deki
+    'dun_kacirildi_mi' ile aynı, tarih parametreli hali."""
+    referans = tarih or bugun_str()
+    try:
+        referans_tarih = datetime.datetime.strptime(referans, "%Y-%m-%d").date()
+        onceki_gun = (referans_tarih - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    except ValueError:
+        return False
+    ws = get_sheet()
+    rows = ws.get_all_records()
+    for r in rows:
+        if r.get("Görev") == rutin_isim and r.get("Tarih") == onceki_gun and r.get("Durum") == "Yapılmadı":
+            return True
+    return False
+
+
 def rutin_serisi_hesapla(rutin_isim):
     """[MULTI-AGENT ROL: DEĞERLENDİRİCİ] Bu fonksiyon Değerlendirici
     agent'ının çekirdeği - ham veriyi (Takip) örüntüye (seri/kaçırma)

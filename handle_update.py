@@ -65,6 +65,8 @@ from common import (
     get_sheet,
     get_rutinler_sheet,
     rutin_serisi_hesapla,
+    cevaplanan_rutinler,
+    dun_kacirildi_mi,
     TR_TZ,
 )
 
@@ -332,6 +334,70 @@ def _gun_verisini_getir(tarih):
     return gorevler, takip
 
 
+def _kalan_durumu_interaktif_gonder(hedef_tarih, ifade, erken_saat_varsayimi=False):
+    """Belirli bir tarih için HENÜZ İŞARETLENMEMİŞ (Bekliyor/cevaplanmamış)
+    görev ve rutinleri, aksam()/rutin_sorulari_gonder() (gonder.py) ile
+    BİREBİR AYNI buton formatını kullanarak İKİ AYRI, tıklanabilir mesaj
+    hâlinde gönderir - kullanıcı buradan direkt işaretleyebilsin, sadece
+    okuyup Sheets'e elle gitmek zorunda kalmasın diye. Callback'ler zaten
+    tarihe duyarlı tasarlandığı için (rutin_<id>_<tarih>_..., gorev_<satır>
+    satır bazlı) bu, herhangi bir GEÇMİŞ tarih için de sorunsuz çalışır -
+    process_callback'te hiçbir değişiklik gerekmedi.
+    Dönüş: en az bir mesaj gönderildiyse True, gönderilecek bir şey
+    (hiçbir şey Bekliyor/cevapsız değilse) yoksa False."""
+    on_not = (
+        f"(Henüz uyumadığını düşünüp {ifade.lower()}kü listeni gösteriyorum - "
+        "başka bir günü kastettiysen tarihi söyle yeter.)\n\n"
+        if erken_saat_varsayimi else ""
+    )
+    bir_sey_gonderildi = False
+
+    # --- Ad-hoc günlük görevler (hâlâ 'Bekliyor' olanlar) ---
+    ws_gorev = get_gorevler_sheet()
+    rows = ws_gorev.get_all_records()
+    bekleyen_gorevler = [
+        (i + 2, r) for i, r in enumerate(rows)  # +2: başlık satırı + 1-index
+        if r.get("Tarih") == hedef_tarih and r.get("Durum") == "Bekliyor"
+    ]
+    if bekleyen_gorevler:
+        satir_metinleri = [f"{i+1}. {r['GorevMetni']}" for i, (_, r) in enumerate(bekleyen_gorevler)]
+        buton_satirlari = [
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"gorev_{row_num}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"gorev_{row_num}_hayir"},
+            ]
+            for i, (row_num, r) in enumerate(bekleyen_gorevler)
+        ]
+        mesaj = on_not + f"📋 {ifade} için kalan görevlerin:\n\n" + "\n".join(satir_metinleri)
+        send_message(mesaj, buttons=buton_satirlari)
+        on_not = ""  # ikinci mesajda tekrar etmesin
+        bir_sey_gonderildi = True
+
+    # --- Rutinler (o tarih için henüz cevaplanmamış olanlar) ---
+    rutinler = get_aktif_rutinler()
+    cevaplanan = cevaplanan_rutinler(hedef_tarih)
+    bekleyen_rutinler = [r for r in rutinler if r["isim"] not in cevaplanan]
+    if bekleyen_rutinler:
+        satir_metinleri = [f"{i+1}. {r['soru']}" for i, r in enumerate(bekleyen_rutinler)]
+        buton_satirlari = []
+        for i, r in enumerate(bekleyen_rutinler):
+            butonlar = [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"rutin_{r['id']}_{hedef_tarih}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"rutin_{r['id']}_{hedef_tarih}_hayir"},
+            ]
+            # Telafi (🔁) seçeneği sadece BUGÜN için anlamlı - 'bugün hem
+            # kendi rutinimi hem dünkü eksiği tamamladım' kavramı, geçmiş
+            # bir tarih sorgulanırken karışıklık yaratır, o yüzden eklenmiyor.
+            if hedef_tarih == bugun_str() and r.get("telafi_edilebilir", True) and dun_kacirildi_mi(r["isim"], hedef_tarih):
+                butonlar.append({"text": f"{i+1}️⃣ 🔁", "callback_data": f"rutin_{r['id']}_{hedef_tarih}_telafi"})
+            buton_satirlari.append(butonlar)
+        mesaj = on_not + f"🔁 {ifade} için kalan rutinlerin:\n\n" + "\n".join(satir_metinleri)
+        send_message(mesaj, buttons=buton_satirlari)
+        bir_sey_gonderildi = True
+
+    return bir_sey_gonderildi
+
+
 def _bugunku_durumu_cevapla(text):
     """Hem 'bugünkü durumum ne' hem 'dün'/'22 Temmuz'dan kalan görevlerim'
     gibi GEÇMİŞ bir tarihe ait sorguları kapsar. Tarih mesajda açıkça
@@ -364,6 +430,15 @@ def _bugunku_durumu_cevapla(text):
     # Kullanıcı sadece eksikleri mi soruyor, yoksa genel durumu mu?
     eksik_kelimeler = ["yapmadığ", "yapmadık", "kaçır", "eksik", "tamamlamadığ", "unuttuğ"]
     sadece_eksikler = any(k in text.lower() for k in eksik_kelimeler)
+
+    if not sadece_eksikler:
+        # Varsayılan (genel durum) sorgusunda: sadece OKUNAN düz metin
+        # yerine, henüz işaretlenmemiş öğeleri TIKLANABİLİR şekilde gönder.
+        # Her şey zaten cevaplanmışsa (gönderilecek bir şey yoksa), aşağıdaki
+        # düz-metin tam özet moduna düşülür - o zaten iyi bir "geçmişe
+        # bakış" görünümü sağlıyor.
+        if _kalan_durumu_interaktif_gonder(hedef_tarih, ifade, erken_saat_varsayimi):
+            return
 
     satirlar = []
     for r in takip:

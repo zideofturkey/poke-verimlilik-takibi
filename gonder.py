@@ -29,6 +29,8 @@ from common import (
     get_aktif_haftalik_rutinler,
     get_haftalik_rutin_takip_sheet,
     rutin_serisi_hesapla,
+    cevaplanan_rutinler,
+    dun_kacirildi_mi,
     get_deger,
     set_deger,
     TR_TZ,
@@ -110,30 +112,13 @@ def sabah():
         )
 
 
-def dun_kacirildi_mi(rutin_isim):
-    ws = get_sheet()
-    rows = ws.get_all_records()
-    dun = dun_str()
-    for r in rows:
-        if r.get("Görev") == rutin_isim and r.get("Tarih") == dun and r.get("Durum") == "Yapılmadı":
-            return True
-    return False
-
-
-def _bugun_cevaplanan_rutinler():
-    ws = get_sheet()
-    rows = ws.get_all_records()
-    bugun = bugun_str()
-    return {r["Görev"] for r in rows if r.get("Tarih") == bugun}
-
-
 def rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın rutinler:"):
     """Sadece BUGÜN için henüz cevaplanmamış rutinleri sorar. Zaten
     cevaplanmışsa (buton basılmış ya da serbest metinle bildirilmişse)
     bir daha sorulmaz - sessiz kalır. Hem akşam kontrolünde hem günün
     farklı saatlerindeki periyodik hatırlatmalarda kullanılır."""
     rutinler = get_aktif_rutinler()
-    cevaplanan = _bugun_cevaplanan_rutinler()
+    cevaplanan = cevaplanan_rutinler()
     cevaplanmamislar = [r for r in rutinler if r["isim"] not in cevaplanan]
 
     if not cevaplanmamislar:
