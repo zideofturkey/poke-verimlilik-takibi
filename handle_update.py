@@ -294,21 +294,71 @@ def _haftalik_ozet_sorusunu_cevapla():
     send_message("Bu haftaki (son 7 gün) rutin durumun:\n" + "\n".join(satirlar))
 
 
-def _bugunku_durumu_cevapla(text):
-    bugun = bugun_str()
+_AY_ISIMLERI_TERS = {
+    1: "Ocak", 2: "Şubat", 3: "Mart", 4: "Nisan", 5: "Mayıs", 6: "Haziran",
+    7: "Temmuz", 8: "Ağustos", 9: "Eylül", 10: "Ekim", 11: "Kasım", 12: "Aralık",
+}
 
+
+def _gun_ifadesi(tarih):
+    """YYYY-MM-DD -> kullanıcıya doğal gelecek bir ifade ('Bugün', 'Dün',
+    ya da '22 Temmuz'). Mesajlarda '{ifade} için ...' kalıbıyla kullanılır."""
+    bugun = bugun_str()
+    dun = (datetime.datetime.now(TR_TZ).date() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    if tarih == bugun:
+        return "Bugün"
+    if tarih == dun:
+        return "Dün"
+    try:
+        d = datetime.datetime.strptime(tarih, "%Y-%m-%d").date()
+        return f"{d.day} {_AY_ISIMLERI_TERS[d.month]}"
+    except (ValueError, KeyError):
+        return tarih
+
+
+def _gun_verisini_getir(tarih):
+    """Belirli bir tarih (YYYY-MM-DD) için o güne ait görev ve rutin
+    takip satırlarını döndürür - _bugunku_durumu_cevapla'nın hem 'bugün'
+    hem geçmiş bir tarih için kullanabileceği ortak veri katmanı."""
     ws_gorev = get_gorevler_sheet()
-    gorevler = [r for r in ws_gorev.get_all_records() if r.get("Tarih") == bugun]
+    gorevler = [r for r in ws_gorev.get_all_records() if r.get("Tarih") == tarih]
 
     rutin_isimleri = {r["isim"] for r in get_aktif_rutinler()}
     ws_takip = get_sheet()
-    takip_bugun = [
+    takip = [
         r for r in ws_takip.get_all_records()
-        if r.get("Tarih") == bugun and r.get("Görev") in rutin_isimleri
+        if r.get("Tarih") == tarih and r.get("Görev") in rutin_isimleri
     ]
+    return gorevler, takip
 
-    if not gorevler and not takip_bugun:
-        send_message("Bugün için henüz kayıtlı bir görev ya da rutin durumu yok.")
+
+def _bugunku_durumu_cevapla(text):
+    """Hem 'bugünkü durumum ne' hem 'dün'/'22 Temmuz'dan kalan görevlerim'
+    gibi GEÇMİŞ bir tarihe ait sorguları kapsar. Tarih mesajda açıkça
+    belirtilmemişse VE bugün için hiçbir kayıt yoksa VE saat hâlâ gece
+    yarısından sonraki erken saatlerdeyse (00:00-05:00), kullanıcı
+    muhtemelen henüz uyumadı ve zihinsel olarak hâlâ bir önceki günü
+    kastediyor - bu durumda DÜN'e otomatik düşülür, ama bu SESSİZCE
+    yapılmaz: hangi günün gösterildiği cevapta her zaman açıkça belirtilir."""
+    tarih_belirtilmis = metinden_tarih_cikar(text)
+    hedef_tarih = tarih_belirtilmis or bugun_str()
+    gorevler, takip = _gun_verisini_getir(hedef_tarih)
+
+    erken_saat_varsayimi = False
+    if not tarih_belirtilmis and not gorevler and not takip:
+        simdi = datetime.datetime.now(TR_TZ)
+        if simdi.hour < 5:
+            dun_tarih = (simdi.date() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+            gorevler_dun, takip_dun = _gun_verisini_getir(dun_tarih)
+            if gorevler_dun or takip_dun:
+                hedef_tarih = dun_tarih
+                gorevler, takip = gorevler_dun, takip_dun
+                erken_saat_varsayimi = True
+
+    ifade = _gun_ifadesi(hedef_tarih)
+
+    if not gorevler and not takip:
+        send_message(f"{ifade} için henüz kayıtlı bir görev ya da rutin durumu yok.")
         return
 
     # Kullanıcı sadece eksikleri mi soruyor, yoksa genel durumu mu?
@@ -316,7 +366,7 @@ def _bugunku_durumu_cevapla(text):
     sadece_eksikler = any(k in text.lower() for k in eksik_kelimeler)
 
     satirlar = []
-    for r in takip_bugun:
+    for r in takip:
         if sadece_eksikler and r["Durum"] != "Yapılmadı":
             continue
         if r["Durum"] == "Yapıldı":
@@ -339,13 +389,18 @@ def _bugunku_durumu_cevapla(text):
 
     if not satirlar:
         if sadece_eksikler:
-            send_message("Harika, bugün için kaçırdığın bir şey görünmüyor! 🎉")
+            send_message(f"Harika, {ifade.lower()} için kaçırdığın bir şey görünmüyor! 🎉")
         else:
-            send_message("Bugün için henüz kayıtlı bir görev ya da rutin durumu yok.")
+            send_message(f"{ifade} için henüz kayıtlı bir görev ya da rutin durumu yok.")
         return
 
-    baslik = "Bugün henüz yapmadıkların:" if sadece_eksikler else "Bugünkü durumun:"
-    send_message(f"{baslik}\n" + "\n".join(satirlar))
+    on_not = (
+        f"(Henüz uyumadığını düşünüp {ifade.lower()}kü listeni gösteriyorum - "
+        "başka bir günü kastettiysen tarihi söyle yeter.)\n\n"
+        if erken_saat_varsayimi else ""
+    )
+    baslik = f"{ifade} için henüz yapmadıkların:" if sadece_eksikler else f"{ifade} için durumun:"
+    send_message(on_not + f"{baslik}\n" + "\n".join(satirlar))
 
 
 def process_message(message):
@@ -459,9 +514,15 @@ def _sorgu_niyeti_var_mi(metin_kucuk):
     ]
     if any(k in metin_kucuk for k in sorgu_kaliplari):
         return True
-    # soru kipi eki (mı/mi/mu/mü ve türevleri) - SLM prompt'undaki
-    # SORGULA kuralıyla aynı mantık.
-    if re.search(r"\b\w*(mı|mi|mu|mü|mısın|misin|musun|müsün|mıydı|miydi)\b", metin_kucuk):
+    # Soru kipi PARÇACIĞI (mı/mi/mu/mü ve türevleri) - Türkçe'de bu her
+    # zaman AYRI bir kelimedir ('yaptın mı', 'geliyor musun'), bir isme
+    # SUFFIX olarak eklenmez. Önceki hâlde baştaki '\w*' bu ayrımı
+    # yapmıyordu - 'görevlerimi' gibi sıradan bir iyelik+belirtme eki
+    # ('görevler' + 'im' + 'i') '...mi' ile bittiği için yanlışlıkla soru
+    # kipi sanılıyordu (gerçek bir olayda "22 temmuz'dan kalan rutin ve
+    # görevlerimi istiyorum" bu yüzden yanlış tetiklendi). Artık parçacık
+    # SADECE bağımsız bir kelime olarak eşleşiyor.
+    if re.search(r"\b(mı|mi|mu|mü|mısın|misin|musun|müsün|mıydı|miydi|mısınız|misiniz|musunuz|müsünüz)\b", metin_kucuk):
         return True
     return False
 
@@ -469,16 +530,31 @@ def _sorgu_niyeti_var_mi(metin_kucuk):
 def _kural_tahmini(text):
     """ARTIK BİR ÖN-FİLTRE DEĞİL - SLM'in kararını DOĞRULAYAN bağımsız,
     ikinci bir görüş. Sadece çok net kalıplarda (liste/madde + açık
-    'kaydet/ekle' niyeti + SORGU SİNYALİ YOK) kendinden emin bir tahmin
-    üretir; aksi halde None döner ('kararsızım, SLM'e güveniyorum'
-    anlamına gelir - None dönmesi ASLA bir anlaşmazlık sayılmaz).
-    _siniflandir_ve_isle bu fonksiyonu SLM'den SONRA çağırıp sonucu
-    karşılaştırır; sadece ikisi ÇELİŞİRSE daha güçlü modele (7b)
+    'kaydet/ekle' niyeti + SORGU SİNYALİ YOK -> GUNLUK_GOREV/HAFTALIK_HEDEF;
+    ya da geçmiş bir tarih referansı + kaydet niyeti YOK -> SORGULA)
+    kendinden emin bir tahmin üretir; aksi halde None döner ('kararsızım,
+    SLM'e güveniyorum' anlamına gelir - None dönmesi ASLA bir anlaşmazlık
+    sayılmaz). _siniflandir_ve_isle bu fonksiyonu SLM'den SONRA çağırıp
+    sonucu karşılaştırır; sadece ikisi ÇELİŞİRSE daha güçlü modele (7b)
     eskalasyon yapılır."""
     metin_kucuk = text.lower()
 
     if _sorgu_niyeti_var_mi(metin_kucuk):
         return None
+
+    # Geçmiş tarih güvenlik ağı: mesajda 'dün' ya da '22 Temmuz' gibi somut
+    # bir GEÇMİŞ tarih referansı varsa VE açık bir kaydet/ekle niyeti YOKSA,
+    # bu neredeyse kesin bir SORGULA'dır - kimse geçmiş bir tarihi anıp yeni
+    # bir görev/hedef eklemez, geçmişe dair bilgi ister. Bu kural, SLM'in
+    # geçmiş tarihli sorguları (tanımında örnek verilmemiş olabilir diye)
+    # yanlışlıkla SOHBET sanmasına karşı bir ikinci güvenlik katmanı -
+    # gerçek bir olayda ("22 temmuz'dan kalan görevlerimi istiyorum") 3b
+    # bunu SOHBET sanmıştı, bu kural o durumu 7b'ye eskale eder.
+    kaydet_niyeti_var = any(k in metin_kucuk for k in [
+        "kaydet", "kayıt et", "ekle", "ekliyorum", "yazıyorum",
+    ])
+    if not kaydet_niyeti_var and metinden_tarih_cikar(text) is not None:
+        return "SORGULA"
 
     maddeler = satirlari_ayikla(text)
     if not maddeler:
@@ -574,7 +650,11 @@ def _siniflandir_ve_isle(text, bekleyen):
         "içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, "
         "ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler "
         "SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde "
-        "kullanılır\n"
+        "kullanılır. AYRICA ÖNEMLİ: kullanıcı GEÇMİŞ bir tarihe ait görev/rutin "
+        "bilgisini istiyorsa (ör. 'dün ne yapmıştım', '22 Temmuz'dan kalan "
+        "görevlerimi istiyorum', 'geçen hafta salı ne yapacaktım') bu DA "
+        "SORGULA'dır, SOHBET DEĞİLDİR - tarihin bugün olmaması onu SOHBET "
+        "yapmaz, sadece geçmişe dönük bir SORGULA örneğidir\n"
         "- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\n"
         "SADECE şu formatta cevap ver, başka hiçbir şey ekleme:\n"
         "TIP: <KATEGORI>\n"
