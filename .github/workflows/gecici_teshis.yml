@@ -3,6 +3,9 @@ name: GECICI - Teshis (silinecek)
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   teshis:
     runs-on: ubuntu-latest
