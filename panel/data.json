@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-22T19:20:54.269005+03:00",
+  "uretim_zamani": "2026-07-22T20:49:02.340725+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1539,10 +1539,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-22T16:20:37Z",
+      "zaman": "2026-07-22T17:48:47Z",
       "durum": "warn",
+      "runId": "29943947953",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-22T16:25:41Z",
+      "durum": "ok",
+      "runId": "29937945259",
+      "sureSn": 33
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-22T16:20:37Z",
+      "durum": "ok",
       "runId": "29937567925",
-      "sureSn": 3
+      "sureSn": 46
     },
     {
       "ad": "GECICI - Teshis (silinecek)",
@@ -1627,20 +1641,6 @@
       "durum": "ok",
       "runId": "29917132117",
       "sureSn": 19
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-22T10:25:59Z",
-      "durum": "ok",
-      "runId": "29911884376",
-      "sureSn": 40
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-22T09:32:03Z",
-      "durum": "ok",
-      "runId": "29908342046",
-      "sureSn": 27
     }
   ],
   "workflowTurOzet": [
@@ -1648,7 +1648,13 @@
       "ad": "Panel",
       "toplam": 15,
       "oran": 87,
-      "ortSureSn": 39
+      "ortSureSn": 40
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 32
     },
     {
       "ad": "GECICI - Teshis (silinecek)",
@@ -1667,12 +1673,6 @@
       "toplam": 7,
       "oran": 100,
       "ortSureSn": 34
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 32
     }
   ],
   "kocKararlari": [],
