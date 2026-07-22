@@ -1,7 +1,0 @@
-=== SLMLog (son karar) ===
-['2026-07-23', '02:32', 'SORGULA', '22 temmuz’dan kalan görevlerimi göster']
-
-=== HataLog (son 3 - yeni hata var mı?) ===
-['2026-07-23', '01:07', 'slm_sorgula deneme 1/3 (model=qwen2.5:3b)']
-['2026-07-23', '01:07', 'slm_sorgula deneme 2/3 (model=qwen2.5:3b)']
-['2026-07-23', '01:08', 'slm_sorgula deneme 3/3 (model=qwen2.5:3b)']
