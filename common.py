@@ -256,14 +256,16 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
     işler (ör. haftalık analiz) için SLM_MODEL_KALITELI verilebilir.
 
     Ollama'nın alt süreci (llama-server) nadiren çöküyor (ör. segfault) -
-    bu durumda süreci tamamen öldürüp TAZE baştan başlatarak 1 kez daha
-    dener. Çoğu geçici çökme ikinci denemede düzeliyor."""
+    bu durumda süreci tamamen öldürüp TAZE baştan başlatarak birkaç kez
+    daha dener, denemeler arası bekleme süresini kademeli artırarak
+    (5sn, 10sn, 15sn, 20sn) - ardışık çökmelerin arkasındaki geçici
+    kaynak baskısına nefes alacak zaman tanımak için."""
     import subprocess
 
     kullanilacak_model = model or SLM_MODEL
     son_hata = None
 
-    TOPLAM_DENEME = 3
+    TOPLAM_DENEME = 5
     for deneme in range(TOPLAM_DENEME):
         try:
             return _slm_sorgula_tek_deneme(prompt, sicaklik, zaman_asimi, kullanilacak_model)
@@ -280,7 +282,7 @@ def slm_sorgula(prompt, sicaklik=0.3, zaman_asimi=120, model=None):
             hata_logla(f"slm_sorgula deneme {deneme+1}/{TOPLAM_DENEME} (model={kullanilacak_model})", traceback.format_exc() + ek_bilgi)
 
             if deneme < TOPLAM_DENEME - 1:
-                bekleme = 3 * (deneme + 1)
+                bekleme = 5 * (deneme + 1)
                 print(f"Deneme {deneme+1} başarısız, Ollama'yı tamamen kapatıp {bekleme}sn sonra taze başlatarak tekrar deneniyor...")
                 subprocess.run(["pkill", "-9", "-f", "ollama"], capture_output=True)
                 time.sleep(bekleme)

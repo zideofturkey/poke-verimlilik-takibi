@@ -52,10 +52,18 @@ jobs:
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
           if [ -f son_hata.txt ]; then
+            # ÖNEMLİ: 'git reset --hard', takip edilen bir dosya olan
+            # son_hata.txt'yi Python'un AZ ÖNCE yazdığı taze traceback'ten
+            # origin/main'deki ESKİ haline geri döndürüyordu - yani bu adım
+            # aylardır hiçbir gerçek hatayı commit'leyememişti (kendi mantık
+            # hatası yüzünden). Şimdi reset'ten ÖNCE içeriği yedekleyip,
+            # reset'ten SONRA geri yazıyoruz (last_update_id.txt adımındaki
+            # doğru fetch→reset→YAZ→commit sırasıyla aynı desen).
+            cp son_hata.txt /tmp/son_hata_yedek.txt
             for i in 1 2 3; do
               git fetch origin main -q
               git reset --hard origin/main -q
-              if [ ! -f son_hata.txt ]; then break; fi
+              cp /tmp/son_hata_yedek.txt son_hata.txt
               git add son_hata.txt
               git commit -m "chore: hata logu [skip ci]" -q || break
               if git push -q; then
