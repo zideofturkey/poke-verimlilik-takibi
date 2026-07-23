@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-23T22:55:41.449721+03:00",
+  "uretim_zamani": "2026-07-24T00:06:29.242455+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 69
+    "haftaTamamlamaYuzdesi": 63
   },
   "heatmap": [
-    {
-      "tarih": "09 June 2026",
-      "tarih_iso": "2026-06-09",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "10 June 2026",
       "tarih_iso": "2026-06-10",
@@ -1195,11 +1168,11 @@
     {
       "tarih": "23 July 2026",
       "tarih_iso": "2026-07-23",
-      "level": 1,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1211,11 +1184,38 @@
         },
         {
           "isim": "Verimli video izleme",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Mewing",
           "durum": "Yapılmadı"
+        }
+      ]
+    },
+    {
+      "tarih": "24 July 2026",
+      "tarih_iso": "2026-07-24",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
         }
       ]
     }
@@ -1235,7 +1235,7 @@
     },
     {
       "isim": "Verimli video izleme",
-      "oran": 78
+      "oran": 80
     },
     {
       "isim": "Mewing",
@@ -1269,7 +1269,7 @@
         },
         {
           "metin": "finansal özgürlük oku",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1557,10 +1557,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-23T19:55:27Z",
+      "zaman": "2026-07-23T21:06:16Z",
       "durum": "warn",
+      "runId": "30044845525",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-23T20:59:47Z",
+      "durum": "ok",
+      "runId": "30044400400",
+      "sureSn": 40
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-23T20:01:11Z",
+      "durum": "ok",
+      "runId": "30040349712",
+      "sureSn": 27
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-23T20:01:05Z",
+      "durum": "ok",
+      "runId": "30040342516",
+      "sureSn": 28
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-23T19:55:27Z",
+      "durum": "ok",
       "runId": "30039957011",
-      "sureSn": 2
+      "sureSn": 39
     },
     {
       "ad": "Dinle",
@@ -1631,60 +1659,32 @@
       "durum": "ok",
       "runId": "30017026006",
       "sureSn": 308
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-23T12:59:49Z",
-      "durum": "ok",
-      "runId": "30009288695",
-      "sureSn": 45
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-23T12:44:04Z",
-      "durum": "ok",
-      "runId": "30008182575",
-      "sureSn": 66
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-23T12:43:57Z",
-      "durum": "ok",
-      "runId": "30008175143",
-      "sureSn": 30
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-23T12:43:51Z",
-      "durum": "ok",
-      "runId": "30008168970",
-      "sureSn": 27
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 89,
+      "toplam": 10,
+      "oran": 90,
       "ortSureSn": 42
     },
     {
-      "ad": "Dinle",
-      "toplam": 8,
+      "ad": "Webhook",
+      "toplam": 13,
       "oran": 100,
-      "ortSureSn": 35
+      "ortSureSn": 140
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 34
     },
     {
       "ad": "Gönder",
       "toplam": 5,
       "oran": 80,
       "ortSureSn": 82
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 13,
-      "oran": 100,
-      "ortSureSn": 139
     },
     {
       "ad": "GECICI - Final Dogrula (silinecek)",
