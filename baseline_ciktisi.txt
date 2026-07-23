@@ -1,4 +1,5 @@
-Traceback (most recent call last):
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/temp_baseline_check.py", line 2, in <module>
-    from common import get_gorevler_sheet, bugun_str
-ImportError: cannot import name 'bugun_str' from 'common' (/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py)
+Bugün (2026-07-23) için 4 görev var:
+  {'Tarih': '2026-07-23', 'GorevID': '', 'GorevMetni': 'Genel ev toparlama (dolap üstü bavul dahil)', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-23', 'GorevID': '', 'GorevMetni': 'the bear e8', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-23', 'GorevID': '', 'GorevMetni': 'DMLKT araştırması (ertelemesiz)', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-23', 'GorevID': '', 'GorevMetni': 'ediz portföy takip listesi zamansal getiri/götürü hesaplayıcısı', 'Durum': 'Bekliyor'}
