@@ -18,16 +18,16 @@ def main():
     for r in slm_ws.get_all_values()[-1:]:
         print(r[:4])
 
-    # Test satırını sil (temizlik)
+    # Bozuk test satırını sil (talimat cümlesinin TAMAMI kaydedilmişti - eski bug)
     silindi = False
     for i, r in enumerate(rows):
-        if r and r[0] == bugun and len(r) >= 3 and r[2] == "test dogrulama gorevi":
+        if r and r[0] == bugun and len(r) >= 3 and "test dogrulama gorevi" in r[2]:
             ws.delete_rows(i + 1)
-            print(f"\nTest satırı silindi: satır {i+1}")
+            print(f"\nBozuk test satırı silindi: satır {i+1} -> {r}")
             silindi = True
             break
     if not silindi:
-        print("\nTest satırı bulunamadı (silinecek bir şey yok).")
+        print("\nTemizlenecek test satırı bulunamadı.")
 
 if __name__ == "__main__":
     main()
