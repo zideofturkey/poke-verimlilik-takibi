@@ -347,7 +347,7 @@ def cevaplanan_rutinler(tarih=None):
     '_bugun_cevaplanan_rutinler' ile aynı mantık ama herhangi bir tarih
     için çalışacak şekilde genelleştirildi - handle_update.py'nin geçmiş
     tarihli sorgularda 'hangi rutinler hâlâ Bekliyor' diye sorabilmesi için."""
-    referans = tarih or bugun_str()
+    referans = tarih or datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
     ws = get_sheet()
     rows = ws.get_all_records()
     return {r["Görev"] for r in rows if r.get("Tarih") == referans}
@@ -358,7 +358,7 @@ def dun_kacirildi_mi(rutin_isim, tarih=None):
     'Yapılmadı' olarak mı işaretlenmiş - telafi butonu sunup
     sunmayacağımıza karar vermek için kullanılır. gonder.py'deki
     'dun_kacirildi_mi' ile aynı, tarih parametreli hali."""
-    referans = tarih or bugun_str()
+    referans = tarih or datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
     try:
         referans_tarih = datetime.datetime.strptime(referans, "%Y-%m-%d").date()
         onceki_gun = (referans_tarih - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
