@@ -259,9 +259,21 @@ def aksam():
 
 
 def _bosa_vakit_sor():
-    if get_bekleyen_soru():
-        print("Zaten bekleyen bir soru var, boşa vakit sorusu şimdilik atlanıyor.")
-        return
+    """ÖNCEDEN: eğer başka bir soru zaten bekleniyorsa (ör. cevaplanmamış
+    haftalık hedef hatırlatması) bu SORU SESSİZCE hiç sorulmuyordu -
+    kullanıcı fark etmeden akşam mesajını hiç almayabiliyordu (gerçek bir
+    olayda tam olarak bu yaşandı: 21:00'de haftalık hedef hatırlatması
+    cevapsız kaldı, 22:02'deki akşam kontrolünde bu yüzden boşa-vakit
+    sorusu hiç gitmedi). Bu, kodun geri kalanıyla (sabah()/pazar()) TUTARSIZDI
+    - onlar aynı durumda SESSİZCE atlamak yerine önce eski soruyu geçersiz
+    saydığını açıkça söylüyor, sonra yeni soruyu soruyorlar. Artık aynı
+    tutarlı desen kullanılıyor."""
+    onceki = get_bekleyen_soru()
+    if onceki and onceki != "bosa_vakit":
+        send_message(
+            f"⚠️ Not: bir önceki sorumu (\"{onceki}\" ile ilgili) cevaplamadığın "
+            "için artık geçersiz sayıyorum, en son bunu soruyorum:"
+        )
     send_message(
         "Son bir soru: bugün ne kadar boşa vakit geçirdin (YouTube, sosyal "
         "medya vb.)? Kendi cümlelerinle yazabilirsin, ör. \"yaklaşık 40 "
