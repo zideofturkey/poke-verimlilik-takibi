@@ -9,4 +9,4 @@
 === SLMLog (son karar) ===
 ['2026-07-23', '04:26', 'GUNLUK_GOREV', 'günlük görevlere ekleme yap: test dogrulama gorevi']
 
-Test satırı bulunamadı (silinecek bir şey yok).
+Bozuk test satırı silindi: satır 52 -> ['2026-07-23', '', 'günlük görevlere ekleme yap: test dogrulama gorevi', 'Bekliyor']
