@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-23T14:11:13.205590+03:00",
+  "uretim_zamani": "2026-07-23T16:00:05.721995+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 66
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "23 July 2026",
       "tarih_iso": "2026-07-23",
-      "level": 0,
+      "level": 1,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 73
+      "oran": 67
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1553,10 +1553,59 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-23T11:10:58Z",
+      "zaman": "2026-07-23T12:59:49Z",
       "durum": "warn",
+      "runId": "30009288695",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-23T12:44:04Z",
+      "durum": "ok",
+      "runId": "30008182575",
+      "sureSn": 66
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-23T12:43:57Z",
+      "durum": "ok",
+      "runId": "30008175143",
+      "sureSn": 30
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-23T12:43:51Z",
+      "durum": "ok",
+      "runId": "30008168970",
+      "sureSn": 27
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-23T12:43:50Z",
+      "durum": "ok",
+      "runId": "30008167831",
+      "sureSn": 25
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-23T12:39:01Z",
+      "durum": "ok",
+      "runId": "30007831068",
+      "sureSn": 21
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-23T11:51:12Z",
+      "durum": "warn",
+      "runId": "30004687579",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-23T11:10:58Z",
+      "durum": "ok",
       "runId": "30002155664",
-      "sureSn": 3
+      "sureSn": 41
     },
     {
       "ad": "Webhook",
@@ -1606,81 +1655,32 @@
       "durum": "ok",
       "runId": "29979322096",
       "sureSn": 41
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-23T02:49:53Z",
-      "durum": "ok",
-      "runId": "29975390338",
-      "sureSn": 50
-    },
-    {
-      "ad": "GECICI - Final Dogrula (silinecek)",
-      "zaman": "2026-07-23T01:33:41Z",
-      "durum": "ok",
-      "runId": "29972112815",
-      "sureSn": 18
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-23T01:30:08Z",
-      "durum": "ok",
-      "runId": "29971954228",
-      "sureSn": 162
-    },
-    {
-      "ad": "GECICI - Test Dogrula Temizle (silinecek)",
-      "zaman": "2026-07-23T01:29:14Z",
-      "durum": "ok",
-      "runId": "29971916265",
-      "sureSn": 21
-    },
-    {
-      "ad": "GECICI - Test Dogrula Temizle (silinecek)",
-      "zaman": "2026-07-23T01:27:09Z",
-      "durum": "ok",
-      "runId": "29971828920",
-      "sureSn": 18
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-23T01:23:25Z",
-      "durum": "ok",
-      "runId": "29971670071",
-      "sureSn": 168
-    },
-    {
-      "ad": "GECICI - Baseline Kontrol (silinecek)",
-      "zaman": "2026-07-23T01:22:27Z",
-      "durum": "ok",
-      "runId": "29971628372",
-      "sureSn": 20
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 7,
-      "oran": 86,
+      "toplam": 6,
+      "oran": 83,
       "ortSureSn": 40
     },
     {
       "ad": "Webhook",
-      "toplam": 16,
+      "toplam": 17,
       "oran": 100,
-      "ortSureSn": 144
+      "ortSureSn": 123
     },
     {
       "ad": "Dinle",
-      "toplam": 6,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 39
+      "ortSureSn": 40
     },
     {
       "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 331
+      "toplam": 3,
+      "oran": 67,
+      "ortSureSn": 122
     },
     {
       "ad": "GECICI - Final Dogrula (silinecek)",
@@ -1723,12 +1723,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 17
-    },
-    {
-      "ad": "GECICI - HataLog Kontrol (silinecek)",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 19
     }
   ],
   "kocKararlari": [],
