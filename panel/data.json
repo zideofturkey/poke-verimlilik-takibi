@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-23T08:55:46.040116+03:00",
+  "uretim_zamani": "2026-07-23T11:33:46.516729+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1549,10 +1549,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-23T05:55:25Z",
+      "zaman": "2026-07-23T08:33:25Z",
       "durum": "warn",
+      "runId": "29991535246",
+      "sureSn": 3
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-23T08:31:47Z",
+      "durum": "warn",
+      "runId": "29991452867",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-23T07:38:20Z",
+      "durum": "ok",
+      "runId": "29988822584",
+      "sureSn": 58
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-23T05:55:25Z",
+      "durum": "ok",
       "runId": "29983481415",
-      "sureSn": 4
+      "sureSn": 49
     },
     {
       "ad": "Dinle",
@@ -1630,41 +1651,26 @@
       "durum": "ok",
       "runId": "29971005610",
       "sureSn": 153
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-23T00:07:32Z",
-      "durum": "ok",
-      "runId": "29968182472",
-      "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T23:54:06Z",
-      "durum": "ok",
-      "runId": "29967513277",
-      "sureSn": 26
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T23:54:05Z",
-      "durum": "ok",
-      "runId": "29967512283",
-      "sureSn": 31
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 39
+      "toplam": 7,
+      "oran": 86,
+      "ortSureSn": 40
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 1,
+      "oran": 0,
+      "ortSureSn": 3
     },
     {
       "ad": "Dinle",
-      "toplam": 4,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 36
+      "ortSureSn": 40
     },
     {
       "ad": "GECICI - Final Dogrula (silinecek)",
@@ -1674,9 +1680,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 19,
+      "toplam": 17,
       "oran": 100,
-      "ortSureSn": 111
+      "ortSureSn": 120
     },
     {
       "ad": "GECICI - Test Dogrula Temizle (silinecek)",
@@ -1719,12 +1725,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 19
-    },
-    {
-      "ad": "GECICI - Dogrulama Testi (silinecek)",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 199
     }
   ],
   "kocKararlari": [],
