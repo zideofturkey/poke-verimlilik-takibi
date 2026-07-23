@@ -1,0 +1,12 @@
+=== Bugün (2026-07-23) GunlukGorevler tüm satırlar ===
+1 ['Tarih', 'GorevID', 'GorevMetni', 'Durum']
+48 ['2026-07-23', '', 'Genel ev toparlama (dolap üstü bavul dahil)', 'Bekliyor']
+49 ['2026-07-23', '', 'the bear e8', 'Bekliyor']
+50 ['2026-07-23', '', 'DMLKT araştırması (ertelemesiz)', 'Bekliyor']
+51 ['2026-07-23', '', 'ediz portföy takip listesi zamansal getiri/götürü hesaplayıcısı', 'Bekliyor']
+52 ['2026-07-23', '', 'günlük görevlere ekleme yap: test dogrulama gorevi', 'Bekliyor']
+
+=== SLMLog (son karar) ===
+['2026-07-23', '04:26', 'GUNLUK_GOREV', 'günlük görevlere ekleme yap: test dogrulama gorevi']
+
+Test satırı bulunamadı (silinecek bir şey yok).
