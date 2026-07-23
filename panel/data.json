@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-23T05:50:17.395143+03:00",
+  "uretim_zamani": "2026-07-23T08:55:46.040116+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1549,10 +1549,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-23T02:49:53Z",
+      "zaman": "2026-07-23T05:55:25Z",
       "durum": "warn",
+      "runId": "29983481415",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-23T04:20:57Z",
+      "durum": "ok",
+      "runId": "29979322096",
+      "sureSn": 41
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-23T02:49:53Z",
+      "durum": "ok",
       "runId": "29975390338",
-      "sureSn": 3
+      "sureSn": 50
     },
     {
       "ad": "GECICI - Final Dogrula (silinecek)",
@@ -1637,27 +1651,19 @@
       "durum": "ok",
       "runId": "29967512283",
       "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T23:54:03Z",
-      "durum": "ok",
-      "runId": "29967510611",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-22T23:53:59Z",
-      "durum": "ok",
-      "runId": "29967507361",
-      "sureSn": 32
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 5,
-      "oran": 80,
+      "toplam": 6,
+      "oran": 83,
+      "ortSureSn": 39
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 4,
+      "oran": 100,
       "ortSureSn": 36
     },
     {
@@ -1683,12 +1689,6 @@
       "toplam": 2,
       "oran": 100,
       "ortSureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 3,
-      "oran": 100,
-      "ortSureSn": 34
     },
     {
       "ad": "GECICI - Buton Test Kontrol (silinecek)",
@@ -1722,15 +1722,9 @@
     },
     {
       "ad": "GECICI - Dogrulama Testi (silinecek)",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 168
-    },
-    {
-      "ad": "Gönder",
       "toplam": 1,
       "oran": 100,
-      "ortSureSn": 21
+      "ortSureSn": 199
     }
   ],
   "kocKararlari": [],
