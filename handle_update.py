@@ -498,7 +498,36 @@ BEKLEYEN_ACIKLAMA = {
 
 
 def _gunluk_gorev_isle(text):
-    gorevler = satirlari_ayikla(text)
+    """Hem sabah tam liste akışını ('bugünkü görevlerim: 1) ... 2) ...')
+    hem de gün içinde tek/az sayıda ad-hoc ekleme kalıbını ('günlük
+    görevlere ekleme yap: X') kapsar. Öncelik: (1) tırnak içi - en
+    güvenilir, (2) numaralı/çok satırlı liste, (3) tek satırlık 'ekle:
+    X' türü talimat cümlelerinde ':' sonrasını almak - AYNI desen
+    _haftalik_hedef_isle'de kullanılıyor; bu fonksiyon önceden sadece
+    satirlari_ayikla'ya güveniyordu, bu da TEK satırlık 'ekle:' kalıbında
+    (satır ':' ile BİTMEDİĞİ için) talimat cümlesinin tamamını görev metni
+    sanan gerçek bir bug'dı - test sırasında yakalandı."""
+    tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+    numarali_liste = satirlari_ayikla(text)
+
+    if tirnak_ici:
+        gorevler = tirnak_ici
+    elif len(numarali_liste) > 1:
+        gorevler = numarali_liste
+    elif numarali_liste:
+        tek = numarali_liste[0]
+        if ":" in tek:
+            olasi_talimat, icerik = tek.split(":", 1)
+            talimat_kelimeleri = ["ekle", "kaydet", "yaz", "gir"]
+            if icerik.strip() and any(k in olasi_talimat.lower() for k in talimat_kelimeleri):
+                gorevler = [icerik.strip()]
+            else:
+                gorevler = [tek]
+        else:
+            gorevler = [tek]
+    else:
+        gorevler = []
+
     if not gorevler:
         send_message("Bunu görev listesi olarak anlayamadım, satır satır tekrar yazar mısın?")
         return
