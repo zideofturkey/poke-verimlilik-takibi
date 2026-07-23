@@ -504,11 +504,37 @@ def _gunluk_gorev_isle(text):
         return
     ws = get_gorevler_sheet()
     bugun = bugun_str()
+
+    # Eklemeden ÖNCE mevcut sayıyı al - "üzerine ekledim" gibi bağlam
+    # farkında bir cevap verebilmek için (_haftalik_hedef_isle ile aynı
+    # desen - önceden SADECE haftalık tarafta vardı, burada yoktu; bu
+    # yüzden art arda gelen ekleme mesajları öncekileri hiç saymıyormuş
+    # gibi görünen, ama Sheets'te aslında doğru biriken bir cevap veriyordu).
+    mevcut_satirlar = ws.get_all_values()
+    mevcut_sayisi = sum(1 for r in mevcut_satirlar[1:] if r and r[0] == bugun)
+
     for gorev in gorevler:
         guvenli_append_row(ws, [bugun, "", gorev, "Bekliyor"])
     set_bekleyen_soru("")
-    liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
-    send_message(f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!")
+
+    toplam = mevcut_sayisi + len(gorevler)
+    if mevcut_sayisi > 0:
+        if len(gorevler) == 1:
+            mesaj = (
+                f"Mevcut {mevcut_sayisi} bugünkü görevinin üzerine "
+                f"'{gorevler[0]}' görevini ekledim, toplam {toplam} oldu. Akşam soracağım!"
+            )
+        else:
+            liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
+            mesaj = (
+                f"Mevcut {mevcut_sayisi} bugünkü görevinin üzerine {len(gorevler)} "
+                f"yeni görev ekledim:\n{liste}\n\nToplam {toplam} oldu. Akşam soracağım!"
+            )
+    else:
+        liste = "\n".join(f"{i+1}) {g}" for i, g in enumerate(gorevler))
+        mesaj = f"Not aldım, bugünkü görevlerin:\n{liste}\n\nAkşam bunları soracağım!"
+
+    send_message(mesaj)
 
 
 def _haftalik_hedef_isle(text):
@@ -865,10 +891,20 @@ def _siniflandir_ve_isle(text, bekleyen):
 
         ws = get_gorevler_sheet()
         bugun = bugun_str()
+
+        # Aynı bağlam-farkında desen burada da: eklemeden önce mevcut sayıyı al.
+        mevcut_satirlar = ws.get_all_values()
+        mevcut_sayisi = sum(1 for r in mevcut_satirlar[1:] if r and r[0] == bugun)
+
         for gorev in gorevler:
             guvenli_append_row(ws, [bugun, "", gorev, "Bekliyor"])
+
+        toplam = mevcut_sayisi + len(gorevler)
         liste = ", ".join(f"'{g}'" for g in gorevler)
-        send_message(f"✅ Bugünün görev listesine eklendi: {liste}. Akşam soracağım!")
+        if mevcut_sayisi > 0:
+            send_message(f"✅ Mevcut {mevcut_sayisi} bugünkü görevinin üzerine eklendi: {liste}. Toplam {toplam} oldu. Akşam soracağım!")
+        else:
+            send_message(f"✅ Bugünün görev listesine eklendi: {liste}. Akşam soracağım!")
 
     else:  # SOHBET
         send_message(cevap)
