@@ -1,8 +1,9 @@
 """GEÇİCİ KONTROL - bugünün mevcut görev sayısına bakar (test öncesi baseline)."""
-from common import get_gorevler_sheet, bugun_str
+import datetime
+from common import get_gorevler_sheet, TR_TZ
 
 def main():
-    bugun = bugun_str()
+    bugun = datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
     ws = get_gorevler_sheet()
     rows = ws.get_all_records()
     bugunku = [r for r in rows if r.get("Tarih") == bugun]
