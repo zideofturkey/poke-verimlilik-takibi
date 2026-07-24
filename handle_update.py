@@ -635,12 +635,18 @@ def _sorgu_niyeti_var_mi(metin_kucuk):
     Bu True dönerse kural katmanı KESİNLİKLE bir tahminde bulunmamalı -
     tam olarak 'günlük görevlerimi sorgula lütfen' gibi mesajların kendi
     içeriğinde 'görevlerim' geçtiği için yanlışlıkla GUNLUK_GOREV
-    sayılmasına yol açan asıl kör nokta buydu."""
+    sayılmasına yol açan asıl kör nokta buydu. NOT: bu fonksiyon bir
+    kelime listesiyle çalıştığı için doğası gereği EKSİK olabilir (ör.
+    'neler' sorusu ilk yazıldığında listede yoktu, gerçek bir olayda
+    kaçırıldı) - bu yüzden asıl güvence bu listede değil, aşağıdaki
+    _kural_tahmini'nin tek-maddeli mesajlarda salt bir İSİM (görevlerim/
+    hedeflerim) yerine GERÇEK BİR EYLEM FİİLİ (ekle/kaydet) arayan yapısal
+    tasarımında - bu liste sadece ek bir hızlı-yakalama katmanı."""
     sorgu_kaliplari = [
         "sorgula", "göster", "listele", "hatırlat", "nedir", "neydi",
-        "ne kadar", "hangi", "gönderir misin", "gönder misin",
+        "neler", "ne kadar", "hangi", "gönderir misin", "gönder misin",
         "söyler misin", "yazar mısın", "durumum ne", "ilerledim mi",
-        "kaçırdım", "ne kadar ilerledim",
+        "kaçırdım", "ne kadar ilerledim", "kaç tane", "nerede", "kimin",
     ]
     if any(k in metin_kucuk for k in sorgu_kaliplari):
         return True
@@ -690,18 +696,37 @@ def _kural_tahmini(text):
     if not maddeler:
         return None
 
-    niyet_var = any(k in metin_kucuk for k in [
-        "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "ekleme yap",
-        "ekle", "görevlerim", "yapacaklarım", "hedeflerim",
-    ])
-    if not niyet_var:
-        return None
-
     gunluk_sinyali = "günlük" in metin_kucuk or "bugün" in metin_kucuk
     haftalik_sinyali = "hafta" in metin_kucuk
 
-    # Tek maddelik VE hiçbir günlük/haftalık sinyali olmayan mesajlarda
-    # temkinli ol - RUTIN_TAMAMLA gibi başka bir kategori olabilir, SLM'e bırak.
+    if len(maddeler) > 1:
+        # Çok maddeli (numaralı/çok satırlı) bir liste, kendi başına
+        # neredeyse kesin bir "içerik sağlama" (dictation) sinyalidir -
+        # kimse birden çok maddeyi sıralayıp sonra soru sormaz. Burada bir
+        # 'ekle/kaydet' fiili aramaya GEREK YOK, tam da bu yüzden numaralı
+        # liste akışları (ör. 'bugünkü görevlerim: 1) ... 2) ...') zaten
+        # hiç 'ekle' fiili içermeden çalışıyordu ve çalışmaya devam etmeli.
+        if haftalik_sinyali and not gunluk_sinyali:
+            return "HAFTALIK_HEDEF"
+        if gunluk_sinyali:
+            return "GUNLUK_GOREV"
+        return None
+
+    # TEK maddelik mesajlarda durum FARKLI ve daha riskli: 'görevlerim/
+    # hedeflerim/yapacaklarım' gibi bir İSMİN varlığı TEK BAŞINA yeterli
+    # bir sinyal DEĞİL - hem 'bugünkü görevim: toplantıya git' (ekleme)
+    # HEM 'kalan günlük görevlerim neler' (sorgu) bu ismi içerebilir; isim
+    # sadece KONUYU belirtir, NİYETİ değil. Gerçek bir olayda bu ayrım
+    # yokken "kalan günlük görevlerim neler" yanlışlıkla GUNLUK_GOREV
+    # sayılıp gerçek bir görev gibi kaydedildi. Artık tek maddelik
+    # mesajlarda SADECE gerçek bir eylem fiili (ekle/kaydet/yaz/gir) kabul
+    # ediliyor - bare bir isim asla yeterli değil.
+    eylem_fiili_var = any(k in metin_kucuk for k in [
+        "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "ekleme yap", "ekle",
+    ])
+    if not eylem_fiili_var:
+        return None
+
     if len(maddeler) == 1 and not gunluk_sinyali and not haftalik_sinyali:
         return None
 
@@ -746,13 +771,20 @@ def _siniflandir_ve_isle(text, bekleyen):
         "Bu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata "
         "(bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre "
         "karar ver - biri başka bir konuda yazmış olabilir):\n"
-        "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ "
-        "KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa "
-        "VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE "
+        "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor (kullanıcı "
+        "kendi içeriğini/madde listesini SAĞLIYOR). ÇOK ÖNEMLİ KURAL: "
+        "'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE "
+        "'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE "
         "GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor "
-        "olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya "
-        "İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA "
-        "geçtiğinde kullanılır, başka hiçbir durumda değil\n"
+        "olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. "
+        "AMA BU KURAL SORGULA KURALINDAN SONRA GELİR: mesaj soru kipindeyse "
+        "(mı/mi/mu/mü İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye' gibi soru "
+        "sözcükleriyle) VE kullanıcı kendi içeriğini SAĞLAMIYORSA (sadece "
+        "soruyor), 'günlük' kelimesi geçse bile bu SORGULA'dır, "
+        "GUNLUK_GOREV DEĞİLDİR - ör. 'kalan günlük görevlerim neler' bir "
+        "SORGULA'dır, içinde 'günlük' geçmesi onu GUNLUK_GOREV yapmaz. "
+        "HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde "
+        "kullanılır, başka hiçbir durumda değil\n"
         "- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut "
         "haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere "
         "ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti "
@@ -775,10 +807,12 @@ def _siniflandir_ve_isle(text, bekleyen):
         "İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır "
         "mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', "
         "'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', "
-        "'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa "
-        "(mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/"
-        "içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, "
-        "ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler "
+        "'ne kadar ilerledim', 'kalan günlük görevlerim neler'. ÖNEMLİ KURAL: "
+        "eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız "
+        "vb. İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye/kim' gibi soru "
+        "sözcükleriyle) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA "
+        "(sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA "
+        "GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler "
         "SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde "
         "kullanılır. AYRICA ÖNEMLİ: kullanıcı GEÇMİŞ bir tarihe ait görev/rutin "
         "bilgisini istiyorsa (ör. 'dün ne yapmıştım', '22 Temmuz'dan kalan "
