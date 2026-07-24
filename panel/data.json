@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-24T15:58:08.427643+03:00",
+  "uretim_zamani": "2026-07-24T18:01:32.778979+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 63
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "24 July 2026",
       "tarih_iso": "2026-07-24",
-      "level": 0,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 67
+      "oran": 69
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1575,10 +1575,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-24T12:57:54Z",
+      "zaman": "2026-07-24T15:01:20Z",
       "durum": "warn",
-      "runId": "30095021038",
+      "runId": "30103496311",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-24T14:00:32Z",
+      "durum": "ok",
+      "runId": "30099204603",
+      "sureSn": 33
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-24T13:04:17Z",
+      "durum": "ok",
+      "runId": "30095442396",
+      "sureSn": 44
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-24T13:04:10Z",
+      "durum": "ok",
+      "runId": "30095434209",
+      "sureSn": 30
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-24T13:03:58Z",
+      "durum": "ok",
+      "runId": "30095420959",
+      "sureSn": 45
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-24T12:57:54Z",
+      "durum": "ok",
+      "runId": "30095021038",
+      "sureSn": 48
     },
     {
       "ad": "Dinle",
@@ -1642,49 +1677,14 @@
       "durum": "ok",
       "runId": "30081202147",
       "sureSn": 53
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-24T08:28:43Z",
-      "durum": "ok",
-      "runId": "30079060115",
-      "sureSn": 15
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-24T06:33:38Z",
-      "durum": "ok",
-      "runId": "30072628821",
-      "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-24T06:26:33Z",
-      "durum": "ok",
-      "runId": "30072275157",
-      "sureSn": 41
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-24T03:53:22Z",
-      "durum": "ok",
-      "runId": "30065360250",
-      "sureSn": 44
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-24T03:28:59Z",
-      "durum": "ok",
-      "runId": "30064332005",
-      "sureSn": 38
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
-      "oran": 92,
-      "ortSureSn": 41
+      "toplam": 11,
+      "oran": 91,
+      "ortSureSn": 40
     },
     {
       "ad": "Dinle",
@@ -1693,16 +1693,16 @@
       "ortSureSn": 30
     },
     {
-      "ad": "Gönder",
-      "toplam": 4,
+      "ad": "Webhook",
+      "toplam": 15,
       "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 82
     },
     {
-      "ad": "Webhook",
-      "toplam": 13,
+      "ad": "Gönder",
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 100
+      "ortSureSn": 18
     },
     {
       "ad": "GECICI - Bug3 Final (silinecek)",
