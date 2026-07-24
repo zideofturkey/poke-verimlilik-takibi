@@ -1,0 +1,9 @@
+=== Bugün (2026-07-24) GunlukGorevler ===
+1 ['Tarih', 'GorevID', 'GorevMetni', 'Durum']
+
+=== SLMLog (son karar) ===
+['2026-07-24', '04:02', 'SORGULA', 'kalan günlük görevlerim neler']
+
+=== AnlasmazlikLog (son 2, varsa) ===
+['2026-07-23', '17:46', 'Günlük görevlerime ekle: “finansal özgürlük oku”', 'GUNLUK_GOREV', 'SOHBET', 'GUNLUK_GOREV']
+['2026-07-24', '03:49', 'kalan günlük görevlerim neler', 'GUNLUK_GOREV', 'SORGULA', 'GUNLUK_GOREV']
