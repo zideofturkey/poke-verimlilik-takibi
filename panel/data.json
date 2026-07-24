@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-24T14:17:07.370034+03:00",
+  "uretim_zamani": "2026-07-24T15:58:08.427643+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 63
   },
@@ -1575,10 +1575,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-24T11:16:50Z",
+      "zaman": "2026-07-24T12:57:54Z",
       "durum": "warn",
+      "runId": "30095021038",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-24T11:47:20Z",
+      "durum": "ok",
+      "runId": "30090766044",
+      "sureSn": 26
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-24T11:43:01Z",
+      "durum": "ok",
+      "runId": "30090517963",
+      "sureSn": 20
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-24T11:16:50Z",
+      "durum": "ok",
       "runId": "30089021017",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Webhook",
@@ -1656,27 +1677,6 @@
       "durum": "ok",
       "runId": "30064332005",
       "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T02:48:42Z",
-      "durum": "ok",
-      "runId": "30062588459",
-      "sureSn": 44
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T01:11:48Z",
-      "durum": "ok",
-      "runId": "30058314872",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T01:11:46Z",
-      "durum": "ok",
-      "runId": "30058313195",
-      "sureSn": 36
     }
   ],
   "workflowTurOzet": [
@@ -1687,22 +1687,22 @@
       "ortSureSn": 41
     },
     {
-      "ad": "Webhook",
-      "toplam": 15,
-      "oran": 100,
-      "ortSureSn": 112
-    },
-    {
       "ad": "Dinle",
-      "toplam": 8,
+      "toplam": 9,
       "oran": 100,
       "ortSureSn": 30
     },
     {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 19
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 13,
+      "oran": 100,
+      "ortSureSn": 100
     },
     {
       "ad": "GECICI - Bug3 Final (silinecek)",
