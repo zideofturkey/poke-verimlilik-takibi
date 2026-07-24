@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-24T23:26:18.938489+03:00",
+  "uretim_zamani": "2026-07-25T00:38:32.367498+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 71
+    "haftaTamamlamaYuzdesi": 60
   },
   "heatmap": [
-    {
-      "tarih": "10 June 2026",
-      "tarih_iso": "2026-06-10",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "11 June 2026",
       "tarih_iso": "2026-06-11",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "25 July 2026",
+      "tarih_iso": "2026-07-25",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1575,10 +1575,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-24T20:26:03Z",
+      "zaman": "2026-07-24T21:38:17Z",
       "durum": "warn",
+      "runId": "30128401850",
+      "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-24T20:26:03Z",
+      "durum": "ok",
       "runId": "30124050003",
-      "sureSn": 4
+      "sureSn": 43
     },
     {
       "ad": "Dinle",
@@ -1670,20 +1677,13 @@
       "durum": "ok",
       "runId": "30110438946",
       "sureSn": 40
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-24T15:34:33Z",
-      "durum": "ok",
-      "runId": "30105877211",
-      "sureSn": 28
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 89,
+      "toplam": 10,
+      "oran": 90,
       "ortSureSn": 41
     },
     {
@@ -1700,9 +1700,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 18,
+      "toplam": 17,
       "oran": 100,
-      "ortSureSn": 80
+      "ortSureSn": 72
     },
     {
       "ad": "GECICI - Bug3 Final (silinecek)",
