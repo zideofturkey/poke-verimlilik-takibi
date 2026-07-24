@@ -1,0 +1,5 @@
+=== Bugün (2026-07-24) GunlukGorevler ===
+1 ['Tarih', 'GorevID', 'GorevMetni', 'Durum']
+54 ['2026-07-24', '', 'kalan günlük görevlerim neler', 'Bekliyor']
+
+Hatalı kayıt silindi: satır 54 -> ['2026-07-24', '', 'kalan günlük görevlerim neler', 'Bekliyor']
