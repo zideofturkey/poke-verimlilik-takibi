@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-24T21:58:20.093138+03:00",
+  "uretim_zamani": "2026-07-24T23:26:18.938489+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1575,10 +1575,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-24T18:57:56Z",
+      "zaman": "2026-07-24T20:26:03Z",
       "durum": "warn",
-      "runId": "30118964485",
+      "runId": "30124050003",
       "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-24T20:25:07Z",
+      "durum": "ok",
+      "runId": "30123991085",
+      "sureSn": 33
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-24T19:15:43Z",
+      "durum": "ok",
+      "runId": "30120104165",
+      "sureSn": 22
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-24T18:57:56Z",
+      "durum": "ok",
+      "runId": "30118964485",
+      "sureSn": 51
     },
     {
       "ad": "Dinle",
@@ -1656,27 +1677,6 @@
       "durum": "ok",
       "runId": "30105877211",
       "sureSn": 28
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-24T15:01:20Z",
-      "durum": "ok",
-      "runId": "30103496311",
-      "sureSn": 39
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-24T14:00:32Z",
-      "durum": "ok",
-      "runId": "30099204603",
-      "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T13:04:17Z",
-      "durum": "ok",
-      "runId": "30095442396",
-      "sureSn": 44
     }
   ],
   "workflowTurOzet": [
@@ -1684,37 +1684,31 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 40
+      "ortSureSn": 41
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
       "ortSureSn": 33
     },
     {
-      "ad": "Webhook",
-      "toplam": 19,
-      "oran": 100,
-      "ortSureSn": 87
-    },
-    {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 21
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 18,
+      "oran": 100,
+      "ortSureSn": 80
     },
     {
       "ad": "GECICI - Bug3 Final (silinecek)",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 19
-    },
-    {
-      "ad": "GECICI - Bug3 Kontrol Temizlik (silinecek)",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 17
     }
   ],
   "kocKararlari": [],
