@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-07-25T23:53:55.261489+03:00",
+  "uretim_zamani": "2026-07-26T00:57:21.665901+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 74
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
-    {
-      "tarih": "11 June 2026",
-      "tarih_iso": "2026-06-11",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "12 June 2026",
       "tarih_iso": "2026-06-12",
@@ -1195,11 +1168,11 @@
     {
       "tarih": "25 July 2026",
       "tarih_iso": "2026-07-25",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1218,12 +1191,39 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "26 July 2026",
+      "tarih_iso": "2026-07-26",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
     {
       "isim": "Fransızca çalışma",
-      "oran": 91
+      "oran": 92
     },
     {
       "isim": "Sabah telefonsuzluğu",
@@ -1597,10 +1597,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-25T20:53:41Z",
+      "zaman": "2026-07-25T21:57:06Z",
       "durum": "warn",
-      "runId": "30174492823",
+      "runId": "30176619266",
       "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-25T21:04:24Z",
+      "durum": "ok",
+      "runId": "30174890311",
+      "sureSn": 38
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-25T21:01:12Z",
+      "durum": "ok",
+      "runId": "30174773826",
+      "sureSn": 34
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-25T20:53:41Z",
+      "durum": "ok",
+      "runId": "30174492823",
+      "sureSn": 43
     },
     {
       "ad": "Panel",
@@ -1678,53 +1699,32 @@
       "durum": "ok",
       "runId": "30164074740",
       "sureSn": 47
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:11:30Z",
-      "durum": "ok",
-      "runId": "30163124905",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:11:21Z",
-      "durum": "ok",
-      "runId": "30163120201",
-      "sureSn": 59
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:11:21Z",
-      "durum": "ok",
-      "runId": "30163120100",
-      "sureSn": 45
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
+      "toplam": 12,
+      "oran": 92,
       "ortSureSn": 40
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 15,
+      "oran": 100,
+      "ortSureSn": 129
     },
     {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 34
     },
     {
       "ad": "Gönder",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 23
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 14,
-      "oran": 100,
-      "ortSureSn": 136
+      "ortSureSn": 26
     },
     {
       "ad": "GECICI - Oncekigun Kontrol (silinecek)",
@@ -1737,12 +1737,6 @@
       "toplam": 2,
       "oran": 100,
       "ortSureSn": 20
-    },
-    {
-      "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 17
     }
   ],
   "kocKararlari": [],
