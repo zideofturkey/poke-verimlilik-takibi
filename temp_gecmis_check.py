@@ -1,11 +1,18 @@
 """GEÇİCİ DOĞRULAMA."""
-from common import get_gorevler_sheet, get_sheet
+import datetime
+from common import get_gorevler_sheet, get_sheet, TR_TZ
 
 def main():
     print("=== 20 Temmuz görevleri ===")
     ws = get_gorevler_sheet()
     for r in ws.get_all_records():
         if r.get("Tarih") == "2026-07-20":
+            print(" ", r)
+
+    bugun = datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
+    print(f"\n=== Bugün ({bugun}) görevleri (sahte kayıt oluştu mu?) ===")
+    for r in ws.get_all_records():
+        if r.get("Tarih") == bugun:
             print(" ", r)
 
     print("\n=== SLMLog (son karar) ===")
