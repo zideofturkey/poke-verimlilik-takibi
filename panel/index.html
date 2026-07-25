@@ -32,6 +32,8 @@
     --ok-bg: #E4F5EF;
     --warn: #D9743C;
     --warn-bg: #FBEAE0;
+    --fail: #C0392B;
+    --fail-bg: #FBE4E1;
     --radius: 14px;
     --gradient: linear-gradient(160deg, var(--teal) 0%, var(--blue-mid) 45%, var(--navy) 78%, var(--navy-deep) 100%);
   }
@@ -328,6 +330,7 @@
   }
   .badge.ok { background: var(--ok-bg); color: var(--ok); }
   .badge.warn { background: var(--warn-bg); color: var(--warn); }
+  .badge.fail { background: var(--fail-bg); color: var(--fail); }
   .badge.telafi { background: #FDF0D5; color: #B8860B; }
 
   .detail-row td {
@@ -697,6 +700,13 @@
     if (durum === 'Yapıldı') return `<span class="badge ok">Yapıldı</span>`;
     if (durum === 'Telafi') return `<span class="badge telafi">🔁 Telafi</span>`;
     if (durum === 'Bekliyor') return `<span class="badge warn">Bekliyor</span>`;
+    // 'Yapılmadı' ve 'Süresi Doldu' AYNI başarısızlık durumu sayılıyor -
+    // önceden ikisi de (ve aslında 'Bekliyor' da) aynı sarı/turuncu 'warn'
+    // rozetine düşüyordu, yani "yapılmadı" ile "hâlâ bekliyor" görsel
+    // olarak ayırt edilemiyordu. Artık ayrı, kırmızımsı bir 'fail'
+    // rozetleri var - etiket metni farklı kalıyor (kullanıcı hangisinin
+    // olduğunu görebilsin), sadece renk/anlam aynı.
+    if (durum === 'Yapılmadı' || durum === 'Süresi Doldu') return `<span class="badge fail">${durum}</span>`;
     if (durum == null) return `<span class="badge warn">Bilinmiyor</span>`;
     return `<span class="badge warn">${durum}</span>`;
   }
@@ -749,26 +759,58 @@
     // göre tanımlıydı - aktif rutin sayısı 5'e çıkınca (level=5, tüm
     // rutinler tamamlandığında) hiçbir CSS kuralına düşmüyor, boş gün
     // rengine (#E9F1F3) geri dönüyordu - yani TAM DOLU bir gün, HİÇ
-    // yapılmamış bir günle aynı görünüyordu. Artık renk, aktif rutin
+    // yapılmamış bir günle aynı görünüyordu. Renk artık aktif rutin
     // sayısına ORANTILI olarak dinamik hesaplanıyor - kaç rutin olursa
     // olsun asla bu şekilde bozulmaz.
+    //
+    // REVİZYON: ilk sürüm sadece İKİ renk (en açık <-> lacivert) arasında
+    // düz bir blend yapıyordu - bu, orta seviyelerin (ör. 3/5 ile 4/5)
+    // neredeyse aynı tonda görünmesine yol açtı, ayırt edici değildi.
+    // Artık legend'deki (Az->Çok) TAM 5 durağın (gri->açık yeşil->teal->
+    // koyu teal->lacivert) ARASINDAN geçen çok-duraklı bir gradyan
+    // kullanılıyor - komşu seviyeler artık PARLAKLIK değil RENK TONU
+    // (yeşilden laciverte) değişimiyle de ayrışıyor, çok daha belirgin.
+    const RENK_DURAKLARI = [
+      [233, 241, 243], // #E9F1F3 - boş (Az)
+      [201, 233, 226], // #C9E9E2
+      [143, 211, 199], // #8FD3C7
+      [79, 182, 168],  // #4FB6A8
+      [48, 83, 126],   // #30537E - navy (Çok)
+    ];
+
     function heatmapRengi(level, maks) {
       if (level <= 0 || maks <= 0) return null; // boş gün - CSS varsayılanı kalsın
       const oran = Math.min(level / maks, 1);
-      const acik = [201, 233, 226];   // #C9E9E2 (en açık ton)
-      const koyu = [48, 83, 126];     // #30537E (--navy, en koyu ton)
-      const r = Math.round(acik[0] + (koyu[0] - acik[0]) * oran);
-      const g = Math.round(acik[1] + (koyu[1] - acik[1]) * oran);
-      const b = Math.round(acik[2] + (koyu[2] - acik[2]) * oran);
+      const pozisyon = oran * (RENK_DURAKLARI.length - 1); // 0..4 arası
+      const altIndex = Math.floor(pozisyon);
+      const ustIndex = Math.min(altIndex + 1, RENK_DURAKLARI.length - 1);
+      const yerelOran = pozisyon - altIndex;
+      const alt = RENK_DURAKLARI[altIndex];
+      const ust = RENK_DURAKLARI[ustIndex];
+      const r = Math.round(alt[0] + (ust[0] - alt[0]) * yerelOran);
+      const g = Math.round(alt[1] + (ust[1] - alt[1]) * yerelOran);
+      const b = Math.round(alt[2] + (ust[2] - alt[2]) * yerelOran);
       return `rgb(${r}, ${g}, ${b})`;
     }
+
+    // Telafi günleri: kutunun ortasında, kutunun rengiyle uyumlu (yeşil
+    // tonlu) yumuşak geçişli bir sarı radial nokta - "bu gün telafi
+    // yapıldı" bilgisini renk değiştirmeden, üzerine ekleyerek gösterir.
+    const TELAFI_NOKTASI = 'radial-gradient(circle, rgba(255, 209, 60, 0.6) 0%, rgba(255, 209, 60, 0.35) 35%, rgba(255, 209, 60, 0) 65%)';
 
     veri.heatmap.forEach(gun => {
       const div = document.createElement('div');
       div.className = 'hm-cell';
       div.setAttribute('data-level', gun.level);
       const renk = heatmapRengi(gun.level, rutinSayisi);
-      if (renk) div.style.background = renk;
+      const telafiVar = gun.rutinler.some(r => r.durum === 'Telafi');
+      if (renk && telafiVar) {
+        div.style.background = `${TELAFI_NOKTASI}, ${renk}`;
+      } else if (renk) {
+        div.style.background = renk;
+      } else if (telafiVar) {
+        div.style.background = `${TELAFI_NOKTASI}, #E9F1F3`;
+      }
 
       div.addEventListener('mouseenter', () => {
         document.getElementById('ttDate').textContent = gun.tarih;
