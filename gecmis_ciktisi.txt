@@ -5,5 +5,10 @@
   {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma', 'Durum': 'Süresi Doldu'}
   {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Finansal Özgürlük kitabına başlama', 'Durum': 'Yapıldı'}
 
+=== Bugün (2026-07-25) görevleri (sahte kayıt oluştu mu?) ===
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'portföy takip listesini güncelle', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'sorun olmazsa dışarıda güzel bir hava al', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma (2026-07-20)', 'Durum': 'Bekliyor'}
+
 === SLMLog (son karar) ===
 ['2026-07-25', '05:16', 'GUNLUK_GOREV', '"Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma']
