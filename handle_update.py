@@ -818,6 +818,27 @@ def _kural_tahmini(text):
     if _sorgu_niyeti_var_mi(metin_kucuk):
         return None
 
+    kaydet_niyeti_var = any(k in metin_kucuk for k in [
+        "kaydet", "kayıt et", "ekle", "ekliyorum", "yazıyorum",
+    ])
+
+    # Geçmiş görev tamamlama güvenlik ağı: mesajda tırnak içi bir görev VE
+    # geçmiş zamanlı bir tamamlama fiili (yaptım/yapmıştım/tamamladım/
+    # bitirdim/bitirmiştim) varsa VE açık bir 'ekle/kaydet' niyeti YOKSA,
+    # bu neredeyse kesin bir GECMIS_GOREV_TAMAMLA'dır - kimse tırnak içinde
+    # bir görevi GEÇMİŞ ZAMANLA anıp aynı anda onu YENİ ekliyor olamaz.
+    # Bu kontrol tarih güvenlik ağından ÖNCE geliyor çünkü '22 Temmuz'daki
+    # X görevini yapmıştım' gibi bir mesaj her ikisini de tetikleyebilir -
+    # tamamlama niyeti burada daha spesifik/doğru sinyal. Gerçek bir olayda
+    # SLM(3b) bunu GUNLUK_GOREV sanıp bugüne sahte bir görev daha ekledi,
+    # bu kural o durumu 7b'ye eskale eder.
+    tirnak_var = '"' in text or "\u201c" in text or "\u201d" in text
+    tamamlama_fiili_var = any(k in metin_kucuk for k in [
+        "yaptım", "yapmıştım", "tamamladım", "bitirdim", "bitirmiştim",
+    ])
+    if tirnak_var and tamamlama_fiili_var and not kaydet_niyeti_var:
+        return "GECMIS_GOREV_TAMAMLA"
+
     # Geçmiş tarih güvenlik ağı: mesajda 'dün' ya da '22 Temmuz' gibi somut
     # bir GEÇMİŞ tarih referansı varsa VE açık bir kaydet/ekle niyeti YOKSA,
     # bu neredeyse kesin bir SORGULA'dır - kimse geçmiş bir tarihi anıp yeni
@@ -826,9 +847,6 @@ def _kural_tahmini(text):
     # yanlışlıkla SOHBET sanmasına karşı bir ikinci güvenlik katmanı -
     # gerçek bir olayda ("22 temmuz'dan kalan görevlerimi istiyorum") 3b
     # bunu SOHBET sanmıştı, bu kural o durumu 7b'ye eskale eder.
-    kaydet_niyeti_var = any(k in metin_kucuk for k in [
-        "kaydet", "kayıt et", "ekle", "ekliyorum", "yazıyorum",
-    ])
     if not kaydet_niyeti_var and metinden_tarih_cikar(text) is not None:
         return "SORGULA"
 
@@ -912,7 +930,8 @@ def _siniflandir_ve_isle(text, bekleyen):
         "(bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre "
         "karar ver - biri başka bir konuda yazmış olabilir):\n"
         "- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor (kullanıcı "
-        "kendi içeriğini/madde listesini SAĞLIYOR). ÇOK ÖNEMLİ KURAL: "
+        "kendi içeriğini/madde listesini SAĞLIYOR, YENİ görev(ler) olarak "
+        "eklenmesini istiyor). ÇOK ÖNEMLİ KURAL: "
         "'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE "
         "'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE "
         "GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor "
@@ -924,18 +943,28 @@ def _siniflandir_ve_isle(text, bekleyen):
         "GUNLUK_GOREV DEĞİLDİR - ör. 'kalan günlük görevlerim neler' bir "
         "SORGULA'dır, içinde 'günlük' geçmesi onu GUNLUK_GOREV yapmaz. "
         "HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde "
-        "kullanılır, başka hiçbir durumda değil\n"
+        "kullanılır, başka hiçbir durumda değil. AYRICA ÇOK ÖNEMLİ: eğer "
+        "kullanıcı tırnak içinde bir görev anıp GEÇMİŞ ZAMANLA "
+        "('yaptım'/'yapmıştım'/'tamamladım'/'bitirdim' gibi) TAMAMLADIĞINI "
+        "söylüyorsa, bu GUNLUK_GOREV DEĞİL, GECMIS_GOREV_TAMAMLA'dır - "
+        "'günlük' kelimesi geçse bile, YENİ bir görev SAĞLAMIYOR, VAR OLAN "
+        "bir görevi tamamladığını bildiriyor\n"
         "- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut "
         "haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere "
         "ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti "
         "varsa bu kategori, YENI_GOREV DEĞİL)\n"
         "- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n"
-        "- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık "
-        "DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu "
-        "kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak "
-        "içinde yazar, "
+        "- YENI_GOREV: herhangi bir an kendiliğinden YENİ bir GÜNLÜK "
+        "(haftalık DEĞİL) görev/iş EKLİYOR (şimdiki/gelecek zaman: "
+        "'ekliyorum', 'ekle', henüz yapılmamış bir şey). 'hafta/haftalık' "
+        "kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde "
+        "eklenecek görev(ler)i tırnak içinde yazar, "
         "ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden "
-        "fazla görev aynı mesajda olabilir\n"
+        "fazla görev aynı mesajda olabilir. UYARI: tırnak içindeki metin "
+        "GEÇMİŞ ZAMANLA ('yaptım'/'tamamladım'/'bitirdim') birlikte "
+        "kullanılıyorsa (ör. '\"kitap oku\" yapmıştım') bu YENI_GOREV DEĞİL, "
+        "GECMIS_GOREV_TAMAMLA'dır - tırnak varlığı tek başına YENI_GOREV "
+        "anlamına gelmez, fiilin ZAMANINA bak\n"
         f"- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini "
         f"tamamladığını bildiriyor: {rutin_isim_listesi}. VEYA şu HAFTALIK "
         f"(tekrarlayan, hangi gün önemli değil) rutinlerden birini: "
