@@ -1,0 +1,14 @@
+=== Bekleyen (Bekliyor) günlük görevler (tüm tarihler) ===
+Toplam 9 bekleyen görev:
+  {'Tarih': '2026-07-12', 'GorevID': '', 'GorevMetni': 'Une film', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-12', 'GorevID': '', 'GorevMetni': 'Watch at least 2 stock market evaluation videos', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-19', 'GorevID': '', 'GorevMetni': 'une film - av mevsimi', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-23', 'GorevID': '', 'GorevMetni': 'DMLKT araştırması (ertelemesiz)', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-24', 'GorevID': '', 'GorevMetni': 'Mehmet Abi Ads Set-up', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'portföy takip listesini güncelle', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'sorun olmazsa dışarıda güzel bir hava al', 'Durum': 'Bekliyor'}
+
+=== SLMLog (son karar) ===
+['2026-07-25', '04:47', 'SORGULA', 'geçmişten kalan tüm bekliyor statüsündeki günlük görevlerimi benim için tarihler']
