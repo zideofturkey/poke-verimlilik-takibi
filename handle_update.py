@@ -559,6 +559,84 @@ BEKLEYEN_ACIKLAMA = {
 }
 
 
+def _en_iyi_gorev_eslesmesini_bul(arama_metni, tarih=None):
+    """arama_metni ile GunlukGorevler'deki (SADECE Bekliyor/Süresi Doldu
+    durumundaki - zaten Yapıldı olan bir şeyi tekrar 'bulup' bozmayalım)
+    satırlar arasında en iyi eşleşmeyi arar. Üç aşamalı, temkinli bir
+    yaklaşım: (1) tam eşleşme, (2) biri diğerini kapsıyor mu, (3) kelime
+    örtüşme oranı - SADECE yeterince güvenli VE tek bir aday varsa kabul
+    edilir. Belirsizse ASLA tahmin etmez, None döner - yanlış bir görevi
+    'yapıldı' işaretlemek, hiç işaretlememekten daha kötü bir hata."""
+    ws = get_gorevler_sheet()
+    rows = ws.get_all_records()
+    adaylar = [
+        i for i, r in enumerate(rows)
+        if r.get("Durum") in ("Bekliyor", "Süresi Doldu")
+        and (tarih is None or r.get("Tarih") == tarih)
+    ]
+    if not adaylar:
+        return None
+
+    arama_kucuk = arama_metni.lower().strip()
+
+    for i in adaylar:
+        if rows[i]["GorevMetni"].lower().strip() == arama_kucuk:
+            return (i + 2, rows[i])
+
+    icerenler = [
+        i for i in adaylar
+        if arama_kucuk in rows[i]["GorevMetni"].lower()
+        or rows[i]["GorevMetni"].lower() in arama_kucuk
+    ]
+    if len(icerenler) == 1:
+        return (icerenler[0] + 2, rows[icerenler[0]])
+
+    def _skor(satir_metni):
+        a = set(arama_kucuk.split())
+        b = set(satir_metni.lower().split())
+        if not a or not b:
+            return 0
+        return len(a & b) / len(a | b)
+
+    skorlar = sorted(((_skor(rows[i]["GorevMetni"]), i) for i in adaylar), reverse=True)
+    if skorlar and skorlar[0][0] >= 0.6:
+        if len(skorlar) == 1 or skorlar[0][0] - skorlar[1][0] >= 0.2:
+            i = skorlar[0][1]
+            return (i + 2, rows[i])
+
+    return None
+
+
+def _gecmis_gorev_tamamla_isle(text):
+    """Kullanıcı geçmişte eklediği ad-hoc bir günlük görevi aslında
+    tamamladığını bildirdiğinde çağrılır - önceki bir oturumda 'Süresi
+    Doldu' bildirimine 'gerçekten yaptıysan söyle, düzeltirim' diye söz
+    verilmişti ama bunu gerçekten yapan bir mekanizma hiç kurulmamıştı;
+    bu fonksiyon o sözü tutuyor. Tırnak içi varsa (en güvenilir) onu, yoksa
+    mesajın tamamını arama anahtarı olarak kullanır; tarih belirtilmişse
+    önce o tarihe daraltır, bulamazsa tarihsiz tekrar dener."""
+    tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+    tarih = metinden_tarih_cikar(text)
+    arama_metni = tirnak_ici[0] if tirnak_ici else text
+
+    eslesme = _en_iyi_gorev_eslesmesini_bul(arama_metni, tarih)
+    if eslesme is None and tarih is not None:
+        eslesme = _en_iyi_gorev_eslesmesini_bul(arama_metni, None)
+
+    if eslesme is None:
+        send_message(
+            "Hangi görevi kastettiğini tam olarak eşleştiremedim - görevin "
+            "adını tırnak içinde birebir (ya da çok yakın) yazar mısın? "
+            "Ör: \"görev metni\" yapmıştım."
+        )
+        return
+
+    satir_no, satir = eslesme
+    ws = get_gorevler_sheet()
+    ws.update_cell(satir_no, 4, "Yapıldı")
+    send_message(f"✅ '{satir['GorevMetni']}' ({satir['Tarih']}) görevini yaptın olarak işaretledim, düzelttim!")
+
+
 def _gunluk_gorev_isle(text):
     """Hem sabah tam liste akışını ('bugünkü görevlerim: 1) ... 2) ...')
     hem de gün içinde tek/az sayıda ad-hoc ekleme kalıbını ('günlük
@@ -865,6 +943,14 @@ def _siniflandir_ve_isle(text, bekleyen):
         "rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi "
         "doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece "
         "yukarıdaki listelerdeki rutinler için\n"
+        "- GECMIS_GOREV_TAMAMLA: kullanıcı GEÇMİŞTE (bugün ya da önceki bir "
+        "günde) kendi eklediği bir GÜNLÜK GÖREVİ (sabit rutin listesinde "
+        "OLMAYAN, kullanıcının kendi yazdığı ad-hoc bir iş) aslında "
+        "TAMAMLADIĞINI bildiriyor - genellikle görevi adıyla (çoğu zaman "
+        "tırnak içinde) anıyor, bazen tarih de belirtiyor. Ör: '\"X\" "
+        "görevini yapmıştım', 'Y işini bitirdim', '\"Z\" tamamladım'. "
+        "RUTIN_TAMAMLA'daki SABİT listeyle KARIŞTIRMA - bu, kullanıcının "
+        "kendi yazdığı, benzersiz bir görev/iş içindir\n"
         "- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/"
         "İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır "
         "mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', "
@@ -975,6 +1061,9 @@ def _siniflandir_ve_isle(text, bekleyen):
                 "Hangi rutinden bahsettiğini tam anlayamadım — akşam kontrolünde "
                 "butonla işaretleyebilirsin, orası her zaman güvenilir çalışır 👍"
             )
+
+    elif tip == "GECMIS_GOREV_TAMAMLA":
+        _gecmis_gorev_tamamla_isle(text)
 
     elif tip == "GUNLUK_GOREV":
         _gunluk_gorev_isle(text)
