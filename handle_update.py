@@ -253,12 +253,24 @@ def _sorguyu_cevapla(text):
     # sadece bugüne indirgeyip cevapladı. Burada net bir 'tüm/hepsi/geçmiş'
     # sinyali VE belirli bir tarih YOKSA, tarihler arası özel fonksiyona
     # yönlendiriyoruz.
+    #
+    # UYARI - AYNI HATA İKİNCİ KEZ YAŞANDI: sabit kalıp listesi ("geçmişten
+    # kalan", "tüm bekleyen" vb.) sadece test ettiğim TEK cümleyi kapsıyordu
+    # - kullanıcı doğal bir şekilde "bugünden önceki günlerde..." dediğinde
+    # hiçbiri eşleşmedi, sessizce bugüne düştü. Sabit kalıp listeleri bu tür
+    # açık uçlu Türkçe ifadeler için doğası gereği EKSİK kalıyor (aynı
+    # "neler"in sorgu_kaliplari'nda unutulması gibi). Bu yüzden artık tek
+    # tek kalıp saymak yerine, "önceki/geçmiş" + "gün(ler)" birlikteliğini
+    # yakalayan bir REGEX de var - "önceki günlerde", "geçmiş günlerdeki",
+    # "bugünden önceki günler" gibi pek çok doğal varyasyonu tek seferde
+    # kapsıyor, tek tek cümle ezberlemek yerine.
     tum_gecmis_kaliplari = [
         "geçmişten kalan", "tüm bekleyen", "bütün bekleyen",
         "tüm görevlerim", "bütün görevlerim", "geçmiş görevlerim",
-        "hepsini", "tüm geçmiş",
+        "hepsini", "tüm geçmiş", "tüm zamanlarda", "bütün zamanlarda",
     ]
-    if any(k in metin_kucuk for k in tum_gecmis_kaliplari) and metinden_tarih_cikar(text) is None:
+    gecmis_gun_regex = re.search(r"\b(öncek\w*|geçmiş\w*)\s+g[üu]n", metin_kucuk)
+    if (any(k in metin_kucuk for k in tum_gecmis_kaliplari) or gecmis_gun_regex) and metinden_tarih_cikar(text) is None:
         _tum_bekleyen_gorevleri_cevapla()
         return
 
