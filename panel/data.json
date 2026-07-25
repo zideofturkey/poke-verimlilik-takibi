@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-25T07:44:01.611784+03:00",
+  "uretim_zamani": "2026-07-25T10:18:29.598427+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1589,10 +1589,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-25T04:43:48Z",
+      "zaman": "2026-07-25T07:18:10Z",
       "durum": "warn",
+      "runId": "30149066327",
+      "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-25T04:43:48Z",
+      "durum": "ok",
       "runId": "30144528645",
-      "sureSn": 2
+      "sureSn": 38
     },
     {
       "ad": "Dinle",
@@ -1684,21 +1691,14 @@
       "durum": "ok",
       "runId": "30139878086",
       "sureSn": 15
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T02:01:42Z",
-      "durum": "ok",
-      "runId": "30139654174",
-      "sureSn": 149
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 36
+      "toplam": 7,
+      "oran": 86,
+      "ortSureSn": 37
     },
     {
       "ad": "Dinle",
@@ -1708,9 +1708,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 16,
+      "toplam": 15,
       "oran": 100,
-      "ortSureSn": 156
+      "ortSureSn": 164
     },
     {
       "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
