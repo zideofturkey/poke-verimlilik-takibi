@@ -245,6 +245,23 @@ def _sorguyu_cevapla(text):
         _haftalik_ozet_sorusunu_cevapla()
         return
 
+    # 'Geçmişten kalan TÜM bekleyenler' - belirli bir güne değil, TÜM
+    # tarihlere yayılan sorgular. _bugunku_durumu_cevapla tek bir günü
+    # hedefler (metinden_tarih_cikar bulamazsa varsayılan bugün'e düşer) -
+    # bu kalıp gerçek bir olayda "geçmişten kalan tüm bekliyor statüsündeki
+    # günlük görevlerimi tarihleriyle sorgular mısın" mesajını yanlışlıkla
+    # sadece bugüne indirgeyip cevapladı. Burada net bir 'tüm/hepsi/geçmiş'
+    # sinyali VE belirli bir tarih YOKSA, tarihler arası özel fonksiyona
+    # yönlendiriyoruz.
+    tum_gecmis_kaliplari = [
+        "geçmişten kalan", "tüm bekleyen", "bütün bekleyen",
+        "tüm görevlerim", "bütün görevlerim", "geçmiş görevlerim",
+        "hepsini", "tüm geçmiş",
+    ]
+    if any(k in metin_kucuk for k in tum_gecmis_kaliplari) and metinden_tarih_cikar(text) is None:
+        _tum_bekleyen_gorevleri_cevapla()
+        return
+
     _bugunku_durumu_cevapla(text)
 
 
@@ -396,6 +413,51 @@ def _kalan_durumu_interaktif_gonder(hedef_tarih, ifade, erken_saat_varsayimi=Fal
         bir_sey_gonderildi = True
 
     return bir_sey_gonderildi
+
+
+def _tum_bekleyen_gorevleri_cevapla():
+    """'Geçmişten kalan tüm bekleyen günlük görevlerim' tarzı sorguları
+    karşılar - _bugunku_durumu_cevapla'nın tersine TEK bir güne değil,
+    Sheets'teki TÜM tarihlere yayılan 'Bekliyor' durumundaki ad-hoc
+    günlük görevleri bulur, tarihe göre gruplayıp TEK bir tıklanabilir
+    mesajda gönderir (gorev_<satır> callback'i satır bazlı çalıştığı için
+    farklı tarihlerden gelen görevler aynı mesajda sorunsuz karışabilir)."""
+    ws = get_gorevler_sheet()
+    rows = ws.get_all_records()
+    bekleyenler = [
+        (i + 2, r) for i, r in enumerate(rows)
+        if r.get("Durum") == "Bekliyor"
+    ]
+
+    if not bekleyenler:
+        send_message("Bekleyen (henüz işaretlenmemiş) hiç günlük görevin yok - hepsi güncel! 🎉")
+        return
+
+    bekleyenler.sort(key=lambda x: x[1].get("Tarih", ""))
+
+    MAKS_GOSTERILEN = 25
+    fazlasi_var = len(bekleyenler) > MAKS_GOSTERILEN
+    gosterilecekler = bekleyenler[:MAKS_GOSTERILEN]
+
+    satirlar = []
+    buton_satirlari = []
+    mevcut_tarih = None
+    for i, (row_num, r) in enumerate(gosterilecekler):
+        tarih = r.get("Tarih", "")
+        if tarih != mevcut_tarih:
+            mevcut_tarih = tarih
+            satirlar.append(f"\n📅 {_gun_ifadesi(tarih)} ({tarih}):")
+        satirlar.append(f"{i+1}. {r.get('GorevMetni', '')}")
+        buton_satirlari.append([
+            {"text": f"{i+1}️⃣ ✅", "callback_data": f"gorev_{row_num}_evet"},
+            {"text": f"{i+1}️⃣ ❌", "callback_data": f"gorev_{row_num}_hayir"},
+        ])
+
+    baslik = f"Geçmişten kalan {len(bekleyenler)} bekleyen günlük görevin var:"
+    if fazlasi_var:
+        baslik += f" (ilk {MAKS_GOSTERILEN} tanesi gösteriliyor, tarih belirterek daralt.)"
+
+    send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
 
 
 def _bugunku_durumu_cevapla(text):
