@@ -1,0 +1,17 @@
+=== GunlukGorevler - Süresi Doldu olanlar ===
+  {'Tarih': '2026-07-12', 'GorevID': '', 'GorevMetni': 'Une film', 'Durum': 'Süresi Doldu'}
+  {'Tarih': '2026-07-12', 'GorevID': '', 'GorevMetni': 'Watch at least 2 stock market evaluation videos', 'Durum': 'Süresi Doldu'}
+  {'Tarih': '2026-07-19', 'GorevID': '', 'GorevMetni': 'une film - av mevsimi', 'Durum': 'Süresi Doldu'}
+  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)', 'Durum': 'Süresi Doldu'}
+  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma', 'Durum': 'Süresi Doldu'}
+
+=== GunlukGorevler - hâlâ Bekliyor olanlar (3 günden yeni) ===
+  {'Tarih': '2026-07-23', 'GorevID': '', 'GorevMetni': 'DMLKT araştırması (ertelemesiz)', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-24', 'GorevID': '', 'GorevMetni': 'Mehmet Abi Ads Set-up', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'portföy takip listesini güncelle', 'Durum': 'Bekliyor'}
+  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'sorun olmazsa dışarıda güzel bir hava al', 'Durum': 'Bekliyor'}
+
+=== HaftalikHedefler - Süresi Doldu olanlar ===
+  {'HaftaBaslangic': '2026-07-06', 'HedefMetni': 'pazartesi staja git', 'Durum': 'Süresi Doldu'}
+  {'HaftaBaslangic': '2026-07-06', 'HedefMetni': 'çarşamba akşamı maça git', 'Durum': 'Süresi Doldu'}
+  {'HaftaBaslangic': '2026-07-06', 'HedefMetni': 'bir program tamamla', 'Durum': 'Süresi Doldu'}
