@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-25T12:19:28.817855+03:00",
+  "uretim_zamani": "2026-07-25T12:31:03.718240+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1589,10 +1589,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-25T09:19:08Z",
+      "zaman": "2026-07-25T09:30:44Z",
       "durum": "warn",
+      "runId": "30152918170",
+      "sureSn": 6
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-25T09:19:08Z",
+      "durum": "ok",
       "runId": "30152602514",
-      "sureSn": 4
+      "sureSn": 46
     },
     {
       "ad": "Panel",
@@ -1684,13 +1691,6 @@
       "durum": "ok",
       "runId": "30140405876",
       "sureSn": 20
-    },
-    {
-      "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
-      "zaman": "2026-07-25T02:19:41Z",
-      "durum": "ok",
-      "runId": "30140225918",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
