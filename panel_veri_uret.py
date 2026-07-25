@@ -52,7 +52,7 @@ def gunluk_verileri_topla():
             {"isim": r["isim"], "durum": durumlar.get(r["isim"], "Yapılmadı" if d_str in gunluk else None)}
             for r in rutinler
         ]
-        tamamlanan = sum(1 for x in rutin_listesi if x["durum"] == "Yapıldı")
+        tamamlanan = sum(1 for x in rutin_listesi if x["durum"] in ("Yapıldı", "Telafi"))
         heatmap.append({
             "tarih": d.strftime("%d %B %Y"),
             "tarih_iso": d_str,

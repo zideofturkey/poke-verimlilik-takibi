@@ -745,10 +745,30 @@
     const tooltip = document.getElementById('hmTooltip');
     const rutinSayisi = veri.rutinOranlari.length || 1;
 
+    // ÖNEMLİ: Renk skalası önceden SABİT 4 seviyeye (CSS'te data-level="1..4")
+    // göre tanımlıydı - aktif rutin sayısı 5'e çıkınca (level=5, tüm
+    // rutinler tamamlandığında) hiçbir CSS kuralına düşmüyor, boş gün
+    // rengine (#E9F1F3) geri dönüyordu - yani TAM DOLU bir gün, HİÇ
+    // yapılmamış bir günle aynı görünüyordu. Artık renk, aktif rutin
+    // sayısına ORANTILI olarak dinamik hesaplanıyor - kaç rutin olursa
+    // olsun asla bu şekilde bozulmaz.
+    function heatmapRengi(level, maks) {
+      if (level <= 0 || maks <= 0) return null; // boş gün - CSS varsayılanı kalsın
+      const oran = Math.min(level / maks, 1);
+      const acik = [201, 233, 226];   // #C9E9E2 (en açık ton)
+      const koyu = [48, 83, 126];     // #30537E (--navy, en koyu ton)
+      const r = Math.round(acik[0] + (koyu[0] - acik[0]) * oran);
+      const g = Math.round(acik[1] + (koyu[1] - acik[1]) * oran);
+      const b = Math.round(acik[2] + (koyu[2] - acik[2]) * oran);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
     veri.heatmap.forEach(gun => {
       const div = document.createElement('div');
       div.className = 'hm-cell';
       div.setAttribute('data-level', gun.level);
+      const renk = heatmapRengi(gun.level, rutinSayisi);
+      if (renk) div.style.background = renk;
 
       div.addEventListener('mouseenter', () => {
         document.getElementById('ttDate').textContent = gun.tarih;
