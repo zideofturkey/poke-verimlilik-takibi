@@ -15,11 +15,16 @@ def main():
         if r.get("Tarih") == bugun:
             print(" ", r)
 
-    print("\n=== SLMLog (son karar) ===")
+    print("\n=== SLMLog (son 2 karar) ===")
     spreadsheet = get_sheet().spreadsheet
     slm_ws = spreadsheet.worksheet("SLMLog")
-    for r in slm_ws.get_all_values()[-1:]:
+    for r in slm_ws.get_all_values()[-2:]:
         print(r[:4])
+
+    print("\n=== AnlasmazlikLog (son 2) ===")
+    an_ws = spreadsheet.worksheet("AnlasmazlikLog")
+    for r in an_ws.get_all_values()[-2:]:
+        print(r)
 
 if __name__ == "__main__":
     main()
