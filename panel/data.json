@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-25T02:02:03.284583+03:00",
+  "uretim_zamani": "2026-07-25T04:02:14.644557+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 60
+    "haftaTamamlamaYuzdesi": 63
   },
   "heatmap": [
     {
@@ -1161,14 +1161,14 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Telafi"
         }
       ]
     },
     {
       "tarih": "24 July 2026",
       "tarih_iso": "2026-07-24",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1188,7 +1188,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1223,7 +1223,7 @@
   "rutinOranlari": [
     {
       "isim": "Fransızca çalışma",
-      "oran": 100
+      "oran": 91
     },
     {
       "isim": "Sabah telefonsuzluğu",
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 75
+      "oran": 89
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1575,10 +1575,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-24T23:01:48Z",
+      "zaman": "2026-07-25T01:01:59Z",
       "durum": "warn",
+      "runId": "30137641471",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-25T00:10:28Z",
+      "durum": "ok",
+      "runId": "30135659915",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-24T23:12:13Z",
+      "durum": "ok",
+      "runId": "30133153920",
+      "sureSn": 396
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-24T23:11:07Z",
+      "durum": "ok",
+      "runId": "30133102899",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-24T23:11:05Z",
+      "durum": "ok",
+      "runId": "30133101738",
+      "sureSn": 29
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-24T23:01:48Z",
+      "durum": "ok",
       "runId": "30132670046",
-      "sureSn": 4
+      "sureSn": 41
     },
     {
       "ad": "Dinle",
@@ -1642,71 +1677,43 @@
       "durum": "ok",
       "runId": "30112700418",
       "sureSn": 41
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T17:13:30Z",
-      "durum": "ok",
-      "runId": "30112156969",
-      "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T17:11:10Z",
-      "durum": "ok",
-      "runId": "30112007248",
-      "sureSn": 299
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T17:11:09Z",
-      "durum": "ok",
-      "runId": "30112005701",
-      "sureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T17:10:54Z",
-      "durum": "ok",
-      "runId": "30111989084",
-      "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-24T17:10:43Z",
-      "durum": "ok",
-      "runId": "30111977782",
-      "sureSn": 32
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
-      "ortSureSn": 41
+      "toplam": 10,
+      "oran": 90,
+      "ortSureSn": 40
     },
     {
       "ad": "Dinle",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 17,
+      "oran": 100,
+      "ortSureSn": 92
     },
     {
       "ad": "Gönder",
       "toplam": 4,
       "oran": 100,
       "ortSureSn": 21
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 16,
-      "oran": 100,
-      "ortSureSn": 75
     }
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-07-25",
+      "saat": "02:18",
+      "kategori": "BOSA_VAKIT",
+      "ozet": "24 Temmuz günü 3 saat sosyal medyada boş vakit geçirmişim",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok.\n\nKullanıcı şunu yazdı:\n\"24 Temmuz günü 3 saat sosyal medyada boş vakit geçirmişim\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor (kullanıcı kendi içeriğini/madde listesini SAĞLIYOR). ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. AMA BU KURAL SORGULA KURALINDAN SONRA GELİR: mesaj soru kipindeyse (mı/mi/mu/mü İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye' gibi soru sözcükleriyle) VE kullanıcı kendi içeriğini SAĞLAMIYORSA (sadece soruyor), 'günlük' kelimesi geçse bile bu SORGULA'dır, GUNLUK_GOREV DEĞİLDİR - ör. 'kalan günlük görevlerim neler' bir SORGULA'dır, içinde 'günlük' geçmesi onu GUNLUK_GOREV yapmaz. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim', 'kalan günlük görevlerim neler'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb. İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye/kim' gibi soru sözcükleriyle) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır. AYRICA ÖNEMLİ: kullanıcı GEÇMİŞ bir tarihe ait görev/rutin bilgisini istiyorsa (ör. 'dün ne yapmıştım', '22 Temmuz'dan kalan görevlerimi istiyorum', 'geçen hafta salı ne yapacaktım') bu DA SORGULA'dır, SOHBET DEĞİLDİR - tarihin bugün olmaması onu SOHBET yapmaz, sadece geçmişe dönük bir SORGULA örneğidir\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: BOSA_VAKIT\nGOREVLER:\nRUTIN:"
+    },
     {
       "tarih": "2026-07-24",
       "saat": "20:16",
@@ -1839,13 +1846,6 @@
       "kategori": "SORGULA",
       "ozet": "günlük görevlerimi sorgula lütfen",
       "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: pazar günü sorduğum 'bu hafta hedeflerin ne' sorusu.\n\nKullanıcı şunu yazdı:\n\"günlük görevlerimi sorgula lütfen\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: SORGULA\nGOREVLER: \nRUTIN: \nCEVAP: Günlük görevlerinizi hatırlatmak için bu mesajı aldım, lütfen içeriğini kontrol edin ve gerekirse güncelleyin."
-    },
-    {
-      "tarih": "2026-07-22",
-      "saat": "22:11",
-      "kategori": "SORGULA",
-      "ozet": "günlük görevlerimi sorgula lütfen",
-      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: pazar günü sorduğum 'bu hafta hedeflerin ne' sorusu.\n\nKullanıcı şunu yazdı:\n\"günlük görevlerimi sorgula lütfen\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor. ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden yeni GÜNLÜK (haftalık DEĞİL) görev/iş ekliyor. 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb.) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma'. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise: 'not aldım' gibi genel bir cümle YETERLİ DEĞİL - kullanıcının ANLATTIĞI şeye (ne yaptığına, ne kadar vakit geçirdiğine) gerçekten değinen, kısa ama düşünceli bir yorum/gözlem yap. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: SORGULA\nGOREVLER: \nRUTIN: \nCEVAP: Bu hafta hedeflerin ne olduğunu sormadınız, ancak bugünün görevlerini görebilirim."
     }
   ],
   "slmDagilim": [
@@ -1858,12 +1858,12 @@
       "sayi": 12
     },
     {
-      "kategori": "HAFTALIK_HEDEF",
+      "kategori": "BOSA_VAKIT",
       "sayi": 4
     },
     {
-      "kategori": "BOSA_VAKIT",
-      "sayi": 3
+      "kategori": "HAFTALIK_HEDEF",
+      "sayi": 4
     },
     {
       "kategori": "YENI_GOREV",
@@ -1875,6 +1875,11 @@
     }
   ],
   "hataGecmisi": [
+    {
+      "tarih": "2026-07-25",
+      "saat": "02:18",
+      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
+    },
     {
       "tarih": "2026-07-23",
       "saat": "14:02",
