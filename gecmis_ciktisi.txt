@@ -1,2 +1,1 @@
-Sahte kayıt silindi: satır 59 -> ['2026-07-25', '', 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma (2026-07-20)', 'Bekliyor']
-20 Temmuz görevi 'Yapıldı' olarak işaretlendi: satır 41
+Test için 'Süresi Doldu'ya geri alındı: satır 41
