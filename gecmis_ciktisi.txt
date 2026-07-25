@@ -10,5 +10,10 @@
   {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'sorun olmazsa dışarıda güzel bir hava al', 'Durum': 'Bekliyor'}
   {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma (2026-07-20)', 'Durum': 'Bekliyor'}
 
-=== SLMLog (son karar) ===
+=== SLMLog (son 2 karar) ===
+['2026-07-25', '05:16', 'GUNLUK_GOREV', '"Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma']
 ['2026-07-25', '05:35', 'GUNLUK_GOREV', '"Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma']
+
+=== AnlasmazlikLog (son 2) ===
+['2026-07-25', '02:18', '24 Temmuz günü 3 saat sosyal medyada boş vakit geçirmişim', 'SORGULA', 'BOSA_VAKIT', 'BOSA_VAKIT']
+['2026-07-25', '05:35', '"Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma (2026-07-20)" bu görevi yapmıştım', 'GECMIS_GOREV_TAMAMLA', 'GUNLUK_GOREV', 'GUNLUK_GOREV']
