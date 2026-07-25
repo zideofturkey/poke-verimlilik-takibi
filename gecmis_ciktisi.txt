@@ -1,14 +1,2 @@
-=== 20 Temmuz görevleri ===
-  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': '10.00 sağlık ocağı', 'Durum': 'Yapıldı'}
-  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Av Mevsimi bitirme', 'Durum': 'Yapıldı'}
-  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)', 'Durum': 'Süresi Doldu'}
-  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma', 'Durum': 'Süresi Doldu'}
-  {'Tarih': '2026-07-20', 'GorevID': '', 'GorevMetni': 'Finansal Özgürlük kitabına başlama', 'Durum': 'Yapıldı'}
-
-=== Bugün (2026-07-25) görevleri (sahte kayıt oluştu mu?) ===
-  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'portföy takip listesini güncelle', 'Durum': 'Bekliyor'}
-  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'sorun olmazsa dışarıda güzel bir hava al', 'Durum': 'Bekliyor'}
-  {'Tarih': '2026-07-25', 'GorevID': '', 'GorevMetni': 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma (2026-07-20)', 'Durum': 'Bekliyor'}
-
-=== SLMLog (son karar) ===
-['2026-07-25', '05:16', 'GUNLUK_GOREV', '"Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma']
+Sahte kayıt silindi: satır 59 -> ['2026-07-25', '', 'Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma (2026-07-20)', 'Bekliyor']
+20 Temmuz görevi 'Yapıldı' olarak işaretlendi: satır 41
