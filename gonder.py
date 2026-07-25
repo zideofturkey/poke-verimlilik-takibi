@@ -38,10 +38,57 @@ from common import (
 
 
 TELAFI_GUN_SAYISI = 1  # Günlük (ad-hoc) görevler için: sadece 1 gün hatırlatılır, sonra düşer
+SURESI_DOLMA_GUN_SAYISI = 3  # Günlük görevler: bu kadar gündür 'Bekliyor' kalırsa 'Süresi Doldu'
+HAFTALIK_SURESI_DOLMA_GUN_SAYISI = 14  # Haftalık hedefler: kendi haftası + 1 hafta pay (2 hafta) sonra
 
 
 def bugun_str():
     return datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
+
+
+def _suresi_dolanlari_isaretle_ve_bildir():
+    """3+ gündür 'Bekliyor' kalan günlük görevleri ve kendi haftası + 1
+    hafta paydan (14 gün) sonra hâlâ 'Bekliyor' kalan haftalık hedefleri
+    'Süresi Doldu' olarak işaretler. BİLİNÇLİ OLARAK 'Yapılmadı' DEĞİL -
+    kullanıcının gerçekten yapmadığını değil, sadece hiç cevap vermediğini
+    biliyoruz; bunu kesin bir başarısızlık gibi kaydetmek yanlış negatif
+    üretip seri/panel istatistiklerini bozabilirdi. Rutinler bilinçli
+    olarak KAPSAM DIŞI - kullanıcı dünden öncesini zaten hatırlayamıyor,
+    ve 'dün kaçırdın mı' sorgusu (telafi mekanizması) zaten sistemde var.
+    Her sabah() çağrısında çalışır (günde bir kez, saat 09:00 TR)."""
+    bugun = datetime.datetime.now(TR_TZ).date()
+    bildirimler = []
+
+    ws_gorev = get_gorevler_sheet()
+    for i, r in enumerate(ws_gorev.get_all_records()):
+        if r.get("Durum") != "Bekliyor":
+            continue
+        try:
+            tarih = datetime.datetime.strptime(r["Tarih"], "%Y-%m-%d").date()
+        except (ValueError, KeyError):
+            continue
+        if (bugun - tarih).days >= SURESI_DOLMA_GUN_SAYISI:
+            ws_gorev.update_cell(i + 2, 4, "Süresi Doldu")
+            bildirimler.append(f"📋 {r['GorevMetni']} ({r['Tarih']})")
+
+    ws_hedef = get_haftalik_sheet()
+    for i, r in enumerate(ws_hedef.get_all_records()):
+        if r.get("Durum") != "Bekliyor":
+            continue
+        try:
+            hafta_tarih = datetime.datetime.strptime(r["HaftaBaslangic"], "%Y-%m-%d").date()
+        except (ValueError, KeyError):
+            continue
+        if (bugun - hafta_tarih).days >= HAFTALIK_SURESI_DOLMA_GUN_SAYISI:
+            ws_hedef.update_cell(i + 2, 3, "Süresi Doldu")
+            bildirimler.append(f"🎯 {r['HedefMetni']} ({r['HaftaBaslangic']} haftası)")
+
+    if bildirimler:
+        liste = "\n".join(bildirimler)
+        send_message(
+            "⏳ Uzun süredir cevapsız kalan şunları 'Süresi Doldu' olarak "
+            f"işaretledim (gerçekten yaptıysan söyle, düzeltirim):\n{liste}"
+        )
 
 
 def dun_str():
@@ -57,6 +104,8 @@ def gun_etiketi(fark):
 
 
 def sabah():
+    _suresi_dolanlari_isaretle_ve_bildir()
+
     # Son birkaç günün kaçırılan görevlerine bak (telafi mantığı)
     ws = get_gorevler_sheet()
     rows = ws.get_all_records()
