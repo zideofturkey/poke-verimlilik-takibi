@@ -10,5 +10,10 @@ def main():
     for r in rows[-8:]:
         print(r[:4])
 
+    print("\n=== Son satırın TAM içeriği (tüm kolonlar) ===")
+    son = rows[-1]
+    for i, deger in enumerate(son):
+        print(f"kolon {i}: {deger}")
+
 if __name__ == "__main__":
     main()
