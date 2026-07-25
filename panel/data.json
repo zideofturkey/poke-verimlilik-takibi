@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-25T12:18:07.688745+03:00",
+  "uretim_zamani": "2026-07-25T12:19:28.817855+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -871,7 +871,7 @@
     {
       "tarih": "13 July 2026",
       "tarih_iso": "2026-07-13",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -898,7 +898,7 @@
     {
       "tarih": "14 July 2026",
       "tarih_iso": "2026-07-14",
-      "level": 1,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -952,7 +952,7 @@
     {
       "tarih": "16 July 2026",
       "tarih_iso": "2026-07-16",
-      "level": 2,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1589,10 +1589,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-25T09:17:54Z",
+      "zaman": "2026-07-25T09:19:08Z",
       "durum": "warn",
+      "runId": "30152602514",
+      "sureSn": 4
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-25T09:17:54Z",
+      "durum": "ok",
       "runId": "30152571303",
-      "sureSn": 3
+      "sureSn": 37
     },
     {
       "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
@@ -1684,20 +1691,13 @@
       "durum": "ok",
       "runId": "30140225918",
       "sureSn": 15
-    },
-    {
-      "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
-      "zaman": "2026-07-25T02:18:18Z",
-      "durum": "ok",
-      "runId": "30140182707",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 8,
-      "oran": 88,
+      "toplam": 9,
+      "oran": 89,
       "ortSureSn": 39
     },
     {
@@ -1714,7 +1714,7 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 6,
+      "toplam": 5,
       "oran": 100,
       "ortSureSn": 29
     },
