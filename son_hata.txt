@@ -1,4 +1,4 @@
-Zaman: 2026-07-25T05:33:50.200160+03:00
+Zaman: 2026-07-25T19:02:06.192498+03:00
 Bağlam: slm_sorgula deneme 2/5 (model=qwen2.5:7b)
 
 Traceback (most recent call last):
@@ -72,7 +72,7 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434
 
 --- ollama serve logu (son 2000 karakter) ---
  start responding"
-time=2026-07-25T02:29:24.127Z level=INFO source=llama_server.go:1324 msg="llama-server started in 4.31 seconds"
+time=2026-07-25T15:57:33.435Z level=INFO source=llama_server.go:1324 msg="llama-server started in 4.30 seconds"
 srv  server_strea: conv_id= (empty=1)
 slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
 srv  get_availabl: updating prompt cache
@@ -86,11 +86,11 @@ slot launch_slot_: id  0 | task -1 | sampler params:
 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.300
 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
 slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
-slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 2251
+slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 2397
 slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    512, progress = 0.23, t =  39.36 s / 13.01 tokens per second
+slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    512, progress = 0.21, t =  39.50 s / 12.96 tokens per second
 slot   operator(): id  0 | task 0 | cached n_tokens = 512, memory_seq_rm [512, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1024, progress = 0.45, t =  80.10 s / 12.78 tokens per second
+slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1024, progress = 0.43, t =  80.44 s / 12.73 tokens per second
 slot   operator(): id  0 | task 0 | cached n_tokens = 1024, memory_seq_rm [1024, end)
-[GIN] 2026/07/25 - 02:31:19 | 500 |          2m0s |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2026/07/25 - 15:59:28 | 500 |          2m0s |       127.0.0.1 | POST     "/api/generate"
 srv          stop: cancel task, id_task = 0
