@@ -1,0 +1,9 @@
+SLMLog toplam 41 kayıt. Son 8 tanesi:
+['2026-07-24', '13:46', 'GUNLUK_GOREV', 'Günaydın bugünkü görevlere şunları ekleyerek başlayalım:\nMehmet Abi Ads Set-up\nE']
+['2026-07-24', '13:49', 'SORGULA', 'Ve bana dünden yani 23 temmuz’dan kalan görev ve rutinlerimi sorgular mısın']
+['2026-07-24', '20:16', 'SORGULA', 'Günlük görevlerimi hatırlatır mısın']
+['2026-07-25', '02:18', 'BOSA_VAKIT', '24 Temmuz günü 3 saat sosyal medyada boş vakit geçirmişim']
+['2026-07-25', '04:08', 'GUNLUK_GOREV', 'bugünkü görevlerim:\n1. portföy takip listesini güncelle\n2. sorun olmazsa dışarıd']
+['2026-07-25', '04:12', 'SORGULA', 'geçmişten kalan tüm bekliyor statüsündeki günlük görevlerimi benim için tarihler']
+['2026-07-25', '04:47', 'SORGULA', 'geçmişten kalan tüm bekliyor statüsündeki günlük görevlerimi benim için tarihler']
+['2026-07-25', '05:04', 'SORGULA', '"Claude token limitlerini aşma problemi videosunu gemini ile izleyip not çıkarma']
