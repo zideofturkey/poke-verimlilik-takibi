@@ -1039,7 +1039,23 @@ def _siniflandir_ve_isle(text, bekleyen):
     # gerçekten emin olduğu durumlarda bir görüş bildirir (None dönerse
     # bu ASLA anlaşmazlık sayılmaz - SLM'in kararı olduğu gibi kullanılır).
     kural_tahmini = _kural_tahmini(text)
-    if kural_tahmini is not None and kural_tahmini != tip:
+
+    if kural_tahmini == "GECMIS_GOREV_TAMAMLA" and tip != "GECMIS_GOREV_TAMAMLA":
+        # ÖZEL DURUM: gerçek bir olayda bu kalıpta (tırnak içi + geçmiş
+        # zamanlı tamamlama fiili) hem 3b HEM 7b'nin AYNI yanlış kategoriye
+        # (GUNLUK_GOREV) düştüğü görüldü - eskalasyon burada işe yaramıyor,
+        # çünkü iki katman da aynı hataya düşebiliyor. Kural burada
+        # dilbilimsel olarak çok güvenilir (tırnak içinde geçmiş zamanla
+        # anılan bir metin neredeyse hiçbir zaman 'yeni ekle' anlamına
+        # gelmez) VE alt işleyici (_gecmis_gorev_tamamla_isle) kendi
+        # güvenlik ağına sahip (eşleşme bulunamazsa ASLA tahmin etmez,
+        # netleştirme ister) - bu yüzden SLM'e danışmadan doğrudan kurala
+        # güveniliyor. Bonus: gereksiz bir 7b çağrısından (ve onun Ollama
+        # segfault riskinden) da kaçınılmış oluyor.
+        print(f"[sınıflandırma] GECMIS_GOREV_TAMAMLA: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
+        log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
+        tip = "GECMIS_GOREV_TAMAMLA"
+    elif kural_tahmini is not None and kural_tahmini != tip:
         print(f"[sınıflandırma] Anlaşmazlık: kural={kural_tahmini} slm(3b)={tip} - 7b'ye eskale ediliyor")
         try:
             sonuc_7b = slm_sorgula(prompt, model=SLM_MODEL_KALITELI)
