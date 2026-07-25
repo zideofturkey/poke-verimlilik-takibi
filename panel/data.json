@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-25T10:18:29.598427+03:00",
+  "uretim_zamani": "2026-07-25T12:18:07.688745+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1589,10 +1589,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-25T07:18:10Z",
+      "zaman": "2026-07-25T09:17:54Z",
       "durum": "warn",
-      "runId": "30149066327",
+      "runId": "30152571303",
       "sureSn": 3
+    },
+    {
+      "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
+      "zaman": "2026-07-25T09:14:45Z",
+      "durum": "ok",
+      "runId": "30152485344",
+      "sureSn": 17
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-25T08:07:26Z",
+      "durum": "ok",
+      "runId": "30150542330",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-25T07:22:49Z",
+      "durum": "ok",
+      "runId": "30149200620",
+      "sureSn": 25
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-25T07:18:10Z",
+      "durum": "ok",
+      "runId": "30149066327",
+      "sureSn": 54
     },
     {
       "ad": "Panel",
@@ -1663,60 +1691,38 @@
       "durum": "ok",
       "runId": "30140182707",
       "sureSn": 15
-    },
-    {
-      "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
-      "zaman": "2026-07-25T02:17:04Z",
-      "durum": "ok",
-      "runId": "30140143503",
-      "sureSn": 17
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T02:13:21Z",
-      "durum": "ok",
-      "runId": "30140026757",
-      "sureSn": 185
-    },
-    {
-      "ad": "GECICI - Yaptim Kontrol (silinecek)",
-      "zaman": "2026-07-25T02:10:00Z",
-      "durum": "ok",
-      "runId": "30139917489",
-      "sureSn": 18
-    },
-    {
-      "ad": "GECICI - Yaptim Kontrol (silinecek)",
-      "zaman": "2026-07-25T02:08:42Z",
-      "durum": "ok",
-      "runId": "30139878086",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 7,
-      "oran": 86,
-      "ortSureSn": 37
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 30
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 15,
-      "oran": 100,
-      "ortSureSn": 164
+      "toplam": 8,
+      "oran": 88,
+      "ortSureSn": 39
     },
     {
       "ad": "GECICI - Gecmis Gorev Kontrol (silinecek)",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
       "ortSureSn": 17
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 20
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 185
     },
     {
       "ad": "GECICI - Yaptim Kontrol (silinecek)",
@@ -1729,12 +1735,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 28
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 22
     },
     {
       "ad": "GECICI - Tumgecmis Kontrol (silinecek)",
