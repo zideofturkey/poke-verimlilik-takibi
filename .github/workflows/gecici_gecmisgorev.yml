@@ -25,7 +25,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python temp_test_hazirlik.py > gecmis_ciktisi.txt 2>&1 || true
+        run: python temp_gecmis_check.py > gecmis_ciktisi.txt 2>&1 || true
       - name: service_account.json'ı sil (güvenlik)
         if: always()
         run: rm -f service_account.json
