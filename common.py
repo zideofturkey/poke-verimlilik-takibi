@@ -26,6 +26,7 @@ OFFSET_FILE = "last_update_id.txt"
 BASE_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
 
 TR_TZ = timezone(timedelta(hours=3))  # Türkiye sabit UTC+3, DST yok
+KULLANICI_ADI = "Ediz"  # Poke'un kullanıcıya hitap ederken kullandığı isim
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",

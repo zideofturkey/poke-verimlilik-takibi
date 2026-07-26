@@ -36,6 +36,7 @@ from common import (
     aforizma_gonderildi_isaretle,
     get_deger,
     set_deger,
+    KULLANICI_ADI,
     TR_TZ,
 )
 
@@ -143,7 +144,7 @@ def sabah():
 
     sablon = "\n".join(f"{i}. " for i in range(1, 6))
     mesaj = (
-        "🌅 Günaydın! Bugün ne yapacaksın?\n\n"
+        f"🌅 Günaydın {KULLANICI_ADI}! Bugün ne yapacaksın?\n\n"
         "Her satıra bir görev yaz (satır silebilir ya da gerekirse "
         "yeni numarayla ekleyebilirsin):\n\n"
         f"{sablon}"
