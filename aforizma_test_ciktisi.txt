@@ -1,0 +1,5 @@
+aforizma_hedef_tarih: 2026-07-26
+aforizma_hedef_saat: 03:53
+aforizma_son_gonderim: 
+
+Test için hedef saat 15:18'e çekildi.
