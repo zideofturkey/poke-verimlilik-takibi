@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-26T10:10:46.594358+03:00",
+  "uretim_zamani": "2026-07-26T12:33:30.802224+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1597,10 +1597,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-26T07:10:27Z",
+      "zaman": "2026-07-26T09:33:11Z",
       "durum": "warn",
+      "runId": "30196665253",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-26T09:19:45Z",
+      "durum": "ok",
+      "runId": "30196256316",
+      "sureSn": 41
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-26T09:17:26Z",
+      "durum": "ok",
+      "runId": "30196187545",
+      "sureSn": 18
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-26T08:27:29Z",
+      "durum": "ok",
+      "runId": "30194657314",
+      "sureSn": 17
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-26T07:10:27Z",
+      "durum": "ok",
       "runId": "30192327123",
-      "sureSn": 4
+      "sureSn": 43
     },
     {
       "ad": "Dinle",
@@ -1671,40 +1699,12 @@
       "durum": "ok",
       "runId": "30176619266",
       "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T21:04:24Z",
-      "durum": "ok",
-      "runId": "30174890311",
-      "sureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-25T21:01:12Z",
-      "durum": "ok",
-      "runId": "30174773826",
-      "sureSn": 34
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-25T20:53:41Z",
-      "durum": "ok",
-      "runId": "30174492823",
-      "sureSn": 43
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-25T19:43:30Z",
-      "durum": "ok",
-      "runId": "30172174354",
-      "sureSn": 44
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
+      "toplam": 13,
       "oran": 92,
       "ortSureSn": 40
     },
@@ -1715,22 +1715,16 @@
       "ortSureSn": 43
     },
     {
-      "ad": "Webhook",
-      "toplam": 15,
-      "oran": 100,
-      "ortSureSn": 99
-    },
-    {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 26
+      "ortSureSn": 22
     },
     {
-      "ad": "GECICI - Oncekigun Kontrol (silinecek)",
-      "toplam": 1,
+      "ad": "Webhook",
+      "toplam": 14,
       "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 92
     }
   ],
   "kocKararlari": [],
