@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-26T02:00:10.676080+03:00",
+  "uretim_zamani": "2026-07-26T03:07:47.188862+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 69
+    "haftaTamamlamaYuzdesi": 71
   },
   "heatmap": [
     {
@@ -1168,7 +1168,7 @@
     {
       "tarih": "25 July 2026",
       "tarih_iso": "2026-07-25",
-      "level": 4,
+      "level": 5,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1188,7 +1188,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 89
+      "oran": 90
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1257,7 +1257,7 @@
         },
         {
           "metin": "Sirinspot url extend",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "New ads profile set-up",
@@ -1597,10 +1597,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-25T22:59:52Z",
+      "zaman": "2026-07-26T00:07:32Z",
       "durum": "warn",
+      "runId": "30180620219",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-25T23:14:35Z",
+      "durum": "ok",
+      "runId": "30179055184",
+      "sureSn": 40
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-25T23:02:08Z",
+      "durum": "ok",
+      "runId": "30178688144",
+      "sureSn": 41
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-25T23:00:12Z",
+      "durum": "ok",
+      "runId": "30178624483",
+      "sureSn": 120
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-25T22:59:52Z",
+      "durum": "ok",
       "runId": "30178612774",
-      "sureSn": 4
+      "sureSn": 46
     },
     {
       "ad": "Panel",
@@ -1671,54 +1699,26 @@
       "durum": "ok",
       "runId": "30166709349",
       "sureSn": 42
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:54:16Z",
-      "durum": "ok",
-      "runId": "30164545096",
-      "sureSn": 596
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:51:25Z",
-      "durum": "ok",
-      "runId": "30164451255",
-      "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:51:12Z",
-      "durum": "ok",
-      "runId": "30164444878",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-25T15:46:48Z",
-      "durum": "ok",
-      "runId": "30164298391",
-      "sureSn": 213
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
-      "oran": 92,
-      "ortSureSn": 41
+      "toplam": 11,
+      "oran": 91,
+      "ortSureSn": 40
     },
     {
       "ad": "Webhook",
-      "toplam": 15,
+      "toplam": 16,
       "oran": 100,
-      "ortSureSn": 129
+      "ortSureSn": 116
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 34
+      "ortSureSn": 45
     },
     {
       "ad": "Gönder",
@@ -1734,9 +1734,9 @@
     },
     {
       "ad": "GECICI - SLM Test Hazirlik (silinecek)",
-      "toplam": 2,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 13
     }
   ],
   "kocKararlari": [],
