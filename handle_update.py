@@ -245,17 +245,28 @@ def _sorguyu_cevapla(text):
         _seri_sorusunu_cevapla()
         return
 
-    # "Haftalık rutin" tam ifadesi - bu, GÜNLÜK rutinlerin haftalık
-    # yüzdesinden (aşağıdaki genel 'hafta' yakalayıcısı) AYRI, kendi
-    # kategorisi olan (Oda tozu alma, Uzun metraj izlence, Making Music
-    # gibi) haftalık-TEKRARLI rutinlerin O HAFTAKİ durumunu sorar.
-    # Kullanıcı bu iki kavramı doğal dille (sadece 'hafta' diyerek)
-    # ayırt etmeye çalıştığında sistem anlayamadı (bkz. README'deki
-    # "Bekleyen Geliştirmeler" - bu, o sorunun kalıcı çözümü değil, ama
-    # KESİN VE GÜVENİLİR bir şekilde bu kategoriyi sorgulamanın bir yolu:
-    # bu tam ifadeyi ("haftalık rutin") kullanırsan her zaman doğru
-    # kategoriye gider.
-    if "haftalık rutin" in metin_kucuk or "haftalik rutin" in metin_kucuk:
+    # "Haftalık rutin" tam ifadesi VEYA doğrudan bir haftalık rutinin adı
+    # (Oda tozu alma, Uzun metraj izlence, Making Music gibi - dinamik
+    # olarak sheet'ten çekiliyor, rutin değişirse otomatik güncel kalır)
+    # VEYA "düzenli/tekrarlayan iş" tarzı doğal eşanlamlılar - bunların
+    # HERHANGİ biri, GÜNLÜK rutinlerin haftalık yüzdesinden (aşağıdaki
+    # genel 'hafta' yakalayıcısı) AYRI, kendi kategorisi olan
+    # haftalık-TEKRARLI rutinlerin O HAFTAKİ durumunu sorduğu anlamına
+    # gelir. Kullanıcı "sadece dar bir ifadeyi mi yakaladın" diye haklı
+    # bir soru sordu - bu yüzden ağ genişletildi (rutin isimleri +
+    # birkaç doğal eşanlamlı), ama HÂLÂ tamamen deterministik/kelime
+    # tabanlı - kök semantik anlama sorununu (bkz. README'deki "Bekleyen
+    # Geliştirmeler") çözmüyor, sadece daha geniş, hâlâ %100 öngörülebilir
+    # bir güvenli liman sağlıyor.
+    haftalik_rutin_isimleri_kucuk = [r["isim"].lower() for r in get_aktif_haftalik_rutinler()]
+    haftalik_rutin_esanlamlilar = [
+        "haftalık rutin", "haftalik rutin",
+        "düzenli yaptığım", "düzenli olarak yaptığım",
+        "her hafta yaptığım", "her hafta düzenli",
+        "tekrarlayan iş", "tekrarlayan görev", "tekrarlayan iş(ler)",
+    ]
+    if (any(k in metin_kucuk for k in haftalik_rutin_esanlamlilar)
+            or any(isim in metin_kucuk for isim in haftalik_rutin_isimleri_kucuk)):
         _haftalik_rutin_durumu_cevapla()
         return
 
