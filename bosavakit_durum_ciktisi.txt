@@ -1,12 +1,2 @@
-=== Bugün (2026-07-26) görevleri ===
-  {'Tarih': '2026-07-26', 'GorevID': '', 'GorevMetni': 'Jobs izle', 'Durum': 'Bekliyor'}
-  {'Tarih': '2026-07-26', 'GorevID': '', 'GorevMetni': "Baba ig's 2", 'Durum': 'Bekliyor'}
-  {'Tarih': '2026-07-26', 'GorevID': '', 'GorevMetni': 'Finansal Özgürlük oku', 'Durum': 'Bekliyor'}
-  {'Tarih': '2026-07-26', 'GorevID': '', 'GorevMetni': 'A pop beat for Ganzo', 'Durum': 'Bekliyor'}
-
-=== Aktif rutinler ve bugünkü durumları ===
-  Fransızca çalışma -> CEVAPSIZ
-  Sabah telefonsuzluğu -> CEVAPSIZ
-  Gece telefonsuzluğu -> CEVAPSIZ
-  Verimli video izleme -> CEVAPSIZ
-  Mewing -> CEVAPSIZ
+=== SLMLog (son karar) ===
+['2026-07-26', '16:44', 'BOSA_VAKIT', 'bugün 2 saat sosyal medyada boş vakit geçirdim']
