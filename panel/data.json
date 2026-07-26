@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-26T19:02:00.083324+03:00",
+  "uretim_zamani": "2026-07-26T20:32:50.574488+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1640,10 +1640,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-26T16:01:46Z",
+      "zaman": "2026-07-26T17:32:34Z",
       "durum": "warn",
-      "runId": "30209476002",
+      "runId": "30212793610",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-26T17:30:55Z",
+      "durum": "ok",
+      "runId": "30212734253",
+      "sureSn": 49
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-26T17:09:28Z",
+      "durum": "ok",
+      "runId": "30211982919",
+      "sureSn": 32
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-26T16:27:41Z",
+      "durum": "ok",
+      "runId": "30210478675",
+      "sureSn": 19
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-26T16:01:46Z",
+      "durum": "ok",
+      "runId": "30209476002",
+      "sureSn": 40
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1714,34 +1742,6 @@
       "durum": "ok",
       "runId": "30203218015",
       "sureSn": 217
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-26T12:47:03Z",
-      "durum": "ok",
-      "runId": "30202745630",
-      "sureSn": 188
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-26T12:38:03Z",
-      "durum": "ok",
-      "runId": "30202448827",
-      "sureSn": 38
-    },
-    {
-      "ad": "GECICI - Havuz Kontrol (silinecek)",
-      "zaman": "2026-07-26T12:34:34Z",
-      "durum": "ok",
-      "runId": "30202331497",
-      "sureSn": 22
-    },
-    {
-      "ad": "GECICI - Aforizma Test (silinecek)",
-      "zaman": "2026-07-26T12:23:51Z",
-      "durum": "ok",
-      "runId": "30201970194",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
@@ -1753,15 +1753,15 @@
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 4,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 16
+      "ortSureSn": 22
     },
     {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 44
+      "ortSureSn": 32
     },
     {
       "ad": "Gönder",
@@ -1777,9 +1777,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 11,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 142
+      "ortSureSn": 164
     },
     {
       "ad": "GECICI - Havuz Kontrol (silinecek)",
