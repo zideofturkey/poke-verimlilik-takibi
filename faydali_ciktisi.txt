@@ -1,0 +1,13 @@
+Son satırın TAM içeriği:
+kolon 0: 2026-07-26
+kolon 1: 21:51
+kolon 2: SORGULA
+kolon 3: teşekkür ederim ama ben günlük rutinlerin haftalık performanslarını istemedim. h
+kolon 4: PROMPT:
+Sen bir verimlilik takip botusun (adın Poke). Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok.
+
+Kullanıcı şunu yazdı:
+"teşekkür ederim ama ben günlük rutinlerin haftalık performanslarını istemedim. her hafta düzenli olarak yaptığım tekrarlayan işlerin bu haftaki durumunu görmek istiyorum"
+
+Bu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):
+- GUNLUK_GOREV: bugü
