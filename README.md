@@ -194,6 +194,16 @@ temsil ettiği açıkça belirtilmiştir.
 - [x] Multi-agent mimarisi (Toplayıcı / Değerlendirici / Koç / Rapor) — yukarıda dokümante edildi
 - [x] Observability paneli — Kişisel sekme tamamen gerçek veriye bağlı; Teknik sekme workflow geçmişi + Koç kararları gerçek, SLM karar logu sadece bu özelliğin eklendiği tarihten sonrası için mevcut. `https://poke-observability.ediz-kacmaz19.workers.dev` adresinde canlı.
 
+## Bekleyen Geliştirmeler (Yapılacaklar)
+
+Bu liste, kullanıcının "arada bana hatırlat" dediği, henüz ELE ALINMAMIŞ
+geliştirme fikirlerini tutuyor. Her yeni oturumda Claude bu listeyi
+kontrol etmeli ve kullanıcıya hatırlatmalı.
+
+- [ ] **"Günlük koç" üstünden geçme - SLM'e gerçek veri vererek deneme yapılmadı:** Boşa vakit / günlük koç cevapları şu an TAMAMEN deterministik (Python şablonları, `_bosa_vakit_cevabini_olustur`) - SLM sadece süre/dakika çıkarıyor, kararı ve mesajın TONUNU Python veriyor. Kullanıcı haklı bir soru sordu: SLM'e o günün gerçek görev/rutin tamamlanma durumunu (context olarak) VERİP, cevabı SLM'e ürettirmek hiç denenmedi - bu, kullanıcının en baştaki "akıllı geri dönüş alacağımız bir koç" vizyonuna daha yakın olabilir. Denenmesi gereken: sınıflandırma prompt'undan TAMAMEN AYRI, ikinci bir "koç cevabı üret" prompt'u - günün görev/rutin listesini + tamamlanma durumunu + boşa vakit süresini context olarak verip, SLM'in kendi doğal dilinde, nüanslı bir yorum üretmesini sağlamak. Riski: SLM'in yanlış/tutarsız bir şey söyleme ihtimali - bunu nasıl güvenli test edip production'a alacağımızı düşünmek gerekiyor (ör. önce sadece gölge modda çalıştırıp gerçek deterministik cevapla karşılaştırmak gibi).
+- [ ] **Haftalık koç analizi geliştirme - genel:** Kullanıcı "haftalık koç mesajı"nı ilk kez gördükten sonra neler istediğine karar verecek. Ayrıca somut bir bug bulundu (aşağıda).
+- [ ] **Bug: "haftalık rutinlerimi hatırlatır mısın" ile "günlük rutinlerin haftalık performansı" birbirine karışıyor:** `_sorguyu_cevapla`'daki yönlendirme SADECE "hafta" kelimesinin geçip geçmediğine bakıyor (`if "hafta" in metin_kucuk and "hedef" not in metin_kucuk`), cümlenin geri kalanını hiç anlamıyor. Kullanıcı "haftalık rutinlerimi hatırlatır mısın" dediğinde `_haftalik_ozet_sorusunu_cevapla()` çalışıyor - ama bu fonksiyon SADECE `get_aktif_rutinler()` (GÜNLÜK rutinler: Fransızca, telefonsuzluk, mewing vb.) üzerinden 7 günlük yüzde hesaplıyor, sistemde AYRICA var olan "haftalık rutinler" kategorisini (Oda tozu alma, Uzun metraj izlence, Making Music - `get_aktif_haftalik_rutinler()`) hiç görmüyor. Kullanıcı "ben bunu istemedim, haftalık düzenli yaptığım tekrarlayan işlerin durumunu istiyorum" diye AÇIKÇA düzelttiğinde bile mesaj hâlâ "hafta" kelimesi içerdiği için AYNI yanlış fonksiyona düşüyor - yönlendirme, düzeltme/olumsuzlama içeren cümleleri semantik olarak hiç ayırt edemiyor, sadece anahtar kelime eşleştiriyor. Gerçek çözüm muhtemelen: (a) iki farklı niyeti ayırt edecek yeni bir sinyal/kategori eklemek, veya (b) bu kararı da SLM'e context vererek bıraktırmak (yukarıdaki madde ile aynı felsefe).
+
 ## Güvenlik notu
 
 `.env` ve `service_account.json` dosyaları asla repoya commit edilmemeli.
