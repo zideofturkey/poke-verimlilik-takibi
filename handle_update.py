@@ -1030,7 +1030,7 @@ def _bugun_yapilan_alternatif_aktiviteler(tarih):
     return yapilanlar
 
 
-def _bosa_vakit_cevabini_olustur(dakika, tarih):
+def _bosa_vakit_cevabini_olustur(dakika, tarih, faydali_dakika=None, belirsiz_faydali_var=False):
     """Boşa vakit cevabını, o günün GERÇEK görev/rutin tamamlanma
     durumuna bakarak bağlam-farkında şekilde oluşturur:
     - Sınırın altındaysa: tebrik.
@@ -1038,7 +1038,17 @@ def _bosa_vakit_cevabini_olustur(dakika, tarih):
       net/sert ama destekleyici bir ton.
     - Sınırı aştıysa AMA her şey tamamsa: nazik bir öneri - SADECE o gün
       zaten yapılmamış alternatif aktiviteleri önerir, hiçbiri kalmadıysa
-      öneri cümlesini hiç eklemez."""
+      öneri cümlesini hiç eklemez.
+
+    faydali_dakika: kullanıcı sürenin bir kısmının faydalı içerik olduğunu
+    SAYISAL olarak belirttiyse (ör. '60 dk Instagram ama 20 dk'sı faydalı
+    bir videoydu'), bu kısım toplam süreden düşülüp GERÇEK boşa vakit
+    üzerinden değerlendirme yapılır - kullanıcının "SLM'e bağlamamışız"
+    diye işaret ettiği eksiklik buydu.
+    belirsiz_faydali_var: kullanıcı sayı vermeden "bir kısmı faydalıydı"
+    gibi belirsiz bir ifade kullandıysa True - bu durumda düşülecek net
+    bir sayı yok, ama kullanıcıya daha net yazarsa daha isabetli
+    değerlendirebileceğimizi nazikçe hatırlatıyoruz."""
     ifade = _gun_ifadesi(tarih)
 
     if dakika is None:
@@ -1048,10 +1058,27 @@ def _bosa_vakit_cevabini_olustur(dakika, tarih):
             f"sınırınla karşılaştırıp) gerçek bir değerlendirme yapabilirim. 📝"
         )
 
+    belirsiz_not = (
+        " (Bir kısmının faydalı olduğunu belirttin ama net bir dakika "
+        "vermediğin için tamamını saydım - 'X dakikası faydalıydı' "
+        "dersen daha isabetli değerlendiririm.)"
+        if belirsiz_faydali_var and faydali_dakika is None else ""
+    )
+
+    if faydali_dakika is not None and faydali_dakika > 0:
+        gercek_bosa = max(0, dakika - faydali_dakika)
+        on_not = (
+            f"Toplam {dakika} dakikadan {faydali_dakika} dakikasını faydalı "
+            f"içerik olarak ayırdım, gerçek boşa vakit {gercek_bosa} dakika. "
+        )
+        dakika = gercek_bosa
+    else:
+        on_not = ""
+
     if dakika <= SOSYAL_MEDYA_LIMIT_DAKIKA:
         return (
-            f"Harika, {dakika} dakika ile {SOSYAL_MEDYA_LIMIT_DAKIKA} "
-            f"dakikalık sınırının altında kaldın. Tebrikler {KULLANICI_ADI}! 🎉"
+            f"{on_not}Harika, {dakika} dakika ile {SOSYAL_MEDYA_LIMIT_DAKIKA} "
+            f"dakikalık sınırının altında kaldın. Tebrikler {KULLANICI_ADI}! 🎉{belirsiz_not}"
         )
 
     asilan = dakika - SOSYAL_MEDYA_LIMIT_DAKIKA
@@ -1060,11 +1087,11 @@ def _bosa_vakit_cevabini_olustur(dakika, tarih):
     if not hepsi_tamam:
         ilk_eksik = eksikler[0]
         return (
-            f"'{ilk_eksik}' henüz tamamlanmamışken sosyal medyada {dakika} "
+            f"{on_not}'{ilk_eksik}' henüz tamamlanmamışken sosyal medyada {dakika} "
             f"dakika ({SOSYAL_MEDYA_LIMIT_DAKIKA} dk sınırını {asilan} dk "
             f"aşarak) geçirmen düşündürücü {KULLANICI_ADI}. Bunu kendine karşı "
             "bir uyarı olarak gör - planına dönmek için hâlâ vaktin var, "
-            "kendine karşı sabırlı ama net ol. 💪"
+            f"kendine karşı sabırlı ama net ol. 💪{belirsiz_not}"
         )
 
     yapilmis = _bugun_yapilan_alternatif_aktiviteler(tarih)
@@ -1074,13 +1101,13 @@ def _bosa_vakit_cevabini_olustur(dakika, tarih):
     ]
 
     mesaj = (
-        f"Bugünkü tüm görev ve rutinlerini tamamlamışsın, bu iyi haber - "
+        f"{on_not}Bugünkü tüm görev ve rutinlerini tamamlamışsın, bu iyi haber - "
         f"ama {dakika} dakika ile sınırını {asilan} dk aştın."
     )
     if onerilebilecekler:
         oneri = " ya da ".join(onerilebilecekler[:2])
         mesaj += f" O fazladan zamanı {oneri} gibi bir şeye ayırabilirdin."
-    return mesaj + " 💭"
+    return mesaj + " 💭" + belirsiz_not
 
 
 def _siniflandir_ve_isle(text, bekleyen):
@@ -1203,8 +1230,16 @@ def _siniflandir_ve_isle(text, bekleyen):
         f"{rutin_isim_listesi}, {haftalik_rutin_isim_listesi}. Diğer TIP'lerde boş bırak>\n"
         "SURE_DAKIKA: <SADECE TIP=BOSA_VAKIT ise: kullanıcının anlattığı "
         "TOPLAM süreyi DAKİKA cinsinden tam sayı olarak yaz (ör. '1 saat 30 "
-        "dakika' -> 90, 'yaklaşık 40 dakika' -> 40, '2 saat' -> 120). Net "
+        "dakika' -> 90, 'yaklaşık 40 dakika' -> 40, '2 saat' -> 120, '60 "
+        "dakika Instagram 30 dakika YouTube' -> 90 - hepsini TOPLA). Net "
         "bir süre çıkaramıyorsan boş bırak. Diğer TIP'lerde boş bırak>\n"
+        "FAYDALI_DAKIKA: <SADECE TIP=BOSA_VAKIT ise VE kullanıcı bu sürenin "
+        "bir kısmının FAYDALI/ÜRETKEN içerik olduğunu SAYISAL olarak "
+        "belirtmişse (ör. '30 dakikası faydalı bir video izlemekti', "
+        "'20 dakika belgesel de vardı') o sayıyı yaz. Kullanıcı sadece "
+        "belirsiz bir ifade kullanmışsa ('bir kısmı faydalıydı', 'kısmen "
+        "faydalıydı' gibi - SAYI VERMEMİŞSE) BOŞ BIRAK, sayı uydurma. "
+        "Diğer TIP'lerde boş bırak>\n"
         "CEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe "
         "yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. "
         "TIP=BOSA_VAKIT ise bu alanı boş bırakabilirsin - asıl cevap ayrıca "
@@ -1221,13 +1256,15 @@ def _siniflandir_ve_isle(text, bekleyen):
         gorevler_match = re.search(r"GOREVLER:\s*(.+)", sonuc_metni)
         rutin_match = re.search(r"RUTIN:\s*(.+)", sonuc_metni)
         sure_dakika_match = re.search(r"SURE_DAKIKA:\s*(\d+)", sonuc_metni)
+        faydali_dakika_match = re.search(r"FAYDALI_DAKIKA:\s*(\d+)", sonuc_metni)
         cevap_match = re.search(r"CEVAP:\s*(.+)", sonuc_metni, re.DOTALL)
         tip_ = tip_match.group(1).upper() if tip_match else "SOHBET"
         cevap_ = cevap_match.group(1).strip() if cevap_match else "Not aldım 👍"
         sure_dakika_ = int(sure_dakika_match.group(1)) if sure_dakika_match else None
+        faydali_dakika_ = int(faydali_dakika_match.group(1)) if faydali_dakika_match else None
         if _turkce_disi_karakter_var_mi(cevap_):
             cevap_ = "Not aldım 👍"
-        return tip_, gorevler_match, rutin_match, cevap_, sure_dakika_
+        return tip_, gorevler_match, rutin_match, cevap_, sure_dakika_, faydali_dakika_
 
     try:
         sonuc = slm_sorgula(prompt)
@@ -1236,7 +1273,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         send_message("Şu an bunu işleyemedim (teknik bir sorun oldu) — tekrar dener misin?")
         return
 
-    tip, gorevler_match, rutin_match, cevap, sure_dakika = _sonucu_parcala(sonuc)
+    tip, gorevler_match, rutin_match, cevap, sure_dakika, faydali_dakika = _sonucu_parcala(sonuc)
 
     # DOĞRULAMA: kural katmanı SLM'in kararına katılıyor mu? Kural sadece
     # gerçekten emin olduğu durumlarda bir görüş bildirir (None dönerse
@@ -1262,10 +1299,10 @@ def _siniflandir_ve_isle(text, bekleyen):
         print(f"[sınıflandırma] Anlaşmazlık: kural={kural_tahmini} slm(3b)={tip} - 7b'ye eskale ediliyor")
         try:
             sonuc_7b = slm_sorgula(prompt, model=SLM_MODEL_KALITELI)
-            tip_7b, gorevler_match_7b, rutin_match_7b, cevap_7b, sure_dakika_7b = _sonucu_parcala(sonuc_7b)
+            tip_7b, gorevler_match_7b, rutin_match_7b, cevap_7b, sure_dakika_7b, faydali_dakika_7b = _sonucu_parcala(sonuc_7b)
             log_anlasmazlik(text, kural_tahmini, tip, tip_7b)
-            tip, gorevler_match, rutin_match, cevap, sure_dakika, sonuc = (
-                tip_7b, gorevler_match_7b, rutin_match_7b, cevap_7b, sure_dakika_7b, sonuc_7b
+            tip, gorevler_match, rutin_match, cevap, sure_dakika, faydali_dakika, sonuc = (
+                tip_7b, gorevler_match_7b, rutin_match_7b, cevap_7b, sure_dakika_7b, faydali_dakika_7b, sonuc_7b
             )
         except Exception as e:
             print(f"7b eskalasyonu başarısız oldu, 3b kararında kalınıyor: {e}")
@@ -1324,7 +1361,12 @@ def _siniflandir_ve_isle(text, bekleyen):
         log_to_sheet("Boşa geçen vakit", "Beyan", text, tarih=tarih)
         set_bekleyen_soru("")
         dakika = sure_dakika if sure_dakika is not None else _sureyi_dakikaya_cevir(text)
-        send_message(_bosa_vakit_cevabini_olustur(dakika, tarih))
+        belirsiz_faydali_var = any(
+            k in text.lower() for k in ["bir kısmı", "kısmen", "biraz faydalı", "bir kısmında"]
+        )
+        send_message(_bosa_vakit_cevabini_olustur(
+            dakika, tarih, faydali_dakika=faydali_dakika, belirsiz_faydali_var=belirsiz_faydali_var
+        ))
 
     elif tip == "SORGULA":
         _sorguyu_cevapla(text)
