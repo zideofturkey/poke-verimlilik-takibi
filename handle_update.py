@@ -236,13 +236,29 @@ def _sorguyu_cevapla(text):
     """Kullanıcı bir şey sorguladığında GERÇEK veriyi Sheets'ten okuyup,
     DOĞRUDAN Python'da (SLM'e yazdırmadan) net bir cevap verir - SLM
     serbest metin üretirken yazım hatası yapabiliyordu, deterministik
-    formatlama bunu ortadan kaldırıyor. Üç sorgu türünü ayırt eder:
-    seri/streak soruları, haftalık genel bakış, ve varsayılan (bugün)."""
+    formatlama bunu ortadan kaldırıyor. Dört sorgu türünü ayırt eder:
+    seri/streak soruları, HAFTALIK KATEGORİ rutinlerinin bu haftaki
+    durumu, günlük rutinlerin haftalık yüzdesi, ve varsayılan (bugün)."""
     metin_kucuk = text.lower()
 
     if any(k in metin_kucuk for k in ["seri", "streak", "kaç gündür"]):
         _seri_sorusunu_cevapla()
         return
+
+    # "Haftalık rutin" tam ifadesi - bu, GÜNLÜK rutinlerin haftalık
+    # yüzdesinden (aşağıdaki genel 'hafta' yakalayıcısı) AYRI, kendi
+    # kategorisi olan (Oda tozu alma, Uzun metraj izlence, Making Music
+    # gibi) haftalık-TEKRARLI rutinlerin O HAFTAKİ durumunu sorar.
+    # Kullanıcı bu iki kavramı doğal dille (sadece 'hafta' diyerek)
+    # ayırt etmeye çalıştığında sistem anlayamadı (bkz. README'deki
+    # "Bekleyen Geliştirmeler" - bu, o sorunun kalıcı çözümü değil, ama
+    # KESİN VE GÜVENİLİR bir şekilde bu kategoriyi sorgulamanın bir yolu:
+    # bu tam ifadeyi ("haftalık rutin") kullanırsan her zaman doğru
+    # kategoriye gider.
+    if "haftalık rutin" in metin_kucuk or "haftalik rutin" in metin_kucuk:
+        _haftalik_rutin_durumu_cevapla()
+        return
+
     if "hafta" in metin_kucuk and "hedef" not in metin_kucuk:
         _haftalik_ozet_sorusunu_cevapla()
         return
@@ -277,6 +293,39 @@ def _sorguyu_cevapla(text):
         return
 
     _bugunku_durumu_cevapla(text)
+
+
+def _haftalik_rutin_durumu_cevapla():
+    """Kullanıcının HAFTALIK KATEGORİ rutinlerinin (günlük DEĞİL - ör.
+    'Oda tozu alma', 'Uzun metraj izlence', 'Making Music') BU HAFTAKİ
+    durumunu gösterir. _haftalik_ozet_sorusunu_cevapla ile KARIŞTIRILMASIN
+    - o, günlük rutinlerin (Fransızca, telefonsuzluk vb.) SON 7 GÜNLÜK
+    yüzdesini gösterir; bu fonksiyon ise ayrı bir kategorinin BU HAFTAKİ
+    ham durumunu (Yapıldı/Bekliyor/Yapılmadı) gösterir."""
+    haftalik_rutinler = get_aktif_haftalik_rutinler()
+    if not haftalik_rutinler:
+        send_message("Tanımlı bir haftalık rutin yok.")
+        return
+
+    ws = get_haftalik_rutin_takip_sheet()
+    hafta = hafta_baslangic_str()
+    durumlar = {
+        r["Isim"]: r["Durum"] for r in ws.get_all_records()
+        if r.get("HaftaBaslangic") == hafta
+    }
+
+    satirlar = []
+    for rutin in haftalik_rutinler:
+        durum = durumlar.get(rutin["isim"], "Bekliyor")
+        if durum == "Yapıldı":
+            isaret = "✅"
+        elif durum == "Yapılmadı":
+            isaret = "❌"
+        else:
+            isaret = "⏳"
+        satirlar.append(f"{isaret} {rutin['isim']}")
+
+    send_message(f"Bu haftaki (haftalık) rutin durumun:\n" + "\n".join(satirlar))
 
 
 def _seri_sorusunu_cevapla():
