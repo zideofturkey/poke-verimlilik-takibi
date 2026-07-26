@@ -1,5 +1,3 @@
-aforizma_son_gonderim: 2026-07-26
-
-=== AforizmaGecmis (son 3) ===
-  ['Tarih', 'Soz']
-  ['2026-07-26', 'Piyasayla asla ego savaşına girme.']
+=== AforizmaKullanici (tüm satırlar) ===
+  ['Soz', 'Yazar', 'EklenmeTarihi']
+  ['piyasada acele eden kaybeder, sabreden kazanır', 'Ediz', '2026-07-26']
