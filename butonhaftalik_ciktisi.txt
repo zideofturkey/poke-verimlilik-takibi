@@ -1,0 +1,2 @@
+=== SLMLog (son karar) ===
+['2026-07-26', '22:57', 'SORGULA', 'haftalık rutinlerimi hatırlatır mısın']
