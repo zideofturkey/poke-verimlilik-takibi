@@ -16,6 +16,7 @@ Kullanım:
 """
 
 import sys
+import random
 import datetime
 from common import (
     send_message,
@@ -31,6 +32,8 @@ from common import (
     rutin_serisi_hesapla,
     cevaplanan_rutinler,
     dun_kacirildi_mi,
+    aforizma_sec,
+    aforizma_gonderildi_isaretle,
     get_deger,
     set_deger,
     TR_TZ,
@@ -398,12 +401,55 @@ def hafta_ortasi():
     haftalik_hedef_sorulari_gonder(sessiz_gecerse_hicbir_sey_yapma=False)
 
 
+def aforizma_kontrol():
+    """Her gün RASTGELE bir saatte bir borsa aforizması gönderir (plan
+    sadakati, sabır, doğru anı bekleme, acele etmeme temalı). Sabit bir
+    cron saati 'rastgele' isteğini karşılamaz - bunun yerine her gün için
+    önce rastgele bir HEDEF SAAT belirlenip Durum sekmesine kaydediliyor;
+    bu fonksiyon sık aralıklarla (15 dakikada bir, aforizma.yml ile)
+    çalışıp o hedef saat geçti mi diye kontrol ediyor - geçtiyse VE bugün
+    henüz gönderilmediyse aforizmayı gönderiyor. Böylece bir gün 04:53'te,
+    başka bir gün 22:40'ta gelebiliyor - gerçekten öngörülemez."""
+    simdi = datetime.datetime.now(TR_TZ)
+    bugun = simdi.strftime("%Y-%m-%d")
+
+    hedef_tarih = get_deger("aforizma_hedef_tarih")
+    if hedef_tarih != bugun:
+        # Bugün için henüz rastgele bir hedef saat belirlenmemiş.
+        rastgele_saat = random.randint(0, 23)
+        rastgele_dakika = random.randint(0, 59)
+        set_deger("aforizma_hedef_tarih", bugun)
+        set_deger("aforizma_hedef_saat", f"{rastgele_saat:02d}:{rastgele_dakika:02d}")
+        return  # hedef az önce belirlendi, gönderim ileride bir çalıştırmada olacak
+
+    if get_deger("aforizma_son_gonderim") == bugun:
+        return  # bugün zaten gönderildi
+
+    hedef_saat_str = get_deger("aforizma_hedef_saat")
+    if not hedef_saat_str or ":" not in hedef_saat_str:
+        return
+    hedef_saat, hedef_dakika = map(int, hedef_saat_str.split(":"))
+    hedef_dt = simdi.replace(hour=hedef_saat, minute=hedef_dakika, second=0, microsecond=0)
+
+    if simdi < hedef_dt:
+        return  # hedef saat henüz gelmedi
+
+    secilen = aforizma_sec()
+    if not secilen:
+        return
+
+    send_message(f"💭 \"{secilen['soz']}\"\n— {secilen['yazar']}")
+    aforizma_gonderildi_isaretle(secilen["soz"])
+    set_deger("aforizma_son_gonderim", bugun)
+
+
 GOREVLER = {
     "sabah": sabah,
     "aksam": aksam,
     "pazar": pazar,
     "hafta_ortasi": hafta_ortasi,
     "hatirlat": hatirlat,
+    "aforizma_kontrol": aforizma_kontrol,
 }
 
 

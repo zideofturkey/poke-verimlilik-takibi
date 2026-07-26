@@ -372,6 +372,79 @@ def dun_kacirildi_mi(rutin_isim, tarih=None):
     return False
 
 
+def get_aforizma_kullanici_sheet():
+    """Kullanıcının kendi eklediği aforizmaları tutar - sabit havuzdaki
+    (aforizmalar.py) sözlerden ayrı, çünkü kullanıcı istediği zaman yenisini
+    ekleyebilsin diye Sheets'te dinamik olması gerekiyor."""
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("AforizmaKullanici")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="AforizmaKullanici", rows=200, cols=3)
+        ws.append_row(["Soz", "Yazar", "EklenmeTarihi"])
+    return ws
+
+
+def get_aforizma_gecmis_sheet():
+    """Gönderilen aforizmaların geçmişini tutar - yakın tarihlerde aynı
+    sözün tekrar gelmemesi için (tekrar önleme penceresi)."""
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("AforizmaGecmis")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="AforizmaGecmis", rows=500, cols=2)
+        ws.append_row(["Tarih", "Soz"])
+    return ws
+
+
+def aforizma_sec():
+    """Sabit havuz (aforizmalar.py) + kullanıcının kendi eklediği sözleri
+    birleştirip, SON 30 GÜNDE gönderilmemiş bir tanesini rastgele seçer.
+    Havuzun tamamı son 30 günde gönderilmişse (küçük bir havuzda mümkün),
+    kısıtlamayı gevşetip en uzun süredir gönderilmemiş sözü seçer - böylece
+    asla 'seçilecek söz kalmadı' diye tıkanmaz."""
+    from aforizmalar import AFORIZMALAR
+    import random
+
+    havuz = list(AFORIZMALAR)
+    ws_kullanici = get_aforizma_kullanici_sheet()
+    for r in ws_kullanici.get_all_records():
+        if r.get("Soz"):
+            havuz.append({"soz": r["Soz"], "yazar": r.get("Yazar") or "Kullanıcı"})
+
+    if not havuz:
+        return None
+
+    ws_gecmis = get_aforizma_gecmis_sheet()
+    simdi = datetime.datetime.now(TR_TZ)
+    otuz_gun_once = (simdi - datetime.timedelta(days=30)).strftime("%Y-%m-%d")
+    gecmis_rows = ws_gecmis.get_all_records()
+    son_30_gun_sozler = {
+        r["Soz"] for r in gecmis_rows
+        if r.get("Tarih", "") >= otuz_gun_once
+    }
+
+    uygun = [a for a in havuz if a["soz"] not in son_30_gun_sozler]
+
+    if not uygun:
+        # Havuzun tamamı son 30 günde kullanılmış - en eski kullanılanı
+        # (ya da hiç kullanılmamışsa onu) tercih ederek gevşet.
+        soz_son_kullanim = {}
+        for r in gecmis_rows:
+            soz_son_kullanim[r["Soz"]] = max(soz_son_kullanim.get(r["Soz"], ""), r.get("Tarih", ""))
+        havuz_siral = sorted(havuz, key=lambda a: soz_son_kullanim.get(a["soz"], ""))
+        en_eski_tarih = soz_son_kullanim.get(havuz_siral[0]["soz"], "")
+        uygun = [a for a in havuz_siral if soz_son_kullanim.get(a["soz"], "") == en_eski_tarih]
+
+    return random.choice(uygun)
+
+
+def aforizma_gonderildi_isaretle(soz):
+    ws = get_aforizma_gecmis_sheet()
+    bugun = datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
+    guvenli_append_row(ws, [bugun, soz])
+
+
 def rutin_serisi_hesapla(rutin_isim):
     """[MULTI-AGENT ROL: DEĞERLENDİRİCİ] Bu fonksiyon Değerlendirici
     agent'ının çekirdeği - ham veriyi (Takip) örüntüye (seri/kaçırma)

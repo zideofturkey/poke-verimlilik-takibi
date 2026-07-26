@@ -1,0 +1,35 @@
+name: Aforizma - Rastgele Saatte Gönder
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"  # Her 15 dakikada bir kontrol - günün rastgele hedef saati geçti mi?
+  workflow_dispatch:         # Manuel tetikleme (test için)
+
+jobs:
+  aforizma:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bağımlılıkları kur
+        run: pip install requests gspread google-auth python-dotenv
+
+      - name: Service account dosyasını oluştur
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
+
+      - name: Aforizma kontrolü çalıştır
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python gonder.py aforizma_kontrol
+
+      - name: service_account.json'ı sil (güvenlik)
+        if: always()
+        run: rm -f service_account.json

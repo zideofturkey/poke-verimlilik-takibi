@@ -67,6 +67,7 @@ from common import (
     rutin_serisi_hesapla,
     cevaplanan_rutinler,
     dun_kacirildi_mi,
+    get_aforizma_kullanici_sheet,
     TR_TZ,
 )
 
@@ -552,9 +553,40 @@ def _bugunku_durumu_cevapla(text):
     send_message(on_not + f"{baslik}\n" + "\n".join(satirlar))
 
 
+def _aforizma_ekle_isle(text):
+    """Kullanıcı kendi aforizmasını ekliyor. Bu, SLM'e HİÇ sorulmadan,
+    tamamen deterministik işleniyor - bu oturumda defalarca gördüğümüz
+    gibi, yeni bir SLM kategorisi eklemek kırılgan olabiliyor; burada
+    kalıp yeterince dar ve net ('aforizma' + 'ekle/kaydet' kelimesi) ki
+    hiç risk almaya gerek yok."""
+    tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+    if not tirnak_ici:
+        send_message(
+            "Eklemek istediğin sözü tırnak içinde yazar mısın? Ör: "
+            "aforizma ekle: \"sabırla oturmak her şeyden değerlidir\" - yazar adı"
+        )
+        return
+    soz = tirnak_ici[0].strip()
+
+    yazar_match = (
+        re.search(r'["\u201c\u201d]\s*[-–—]\s*(.+)$', text)
+        or re.search(r'yazar[:\s]+([^\n]+)$', text, re.IGNORECASE)
+    )
+    yazar = yazar_match.group(1).strip() if yazar_match else "Kullanıcı"
+
+    ws = get_aforizma_kullanici_sheet()
+    guvenli_append_row(ws, [soz, yazar, bugun_str()])
+    send_message(f"Eklendi: \"{soz}\" — {yazar}. Zaman zaman diğer sözlerle birlikte karşına çıkacak. 💭")
+
+
 def process_message(message):
     text = message.get("text", "").strip()
     if not text:
+        return
+
+    metin_kucuk = text.lower()
+    if "aforizma" in metin_kucuk and ("ekle" in metin_kucuk or "kaydet" in metin_kucuk):
+        _aforizma_ekle_isle(text)
         return
 
     bekleyen = get_bekleyen_soru()
