@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-26T07:06:18.264256+03:00",
+  "uretim_zamani": "2026-07-26T10:10:46.594358+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1597,10 +1597,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-26T04:06:04Z",
+      "zaman": "2026-07-26T07:10:27Z",
       "durum": "warn",
+      "runId": "30192327123",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-26T06:42:57Z",
+      "durum": "ok",
+      "runId": "30191520644",
+      "sureSn": 27
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-26T04:06:04Z",
+      "durum": "ok",
       "runId": "30187240749",
-      "sureSn": 3
+      "sureSn": 38
     },
     {
       "ad": "Dinle",
@@ -1685,20 +1699,6 @@
       "durum": "ok",
       "runId": "30172174354",
       "sureSn": 44
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-25T19:19:02Z",
-      "durum": "ok",
-      "runId": "30171362640",
-      "sureSn": 26
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-25T18:57:25Z",
-      "durum": "ok",
-      "runId": "30170652908",
-      "sureSn": 34
     }
   ],
   "workflowTurOzet": [
@@ -1710,9 +1710,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 8,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 45
+      "ortSureSn": 43
     },
     {
       "ad": "Webhook",
@@ -1731,12 +1731,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 17
-    },
-    {
-      "ad": "GECICI - SLM Test Hazirlik (silinecek)",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 13
     }
   ],
   "kocKararlari": [],
