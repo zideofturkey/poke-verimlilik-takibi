@@ -1,0 +1,9 @@
+=== SLMLog (son karar) ===
+['2026-07-26', '22:14', 'SORGULA', 'haftalık rutinlerimi hatırlatır mısın']
+
+=== Haftalık rutinler ve bu haftaki durumları ===
+Aktif haftalık rutinler: [{'id': 'oda_tozu', 'isim': 'Oda tozu alma'}, {'id': 'uzun_metraj_izlence', 'isim': 'Uzun metraj izlence'}, {'id': 'making_music', 'isim': 'Making Music'}]
+Bu hafta (2026-07-20) için takip kayıtları:
+  {'HaftaBaslangic': '2026-07-20', 'RutinID': 'oda_tozu', 'Isim': 'Oda tozu alma', 'Durum': 'Yapıldı'}
+  {'HaftaBaslangic': '2026-07-20', 'RutinID': 'uzun_metraj_izlence', 'Isim': 'Uzun metraj izlence', 'Durum': 'Bekliyor'}
+  {'HaftaBaslangic': '2026-07-20', 'RutinID': 'making_music', 'Isim': 'Making Music', 'Durum': 'Bekliyor'}
