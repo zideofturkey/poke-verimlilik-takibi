@@ -1,3 +1,0 @@
-=== AforizmaKullanici (tüm satırlar) ===
-  ['Soz', 'Yazar', 'EklenmeTarihi']
-  ['piyasada acele eden kaybeder, sabreden kazanır', 'Ediz', '2026-07-26']
