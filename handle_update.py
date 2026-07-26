@@ -312,7 +312,11 @@ def _haftalik_rutin_durumu_cevapla():
     durumunu gösterir. _haftalik_ozet_sorusunu_cevapla ile KARIŞTIRILMASIN
     - o, günlük rutinlerin (Fransızca, telefonsuzluk vb.) SON 7 GÜNLÜK
     yüzdesini gösterir; bu fonksiyon ise ayrı bir kategorinin BU HAFTAKİ
-    ham durumunu (Yapıldı/Bekliyor/Yapılmadı) gösterir."""
+    ham durumunu (Yapıldı/Bekliyor/Yapılmadı) gösterir. 'Bekliyor'
+    durumundaki olanlar için TIKLANABİLİR butonlar ekliyor -
+    `haftarutin_<satır>_evet/hayir` (process_callback'te ve gonder.py'nin
+    otomatik hatırlatmasında ZATEN kullanılan aynı format, satır bazlı) -
+    günlük tarafta yapılan _kalan_durumu_interaktif_gonder ile aynı fikir."""
     haftalik_rutinler = get_aktif_haftalik_rutinler()
     if not haftalik_rutinler:
         send_message("Tanımlı bir haftalık rutin yok.")
@@ -320,23 +324,40 @@ def _haftalik_rutin_durumu_cevapla():
 
     ws = get_haftalik_rutin_takip_sheet()
     hafta = hafta_baslangic_str()
-    durumlar = {
-        r["Isim"]: r["Durum"] for r in ws.get_all_records()
-        if r.get("HaftaBaslangic") == hafta
-    }
+    rows = ws.get_all_values()
 
     satirlar = []
-    for rutin in haftalik_rutinler:
-        durum = durumlar.get(rutin["isim"], "Bekliyor")
+    bekleyenler = []  # (satir_no, isim) - sadece 'Bekliyor' durumundakiler
+    for i, row in enumerate(rows[1:], start=1):
+        if len(row) < 4 or row[0] != hafta:
+            continue
+        isim, durum = row[2], row[3]
         if durum == "Yapıldı":
             isaret = "✅"
         elif durum == "Yapılmadı":
             isaret = "❌"
         else:
             isaret = "⏳"
-        satirlar.append(f"{isaret} {rutin['isim']}")
+            bekleyenler.append((i + 1, isim))  # +1: header satırı + 1-index
+        satirlar.append(f"{isaret} {isim}")
 
-    send_message(f"Bu haftaki (haftalık) rutin durumun:\n" + "\n".join(satirlar))
+    if not satirlar:
+        send_message("Bu hafta için henüz kayıtlı bir haftalık rutin durumu yok.")
+        return
+
+    mesaj = "Bu haftaki (haftalık) rutin durumun:\n" + "\n".join(satirlar)
+
+    if bekleyenler:
+        buton_satirlari = [
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"haftarutin_{satir_no}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"haftarutin_{satir_no}_hayir"},
+            ]
+            for i, (satir_no, _) in enumerate(bekleyenler)
+        ]
+        send_message(mesaj, buttons=buton_satirlari)
+    else:
+        send_message(mesaj)
 
 
 def _seri_sorusunu_cevapla():
