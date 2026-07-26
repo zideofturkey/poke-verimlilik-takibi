@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-27T00:30:29.146792+03:00",
+  "uretim_zamani": "2026-07-27T01:59:23.533783+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1644,10 +1644,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-26T21:30:10Z",
+      "zaman": "2026-07-26T22:59:04Z",
       "durum": "warn",
+      "runId": "30224247011",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-26T22:38:43Z",
+      "durum": "ok",
+      "runId": "30223549924",
+      "sureSn": 15
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-26T21:39:24Z",
+      "durum": "ok",
+      "runId": "30221527874",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-26T21:30:10Z",
+      "durum": "ok",
       "runId": "30221202298",
-      "sureSn": 5
+      "sureSn": 50
     },
     {
       "ad": "Webhook",
@@ -1725,35 +1746,20 @@
       "durum": "ok",
       "runId": "30216682941",
       "sureSn": 38
-    },
-    {
-      "ad": "GECICI - Haftalik Rutin Kontrol (silinecek)",
-      "zaman": "2026-07-26T19:16:39Z",
-      "durum": "ok",
-      "runId": "30216510604",
-      "sureSn": 17
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-26T19:12:17Z",
-      "durum": "ok",
-      "runId": "30216356830",
-      "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-26T19:12:14Z",
-      "durum": "ok",
-      "runId": "30216355293",
-      "sureSn": 118
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 36
+      "toplam": 7,
+      "oran": 86,
+      "ortSureSn": 38
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Webhook",
@@ -1763,15 +1769,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 34
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 33
     },
     {
       "ad": "GECICI - Butonhaftalik Kontrol (silinecek)",
@@ -1808,12 +1808,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 256
-    },
-    {
-      "ad": "GECICI - Bosavakit Durum (silinecek)",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
     }
   ],
   "kocKararlari": [],
