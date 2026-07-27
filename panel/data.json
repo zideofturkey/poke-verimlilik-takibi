@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-07-27T03:08:27.084346+03:00",
+  "uretim_zamani": "2026-07-27T07:12:57.418075+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 66
+    "haftaTamamlamaYuzdesi": 71
   },
   "heatmap": [
     {
@@ -1168,11 +1168,11 @@
     {
       "tarih": "26 July 2026",
       "tarih_iso": "2026-07-26",
-      "level": 3,
+      "level": 5,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1188,7 +1188,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1239,7 +1239,7 @@
     },
     {
       "isim": "Mewing",
-      "oran": 90
+      "oran": 91
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1253,15 +1253,15 @@
         },
         {
           "metin": "Baba ig's 2",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "Finansal Özgürlük oku",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "A pop beat for Ganzo",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         }
       ]
     },
@@ -1644,10 +1644,66 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-27T00:08:13Z",
+      "zaman": "2026-07-27T04:12:42Z",
       "durum": "warn",
-      "runId": "30226734286",
+      "runId": "30236457464",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-27T03:49:20Z",
+      "durum": "ok",
+      "runId": "30235508472",
+      "sureSn": 27
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-27T01:16:00Z",
+      "durum": "ok",
+      "runId": "30229409888",
+      "sureSn": 216
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-27T00:57:52Z",
+      "durum": "ok",
+      "runId": "30228655761",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-27T00:57:52Z",
+      "durum": "ok",
+      "runId": "30228655221",
+      "sureSn": 43
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-27T00:57:48Z",
+      "durum": "ok",
+      "runId": "30228653231",
+      "sureSn": 46
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-27T00:57:46Z",
+      "durum": "ok",
+      "runId": "30228651288",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-07-27T00:57:45Z",
+      "durum": "ok",
+      "runId": "30228650844",
+      "sureSn": 30
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-27T00:08:13Z",
+      "durum": "ok",
+      "runId": "30226734286",
+      "sureSn": 38
     },
     {
       "ad": "Webhook",
@@ -1690,62 +1746,6 @@
       "durum": "ok",
       "runId": "30223549924",
       "sureSn": 15
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-07-26T21:39:24Z",
-      "durum": "ok",
-      "runId": "30221527874",
-      "sureSn": 14
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-26T21:30:10Z",
-      "durum": "ok",
-      "runId": "30221202298",
-      "sureSn": 50
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-26T21:26:19Z",
-      "durum": "ok",
-      "runId": "30221072191",
-      "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-26T21:26:18Z",
-      "durum": "ok",
-      "runId": "30221071715",
-      "sureSn": 40
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-26T21:04:37Z",
-      "durum": "ok",
-      "runId": "30220318539",
-      "sureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-07-26T20:44:00Z",
-      "durum": "ok",
-      "runId": "30219600535",
-      "sureSn": 17
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-26T20:29:16Z",
-      "durum": "ok",
-      "runId": "30219077633",
-      "sureSn": 43
-    },
-    {
-      "ad": "GECICI - Butonhaftalik Kontrol (silinecek)",
-      "zaman": "2026-07-26T19:59:47Z",
-      "durum": "ok",
-      "runId": "30218022389",
-      "sureSn": 17
     }
   ],
   "workflowTurOzet": [
@@ -1753,25 +1753,25 @@
       "ad": "Panel",
       "toplam": 6,
       "oran": 83,
-      "ortSureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 15,
-      "oran": 100,
-      "ortSureSn": 145
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 37
     },
     {
       "ad": "Dinle",
       "toplam": 4,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 32
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 44
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 16,
+      "oran": 100,
+      "ortSureSn": 138
     },
     {
       "ad": "GECICI - Butonhaftalik Kontrol (silinecek)",
