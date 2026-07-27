@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-27T07:12:57.418075+03:00",
+  "uretim_zamani": "2026-07-27T11:01:26.246817+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1622,32 +1622,43 @@
           "durum": "Yapıldı"
         }
       ]
-    },
-    {
-      "hafta": "2026-07-06",
-      "hedefler": [
-        {
-          "hedef": "pazartesi staja git",
-          "durum": "Süresi Doldu"
-        },
-        {
-          "hedef": "çarşamba akşamı maça git",
-          "durum": "Süresi Doldu"
-        },
-        {
-          "hedef": "bir program tamamla",
-          "durum": "Süresi Doldu"
-        }
-      ]
     }
   ],
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-27T04:12:42Z",
+      "zaman": "2026-07-27T08:01:11Z",
       "durum": "warn",
-      "runId": "30236457464",
+      "runId": "30248265106",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-27T07:40:06Z",
+      "durum": "ok",
+      "runId": "30246972434",
+      "sureSn": 25
+    },
+    {
+      "ad": "Temizle",
+      "zaman": "2026-07-27T06:31:53Z",
+      "durum": "ok",
+      "runId": "30243043719",
+      "sureSn": 20
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-27T05:00:39Z",
+      "durum": "ok",
+      "runId": "30238581082",
+      "sureSn": 21
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-27T04:12:42Z",
+      "durum": "ok",
+      "runId": "30236457464",
+      "sureSn": 43
     },
     {
       "ad": "Dinle",
@@ -1718,60 +1729,38 @@
       "durum": "ok",
       "runId": "30226458247",
       "sureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-07-26T23:38:26Z",
-      "durum": "ok",
-      "runId": "30225677847",
-      "sureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-26T23:03:28Z",
-      "durum": "ok",
-      "runId": "30224417481",
-      "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-26T22:59:04Z",
-      "durum": "ok",
-      "runId": "30224247011",
-      "sureSn": 46
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-07-26T22:38:43Z",
-      "durum": "ok",
-      "runId": "30223549924",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 37
+      "toplam": 7,
+      "oran": 86,
+      "ortSureSn": 38
     },
     {
       "ad": "Dinle",
-      "toplam": 4,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 31
+    },
+    {
+      "ad": "Temizle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 44
+      "ortSureSn": 45
     },
     {
       "ad": "Webhook",
-      "toplam": 16,
+      "toplam": 13,
       "oran": 100,
-      "ortSureSn": 138
+      "ortSureSn": 98
     },
     {
       "ad": "GECICI - Butonhaftalik Kontrol (silinecek)",
