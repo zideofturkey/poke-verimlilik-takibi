@@ -1441,12 +1441,37 @@ def _siniflandir_ve_isle(text, bekleyen):
         tarih = metinden_tarih_cikar(text) or bugun_str()
         log_to_sheet("Boşa geçen vakit", "Beyan", text, tarih=tarih)
         set_bekleyen_soru("")
-        dakika = sure_dakika if sure_dakika is not None else _sureyi_dakikaya_cevir(text)
+        metin_kucuk = text.lower()
+
+        # ÖNEMLİ GÜVENLİK DÜZELTMESİ: gerçek bir olayda kullanıcı sadece
+        # "1 saat 50 dakika sosyal medyada boşa vakit geçirmişim" dedi
+        # (hiçbir faydalı kısım belirtmeden), ama SLM "SURE_DAKIKA: 130,
+        # FAYDALI_DAKIKA: 40" gibi metinde HİÇ GEÇMEYEN sayılar UYDURDU.
+        # Artık regex tabanlı çıkarım (_sureyi_dakikaya_cevir) HER ZAMAN
+        # önceliklidir - o, sadece metinde GERÇEKTEN yazan sayıları bulur,
+        # halüsinasyon yapamaz. SLM'in SURE_DAKIKA'sı SADECE regex hiçbir
+        # şey bulamazsa (ör. çok yaratıcı/dolaylı bir ifade) yedek olarak
+        # kullanılır.
+        dakika_regex = _sureyi_dakikaya_cevir(text)
+        dakika = dakika_regex if dakika_regex is not None else sure_dakika
+
+        # FAYDALI_DAKIKA için DAHA DA SIKI bir güvenlik ağı: metinde
+        # 'faydalı/yararlı/verimli' gibi bir kelime GEÇMİYORSA, SLM ne
+        # derse desin bu alanı TAMAMEN yok sayıyoruz - kullanıcı hiç
+        # böyle bir ayrım yapmadıysa, SLM'in uydurduğu bir sayıya asla
+        # güvenilmemeli. Kelime geçse bile, faydalı kısım toplamdan
+        # büyükse (mantıksız) yine reddediliyor.
+        faydali_kelime_var = any(k in metin_kucuk for k in ["faydalı", "yararlı", "verimli"])
+        faydali_dakika_guvenli = faydali_dakika if faydali_kelime_var else None
+        if (faydali_dakika_guvenli is not None and dakika is not None
+                and faydali_dakika_guvenli >= dakika):
+            faydali_dakika_guvenli = None
+
         belirsiz_faydali_var = any(
-            k in text.lower() for k in ["bir kısmı", "kısmen", "biraz faydalı", "bir kısmında"]
+            k in metin_kucuk for k in ["bir kısmı", "kısmen", "biraz faydalı", "bir kısmında"]
         )
         send_message(_bosa_vakit_cevabini_olustur(
-            dakika, tarih, faydali_dakika=faydali_dakika, belirsiz_faydali_var=belirsiz_faydali_var
+            dakika, tarih, faydali_dakika=faydali_dakika_guvenli, belirsiz_faydali_var=belirsiz_faydali_var
         ))
 
     elif tip == "SORGULA":
