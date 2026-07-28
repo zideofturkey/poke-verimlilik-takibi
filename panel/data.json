@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-28T13:06:57.194110+03:00",
+  "uretim_zamani": "2026-07-28T15:21:25.084262+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1619,10 +1619,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-28T10:06:45Z",
+      "zaman": "2026-07-28T12:21:03Z",
       "durum": "warn",
+      "runId": "30358565578",
+      "sureSn": 9
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-28T12:02:31Z",
+      "durum": "ok",
+      "runId": "30357242376",
+      "sureSn": 40
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-07-28T11:58:31Z",
+      "durum": "ok",
+      "runId": "30356959275",
+      "sureSn": 22
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-28T11:45:26Z",
+      "durum": "ok",
+      "runId": "30356065032",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-28T10:06:45Z",
+      "durum": "ok",
       "runId": "30349439333",
-      "sureSn": 3
+      "sureSn": 36
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1693,34 +1721,6 @@
       "durum": "ok",
       "runId": "30320902510",
       "sureSn": 24
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-28T01:34:54Z",
-      "durum": "ok",
-      "runId": "30320665281",
-      "sureSn": 206
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-28T01:32:23Z",
-      "durum": "ok",
-      "runId": "30320539542",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-28T01:32:17Z",
-      "durum": "ok",
-      "runId": "30320533468",
-      "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-28T01:32:17Z",
-      "durum": "ok",
-      "runId": "30320533311",
-      "sureSn": 32
     }
   ],
   "workflowTurOzet": [
@@ -1728,25 +1728,25 @@
       "ad": "Panel",
       "toplam": 8,
       "oran": 88,
-      "ortSureSn": 41
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 10,
-      "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 40
     },
     {
       "ad": "Dinle",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 30
     },
     {
       "ad": "Gönder",
       "toplam": 2,
       "oran": 100,
-      "ortSureSn": 21
+      "ortSureSn": 22
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "GECICI - Halusinasyon Kontrol (silinecek)",
