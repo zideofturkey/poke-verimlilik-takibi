@@ -904,6 +904,29 @@ def _gunluk_gorev_isle(text):
     send_message(mesaj)
 
 
+def _hedef_kaydi_icin_hafta_baslangic_str():
+    """Haftalık hedef KAYDI için doğru hafta başlangıcını hesaplar.
+    `hafta_baslangic_str()` 'bugünü içeren haftanın' Pazartesi'sini
+    döndürür - bu, SORGULAMA için doğru semantik (Pazar günü sorulan
+    'bu hafta nasıl gidiyor' bugünü içeren haftaya, yani biten haftaya
+    bakmalı). AMA hedef KAYDETME için farklı bir semantik gerekiyor:
+    `pazar()` mesajı özellikle 'Yeni hafta başlıyor, gelecek haftanın
+    hedefleri ne?' diye soruyor - kullanıcı Pazar günü (aynı gün içinde)
+    cevap verdiğinde `hafta_baslangic_str()` hâlâ BİTMEKTE OLAN haftanın
+    Pazartesi'sini (6 gün önce) döndürüyor, YARINKİ (yeni) haftanın
+    Pazartesi'sini değil. Gerçek bir olayda bu, Pazar günü girilen
+    hedeflerin yanlışlıkla bir önceki haftaya (20 Temmuz yerine 27
+    Temmuz'a kaydedilmesi gerekirken) kaydedilmesine sebep oldu.
+    Düzeltme: bugün Pazar ise (weekday()==6) YARINKİ Pazartesi'yi
+    kullan; diğer tüm günlerde (hafta ortası ad-hoc ekleme, ör. 'haftalık
+    hedeflerime şunu ekle') davranış DEĞİŞMİYOR - o zaten doğru şekilde
+    cari/devam eden haftaya ekleniyor."""
+    simdi = datetime.datetime.now(TR_TZ)
+    if simdi.weekday() == 6:  # Pazar
+        return (simdi + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    return hafta_baslangic_str()
+
+
 def _haftalik_hedef_isle(text):
     """Hem 'bu haftanın hedefleri: ...' (tam liste, genelde Pazar) hem de
     'haftalık görevlerime şunu ekle: \"...\"' (haftanın ortasında tek/az
@@ -937,7 +960,7 @@ def _haftalik_hedef_isle(text):
         return
 
     ws = get_haftalik_sheet()
-    hafta = hafta_baslangic_str()
+    hafta = _hedef_kaydi_icin_hafta_baslangic_str()
 
     # Eklemeden ÖNCE mevcut sayıyı al - "üzerine ekledim" gibi bağlam
     # farkında bir cevap verebilmek için.
