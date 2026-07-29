@@ -270,7 +270,20 @@ def _sorguyu_cevapla(text):
         _haftalik_rutin_durumu_cevapla()
         return
 
-    if "hafta" in metin_kucuk and "hedef" not in metin_kucuk:
+    # "Bu haftaki HEDEFLERİM/GÖREVLERİM" — HaftalikHedefler sekmesindeki
+    # (checkbox'lı, Yolunda/Geride) haftalık hedefleri sorar. Önceden bu
+    # dal HİÇ YOKTU: "hedef" kelimesi metinde geçmezse ("bu haftaki
+    # görevlerimi hatırlatır mısın" gibi, kullanıcı "hedef" değil "görev"
+    # dediğinde) direkt bir alttaki genel 'hafta' yakalayıcısına düşüyor
+    # ve GÜNLÜK RUTİNLERİN 7 günlük yüzdesini basıyordu - kullanıcının hiç
+    # istemediği bir cevap. "hedef" VEYA "görev" + "hafta" birlikteliği
+    # artık doğrudan haftalık hedeflere yönleniyor; sadece "hedef"
+    # kelimesini arayan eski daraltıcı kontrol kaldırıldı.
+    if "hafta" in metin_kucuk and ("hedef" in metin_kucuk or "görev" in metin_kucuk or "gorev" in metin_kucuk):
+        _haftalik_hedef_durumu_cevapla()
+        return
+
+    if "hafta" in metin_kucuk:
         _haftalik_ozet_sorusunu_cevapla()
         return
 
@@ -304,6 +317,65 @@ def _sorguyu_cevapla(text):
         return
 
     _bugunku_durumu_cevapla(text)
+
+
+def _haftalik_hedef_durumu_cevapla():
+    """Kullanıcının BU HAFTA için kaydettiği HaftalikHedefler sekmesindeki
+    (Pazar günü '1./2./3.' şeklinde yazdığı, Yolunda/Geride ile işaretlenen)
+    hedeflerin durumunu gösterir. _haftalik_ozet_sorusunu_cevapla (günlük
+    rutinlerin 7 günlük yüzdesi) ve _haftalik_rutin_durumu_cevapla (ayrı bir
+    HAFTALIK RUTİN kategorisi - Oda tozu alma vb.) ile KARIŞTIRILMASIN - bu
+    üçü Sheets'te üç ayrı sekmeye (Takip, HaftalikRutinTakip, HaftalikHedefler)
+    karşılık gelen üç farklı veri. 'Bekliyor' durumundaki hedefler için
+    TIKLANABİLİR butonlar ekler - `hedef_<satır>_evet/hayir`
+    (gonder.py'nin haftalik_hedef_sorulari_gonder'inde ve process_callback'te
+    ZATEN kullanılan aynı format, satır bazlı) - sıfırdan yazmaya gerek yok."""
+    ws = get_haftalik_sheet()
+    hafta = hafta_baslangic_str()
+    rows = ws.get_all_records()
+
+    satirlar = []
+    bekleyenler = []  # (satir_no, metin) - sadece 'Bekliyor' durumundakiler
+    for i, r in enumerate(rows):
+        if r.get("HaftaBaslangic") != hafta:
+            continue
+        durum = r.get("Durum")
+        metin = r.get("HedefMetni", "")
+        satir_no = i + 2  # header satırı + 1-index
+        if durum == "Yolunda":
+            isaret = "✅"
+        elif durum == "Geride":
+            isaret = "❌"
+        elif durum == "Bekliyor":
+            isaret = "⏳"
+            bekleyenler.append((satir_no, metin))
+        else:
+            isaret = "⏳"
+            bekleyenler.append((satir_no, metin))
+        satirlar.append(f"{isaret} {metin}")
+
+    if not satirlar:
+        send_message(
+            "Bu hafta için henüz kaydedilmiş bir haftalık hedef bulamadım — "
+            "Pazar mesajına cevap vermeyi unuttun mu? 🤔 Şimdi yazarsan "
+            "(1. / 2. / 3. şeklinde) onları da kaydederim."
+        )
+        set_bekleyen_soru("haftalik_hedef")
+        return
+
+    mesaj = "Bu haftaki hedeflerinin durumu:\n" + "\n".join(satirlar)
+
+    if bekleyenler:
+        buton_satirlari = [
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"hedef_{satir_no}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"hedef_{satir_no}_hayir"},
+            ]
+            for i, (satir_no, _) in enumerate(bekleyenler)
+        ]
+        send_message(mesaj, buttons=buton_satirlari)
+    else:
+        send_message(mesaj)
 
 
 def _haftalik_rutin_durumu_cevapla():
