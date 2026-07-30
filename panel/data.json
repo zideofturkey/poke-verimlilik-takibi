@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-07-30T20:28:14.474997+03:00",
+  "uretim_zamani": "2026-07-30T21:57:21.910568+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 74
   },
@@ -1635,10 +1635,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-30T17:27:59Z",
+      "zaman": "2026-07-30T18:57:10Z",
       "durum": "warn",
+      "runId": "30572689752",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-30T18:22:22Z",
+      "durum": "ok",
+      "runId": "30570106910",
+      "sureSn": 35
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-30T18:09:58Z",
+      "durum": "ok",
+      "runId": "30569209807",
+      "sureSn": 20
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-30T17:27:59Z",
+      "durum": "ok",
       "runId": "30566081459",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1716,27 +1737,6 @@
       "durum": "ok",
       "runId": "30545020994",
       "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-30T13:00:56Z",
-      "durum": "ok",
-      "runId": "30545018106",
-      "sureSn": 29
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-30T11:52:52Z",
-      "durum": "ok",
-      "runId": "30540270487",
-      "sureSn": 15
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-07-30T11:31:33Z",
-      "durum": "ok",
-      "runId": "30538890455",
-      "sureSn": 13
     }
   ],
   "workflowTurOzet": [
@@ -1747,16 +1747,16 @@
       "ortSureSn": 39
     },
     {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 15
-    },
-    {
       "ad": "Dinle",
       "toplam": 5,
       "oran": 100,
-      "ortSureSn": 36
+      "ortSureSn": 35
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 16
     },
     {
       "ad": "Gönder",
