@@ -1471,6 +1471,23 @@ def _siniflandir_ve_isle(text, bekleyen):
         print(f"[sınıflandırma] GECMIS_GOREV_TAMAMLA: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
         log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
         tip = "GECMIS_GOREV_TAMAMLA"
+    elif kural_tahmini == "HAFTALIK_HEDEF" and tip != "HAFTALIK_HEDEF":
+        # ÖZEL DURUM #2 (GECMIS_GOREV_TAMAMLA ile AYNI kör nokta ailesi):
+        # gerçek bir olayda 'haftalık görevlerime ekle: "..."' mesajı
+        # SLM(3b) tarafından yanlışlıkla GUNLUK_GOREV sanıldı - metinde
+        # 'haftalık' kelimesi AÇIKÇA geçmesine ve prompt'ta GUNLUK_GOREV
+        # kuralının 'hafta/haftalık geçmiyorsa' şartına rağmen. 7b'ye
+        # eskale edildiğinde 7b DE aynı yanlış kategoride (GUNLUK_GOREV)
+        # birleşti - eskalasyon burada da işe yaramadı, tıpkı
+        # GECMIS_GOREV_TAMAMLA'da olduğu gibi. Kural burada dilbilimsel
+        # olarak güvenilir ('hafta/haftalık' kelimesi + gerçek bir eylem
+        # fiili istiyor, bare bir isim yetmiyor) VE alt işleyici
+        # (_haftalik_hedef_isle) kendi güvenlik ağına sahip (içerik
+        # çıkaramazsa netleştirme ister, sessizce yanlış yere yazmaz) -
+        # bu yüzden SLM'e/7b'ye danışmadan doğrudan kurala güveniliyor.
+        print(f"[sınıflandırma] HAFTALIK_HEDEF: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
+        log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
+        tip = "HAFTALIK_HEDEF"
     elif kural_tahmini is not None and kural_tahmini != tip:
         print(f"[sınıflandırma] Anlaşmazlık: kural={kural_tahmini} slm(3b)={tip} - 7b'ye eskale ediliyor")
         try:
