@@ -1,5 +1,5 @@
-Zaman: 2026-07-30T12:12:27.764429+03:00
-Bağlam: slm_sorgula deneme 1/5 (model=qwen2.5:7b)
+Zaman: 2026-07-30T12:53:46.756792+03:00
+Bağlam: slm_sorgula deneme 1/5 (model=qwen2.5:3b)
 
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/urllib3/connectionpool.py", line 534, in _make_request
