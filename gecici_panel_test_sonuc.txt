@@ -1,0 +1,150 @@
+=== AKTİF HAFTALIK RUTİNLER ===
+[
+  {
+    "id": "oda_tozu",
+    "isim": "Oda tozu alma"
+  },
+  {
+    "id": "uzun_metraj_izlence",
+    "isim": "Uzun metraj izlence"
+  },
+  {
+    "id": "making_music",
+    "isim": "Making Music"
+  }
+]
+
+=== HAFTALIK RUTİN HEATMAP (son 12 hafta) ===
+[
+  {
+    "tarih": "11 - 17 May",
+    "tarih_iso": "2026-05-11",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "18 - 24 May",
+    "tarih_iso": "2026-05-18",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "25 - 31 May",
+    "tarih_iso": "2026-05-25",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "1 - 7 Haz",
+    "tarih_iso": "2026-06-01",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "8 - 14 Haz",
+    "tarih_iso": "2026-06-08",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "15 - 21 Haz",
+    "tarih_iso": "2026-06-15",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "22 - 28 Haz",
+    "tarih_iso": "2026-06-22",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "29 Haz - 5 Tem",
+    "tarih_iso": "2026-06-29",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "6 - 12 Tem",
+    "tarih_iso": "2026-07-06",
+    "level": 0,
+    "maks": 1,
+    "rutinler": []
+  },
+  {
+    "tarih": "13 - 19 Tem",
+    "tarih_iso": "2026-07-13",
+    "level": 1,
+    "maks": 1,
+    "rutinler": [
+      {
+        "isim": "Oda tozu alma",
+        "durum": "Yapıldı"
+      }
+    ]
+  },
+  {
+    "tarih": "20 - 26 Tem",
+    "tarih_iso": "2026-07-20",
+    "level": 2,
+    "maks": 3,
+    "rutinler": [
+      {
+        "isim": "Oda tozu alma",
+        "durum": "Yapıldı"
+      },
+      {
+        "isim": "Uzun metraj izlence",
+        "durum": "Yapıldı"
+      },
+      {
+        "isim": "Making Music",
+        "durum": "Yapılmadı"
+      }
+    ]
+  },
+  {
+    "tarih": "27 Tem - 2 Ağu",
+    "tarih_iso": "2026-07-27",
+    "level": 0,
+    "maks": 3,
+    "rutinler": [
+      {
+        "isim": "Oda tozu alma",
+        "durum": "Bekliyor"
+      },
+      {
+        "isim": "Uzun metraj izlence",
+        "durum": "Bekliyor"
+      },
+      {
+        "isim": "Making Music",
+        "durum": "Bekliyor"
+      }
+    ]
+  }
+]
+
+=== HAFTALIK RUTİN ORANLARI ===
+[
+  {
+    "isim": "Oda tozu alma",
+    "oran": 100
+  },
+  {
+    "isim": "Uzun metraj izlence",
+    "oran": 100
+  },
+  {
+    "isim": "Making Music",
+    "oran": 0
+  }
+]
