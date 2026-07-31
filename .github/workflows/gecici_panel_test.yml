@@ -36,10 +36,11 @@ jobs:
         if: always()
         run: rm -f service_account.json
 
-      - name: Sonucu commit'le
+      - name: Sonucu commit'le (data.json'ı DAHIL ETME - o panel_guncelle.yml'in işi)
         run: |
           git config user.name "poke-bot"
           git config user.email "poke-bot@users.noreply.github.com"
+          git checkout -- panel/data.json || true
           git add gecici_panel_test_sonuc.txt
           git commit -m "test: gecici panel test sonucu [skip ci]" -q || echo "Değişiklik yok"
           git push -q || echo "Push başarısız"
