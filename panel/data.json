@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-01T01:06:56.075630+03:00",
+  "uretim_zamani": "2026-08-01T01:52:56.509440+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1242,6 +1242,137 @@
       "oran": 93
     }
   ],
+  "haftalikRutinHeatmap": [
+    {
+      "tarih": "11 - 17 May",
+      "tarih_iso": "2026-05-11",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "18 - 24 May",
+      "tarih_iso": "2026-05-18",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "25 - 31 May",
+      "tarih_iso": "2026-05-25",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "1 - 7 Haz",
+      "tarih_iso": "2026-06-01",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "8 - 14 Haz",
+      "tarih_iso": "2026-06-08",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "15 - 21 Haz",
+      "tarih_iso": "2026-06-15",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "22 - 28 Haz",
+      "tarih_iso": "2026-06-22",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "29 Haz - 5 Tem",
+      "tarih_iso": "2026-06-29",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "6 - 12 Tem",
+      "tarih_iso": "2026-07-06",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
+    },
+    {
+      "tarih": "13 - 19 Tem",
+      "tarih_iso": "2026-07-13",
+      "level": 1,
+      "maks": 1,
+      "rutinler": [
+        {
+          "isim": "Oda tozu alma",
+          "durum": "Yapıldı"
+        }
+      ]
+    },
+    {
+      "tarih": "20 - 26 Tem",
+      "tarih_iso": "2026-07-20",
+      "level": 2,
+      "maks": 3,
+      "rutinler": [
+        {
+          "isim": "Oda tozu alma",
+          "durum": "Yapıldı"
+        },
+        {
+          "isim": "Uzun metraj izlence",
+          "durum": "Yapıldı"
+        },
+        {
+          "isim": "Making Music",
+          "durum": "Yapılmadı"
+        }
+      ]
+    },
+    {
+      "tarih": "27 Tem - 2 Ağu",
+      "tarih_iso": "2026-07-27",
+      "level": 0,
+      "maks": 3,
+      "rutinler": [
+        {
+          "isim": "Oda tozu alma",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Uzun metraj izlence",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Making Music",
+          "durum": "Bekliyor"
+        }
+      ]
+    }
+  ],
+  "haftalikRutinOranlari": [
+    {
+      "isim": "Oda tozu alma",
+      "oran": 67
+    },
+    {
+      "isim": "Uzun metraj izlence",
+      "oran": 50
+    },
+    {
+      "isim": "Making Music",
+      "oran": 0
+    }
+  ],
   "gunlukGorevGecmisi": [
     {
       "tarih": "31 July",
@@ -1635,10 +1766,59 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-07-31T22:06:35Z",
+      "zaman": "2026-07-31T22:52:29Z",
       "durum": "warn",
+      "runId": "30671277766",
+      "sureSn": 9
+    },
+    {
+      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
+      "zaman": "2026-07-31T22:50:44Z",
+      "durum": "ok",
+      "runId": "30671191748",
+      "sureSn": 33
+    },
+    {
+      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
+      "zaman": "2026-07-31T22:47:51Z",
+      "durum": "ok",
+      "runId": "30671046603",
+      "sureSn": 28
+    },
+    {
+      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
+      "zaman": "2026-07-31T22:46:39Z",
+      "durum": "ok",
+      "runId": "30670987270",
+      "sureSn": 23
+    },
+    {
+      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
+      "zaman": "2026-07-31T22:42:06Z",
+      "durum": "ok",
+      "runId": "30670758565",
+      "sureSn": 25
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-07-31T22:29:49Z",
+      "durum": "ok",
+      "runId": "30670128917",
+      "sureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-07-31T22:11:02Z",
+      "durum": "ok",
+      "runId": "30669122003",
+      "sureSn": 35
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-07-31T22:06:35Z",
+      "durum": "ok",
       "runId": "30668866048",
-      "sureSn": 10
+      "sureSn": 45
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1688,69 +1868,32 @@
       "durum": "ok",
       "runId": "30659102382",
       "sureSn": 41
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-31T19:20:12Z",
-      "durum": "ok",
-      "runId": "30658696883",
-      "sureSn": 267
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-31T19:19:28Z",
-      "durum": "ok",
-      "runId": "30658650035",
-      "sureSn": 44
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-31T19:19:16Z",
-      "durum": "ok",
-      "runId": "30658637122",
-      "sureSn": 31
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-07-31T19:13:51Z",
-      "durum": "ok",
-      "runId": "30658294656",
-      "sureSn": 24
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-07-31T18:42:21Z",
-      "durum": "ok",
-      "runId": "30656216285",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-07-31T18:24:12Z",
-      "durum": "ok",
-      "runId": "30655008959",
-      "sureSn": 23
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-07-31T17:48:02Z",
-      "durum": "ok",
-      "runId": "30652585783",
-      "sureSn": 208
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 76
+      "toplam": 8,
+      "oran": 88,
+      "ortSureSn": 80
+    },
+    {
+      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 27
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 9,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 21
+      "ortSureSn": 20
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 41
     },
     {
       "ad": "Webhook",
@@ -1759,16 +1902,10 @@
       "ortSureSn": 74
     },
     {
-      "ad": "Dinle",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 39
-    },
-    {
       "ad": "Gönder",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 23
+      "ortSureSn": 24
     }
   ],
   "kocKararlari": [],
