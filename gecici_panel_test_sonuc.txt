@@ -148,3 +148,8 @@
     "oran": 0
   }
 ]
+
+=== main() GERÇEK AKIŞ TESTİ ===
+main() BAŞARILI. data.json anahtarları: ['uretim_zamani', 'heroStats', 'heatmap', 'rutinOranlari', 'haftalikRutinHeatmap', 'haftalikRutinOranlari', 'gunlukGorevGecmisi', 'haftalikHedefGecmisi', 'workflowGecmisi', 'workflowTurOzet', 'kocKararlari', 'slmKararlari', 'slmDagilim', 'hataGecmisi']
+haftalikRutinHeatmap eleman sayısı: 12
+haftalikRutinOranlari: [{"isim": "Oda tozu alma", "oran": 67}, {"isim": "Uzun metraj izlence", "oran": 50}, {"isim": "Making Music", "oran": 0}]
