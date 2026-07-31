@@ -27,6 +27,11 @@ with open("gecici_panel_test_sonuc.txt", "w", encoding="utf-8") as f:
         f.write(f"main() BAŞARILI. data.json anahtarları: {list(data.keys())}\n")
         f.write(f"haftalikRutinHeatmap eleman sayısı: {len(data.get('haftalikRutinHeatmap', []))}\n")
         f.write(f"haftalikRutinOranlari: {json.dumps(data.get('haftalikRutinOranlari'), ensure_ascii=False)}\n")
+        # Frontend'i gerçek veriyle test edebilmek için üretilen data.json'ı
+        # AYRI bir dosya olarak da kaydediyoruz (gerçek panel/data.json'ı
+        # etkilemeden - o panel_guncelle.yml'in sorumluluğunda kalıyor).
+        with open("gecici_data_test.json", "w", encoding="utf-8") as gf:
+            json.dump(data, gf, ensure_ascii=False, indent=2)
     except Exception as e:
         import traceback
         f.write(f"main() HATA VERDİ: {e}\n{traceback.format_exc()}\n")
