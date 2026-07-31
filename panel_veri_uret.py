@@ -16,6 +16,9 @@ from common import (
     get_gorevler_sheet,
     get_haftalik_sheet,
     get_aktif_rutinler,
+    get_aktif_haftalik_rutinler,
+    get_haftalik_rutin_takip_sheet,
+    hafta_baslangic_str,
     TR_TZ,
 )
 
@@ -60,6 +63,106 @@ def gunluk_verileri_topla():
             "rutinler": rutin_listesi,
         })
     return heatmap
+
+
+def _hafta_baslangiclari_uret(kac_hafta):
+    """Bugünün haftasından geriye doğru `kac_hafta` adet Pazartesi
+    tarihini (YYYY-MM-DD) eskiden-yeniye sıralı döndürür. hafta_baslangic_str()
+    ile AYNI mantığı (o an neyse 'bugünkü hafta') kullanır, sadece
+    geriye dönük - böylece HaftalikRutinTakip'teki HaftaBaslangic
+    değerleriyle birebir eşleşir."""
+    bugun = datetime.datetime.now(TR_TZ).date()
+    bu_hafta_pazartesi = bugun - datetime.timedelta(days=bugun.weekday())
+    return [
+        (bu_hafta_pazartesi - datetime.timedelta(weeks=i)).strftime("%Y-%m-%d")
+        for i in range(kac_hafta - 1, -1, -1)
+    ]
+
+
+def _hafta_etiketi(hafta_baslangic_str_deger):
+    """'2026-07-28' -> '28 Tem - 3 Ağu' gibi okunabilir bir aralık etiketi."""
+    try:
+        baslangic = datetime.datetime.strptime(hafta_baslangic_str_deger, "%Y-%m-%d").date()
+    except ValueError:
+        return hafta_baslangic_str_deger
+    bitis = baslangic + datetime.timedelta(days=6)
+    aylar = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
+    if baslangic.month == bitis.month:
+        return f"{baslangic.day} - {bitis.day} {aylar[bitis.month - 1]}"
+    return f"{baslangic.day} {aylar[baslangic.month - 1]} - {bitis.day} {aylar[bitis.month - 1]}"
+
+
+def haftalik_rutin_heatmap_topla(kac_hafta=12):
+    """Günlük ısı haritasının (gunluk_verileri_topla) haftalık eksendeki
+    eşleniği. HaftalikRutinTakip sekmesindeki satırları HaftaBaslangic'e
+    göre gruplar, her hafta için tüm AKTİF haftalık rutinlerin durumunu
+    (Yapıldı/Yapılmadı/Bekliyor) çıkarır. Günlük tarafla FARK: 'Telafi'
+    durumu haftalık rutinlerde kavramsal olarak yok (günün önemi olmadığı
+    için telafi kavramı burada anlamsız) - bu yüzden telafi noktası mantığı
+    haftalık modda hiç uygulanmaz, sadece dolgu rengi kullanılır."""
+    haftalik_rutinler = get_aktif_haftalik_rutinler()
+    rutin_isim_seti = {r["isim"] for r in haftalik_rutinler}
+
+    ws = get_haftalik_rutin_takip_sheet()
+    rows = ws.get_all_records()
+
+    hafta_hafta = {}  # hafta_baslangic -> {isim: durum}
+    for r in rows:
+        hafta = r.get("HaftaBaslangic")
+        isim = r.get("Isim")
+        if not hafta or isim not in rutin_isim_seti:
+            continue
+        hafta_hafta.setdefault(hafta, {})[isim] = r.get("Durum")
+
+    hafta_listesi = _hafta_baslangiclari_uret(kac_hafta)
+    heatmap = []
+    for hafta in hafta_listesi:
+        durumlar = hafta_hafta.get(hafta, {})
+        hafta_var_mi = hafta in hafta_hafta
+        rutin_listesi = [
+            {
+                "isim": r["isim"],
+                "durum": durumlar.get(r["isim"], "Yapılmadı" if hafta_var_mi else None),
+            }
+            for r in haftalik_rutinler
+        ]
+        tamamlanan = sum(1 for x in rutin_listesi if x["durum"] == "Yapıldı")
+        heatmap.append({
+            "tarih": _hafta_etiketi(hafta),
+            "tarih_iso": hafta,
+            "level": tamamlanan if hafta_var_mi else 0,
+            "rutinler": rutin_listesi,
+        })
+    return heatmap
+
+
+def haftalik_rutin_oranlari_hesapla(kac_hafta=12):
+    """rutin_oranlari_hesapla()'nın haftalık eşleniği - günlük tarafta
+    'son 30 gün' neyse, burada 'son kac_hafta hafta' o. Not: haftalık
+    rutinlerde 'Telafi' durumu yok, sadece Yapıldı/Yapılmadı/Bekliyor -
+    bu yüzden oran hesabı sadece 'Yapıldı'yı sayıyor (günlük taraftaki
+    gibi Telafi'yi de dahil etmeye gerek yok)."""
+    haftalik_rutinler = get_aktif_haftalik_rutinler()
+    hafta_seti = set(_hafta_baslangiclari_uret(kac_hafta))
+
+    ws = get_haftalik_rutin_takip_sheet()
+    rows = ws.get_all_records()
+
+    sonuc = []
+    for rutin in haftalik_rutinler:
+        toplam = 0
+        yapilan = 0
+        for r in rows:
+            if r.get("Isim") != rutin["isim"] or r.get("HaftaBaslangic") not in hafta_seti:
+                continue
+            if r.get("Durum") == "Bekliyor":
+                continue  # henüz karara varılmamış hafta - orana dahil etme
+            toplam += 1
+            if r.get("Durum") == "Yapıldı":
+                yapilan += 1
+        oran = round((yapilan / toplam) * 100) if toplam else 0
+        sonuc.append({"isim": rutin["isim"], "oran": oran})
+    return sonuc
 
 
 def rutin_oranlari_hesapla():
@@ -250,6 +353,8 @@ def hata_gecmisi():
 def main():
     heatmap = gunluk_verileri_topla()
     rutin_oranlari = rutin_oranlari_hesapla()
+    haftalik_rutin_heatmap = haftalik_rutin_heatmap_topla()
+    haftalik_rutin_oranlari = haftalik_rutin_oranlari_hesapla()
 
     son_7_gun_tamamlanan = sum(g["level"] for g in heatmap[-7:])
     son_7_gun_toplam = len(get_aktif_rutinler()) * 7
@@ -265,6 +370,8 @@ def main():
         },
         "heatmap": heatmap,
         "rutinOranlari": rutin_oranlari,
+        "haftalikRutinHeatmap": haftalik_rutin_heatmap,
+        "haftalikRutinOranlari": haftalik_rutin_oranlari,
         "gunlukGorevGecmisi": gunluk_gorev_gecmisi(),
         "haftalikHedefGecmisi": haftalik_hedef_gecmisi(),
         "workflowGecmisi": workflow_liste,

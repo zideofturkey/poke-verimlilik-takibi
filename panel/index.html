@@ -239,6 +239,35 @@
   .hm-cell[data-level="3"] { background: #4FB6A8; }
   .hm-cell[data-level="4"] { background: var(--navy); }
 
+  /* ---------- RUTİN GÖRÜNÜM TOGGLE (Günlük / Haftalık) ---------- */
+  .rutin-toggle {
+    display: flex;
+    gap: 3px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 3px;
+    border-radius: 999px;
+  }
+
+  .rutin-toggle-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .rutin-toggle-btn.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
   .section-divider {
     height: 1px;
     background: var(--border);
@@ -522,10 +551,16 @@
 
     <div class="section">
       <div class="section-head">
-        <h2>Rutinler</h2>
-        <span class="empty-hint">Kutuya gel: özet gör &middot; tıkla: o günün detayını gör</span>
+        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+          <h2>Rutinler</h2>
+          <div class="rutin-toggle" id="rutinToggle">
+            <button class="rutin-toggle-btn active" data-mod="gunluk">Günlük</button>
+            <button class="rutin-toggle-btn" data-mod="haftalik">Haftalık</button>
+          </div>
+        </div>
+        <span class="empty-hint" id="rutinHint">Kutuya gel: özet gör &middot; tıkla: o günün detayını gör</span>
       </div>
-      <div style="font-size:12.5px; color:var(--text-muted); font-weight:600; margin-bottom:8px;">SON 45 GÜN</div>
+      <div style="font-size:12.5px; color:var(--text-muted); font-weight:600; margin-bottom:8px;" id="rutinPencereEtiketi">SON 45 GÜN</div>
       <div class="heatmap" id="heatmap"></div>
       <div class="heatmap-legend">
         Az <span class="legend-swatch" style="background:#E9F1F3"></span>
@@ -537,7 +572,7 @@
 
       <div class="section-divider"></div>
 
-      <div style="font-size:12.5px; color:var(--text-muted); font-weight:600; margin-bottom:10px;">SON 30 GÜN TAMAMLAMA ORANI</div>
+      <div style="font-size:12.5px; color:var(--text-muted); font-weight:600; margin-bottom:10px;" id="rutinOranBaslik">SON 30 GÜN TAMAMLAMA ORANI</div>
       <div id="routineList"></div>
     </div>
 
@@ -750,10 +785,9 @@
       <div class="hero-stat"><div class="num">${veri.workflowGecmisi.filter(w => w.durum === 'ok').length}/${veri.workflowGecmisi.length}</div><div class="label">Son çalıştırmalar başarılı</div></div>
     `;
 
-    // ---------- ISI HARİTASI ----------
+    // ---------- ISI HARİTASI (Günlük / Haftalık ortak render) ----------
     const hmEl = document.getElementById('heatmap');
     const tooltip = document.getElementById('hmTooltip');
-    const rutinSayisi = veri.rutinOranlari.length || 1;
 
     // ÖNEMLİ: Renk skalası önceden SABİT 4 seviyeye (CSS'te data-level="1..4")
     // göre tanımlıydı - aktif rutin sayısı 5'e çıkınca (level=5, tüm
@@ -796,51 +830,91 @@
     // Telafi günleri: kutunun ortasında, kutunun rengiyle uyumlu (yeşil
     // tonlu) yumuşak geçişli bir sarı radial nokta - "bu gün telafi
     // yapıldı" bilgisini renk değiştirmeden, üzerine ekleyerek gösterir.
+    // NOT: 'Telafi' durumu kavramsal olarak SADECE günlük rutinlerde var
+    // (TelafiEdilebilir sütunu) - haftalık rutinlerde hafta içinde
+    // herhangi bir gün yapılabildiği için telafi kavramı hiç yok, bu
+    // yüzden haftalık modda hiçbir satır 'Telafi' durumuna sahip
+    // olmayacak ve nokta hiç çizilmeyecek (kod aynen paylaşılabilir).
     const TELAFI_NOKTASI = 'radial-gradient(circle, rgba(255, 209, 60, 0.6) 0%, rgba(255, 209, 60, 0.35) 35%, rgba(255, 209, 60, 0) 65%)';
 
-    veri.heatmap.forEach(gun => {
-      const div = document.createElement('div');
-      div.className = 'hm-cell';
-      div.setAttribute('data-level', gun.level);
-      const renk = heatmapRengi(gun.level, rutinSayisi);
-      const telafiVar = gun.rutinler.some(r => r.durum === 'Telafi');
-      if (renk && telafiVar) {
-        div.style.background = `${TELAFI_NOKTASI}, ${renk}`;
-      } else if (renk) {
-        div.style.background = renk;
-      } else if (telafiVar) {
-        div.style.background = `${TELAFI_NOKTASI}, #E9F1F3`;
-      }
+    // Şu an ekranda gösterilen mod: 'gunluk' | 'haftalik'
+    let rutinGorunumModu = 'gunluk';
 
-      div.addEventListener('mouseenter', () => {
-        document.getElementById('ttDate').textContent = gun.tarih;
-        document.getElementById('ttSub').textContent = `Tamamlanan rutinler: ${gun.level}/${rutinSayisi}`;
-        tooltip.classList.add('visible');
-      });
-      div.addEventListener('mousemove', e => {
-        tooltip.style.left = e.clientX + 'px';
-        tooltip.style.top = (e.clientY - 44) + 'px';
-      });
-      div.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+    function renderRutinGorunumu(mod) {
+      rutinGorunumModu = mod;
+      const gunlukMu = mod === 'gunluk';
 
-      div.addEventListener('click', () => {
-        const gövde = gun.rutinler.map(r => `
-          <div class="modal-item"><span>${r.isim}</span>${durumBadge(r.durum)}</div>
-        `).join('');
-        modalAc(gun.tarih, gövde || '<p style="color:var(--text-muted);">Bu gün için kayıt yok.</p>');
+      const heatmapVerisi = gunlukMu ? veri.heatmap : veri.haftalikRutinHeatmap;
+      const oranVerisi = gunlukMu ? veri.rutinOranlari : veri.haftalikRutinOranlari;
+      const rutinSayisi = oranVerisi.length || 1;
+      const birimAdi = gunlukMu ? 'gün' : 'hafta';
+      const birimAdiBuyuk = gunlukMu ? 'GÜN' : 'HAFTA';
+
+      document.getElementById('rutinPencereEtiketi').textContent =
+        gunlukMu ? 'SON 45 GÜN' : `SON ${heatmapVerisi.length} HAFTA`;
+      document.getElementById('rutinOranBaslik').textContent =
+        gunlukMu ? 'SON 30 GÜN TAMAMLAMA ORANI' : `SON ${heatmapVerisi.length} HAFTA TAMAMLAMA ORANI`;
+      document.getElementById('rutinHint').textContent =
+        gunlukMu
+          ? 'Kutuya gel: özet gör · tıkla: o günün detayını gör'
+          : 'Kutuya gel: özet gör · tıkla: o haftanın detayını gör';
+
+      hmEl.innerHTML = '';
+      heatmapVerisi.forEach(birim => {
+        const div = document.createElement('div');
+        div.className = 'hm-cell';
+        div.setAttribute('data-level', birim.level);
+        const renk = heatmapRengi(birim.level, rutinSayisi);
+        const telafiVar = birim.rutinler.some(r => r.durum === 'Telafi');
+        if (renk && telafiVar) {
+          div.style.background = `${TELAFI_NOKTASI}, ${renk}`;
+        } else if (renk) {
+          div.style.background = renk;
+        } else if (telafiVar) {
+          div.style.background = `${TELAFI_NOKTASI}, #E9F1F3`;
+        }
+
+        div.addEventListener('mouseenter', () => {
+          document.getElementById('ttDate').textContent = birim.tarih;
+          document.getElementById('ttSub').textContent = `Tamamlanan rutinler: ${birim.level}/${rutinSayisi}`;
+          tooltip.classList.add('visible');
+        });
+        div.addEventListener('mousemove', e => {
+          tooltip.style.left = e.clientX + 'px';
+          tooltip.style.top = (e.clientY - 44) + 'px';
+        });
+        div.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+
+        div.addEventListener('click', () => {
+          const gövde = birim.rutinler.map(r => `
+            <div class="modal-item"><span>${r.isim}</span>${durumBadge(r.durum)}</div>
+          `).join('');
+          modalAc(birim.tarih, gövde || `<p style="color:var(--text-muted);">Bu ${birimAdi} için kayıt yok.</p>`);
+        });
+
+        hmEl.appendChild(div);
       });
 
-      hmEl.appendChild(div);
+      // ---------- RUTİN İLERLEME ----------
+      document.getElementById('routineList').innerHTML = oranVerisi.map(r => `
+        <div class="routine-row">
+          <div class="routine-name">${r.isim}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${r.oran}%"></div></div>
+          <div class="routine-pct">%${r.oran}</div>
+        </div>
+      `).join('') || '<p style="color:var(--text-muted);">Henüz rutin tanımlı değil.</p>';
+    }
+
+    renderRutinGorunumu('gunluk');
+
+    document.querySelectorAll('.rutin-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+        document.querySelectorAll('.rutin-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderRutinGorunumu(btn.dataset.mod);
+      });
     });
-
-    // ---------- RUTİN İLERLEME ----------
-    document.getElementById('routineList').innerHTML = veri.rutinOranlari.map(r => `
-      <div class="routine-row">
-        <div class="routine-name">${r.isim}</div>
-        <div class="bar-track"><div class="bar-fill" style="width:${r.oran}%"></div></div>
-        <div class="routine-pct">%${r.oran}</div>
-      </div>
-    `).join('') || '<p style="color:var(--text-muted);">Henüz rutin tanımlı değil.</p>';
 
     // ---------- GÜNLÜK HEDEF GEÇMİŞİ ----------
     document.getElementById('gunlukTablo').innerHTML = veri.gunlukGorevGecmisi.map((g, idx) => {
