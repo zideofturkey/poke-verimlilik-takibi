@@ -1,0 +1,21 @@
+"""GEÇİCİ test script'i - haftalık rutin panel verisini gerçek Sheets
+verisiyle üretip özet çıktıyı gecici_panel_test_sonuc.txt'ye yazar.
+İş bitince bu dosya ve ilgili workflow silinecek."""
+import json
+from panel_veri_uret import (
+    haftalik_rutin_heatmap_topla,
+    haftalik_rutin_oranlari_hesapla,
+    get_aktif_haftalik_rutinler,
+)
+
+with open("gecici_panel_test_sonuc.txt", "w", encoding="utf-8") as f:
+    f.write("=== AKTİF HAFTALIK RUTİNLER ===\n")
+    f.write(json.dumps(get_aktif_haftalik_rutinler(), ensure_ascii=False, indent=2))
+    f.write("\n\n=== HAFTALIK RUTİN HEATMAP (son 12 hafta) ===\n")
+    heatmap = haftalik_rutin_heatmap_topla()
+    f.write(json.dumps(heatmap, ensure_ascii=False, indent=2))
+    f.write("\n\n=== HAFTALIK RUTİN ORANLARI ===\n")
+    oranlar = haftalik_rutin_oranlari_hesapla()
+    f.write(json.dumps(oranlar, ensure_ascii=False, indent=2))
+
+print("Test tamamlandı, gecici_panel_test_sonuc.txt yazıldı.")

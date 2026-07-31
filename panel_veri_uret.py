@@ -95,42 +95,47 @@ def _hafta_etiketi(hafta_baslangic_str_deger):
 def haftalik_rutin_heatmap_topla(kac_hafta=12):
     """Günlük ısı haritasının (gunluk_verileri_topla) haftalık eksendeki
     eşleniği. HaftalikRutinTakip sekmesindeki satırları HaftaBaslangic'e
-    göre gruplar, her hafta için tüm AKTİF haftalık rutinlerin durumunu
-    (Yapıldı/Yapılmadı/Bekliyor) çıkarır. Günlük tarafla FARK: 'Telafi'
-    durumu haftalık rutinlerde kavramsal olarak yok (günün önemi olmadığı
-    için telafi kavramı burada anlamsız) - bu yüzden telafi noktası mantığı
-    haftalık modda hiç uygulanmaz, sadece dolgu rengi kullanılır."""
-    haftalik_rutinler = get_aktif_haftalik_rutinler()
-    rutin_isim_seti = {r["isim"] for r in haftalik_rutinler}
+    göre gruplar.
 
+    ÖNEMLİ TASARIM KARARI - rutin sayısı zamanla değişebilir: ilk
+    haftalarda tek bir haftalık rutin (ör. sadece 'Oda tozu alma') vardı,
+    sonradan yeni rutinler eklendi. Her haftanın 'level'ı (ve dolayısıyla
+    heatmap rengi) o haftaya AİT olan rutin sayısına göre hesaplanmalı -
+    şu an aktif olan (güncel) rutin sayısına göre DEĞİL. Aksi halde eski,
+    az-rutinli bir hafta (1/1 tamamlanmış) ile yeni, çok-rutinli bir
+    hafta (2/4 tamamlanmış) aynı ölçekte karşılaştırılıp yanıltıcı bir
+    görsel ortaya çıkar. Çözüm: rutin listesi şu anki aktif listeden
+    DEĞİL, o haftaya ait gerçek HaftalikRutinTakip satırlarından
+    türetiliyor - her hafta kendi gerçek payyasına göre orantılanıyor,
+    rutin sayısı ileride artsa/azalsa da otomatik ayak uyduruyor.
+
+    Günlük tarafla FARK: 'Telafi' durumu haftalık rutinlerde kavramsal
+    olarak yok (günün önemi olmadığı için telafi kavramı burada
+    anlamsız) - bu yüzden telafi noktası mantığı haftalık modda hiç
+    uygulanmaz, sadece dolgu rengi kullanılır."""
     ws = get_haftalik_rutin_takip_sheet()
     rows = ws.get_all_records()
 
-    hafta_hafta = {}  # hafta_baslangic -> {isim: durum}
+    hafta_hafta = {}  # hafta_baslangic -> [{isim, durum}, ...] (o haftanın GERÇEK satırları)
     for r in rows:
         hafta = r.get("HaftaBaslangic")
         isim = r.get("Isim")
-        if not hafta or isim not in rutin_isim_seti:
+        if not hafta or not isim:
             continue
-        hafta_hafta.setdefault(hafta, {})[isim] = r.get("Durum")
+        hafta_hafta.setdefault(hafta, []).append({"isim": isim, "durum": r.get("Durum")})
 
     hafta_listesi = _hafta_baslangiclari_uret(kac_hafta)
     heatmap = []
     for hafta in hafta_listesi:
-        durumlar = hafta_hafta.get(hafta, {})
+        rutin_listesi = hafta_hafta.get(hafta, [])
         hafta_var_mi = hafta in hafta_hafta
-        rutin_listesi = [
-            {
-                "isim": r["isim"],
-                "durum": durumlar.get(r["isim"], "Yapılmadı" if hafta_var_mi else None),
-            }
-            for r in haftalik_rutinler
-        ]
+        rutin_sayisi_o_hafta = len(rutin_listesi) or 1
         tamamlanan = sum(1 for x in rutin_listesi if x["durum"] == "Yapıldı")
         heatmap.append({
             "tarih": _hafta_etiketi(hafta),
             "tarih_iso": hafta,
             "level": tamamlanan if hafta_var_mi else 0,
+            "maks": rutin_sayisi_o_hafta,
             "rutinler": rutin_listesi,
         })
     return heatmap

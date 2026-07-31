@@ -863,8 +863,14 @@
       heatmapVerisi.forEach(birim => {
         const div = document.createElement('div');
         div.className = 'hm-cell';
+        // Günlük modda payda hep sabit (o anki toplam aktif rutin sayısı).
+        // Haftalık modda ise her HAFTA kendi gerçek rutin sayısına (birim.maks)
+        // göre orantılanıyor - rutin sayısı zamanla artmış/azalmış olsa bile
+        // (ör. ilk haftalarda tek rutin, sonra dört) her hafta kendi payıyla
+        // doğru ölçekte gösteriliyor, eski/yeni haftalar birbirini yanıltmıyor.
+        const kutuMaks = gunlukMu ? rutinSayisi : (birim.maks || rutinSayisi);
         div.setAttribute('data-level', birim.level);
-        const renk = heatmapRengi(birim.level, rutinSayisi);
+        const renk = heatmapRengi(birim.level, kutuMaks);
         const telafiVar = birim.rutinler.some(r => r.durum === 'Telafi');
         if (renk && telafiVar) {
           div.style.background = `${TELAFI_NOKTASI}, ${renk}`;
@@ -876,7 +882,7 @@
 
         div.addEventListener('mouseenter', () => {
           document.getElementById('ttDate').textContent = birim.tarih;
-          document.getElementById('ttSub').textContent = `Tamamlanan rutinler: ${birim.level}/${rutinSayisi}`;
+          document.getElementById('ttSub').textContent = `Tamamlanan rutinler: ${birim.level}/${kutuMaks}`;
           tooltip.classList.add('visible');
         });
         div.addEventListener('mousemove', e => {
