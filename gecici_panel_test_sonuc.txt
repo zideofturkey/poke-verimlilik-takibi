@@ -137,11 +137,11 @@
 [
   {
     "isim": "Oda tozu alma",
-    "oran": 100
+    "oran": 67
   },
   {
     "isim": "Uzun metraj izlence",
-    "oran": 100
+    "oran": 50
   },
   {
     "isim": "Making Music",
