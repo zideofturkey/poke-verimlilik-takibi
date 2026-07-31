@@ -143,10 +143,13 @@ def haftalik_rutin_heatmap_topla(kac_hafta=12):
 
 def haftalik_rutin_oranlari_hesapla(kac_hafta=12):
     """rutin_oranlari_hesapla()'nın haftalık eşleniği - günlük tarafta
-    'son 30 gün' neyse, burada 'son kac_hafta hafta' o. Not: haftalık
-    rutinlerde 'Telafi' durumu yok, sadece Yapıldı/Yapılmadı/Bekliyor -
-    bu yüzden oran hesabı sadece 'Yapıldı'yı sayıyor (günlük taraftaki
-    gibi Telafi'yi de dahil etmeye gerek yok)."""
+    'son 30 gün' neyse, burada 'son kac_hafta hafta' o. TUTARLILIK:
+    günlük rutin_oranlari_hesapla() 'Bekliyor' satırlarını da toplama
+    dahil ediyor (sadece 'Yapıldı'/'Telafi' payı büyütüyor, 'Bekliyor'
+    payda'da kalıp oranı düşürüyor) - haftalık taraf da AYNI mantığı
+    izliyor, 'Bekliyor'u dışlamıyor. Not: haftalık rutinlerde 'Telafi'
+    durumu kavramsal olarak yok, sadece Yapıldı/Yapılmadı/Bekliyor var -
+    bu yüzden pay sadece 'Yapıldı'yı sayıyor."""
     haftalik_rutinler = get_aktif_haftalik_rutinler()
     hafta_seti = set(_hafta_baslangiclari_uret(kac_hafta))
 
@@ -160,8 +163,6 @@ def haftalik_rutin_oranlari_hesapla(kac_hafta=12):
         for r in rows:
             if r.get("Isim") != rutin["isim"] or r.get("HaftaBaslangic") not in hafta_seti:
                 continue
-            if r.get("Durum") == "Bekliyor":
-                continue  # henüz karara varılmamış hafta - orana dahil etme
             toplam += 1
             if r.get("Durum") == "Yapıldı":
                 yapilan += 1
