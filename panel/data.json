@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-01T13:16:58.744581+03:00",
+  "uretim_zamani": "2026-08-01T14:43:02.682516+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1766,10 +1766,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-01T10:16:46Z",
+      "zaman": "2026-08-01T11:42:42Z",
       "durum": "warn",
+      "runId": "30698231198",
+      "sureSn": 9
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-01T11:17:14Z",
+      "durum": "ok",
+      "runId": "30697397455",
+      "sureSn": 20
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-01T10:53:59Z",
+      "durum": "ok",
+      "runId": "30696610437",
+      "sureSn": 12
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-01T10:16:46Z",
+      "durum": "ok",
       "runId": "30695400897",
-      "sureSn": 2
+      "sureSn": 37
     },
     {
       "ad": "Dinle",
@@ -1847,35 +1868,26 @@
       "durum": "ok",
       "runId": "30677330109",
       "sureSn": 18
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-01T01:01:43Z",
-      "durum": "ok",
-      "runId": "30676971044",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-01T01:01:38Z",
-      "durum": "ok",
-      "runId": "30676968341",
-      "sureSn": 511
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-01T00:06:17Z",
-      "durum": "ok",
-      "runId": "30674668368",
-      "sureSn": 34
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
+      "toplam": 10,
+      "oran": 90,
+      "ortSureSn": 71
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 18
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
       "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 74
+      "oran": 100,
+      "ortSureSn": 18
     },
     {
       "ad": "Dinle",
@@ -1884,22 +1896,10 @@
       "ortSureSn": 42
     },
     {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 18
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 16
-    },
-    {
       "ad": "Webhook",
-      "toplam": 12,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 134
+      "ortSureSn": 141
     },
     {
       "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
