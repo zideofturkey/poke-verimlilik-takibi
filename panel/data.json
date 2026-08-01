@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-01T05:52:52.016383+03:00",
+  "uretim_zamani": "2026-08-01T08:56:10.658075+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1766,10 +1766,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-01T02:52:35Z",
+      "zaman": "2026-08-01T05:55:53Z",
       "durum": "warn",
+      "runId": "30686761355",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-01T04:32:51Z",
+      "durum": "ok",
+      "runId": "30684150910",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-01T04:25:26Z",
+      "durum": "ok",
+      "runId": "30683914277",
+      "sureSn": 26
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-01T02:52:35Z",
+      "durum": "ok",
       "runId": "30680866847",
-      "sureSn": 3
+      "sureSn": 43
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1847,53 +1868,32 @@
       "durum": "ok",
       "runId": "30671700816",
       "sureSn": 154
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-07-31T22:52:29Z",
-      "durum": "ok",
-      "runId": "30671277766",
-      "sureSn": 54
-    },
-    {
-      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
-      "zaman": "2026-07-31T22:50:44Z",
-      "durum": "ok",
-      "runId": "30671191748",
-      "sureSn": 33
-    },
-    {
-      "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
-      "zaman": "2026-07-31T22:47:51Z",
-      "durum": "ok",
-      "runId": "30671046603",
-      "sureSn": 28
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 7,
-      "oran": 86,
-      "ortSureSn": 84
+      "toplam": 8,
+      "oran": 88,
+      "ortSureSn": 79
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
       "ortSureSn": 17
     },
     {
-      "ad": "Webhook",
-      "toplam": 18,
+      "ad": "Dinle",
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 111
+      "ortSureSn": 39
     },
     {
-      "ad": "Dinle",
-      "toplam": 4,
+      "ad": "Webhook",
+      "toplam": 15,
       "oran": 100,
-      "ortSureSn": 42
+      "ortSureSn": 126
     },
     {
       "ad": "GEÇİCİ - Panel Haftalık Rutin Testi",
