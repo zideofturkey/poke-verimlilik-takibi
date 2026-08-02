@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-08-02T23:56:26.897445+03:00",
+  "uretim_zamani": "2026-08-03T00:58:48.903693+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 74
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
-    {
-      "tarih": "19 June 2026",
-      "tarih_iso": "2026-06-19",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "20 June 2026",
       "tarih_iso": "2026-06-20",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "03 August 2026",
+      "tarih_iso": "2026-08-03",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1243,13 +1243,6 @@
     }
   ],
   "haftalikRutinHeatmap": [
-    {
-      "tarih": "11 - 17 May",
-      "tarih_iso": "2026-05-11",
-      "level": 0,
-      "maks": 1,
-      "rutinler": []
-    },
     {
       "tarih": "18 - 24 May",
       "tarih_iso": "2026-05-18",
@@ -1357,6 +1350,13 @@
           "durum": "Bekliyor"
         }
       ]
+    },
+    {
+      "tarih": "3 - 9 Ağu",
+      "tarih_iso": "2026-08-03",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
     }
   ],
   "haftalikRutinOranlari": [
@@ -1384,7 +1384,7 @@
         },
         {
           "metin": "Mail'deki haftalık bültenleri okuma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Kitap okuma hangisini dilersen",
@@ -1396,7 +1396,7 @@
         },
         {
           "metin": "GANZO club music",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1795,10 +1795,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-02T20:56:08Z",
+      "zaman": "2026-08-02T21:58:33Z",
       "durum": "warn",
-      "runId": "30766734797",
+      "runId": "30769061318",
       "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-02T21:45:12Z",
+      "durum": "ok",
+      "runId": "30768583200",
+      "sureSn": 44
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-02T21:45:10Z",
+      "durum": "ok",
+      "runId": "30768581871",
+      "sureSn": 36
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-02T21:34:29Z",
+      "durum": "ok",
+      "runId": "30768195241",
+      "sureSn": 21
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-02T20:56:08Z",
+      "durum": "ok",
+      "runId": "30766734797",
+      "sureSn": 76
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1869,34 +1897,6 @@
       "durum": "ok",
       "runId": "30764248272",
       "sureSn": 14
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-02T19:43:29Z",
-      "durum": "ok",
-      "runId": "30764011938",
-      "sureSn": 39
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-02T18:59:32Z",
-      "durum": "ok",
-      "runId": "30762357995",
-      "sureSn": 22
-    },
-    {
-      "ad": "Analiz",
-      "zaman": "2026-08-02T18:49:11Z",
-      "durum": "ok",
-      "runId": "30761980012",
-      "sureSn": 265
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-02T18:39:02Z",
-      "durum": "ok",
-      "runId": "30761595409",
-      "sureSn": 19
     }
   ],
   "workflowTurOzet": [
@@ -1904,25 +1904,25 @@
       "ad": "Panel",
       "toplam": 8,
       "oran": 88,
-      "ortSureSn": 39
+      "ortSureSn": 43
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 13,
+      "oran": 100,
+      "ortSureSn": 77
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 11,
+      "toplam": 10,
       "oran": 100,
       "ortSureSn": 18
     },
     {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 84
-    },
-    {
       "ad": "Dinle",
-      "toplam": 6,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 31
     },
     {
       "ad": "Gönder",
