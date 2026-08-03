@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-03T08:04:22.196508+03:00",
+  "uretim_zamani": "2026-08-03T11:47:56.326555+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1695,28 +1695,6 @@
           "durum": "Yapıldı"
         }
       ]
-    },
-    {
-      "tarih": "18 July",
-      "gunAdi": "Cumartesi",
-      "gorevler": [
-        {
-          "metin": "Scooter repair",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "A fresh start to new book",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "Bear E6",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Music for Ganzo",
-          "durum": "Yapıldı"
-        }
-      ]
     }
   ],
   "haftalikHedefGecmisi": [
@@ -1777,32 +1755,71 @@
           "durum": "Yapıldı"
         }
       ]
-    },
-    {
-      "hafta": "2026-07-13",
-      "hedefler": [
-        {
-          "hedef": "Verimlilik Takip Sistemi'ni Ali Bey'e Sun",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "1 Beat Tamamla",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "How to be a Millionere Scenarios",
-          "durum": "Yapıldı"
-        }
-      ]
     }
   ],
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-03T05:03:59Z",
+      "zaman": "2026-08-03T08:47:33Z",
       "durum": "warn",
-      "runId": "30786091509",
+      "runId": "30798765821",
       "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-03T08:35:06Z",
+      "durum": "ok",
+      "runId": "30797959175",
+      "sureSn": 38
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-03T08:18:24Z",
+      "durum": "ok",
+      "runId": "30796887384",
+      "sureSn": 26
+    },
+    {
+      "ad": "Temizle",
+      "zaman": "2026-08-03T06:24:14Z",
+      "durum": "ok",
+      "runId": "30790096745",
+      "sureSn": 27
+    },
+    {
+      "ad": "GECICI - Koc Veri Kontrol (silinecek)",
+      "zaman": "2026-08-03T05:20:59Z",
+      "durum": "ok",
+      "runId": "30786915980",
+      "sureSn": 16
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-03T05:18:42Z",
+      "durum": "ok",
+      "runId": "30786807507",
+      "sureSn": 41
+    },
+    {
+      "ad": "GECICI - Koc Veri Kontrol (silinecek)",
+      "zaman": "2026-08-03T05:16:32Z",
+      "durum": "ok",
+      "runId": "30786707471",
+      "sureSn": 100
+    },
+    {
+      "ad": "GECICI - Koc Veri Kontrol (silinecek)",
+      "zaman": "2026-08-03T05:14:42Z",
+      "durum": "ok",
+      "runId": "30786610922",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-03T05:03:59Z",
+      "durum": "ok",
+      "runId": "30786091509",
+      "sureSn": 49
     },
     {
       "ad": "Webhook",
@@ -1845,62 +1862,6 @@
       "durum": "ok",
       "runId": "30784868948",
       "sureSn": 30
-    },
-    {
-      "ad": "GEÇİCİ - Koç Kararı Teşhis",
-      "zaman": "2026-08-03T04:32:11Z",
-      "durum": "ok",
-      "runId": "30784706902",
-      "sureSn": 26
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T04:05:24Z",
-      "durum": "ok",
-      "runId": "30783439248",
-      "sureSn": 205
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T04:04:15Z",
-      "durum": "ok",
-      "runId": "30783386082",
-      "sureSn": 49
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T04:04:12Z",
-      "durum": "ok",
-      "runId": "30783384124",
-      "sureSn": 46
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T04:04:03Z",
-      "durum": "ok",
-      "runId": "30783376965",
-      "sureSn": 36
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T02:20:48Z",
-      "durum": "ok",
-      "runId": "30779070543",
-      "sureSn": 160
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T02:16:11Z",
-      "durum": "ok",
-      "runId": "30778887446",
-      "sureSn": 259
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-03T01:12:44Z",
-      "durum": "ok",
-      "runId": "30776335088",
-      "sureSn": 17
     }
   ],
   "workflowTurOzet": [
@@ -1908,43 +1869,43 @@
       "ad": "Panel",
       "toplam": 6,
       "oran": 83,
-      "ortSureSn": 42
+      "ortSureSn": 44
     },
     {
-      "ad": "Webhook",
-      "toplam": 17,
+      "ad": "Dinle",
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 96
+      "ortSureSn": 36
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 8,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 18
+      "ortSureSn": 19
+    },
+    {
+      "ad": "Temizle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 27
+    },
+    {
+      "ad": "GECICI - Koc Veri Kontrol (silinecek)",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 44
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 16,
+      "oran": 100,
+      "ortSureSn": 88
     },
     {
       "ad": "GEÇİCİ - Koç Kararı Teşhis",
       "toplam": 3,
       "oran": 100,
       "ortSureSn": 23
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 32
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 22
-    },
-    {
-      "ad": "Analiz",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 265
     }
   ],
   "kocKararlari": [],
