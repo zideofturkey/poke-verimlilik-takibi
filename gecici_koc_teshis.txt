@@ -1,0 +1,10 @@
+Takip sheet toplam satır: 192
+'Koç kararı:' ile başlayan satır sayısı: 0
+
+
+=== ŞU ANKİ MISS STREAK DURUMU (tüm aktif günlük rutinler) ===
+Fransızca çalışma: streak=6, miss_streak=0
+Sabah telefonsuzluğu: streak=3, miss_streak=0
+Gece telefonsuzluğu: streak=0, miss_streak=0
+Verimli video izleme: streak=3, miss_streak=0
+Mewing: streak=0, miss_streak=0
