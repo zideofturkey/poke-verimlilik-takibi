@@ -69,6 +69,13 @@ from common import (
     dun_kacirildi_mi,
     get_aforizma_kullanici_sheet,
     KULLANICI_ADI,
+    sureyi_dakikaya_cevir,
+    sosyal_medya_limit_dakika,
+    sosyal_medya_limit_ayarla,
+    haftalik_rutin_serisi_hesapla,
+    get_haftalik_rutinler_sheet,
+    get_deger,
+    set_deger,
     TR_TZ,
 )
 
@@ -190,6 +197,132 @@ def process_callback(cq):
             )
 
         send_message(cevap_mesaji)
+
+    elif callback_data.startswith("kochaftarutin_"):
+        # GENİŞLETME 1/5: haftalık rutin (Oda tozu alma vb.) duraklatma önerisi.
+        # format: kochaftarutin_<id>_evet / kochaftarutin_<id>_hayir
+        parcalar = callback_data.split("_")
+        sonuc = parcalar[-1]
+        rutin_id = "_".join(parcalar[1:-1])
+
+        rutin = next((r for r in get_aktif_haftalik_rutinler() if r["id"] == rutin_id), None)
+        isim = rutin["isim"] if rutin else rutin_id
+        _, miss_streak = haftalik_rutin_serisi_hesapla(isim)
+
+        if sonuc == "evet":
+            ws = get_haftalik_rutinler_sheet()
+            rows = ws.get_all_values()
+            bulundu = False
+            for i, row in enumerate(rows[1:], start=2):
+                if row[0] == rutin_id:
+                    ws.update_cell(i, 3, "FALSE")  # RutinID, Isim, Aktif -> 3. kolon
+                    bulundu = True
+                    break
+            if bulundu:
+                log_to_sheet(f"Koç kararı (haftalık rutin): {rutin_id}", "Duraklatıldı")
+            durum_metni = "duraklatmayı kabul etti" if bulundu else "duraklatmak istedi ama bir hata oldu"
+        else:
+            log_to_sheet(f"Koç kararı (haftalık rutin): {rutin_id}", "Devam Edildi")
+            durum_metni = "devam etmeyi seçti (duraklatmadı)"
+
+        prompt = (
+            "Sen bir verimlilik koçu botusun (adın Poke). Kullanıcı "
+            f"'{isim}' HAFTALIK rutinini {miss_streak} haftadır kaçırıyordu, "
+            f"sen ona duraklatmayı önermiştin, o da {durum_metni}. Ona kısa "
+            "(2-3 cümle), destekleyici bir tavsiye ver - yargılamadan. "
+            "SADECE mesajı yaz."
+        )
+        try:
+            cevap_mesaji = slm_sorgula(prompt)
+            if turkce_disi_karakter_var_mi(cevap_mesaji):
+                raise ValueError("dil kayması")
+        except Exception as e:
+            print(f"SLM hatası (koç cevabı): {e}")
+            cevap_mesaji = (
+                "🧑‍🏫 Tamam, kaydettim." if sonuc == "evet" else "🧑‍🏫 Tamam, aynen devam ediyoruz 💪"
+            )
+        send_message(cevap_mesaji)
+
+    elif callback_data.startswith("kochedef_"):
+        # GENİŞLETME 2/5: haftalık hedef örüntüsü - somut bir sheet mutasyonu
+        # YOK (hedefler serbest metin, güvenle otomatik düzenlenemez), sadece
+        # kullanıcıyı kendi hedefini yeniden yazmaya yönlendiren bir sohbet.
+        _, hash6, sonuc = callback_data.split("_")
+        metin = get_deger(f"koc_pending_{hash6}") or "hedefin"
+        if sonuc == "evet":
+            log_to_sheet(f"Koç kararı (hedef örüntüsü): {metin[:50]}", "Gözden Geçirilecek")
+            send_message(
+                f"Güzel, '{metin}' hedefini birlikte düşünelim 🧑‍🏫. İstersen bu "
+                "hafta daha ulaşılabilir bir şekilde \"haftalık hedeflerime "
+                "ekle: '...'\" diyerek yeniden yazabilirsin."
+            )
+        else:
+            log_to_sheet(f"Koç kararı (hedef örüntüsü): {metin[:50]}", "Aynen Kaldı")
+            send_message(f"Tamam, '{metin}' aynen kalsın 👍")
+
+    elif callback_data.startswith("kocsuresidolan_"):
+        # GENİŞLETME 3/5: 'Süresi Doldu' görevlerdeki anahtar kelime örüntüsü.
+        _, hash6, sonuc = callback_data.split("_")
+        kelime = get_deger(f"koc_pending_{hash6}") or "bu tür görevler"
+        if sonuc == "evet":
+            log_to_sheet(f"Koç kararı (süresi dolan örüntüsü): {kelime}", "Konuşuldu")
+            send_message(
+                f"🧑‍🏫 '{kelime}' içeren görevleri bir dahaki sefere daha küçük, "
+                "somut adımlara bölerek eklemeyi dene - başlaması daha kolay olabilir."
+            )
+        else:
+            log_to_sheet(f"Koç kararı (süresi dolan örüntüsü): {kelime}", "Gerek Görülmedi")
+            send_message("Tamam, öyleyse bir şey değiştirmiyoruz 👍")
+
+    elif callback_data.startswith("kocgorevrutin_"):
+        # GENİŞLETME 4/5: tekrarlanan ad-hoc görevi kalıcı rutine dönüştürme.
+        # BU, gerçek bir sheet mutasyonu (Rutinler'e yeni satır) yapıyor.
+        _, hash6, sonuc = callback_data.split("_")
+        metin = get_deger(f"koc_pending_{hash6}") or "bu görev"
+        if sonuc == "evet":
+            ws = get_rutinler_sheet()
+            yeni_id = f"kocrutin_{hash6}"
+            guvenli_append_row(ws, [yeni_id, metin, f"Bugün {metin.lower()} yaptın mı?", "TRUE", "TRUE"])
+            log_to_sheet(f"Koç kararı (tekrarlanan görev): {metin}", "Rutin Yapıldı")
+            send_message(
+                f"✅ '{metin}' artık kalıcı bir günlük rutin - her gün soracağım, "
+                "elle yazmana gerek yok. 🧑‍🏫"
+            )
+        else:
+            log_to_sheet(f"Koç kararı (tekrarlanan görev): {metin}", "Rutin Yapılmadı")
+            send_message(f"Tamam, '{metin}' rutin olmadan, elle eklemeye devam ederiz 👍")
+
+    elif callback_data.startswith("kocbosavakit_"):
+        # GENİŞLETME 5/5(a): boşa vakit sınırı - BU, gerçek bir mutasyon
+        # (Durum sekmesindeki dinamik sınır değeri) yapıyor.
+        _, onerilen_limit, sonuc = callback_data.split("_")
+        onerilen_limit = int(onerilen_limit)
+        if sonuc == "evet":
+            sosyal_medya_limit_ayarla(onerilen_limit)
+            log_to_sheet("Koç kararı (boşa vakit sınırı)", f"{onerilen_limit} dk'ya düşürüldü")
+            send_message(f"✅ Günlük sosyal medya sınırını {onerilen_limit} dakikaya güncelledim. 🧑‍🏫")
+        else:
+            log_to_sheet("Koç kararı (boşa vakit sınırı)", "Aynı kaldı")
+            send_message("Tamam, sınır aynı kalsın 👍")
+
+    elif callback_data.startswith("koctelafi_"):
+        # GENİŞLETME 5/5(b): telafi örüntüsü - somut bir mutasyon YOK (henüz
+        # rutin başına özel hatırlatma saati sistemi yok), sadece bir sohbet.
+        parcalar = callback_data.split("_")
+        sonuc = parcalar[-1]
+        rutin_id = "_".join(parcalar[1:-1])
+        rutin = next((r for r in get_aktif_rutinler() if r["id"] == rutin_id), None)
+        isim = rutin["isim"] if rutin else rutin_id
+        if sonuc == "evet":
+            log_to_sheet(f"Koç kararı (telafi örüntüsü): {isim}", "Konuşuldu")
+            send_message(
+                f"🧑‍🏫 '{isim}' rutinini genelde ne zaman hatırlıyorsun? Şu an "
+                "hatırlatmalar 13:00/17:00/21:00'de gidiyor - bana söylersen, "
+                "ileride kişiye özel saatler eklemeyi düşünebiliriz."
+            )
+        else:
+            log_to_sheet(f"Koç kararı (telafi örüntüsü): {isim}", "Gerek Görülmedi")
+            send_message(f"Tamam, '{isim}' için şu anki düzen kalsın 👍")
 
     elif callback_data.startswith("gorev_"):
         # format: gorev_<satirNo>_evet / gorev_<satirNo>_hayir
@@ -1115,8 +1248,6 @@ def _kural_tahmini(text):
     return "GUNLUK_GOREV"
 
 
-SOSYAL_MEDYA_LIMIT_DAKIKA = 90  # Kullanıcının kendi belirlediği günlük boşa vakit sınırı
-
 # Alternatif, daha faydalı aktivite kategorileri ve bunları GunlukGorevler
 # metninde tespit etmeye yarayan anahtar kelimeler. 'Verimli video izleme'
 # rutini ayrıca kontrol ediliyor (bkz. _bugun_yapilan_alternatif_aktiviteler).
@@ -1125,35 +1256,6 @@ _ALTERNATIF_AKTIVITE_ANAHTAR_KELIMELER = {
     "müzik yapma/dinleme": ["müzik", "gitar", "piyano"],
     "hava alma/yürüyüş": ["hava al", "yürüyüş", "yürü"],
 }
-
-
-def _sureyi_dakikaya_cevir(text):
-    """SLM'in SURE_DAKIKA alanı boş/geçersiz gelirse devreye giren basit
-    regex tabanlı bir güvenlik ağı - 'X saat', 'Y dakika', 'yarım saat',
-    'bir buçuk saat' gibi yaygın kalıpları yakalar. Süre çıkaramazsa None
-    döner (kesin bilmediğimiz bir sayıyı ASLA uydurmayız)."""
-    metin = text.lower()
-    toplam = 0.0
-    bulundu = False
-
-    if re.search(r"bir\s*buçuk\s*saat|1[.,]5\s*saat", metin):
-        toplam += 90
-        bulundu = True
-    elif "yarım saat" in metin:
-        toplam += 30
-        bulundu = True
-    else:
-        saat_match = re.search(r"(\d+(?:[.,]\d+)?)\s*saat", metin)
-        if saat_match:
-            toplam += float(saat_match.group(1).replace(",", ".")) * 60
-            bulundu = True
-
-    dakika_match = re.search(r"(\d+)\s*dak", metin)
-    if dakika_match:
-        toplam += int(dakika_match.group(1))
-        bulundu = True
-
-    return int(round(toplam)) if bulundu else None
 
 
 def _gun_tamamlanma_durumu(tarih):
@@ -1227,11 +1329,12 @@ def _bosa_vakit_cevabini_olustur(dakika, tarih, faydali_dakika=None, belirsiz_fa
     bir sayı yok, ama kullanıcıya daha net yazarsa daha isabetli
     değerlendirebileceğimizi nazikçe hatırlatıyoruz."""
     ifade = _gun_ifadesi(tarih)
+    limit = sosyal_medya_limit_dakika()
 
     if dakika is None:
         return (
             f"Not aldım - ama net bir süre anlayamadım. Dakika ya da saat "
-            f"cinsinden söylersen ({SOSYAL_MEDYA_LIMIT_DAKIKA} dk'lık "
+            f"cinsinden söylersen ({limit} dk'lık "
             f"sınırınla karşılaştırıp) gerçek bir değerlendirme yapabilirim. 📝"
         )
 
@@ -1252,20 +1355,20 @@ def _bosa_vakit_cevabini_olustur(dakika, tarih, faydali_dakika=None, belirsiz_fa
     else:
         on_not = ""
 
-    if dakika <= SOSYAL_MEDYA_LIMIT_DAKIKA:
+    if dakika <= limit:
         return (
-            f"{on_not}Harika, {dakika} dakika ile {SOSYAL_MEDYA_LIMIT_DAKIKA} "
+            f"{on_not}Harika, {dakika} dakika ile {limit} "
             f"dakikalık sınırının altında kaldın. Tebrikler {KULLANICI_ADI}! 🎉{belirsiz_not}"
         )
 
-    asilan = dakika - SOSYAL_MEDYA_LIMIT_DAKIKA
+    asilan = dakika - limit
     hepsi_tamam, eksikler = _gun_tamamlanma_durumu(tarih)
 
     if not hepsi_tamam:
         ilk_eksik = eksikler[0]
         return (
             f"{on_not}'{ilk_eksik}' henüz tamamlanmamışken sosyal medyada {dakika} "
-            f"dakika ({SOSYAL_MEDYA_LIMIT_DAKIKA} dk sınırını {asilan} dk "
+            f"dakika ({limit} dk sınırını {asilan} dk "
             f"aşarak) geçirmen düşündürücü {KULLANICI_ADI}. Bunu kendine karşı "
             "bir uyarı olarak gör - planına dönmek için hâlâ vaktin var, "
             f"kendine karşı sabırlı ama net ol. 💪{belirsiz_not}"
@@ -1560,12 +1663,12 @@ def _siniflandir_ve_isle(text, bekleyen):
         # "1 saat 50 dakika sosyal medyada boşa vakit geçirmişim" dedi
         # (hiçbir faydalı kısım belirtmeden), ama SLM "SURE_DAKIKA: 130,
         # FAYDALI_DAKIKA: 40" gibi metinde HİÇ GEÇMEYEN sayılar UYDURDU.
-        # Artık regex tabanlı çıkarım (_sureyi_dakikaya_cevir) HER ZAMAN
-        # önceliklidir - o, sadece metinde GERÇEKTEN yazan sayıları bulur,
-        # halüsinasyon yapamaz. SLM'in SURE_DAKIKA'sı SADECE regex hiçbir
-        # şey bulamazsa (ör. çok yaratıcı/dolaylı bir ifade) yedek olarak
-        # kullanılır.
-        dakika_regex = _sureyi_dakikaya_cevir(text)
+        # Artık regex tabanlı çıkarım (sureyi_dakikaya_cevir, common.py)
+        # HER ZAMAN önceliklidir - o, sadece metinde GERÇEKTEN yazan
+        # sayıları bulur, halüsinasyon yapamaz. SLM'in SURE_DAKIKA'sı
+        # SADECE regex hiçbir şey bulamazsa (ör. çok yaratıcı/dolaylı bir
+        # ifade) yedek olarak kullanılır.
+        dakika_regex = sureyi_dakikaya_cevir(text)
         dakika = dakika_regex if dakika_regex is not None else sure_dakika
 
         # FAYDALI_DAKIKA için DAHA DA SIKI bir güvenlik ağı: metinde

@@ -446,6 +446,56 @@ def aforizma_gonderildi_isaretle(soz):
     guvenli_append_row(ws, [bugun, soz])
 
 
+def sureyi_dakikaya_cevir(text):
+    """SLM'in SURE_DAKIKA alanı boş/geçersiz gelirse devreye giren basit
+    regex tabanlı bir güvenlik ağı - 'X saat', 'Y dakika', 'yarım saat',
+    'bir buçuk saat' gibi yaygın kalıpları yakalar. Süre çıkaramazsa None
+    döner (kesin bilmediğimiz bir sayıyı ASLA uydurmayız). handle_update.py
+    (anlık cevap) VE analiz.py (haftalık trend analizi, Koç) tarafından
+    paylaşılıyor - bu yüzden common.py'de, tek bir yerde tutuluyor."""
+    metin = text.lower()
+    toplam = 0.0
+    bulundu = False
+
+    if re.search(r"bir\s*buçuk\s*saat|1[.,]5\s*saat", metin):
+        toplam += 90
+        bulundu = True
+    elif "yarım saat" in metin:
+        toplam += 30
+        bulundu = True
+    else:
+        saat_match = re.search(r"(\d+(?:[.,]\d+)?)\s*saat", metin)
+        if saat_match:
+            toplam += float(saat_match.group(1).replace(",", ".")) * 60
+            bulundu = True
+
+    dakika_match = re.search(r"(\d+)\s*dak", metin)
+    if dakika_match:
+        toplam += int(dakika_match.group(1))
+        bulundu = True
+
+    return int(round(toplam)) if bulundu else None
+
+
+SOSYAL_MEDYA_LIMIT_VARSAYILAN = 90
+
+
+def sosyal_medya_limit_dakika():
+    """Kullanıcının güncel günlük boşa-vakit sınırını döndürür. Artık
+    sabit bir Python sabiti DEĞİL - Durum sekmesinde tutuluyor, böylece
+    Koç (analiz.py) kullanıcının onayıyla bu sınırı değiştirebilir
+    (bkz. 'Boşa vakit trend analizi' Koç önerisi)."""
+    deger = get_deger("sosyal_medya_limit_dakika")
+    try:
+        return int(deger)
+    except (TypeError, ValueError):
+        return SOSYAL_MEDYA_LIMIT_VARSAYILAN
+
+
+def sosyal_medya_limit_ayarla(yeni_limit):
+    set_deger("sosyal_medya_limit_dakika", str(int(yeni_limit)))
+
+
 def rutin_serisi_hesapla(rutin_isim):
     """[MULTI-AGENT ROL: DEĞERLENDİRİCİ] Bu fonksiyon Değerlendirici
     agent'ının çekirdeği - ham veriyi (Takip) örüntüye (seri/kaçırma)
@@ -487,6 +537,45 @@ def rutin_serisi_hesapla(rutin_isim):
                 break
             miss_streak += 1
         gun -= datetime.timedelta(days=1)
+    return streak, miss_streak
+
+
+def haftalik_rutin_serisi_hesapla(rutin_isim):
+    """rutin_serisi_hesapla'nın HAFTALIK rutinler (Oda tozu alma vb.) için
+    eşleniği - günler yerine HAFTALAR üzerinden gider. Geçen haftadan
+    geriye doğru bakıp kaç HAFTA üst üste tamamlandığını (streak) ya da
+    kaçırıldığını (miss_streak) hesaplar. Bu hafta hâlâ devam ettiği için
+    (henüz bitmediği için) hesaplamaya dahil edilmez - GEÇEN haftadan
+    başlar."""
+    ws = get_haftalik_rutin_takip_sheet()
+    rows = ws.get_all_records()
+    hafta_durum = {}
+    for r in rows:
+        if r.get("Isim") != rutin_isim:
+            continue
+        hafta_durum[r.get("HaftaBaslangic")] = r.get("Durum")
+
+    bugun = datetime.datetime.now(TR_TZ).date()
+    bu_hafta_pazartesi = bugun - datetime.timedelta(days=bugun.weekday())
+    streak = 0
+    miss_streak = 0
+    hafta_baslangic = bu_hafta_pazartesi - datetime.timedelta(days=7)  # geçen hafta
+    while True:
+        anahtar = hafta_baslangic.strftime("%Y-%m-%d")
+        durum = hafta_durum.get(anahtar)
+        if durum is None:
+            break
+        if durum == "Telafi":
+            break
+        if durum == "Yapıldı":
+            if miss_streak > 0:
+                break
+            streak += 1
+        else:  # "Yapılmadı" ya da hâlâ "Bekliyor" (hafta kapandığı için kaçırılmış sayılır)
+            if streak > 0:
+                break
+            miss_streak += 1
+        hafta_baslangic -= datetime.timedelta(days=7)
     return streak, miss_streak
 
 
