@@ -1,0 +1,13 @@
+=== Tekrarlanan görev metinleri (3+ farklı günde) ===
+  'book & coffee' -> 2 gün: ['2026-07-12', '2026-07-15']
+  'finansal özgürlük oku' -> 2 gün: ['2026-07-23', '2026-07-26']
+  'followurfirm projesi için girizgah yap gemini ile' -> 2 gün: ['2026-07-30', '2026-07-31']
+  'claude skills nasıl kullanılmalı araştırması (kullanım durumuna uygunsa entegre edilecek)' -> 2 gün: ['2026-07-31', '2026-08-01']
+
+=== Süresi Doldu görevler ===
+Toplam 5 adet:
+  Une film
+  Watch at least 2 stock market evaluation videos
+  une film - av mevsimi
+  DMLKT ediz için avantajlı mı araştırması (kaç senesi var, ne kadar düzenki yatırım ile ev sahibi olunabiliyor)
+  Continuer a filmer
