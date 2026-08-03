@@ -1,5 +1,5 @@
-Zaman: 2026-08-02T17:21:26.933929+03:00
-Bağlam: slm_sorgula deneme 2/5 (model=qwen2.5:3b)
+Zaman: 2026-08-03T12:19:41.664261+03:00
+Bağlam: slm_sorgula deneme 1/5 (model=qwen2.5:3b)
 
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/urllib3/connectionpool.py", line 534, in _make_request
@@ -68,27 +68,3 @@ Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/adapters.py", line 742, in send
     raise ReadTimeout(e, request=request)
 requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
-
-
---- ollama serve logu (son 2000 karakter) ---
-_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 4096
-	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.300
-	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
-slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
-slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 2752
-slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    512, progress = 0.19, t =  18.18 s / 28.16 tokens per second
-slot   operator(): id  0 | task 0 | cached n_tokens = 512, memory_seq_rm [512, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1024, progress = 0.37, t =  37.38 s / 27.39 tokens per second
-slot   operator(): id  0 | task 0 | cached n_tokens = 1024, memory_seq_rm [1024, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1536, progress = 0.56, t =  57.68 s / 26.63 tokens per second
-slot   operator(): id  0 | task 0 | cached n_tokens = 1536, memory_seq_rm [1536, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2048, progress = 0.74, t =  79.03 s / 25.91 tokens per second
-slot   operator(): id  0 | task 0 | cached n_tokens = 2048, memory_seq_rm [2048, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2560, progress = 0.93, t = 101.48 s / 25.23 tokens per second
-slot   operator(): id  0 | task 0 | cached n_tokens = 2560, memory_seq_rm [2560, end)
-slot init_sampler: id  0 | task 0 | init sampler, took 0.65 ms, tokens: text = 2752, total = 2752
-[GIN] 2026/08/02 - 14:19:03 | 500 |          2m0s |       127.0.0.1 | POST     "/api/generate"
-srv          stop: cancel task, id_task = 0
-slot      release: id  0 | task 0 | stop processing: n_tokens = 2828, truncated = 0
-srv  update_slots: all slots are idle
