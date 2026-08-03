@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-03T15:25:29.529208+03:00",
+  "uretim_zamani": "2026-08-03T18:25:30.154370+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1355,18 +1355,31 @@
       "tarih": "3 - 9 Ağu",
       "tarih_iso": "2026-08-03",
       "level": 0,
-      "maks": 1,
-      "rutinler": []
+      "maks": 3,
+      "rutinler": [
+        {
+          "isim": "Oda tozu alma",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Uzun metraj izlence",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Making Music",
+          "durum": "Bekliyor"
+        }
+      ]
     }
   ],
   "haftalikRutinOranlari": [
     {
       "isim": "Oda tozu alma",
-      "oran": 67
+      "oran": 50
     },
     {
       "isim": "Uzun metraj izlence",
-      "oran": 100
+      "oran": 67
     },
     {
       "isim": "Making Music",
@@ -1790,10 +1803,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-03T12:25:10Z",
+      "zaman": "2026-08-03T15:25:13Z",
       "durum": "warn",
-      "runId": "30813496297",
+      "runId": "30827400128",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-03T14:10:54Z",
+      "durum": "ok",
+      "runId": "30821465983",
+      "sureSn": 24
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-03T12:55:24Z",
+      "durum": "ok",
+      "runId": "30815600187",
+      "sureSn": 27
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-03T12:32:18Z",
+      "durum": "ok",
+      "runId": "30813982026",
+      "sureSn": 31
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-03T12:25:10Z",
+      "durum": "ok",
+      "runId": "30813496297",
+      "sureSn": 46
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1864,34 +1905,6 @@
       "durum": "ok",
       "runId": "30786807507",
       "sureSn": 41
-    },
-    {
-      "ad": "GECICI - Koc Veri Kontrol (silinecek)",
-      "zaman": "2026-08-03T05:16:32Z",
-      "durum": "ok",
-      "runId": "30786707471",
-      "sureSn": 100
-    },
-    {
-      "ad": "GECICI - Koc Veri Kontrol (silinecek)",
-      "zaman": "2026-08-03T05:14:42Z",
-      "durum": "ok",
-      "runId": "30786610922",
-      "sureSn": 16
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-03T05:03:59Z",
-      "durum": "ok",
-      "runId": "30786091509",
-      "sureSn": 49
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-03T04:55:17Z",
-      "durum": "ok",
-      "runId": "30785717421",
-      "sureSn": 209
     }
   ],
   "workflowTurOzet": [
@@ -1899,31 +1912,31 @@
       "ad": "Panel",
       "toplam": 7,
       "oran": 86,
-      "ortSureSn": 45
+      "ortSureSn": 41
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 8,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 20
     },
     {
       "ad": "Gönder",
-      "toplam": 1,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 15
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 13,
-      "oran": 100,
-      "ortSureSn": 136
+      "ortSureSn": 21
     },
     {
       "ad": "Dinle",
-      "toplam": 4,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 36
+      "ortSureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 12,
+      "oran": 100,
+      "ortSureSn": 144
     },
     {
       "ad": "Temizle",
