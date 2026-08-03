@@ -168,6 +168,7 @@ def process_callback(cq):
                 log_to_sheet(f"Koç kararı: {rutin_id}", "Duraklatıldı")
             durum_metni = "duraklatmayı kabul etti" if bulundu else "duraklatmak istedi ama bir hata oldu"
         else:
+            log_to_sheet(f"Koç kararı: {rutin_id}", "Devam Edildi")
             durum_metni = "devam etmeyi seçti (duraklatmadı)"
 
         prompt = (
