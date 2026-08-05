@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-05T01:36:13.169839+03:00",
+  "uretim_zamani": "2026-08-05T03:04:00.017464+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 54
   },
@@ -1803,10 +1803,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-04T22:35:59Z",
+      "zaman": "2026-08-05T00:03:44Z",
       "durum": "warn",
-      "runId": "30956997006",
+      "runId": "30962066638",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-04T23:16:44Z",
+      "durum": "ok",
+      "runId": "30959449040",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-04T23:09:52Z",
+      "durum": "ok",
+      "runId": "30959053133",
+      "sureSn": 33
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-04T22:35:59Z",
+      "durum": "ok",
+      "runId": "30956997006",
+      "sureSn": 39
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1884,45 +1905,24 @@
       "durum": "ok",
       "runId": "30935700196",
       "sureSn": 23
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-04T16:15:42Z",
-      "durum": "ok",
-      "runId": "30928270719",
-      "sureSn": 25
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-04T15:59:50Z",
-      "durum": "ok",
-      "runId": "30926966723",
-      "sureSn": 17
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-04T15:55:16Z",
-      "durum": "ok",
-      "runId": "30926583797",
-      "sureSn": 44
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 10,
-      "oran": 90,
+      "toplam": 11,
+      "oran": 91,
       "ortSureSn": 44
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 11,
+      "toplam": 12,
       "oran": 100,
-      "ortSureSn": 23
+      "ortSureSn": 22
     },
     {
       "ad": "Dinle",
-      "toplam": 8,
+      "toplam": 9,
       "oran": 100,
       "ortSureSn": 29
     },
@@ -1934,9 +1934,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 7,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 40
+      "ortSureSn": 41
     }
   ],
   "kocKararlari": [],
