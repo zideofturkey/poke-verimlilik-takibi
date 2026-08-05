@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-05T12:20:52.646812+03:00",
+  "uretim_zamani": "2026-08-05T14:37:02.355327+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 54
   },
@@ -1803,10 +1803,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-05T09:20:37Z",
+      "zaman": "2026-08-05T11:36:45Z",
       "durum": "warn",
-      "runId": "30992854289",
+      "runId": "31002154247",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-05T11:34:02Z",
+      "durum": "ok",
+      "runId": "31001973892",
+      "sureSn": 14
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-05T09:41:37Z",
+      "durum": "ok",
+      "runId": "30994321816",
+      "sureSn": 36
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-05T09:20:37Z",
+      "durum": "ok",
+      "runId": "30992854289",
+      "sureSn": 43
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1884,27 +1905,6 @@
       "durum": "ok",
       "runId": "30959449040",
       "sureSn": 17
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-04T23:09:52Z",
-      "durum": "ok",
-      "runId": "30959053133",
-      "sureSn": 33
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-04T22:35:59Z",
-      "durum": "ok",
-      "runId": "30956997006",
-      "sureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-04T22:01:09Z",
-      "durum": "ok",
-      "runId": "30954739257",
-      "sureSn": 65
     }
   ],
   "workflowTurOzet": [
@@ -1918,19 +1918,19 @@
       "ad": "Aforizma - Rastgele Saatte Gönder",
       "toplam": 14,
       "oran": 100,
-      "ortSureSn": 22
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 26
+      "ortSureSn": 21
     },
     {
       "ad": "Dinle",
-      "toplam": 9,
+      "toplam": 10,
       "oran": 100,
       "ortSureSn": 31
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 26
     }
   ],
   "kocKararlari": [],
