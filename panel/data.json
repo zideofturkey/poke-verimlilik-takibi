@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-07T19:57:50.361849+03:00",
+  "uretim_zamani": "2026-08-07T20:53:33.309297+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 54
   },
@@ -1795,10 +1795,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-07T16:57:31Z",
+      "zaman": "2026-08-07T17:53:14Z",
       "durum": "warn",
+      "runId": "31204376249",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-07T17:30:23Z",
+      "durum": "ok",
+      "runId": "31202609239",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-07T16:58:59Z",
+      "durum": "ok",
+      "runId": "31200149378",
+      "sureSn": 41
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-07T16:57:31Z",
+      "durum": "ok",
       "runId": "31200037087",
-      "sureSn": 3
+      "sureSn": 47
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1876,27 +1897,6 @@
       "durum": "ok",
       "runId": "31176925160",
       "sureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-07T11:52:55Z",
-      "durum": "ok",
-      "runId": "31175862214",
-      "sureSn": 31
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-07T11:45:41Z",
-      "durum": "ok",
-      "runId": "31175370063",
-      "sureSn": 46
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-07T11:29:01Z",
-      "durum": "ok",
-      "runId": "31174253577",
-      "sureSn": 23
     }
   ],
   "workflowTurOzet": [
@@ -1908,7 +1908,7 @@
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 14,
+      "toplam": 15,
       "oran": 100,
       "ortSureSn": 19
     },
@@ -1926,9 +1926,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 2,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 79
+      "ortSureSn": 131
     }
   ],
   "kocKararlari": [],
