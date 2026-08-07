@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-08-07T23:41:27.233612+03:00",
+  "uretim_zamani": "2026-08-08T00:39:39.901251+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 54
+    "haftaTamamlamaYuzdesi": 40
   },
   "heatmap": [
-    {
-      "tarih": "24 June 2026",
-      "tarih_iso": "2026-06-24",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "25 June 2026",
       "tarih_iso": "2026-06-25",
@@ -1218,6 +1191,33 @@
           "durum": null
         }
       ]
+    },
+    {
+      "tarih": "08 August 2026",
+      "tarih_iso": "2026-08-08",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1795,10 +1795,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-07T20:41:12Z",
+      "zaman": "2026-08-07T21:39:23Z",
       "durum": "warn",
-      "runId": "31216926593",
+      "runId": "31220877069",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-07T21:27:33Z",
+      "durum": "ok",
+      "runId": "31220115175",
+      "sureSn": 18
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-07T20:55:19Z",
+      "durum": "ok",
+      "runId": "31217922010",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-07T20:49:44Z",
+      "durum": "ok",
+      "runId": "31217523102",
+      "sureSn": 40
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-07T20:41:12Z",
+      "durum": "ok",
+      "runId": "31216926593",
+      "sureSn": 91
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1869,34 +1897,6 @@
       "durum": "ok",
       "runId": "31202609239",
       "sureSn": 17
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-07T16:58:59Z",
-      "durum": "ok",
-      "runId": "31200149378",
-      "sureSn": 41
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-07T16:57:31Z",
-      "durum": "ok",
-      "runId": "31200037087",
-      "sureSn": 47
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-07T16:30:54Z",
-      "durum": "ok",
-      "runId": "31197934571",
-      "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-07T15:56:25Z",
-      "durum": "ok",
-      "runId": "31195111140",
-      "sureSn": 42
     }
   ],
   "workflowTurOzet": [
@@ -1904,25 +1904,25 @@
       "ad": "Panel",
       "toplam": 12,
       "oran": 92,
-      "ortSureSn": 43
+      "ortSureSn": 47
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 14,
+      "toplam": 15,
       "oran": 100,
-      "ortSureSn": 18
+      "ortSureSn": 19
     },
     {
       "ad": "Dinle",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 35
+      "ortSureSn": 36
     },
     {
       "ad": "Gönder",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 24
     },
     {
       "ad": "Webhook",
