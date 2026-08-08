@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-08-09T00:31:05.725044+03:00",
+  "uretim_zamani": "2026-08-09T01:29:58.445477+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 37
+    "haftaTamamlamaYuzdesi": 43
   },
   "heatmap": [
     {
@@ -1168,11 +1168,11 @@
     {
       "tarih": "08 August 2026",
       "tarih_iso": "2026-08-08",
-      "level": 2,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1184,7 +1184,7 @@
         },
         {
           "isim": "Verimli video izleme",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Mewing",
@@ -1235,7 +1235,7 @@
     },
     {
       "isim": "Verimli video izleme",
-      "oran": 78
+      "oran": 79
     },
     {
       "isim": "Mewing",
@@ -1791,10 +1791,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-08T21:30:53Z",
+      "zaman": "2026-08-08T22:29:45Z",
       "durum": "warn",
-      "runId": "31279491978",
+      "runId": "31281819461",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-08T22:15:41Z",
+      "durum": "ok",
+      "runId": "31281280068",
+      "sureSn": 19
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-08T21:51:44Z",
+      "durum": "ok",
+      "runId": "31280332434",
+      "sureSn": 14
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-08T21:47:32Z",
+      "durum": "ok",
+      "runId": "31280160583",
+      "sureSn": 44
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-08T21:36:55Z",
+      "durum": "ok",
+      "runId": "31279734940",
+      "sureSn": 24
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-08T21:33:16Z",
+      "durum": "ok",
+      "runId": "31279587817",
+      "sureSn": 45
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-08T21:30:53Z",
+      "durum": "ok",
+      "runId": "31279491978",
+      "sureSn": 35
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1851,74 +1893,32 @@
       "durum": "ok",
       "runId": "31274805416",
       "sureSn": 30
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-08T19:30:24Z",
-      "durum": "ok",
-      "runId": "31274590489",
-      "sureSn": 42
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T19:05:48Z",
-      "durum": "ok",
-      "runId": "31273578523",
-      "sureSn": 23
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-08T18:48:59Z",
-      "durum": "ok",
-      "runId": "31272860337",
-      "sureSn": 41
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-08T18:37:48Z",
-      "durum": "ok",
-      "runId": "31272400394",
-      "sureSn": 43
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-08T18:25:59Z",
-      "durum": "ok",
-      "runId": "31271912091",
-      "sureSn": 19
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T18:23:25Z",
-      "durum": "ok",
-      "runId": "31271806658",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
-      "ortSureSn": 40
+      "toplam": 10,
+      "oran": 90,
+      "ortSureSn": 38
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 17,
+      "toplam": 16,
       "oran": 100,
-      "ortSureSn": 21
+      "ortSureSn": 18
     },
     {
       "ad": "Webhook",
-      "toplam": 2,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 36
+      "ortSureSn": 40
     },
     {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 30
     },
     {
       "ad": "Gönder",
