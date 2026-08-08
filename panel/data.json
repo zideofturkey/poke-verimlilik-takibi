@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-08T09:54:17.433143+03:00",
+  "uretim_zamani": "2026-08-08T10:50:52.129833+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 40
   },
@@ -1795,10 +1795,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-08T06:53:56Z",
+      "zaman": "2026-08-08T07:50:30Z",
       "durum": "warn",
-      "runId": "31244952120",
+      "runId": "31247067620",
       "sureSn": 9
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-08T07:26:20Z",
+      "durum": "ok",
+      "runId": "31246163000",
+      "sureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-08T07:04:17Z",
+      "durum": "ok",
+      "runId": "31245341504",
+      "sureSn": 39
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-08T06:53:56Z",
+      "durum": "ok",
+      "runId": "31244952120",
+      "sureSn": 46
     },
     {
       "ad": "Gönder",
@@ -1876,27 +1897,6 @@
       "durum": "ok",
       "runId": "31235270168",
       "sureSn": 19
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-08T02:05:50Z",
-      "durum": "ok",
-      "runId": "31234196002",
-      "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-08T01:42:20Z",
-      "durum": "ok",
-      "runId": "31233279640",
-      "sureSn": 45
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T00:43:36Z",
-      "durum": "ok",
-      "runId": "31230882819",
-      "sureSn": 19
     }
   ],
   "workflowTurOzet": [
@@ -1905,12 +1905,6 @@
       "toplam": 12,
       "oran": 92,
       "ortSureSn": 46
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 21
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1923,6 +1917,12 @@
       "toplam": 10,
       "oran": 100,
       "ortSureSn": 32
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 21
     }
   ],
   "kocKararlari": [],
