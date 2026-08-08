@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-08-08T23:30:54.902126+03:00",
+  "uretim_zamani": "2026-08-09T00:31:05.725044+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 46
+    "haftaTamamlamaYuzdesi": 37
   },
   "heatmap": [
-    {
-      "tarih": "25 June 2026",
-      "tarih_iso": "2026-06-25",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "26 June 2026",
       "tarih_iso": "2026-06-26",
@@ -1218,6 +1191,33 @@
           "durum": "Yapıldı"
         }
       ]
+    },
+    {
+      "tarih": "09 August 2026",
+      "tarih_iso": "2026-08-09",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1405,7 +1405,7 @@
         },
         {
           "metin": "Yeni firma Ads kurulumları",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "Son ve en önemlisi: Gün içinde uyumama ve gece geç saatte yatmama",
@@ -1791,10 +1791,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-08T20:30:30Z",
+      "zaman": "2026-08-08T21:30:53Z",
       "durum": "warn",
-      "runId": "31277070670",
+      "runId": "31279491978",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-08T21:18:08Z",
+      "durum": "ok",
+      "runId": "31278983744",
+      "sureSn": 20
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-08T21:01:28Z",
+      "durum": "ok",
+      "runId": "31278314072",
+      "sureSn": 33
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-08T20:45:35Z",
+      "durum": "ok",
+      "runId": "31277672406",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-08T20:37:56Z",
+      "durum": "ok",
+      "runId": "31277361747",
+      "sureSn": 32
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-08T20:30:30Z",
+      "durum": "ok",
+      "runId": "31277070670",
+      "sureSn": 50
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1858,41 +1893,6 @@
       "durum": "ok",
       "runId": "31271806658",
       "sureSn": 18
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T17:56:10Z",
-      "durum": "ok",
-      "runId": "31270664454",
-      "sureSn": 23
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-08T17:36:55Z",
-      "durum": "ok",
-      "runId": "31269861799",
-      "sureSn": 26
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-08T17:30:54Z",
-      "durum": "ok",
-      "runId": "31269611920",
-      "sureSn": 37
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T17:28:16Z",
-      "durum": "ok",
-      "runId": "31269499098",
-      "sureSn": 22
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T16:58:49Z",
-      "durum": "ok",
-      "runId": "31268280559",
-      "sureSn": 13
     }
   ],
   "workflowTurOzet": [
@@ -1900,31 +1900,31 @@
       "ad": "Panel",
       "toplam": 11,
       "oran": 91,
-      "ortSureSn": 39
+      "ortSureSn": 40
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 16,
+      "toplam": 17,
       "oran": 100,
       "ortSureSn": 21
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 36
     },
     {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 32
     },
     {
       "ad": "Gönder",
       "toplam": 2,
       "oran": 100,
       "ortSureSn": 18
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 3,
-      "oran": 100,
-      "ortSureSn": 156
     }
   ],
   "kocKararlari": [],
