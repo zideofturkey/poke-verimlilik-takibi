@@ -1,4 +1,0 @@
-Değişim sonrası limit: 75
-Silinecek sentetik satırlar: [237, 238, 239, 240]
-Sentetik boşa-vakit satırları silindi.
-Limit varsayılana (90) geri döndürüldü: 90

@@ -1,6 +1,0 @@
-=== Rutinler sekmesi (test kaydı var mı?) ===
-BULUNDU: satır 7 -> ['kocrutin_d79805', 'test kocrutin gorevi zzz', 'Bugün test kocrutin gorevi zzz yaptın mı?', 'TRUE', 'TRUE']
-
-Silinecek görev satırları: [94, 95, 96]
-Sentetik görev satırları silindi.
-Sentetik rutin satırı silindi.
