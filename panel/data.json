@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-09T10:32:44.679257+03:00",
+  "uretim_zamani": "2026-08-09T11:44:00.646869+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1791,10 +1791,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-09T07:32:28Z",
+      "zaman": "2026-08-09T08:43:47Z",
       "durum": "warn",
+      "runId": "31304207978",
+      "sureSn": 2
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T07:59:54Z",
+      "durum": "ok",
+      "runId": "31302449627",
+      "sureSn": 16
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-09T07:55:05Z",
+      "durum": "ok",
+      "runId": "31302266328",
+      "sureSn": 26
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-09T07:32:28Z",
+      "durum": "ok",
       "runId": "31301388804",
-      "sureSn": 3
+      "sureSn": 41
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1872,27 +1893,6 @@
       "durum": "ok",
       "runId": "31293021995",
       "sureSn": 51
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-09T02:55:26Z",
-      "durum": "ok",
-      "runId": "31291357822",
-      "sureSn": 17
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-09T02:15:51Z",
-      "durum": "ok",
-      "runId": "31289979567",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T01:54:14Z",
-      "durum": "ok",
-      "runId": "31289214202",
-      "sureSn": 29
     }
   ],
   "workflowTurOzet": [
@@ -1900,25 +1900,25 @@
       "ad": "Panel",
       "toplam": 10,
       "oran": 90,
-      "ortSureSn": 38
+      "ortSureSn": 37
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 15,
+      "toplam": 14,
       "oran": 100,
-      "ortSureSn": 16
+      "ortSureSn": 17
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
       "ortSureSn": 29
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 20
     },
     {
       "ad": "Webhook",
