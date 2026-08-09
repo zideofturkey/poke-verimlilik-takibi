@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-08-09T20:32:29.191702+03:00",
+  "uretim_zamani": "2026-08-09T21:41:44.370813+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 51
+    "haftaTamamlamaYuzdesi": 54
   },
   "heatmap": [
     {
@@ -1195,7 +1195,7 @@
     {
       "tarih": "09 August 2026",
       "tarih_iso": "2026-08-09",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1215,7 +1215,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     }
@@ -1405,11 +1405,11 @@
         },
         {
           "metin": "MuratAbi'ye sorgu mesajı atma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Oto&Moto Ads Hatırlatması",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Dilediğin bir kitabı 30 dakika okuma",
@@ -1803,10 +1803,80 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-09T17:32:10Z",
+      "zaman": "2026-08-09T18:41:29Z",
       "durum": "warn",
+      "runId": "31329676146",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-09T18:30:37Z",
+      "durum": "ok",
+      "runId": "31329211929",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-09T18:30:34Z",
+      "durum": "ok",
+      "runId": "31329209359",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-09T18:30:11Z",
+      "durum": "ok",
+      "runId": "31329188199",
+      "sureSn": 44
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-09T18:29:59Z",
+      "durum": "ok",
+      "runId": "31329177902",
+      "sureSn": 27
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-09T18:29:21Z",
+      "durum": "ok",
+      "runId": "31329155108",
+      "sureSn": 21
+    },
+    {
+      "ad": "Analiz",
+      "zaman": "2026-08-09T18:20:55Z",
+      "durum": "ok",
+      "runId": "31328800369",
+      "sureSn": 290
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T18:05:37Z",
+      "durum": "ok",
+      "runId": "31328140099",
+      "sureSn": 13
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T17:44:58Z",
+      "durum": "ok",
+      "runId": "31327219430",
+      "sureSn": 18
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-09T17:37:16Z",
+      "durum": "ok",
+      "runId": "31326882741",
+      "sureSn": 26
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-09T17:32:10Z",
+      "durum": "ok",
       "runId": "31326654204",
-      "sureSn": 2
+      "sureSn": 44
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1835,102 +1905,20 @@
       "durum": "ok",
       "runId": "31323485619",
       "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-09T15:57:55Z",
-      "durum": "ok",
-      "runId": "31322520873",
-      "sureSn": 53
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-09T15:54:24Z",
-      "durum": "ok",
-      "runId": "31322366461",
-      "sureSn": 11
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T15:52:11Z",
-      "durum": "ok",
-      "runId": "31322268724",
-      "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T15:52:11Z",
-      "durum": "ok",
-      "runId": "31322268660",
-      "sureSn": 45
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T15:52:07Z",
-      "durum": "ok",
-      "runId": "31322266106",
-      "sureSn": 28
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-09T15:38:07Z",
-      "durum": "ok",
-      "runId": "31321637031",
-      "sureSn": 25
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-09T15:19:16Z",
-      "durum": "ok",
-      "runId": "31320791151",
-      "sureSn": 16
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-09T15:01:03Z",
-      "durum": "ok",
-      "runId": "31319980706",
-      "sureSn": 45
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-09T14:49:51Z",
-      "durum": "ok",
-      "runId": "31319478721",
-      "sureSn": 15
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-09T14:41:12Z",
-      "durum": "ok",
-      "runId": "31319093250",
-      "sureSn": 26
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 12,
-      "oran": 100,
-      "ortSureSn": 15
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 29
+      "toplam": 8,
+      "oran": 88,
+      "ortSureSn": 40
     },
     {
       "ad": "Webhook",
-      "toplam": 7,
+      "toplam": 10,
       "oran": 100,
-      "ortSureSn": 113
+      "ortSureSn": 72
     },
     {
       "ad": "Gönder",
@@ -1940,15 +1928,27 @@
     },
     {
       "ad": "Analiz",
-      "toplam": 1,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 451
+      "ortSureSn": 370
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 29
     },
     {
       "ad": "GECICI - Koc Test2 Bosavakit (silinecek)",
-      "toplam": 2,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 82
+      "ortSureSn": 15
     }
   ],
   "kocKararlari": [],
@@ -2127,6 +2127,11 @@
   "hataGecmisi": [
     {
       "tarih": "2026-08-09",
+      "saat": "21:24",
+      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
+    },
+    {
+      "tarih": "2026-08-09",
       "saat": "15:21",
       "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:3b)"
     },
@@ -2194,11 +2199,6 @@
       "tarih": "2026-08-01",
       "saat": "04:09",
       "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
-    },
-    {
-      "tarih": "2026-08-01",
-      "saat": "04:07",
-      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
     }
   ]
 }
