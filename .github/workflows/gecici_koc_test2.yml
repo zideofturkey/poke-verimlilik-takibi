@@ -20,18 +20,12 @@ jobs:
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: echo "$SERVICE_ACCOUNT_JSON" > service_account.json
-      - name: 1. Sentetik veri ekle
+      - name: 1. Doğrula ve temizle
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
         run: python temp_koc_test2.py > koc_test2_ciktisi.txt 2>&1 || true
-      - name: 2. Tespit fonksiyonunu çalıştır
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
-          SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python -c "from analiz import bosa_vakit_trend_sun; bosa_vakit_trend_sun()" >> koc_test2_ciktisi.txt 2>&1 || true
       - name: service_account.json'ı sil (güvenlik)
         if: always()
         run: rm -f service_account.json

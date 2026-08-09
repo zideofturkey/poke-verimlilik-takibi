@@ -1,20 +1,24 @@
-"""GEÇİCİ TEST 2/2 - 'boşa vakit trend' mekanizmasını sentetik veriyle
-tetikler: son 10 günden 4 gün için sınırı aşan 'Boşa geçen vakit'
-kayıtları ekler, sonra tespit fonksiyonunu çalıştırır."""
+"""GEÇİCİ DOĞRULAMA+TEMİZLİK 2/2 - limitin gerçekten değiştiğini
+doğrular, sonra sentetik 'Boşa geçen vakit' kayıtlarını temizler ve
+limiti varsayılana (90) geri döndürür."""
 import datetime
-from common import get_sheet, guvenli_append_row, TR_TZ
+from common import get_sheet, sosyal_medya_limit_dakika, sosyal_medya_limit_ayarla, TR_TZ
+
+TEST_DETAY = "150 dakika sosyal medyada test verisi"
 
 def main():
+    print("Değişim sonrası limit:", sosyal_medya_limit_dakika())
+
     ws = get_sheet()
-    bugun = datetime.datetime.now(TR_TZ).date()
-    eklenen_satirlar = []
-    # Son 10 günün İÇİNDEN 4 farklı, henüz veri olmayan güne (sınırın
-    # ÜZERİNDE, 150 dakika) sentetik kayıt ekleyelim.
-    for i in [2, 4, 6, 8]:
-        tarih = (bugun - datetime.timedelta(days=i)).strftime("%Y-%m-%d")
-        guvenli_append_row(ws, [tarih, "", "Boşa geçen vakit", "Beyan", "150 dakika sosyal medyada test verisi"])
-        eklenen_satirlar.append(tarih)
-    print("Eklenen sentetik günler:", eklenen_satirlar)
+    rows = ws.get_all_values()
+    silinecek = [i + 1 for i, row in enumerate(rows) if len(row) >= 5 and row[4] == TEST_DETAY]
+    print("Silinecek sentetik satırlar:", silinecek)
+    for satir_no in sorted(silinecek, reverse=True):
+        ws.delete_rows(satir_no)
+    print("Sentetik boşa-vakit satırları silindi.")
+
+    sosyal_medya_limit_ayarla(90)
+    print("Limit varsayılana (90) geri döndürüldü:", sosyal_medya_limit_dakika())
 
 if __name__ == "__main__":
     main()
