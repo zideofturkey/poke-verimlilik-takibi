@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-08-09T23:33:32.213941+03:00",
+  "uretim_zamani": "2026-08-10T00:32:50.721951+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 54
+    "haftaTamamlamaYuzdesi": 43
   },
   "heatmap": [
-    {
-      "tarih": "26 June 2026",
-      "tarih_iso": "2026-06-26",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "27 June 2026",
       "tarih_iso": "2026-06-27",
@@ -1218,6 +1191,33 @@
           "durum": "Yapıldı"
         }
       ]
+    },
+    {
+      "tarih": "10 August 2026",
+      "tarih_iso": "2026-08-10",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1243,13 +1243,6 @@
     }
   ],
   "haftalikRutinHeatmap": [
-    {
-      "tarih": "18 - 24 May",
-      "tarih_iso": "2026-05-18",
-      "level": 0,
-      "maks": 1,
-      "rutinler": []
-    },
     {
       "tarih": "25 - 31 May",
       "tarih_iso": "2026-05-25",
@@ -1370,6 +1363,13 @@
           "durum": "Yapıldı"
         }
       ]
+    },
+    {
+      "tarih": "10 - 16 Ağu",
+      "tarih_iso": "2026-08-10",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
     }
   ],
   "haftalikRutinOranlari": [
@@ -1803,10 +1803,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-09T20:33:19Z",
+      "zaman": "2026-08-09T21:32:37Z",
       "durum": "warn",
-      "runId": "31334551074",
+      "runId": "31337104923",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T21:29:08Z",
+      "durum": "ok",
+      "runId": "31336945943",
+      "sureSn": 15
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T20:58:31Z",
+      "durum": "ok",
+      "runId": "31335619787",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-09T20:41:00Z",
+      "durum": "ok",
+      "runId": "31334871411",
+      "sureSn": 23
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-09T20:33:19Z",
+      "durum": "ok",
+      "runId": "31334551074",
+      "sureSn": 37
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1877,34 +1905,6 @@
       "durum": "ok",
       "runId": "31329211929",
       "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T18:30:34Z",
-      "durum": "ok",
-      "runId": "31329209359",
-      "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T18:30:11Z",
-      "durum": "ok",
-      "runId": "31329188199",
-      "sureSn": 44
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T18:29:59Z",
-      "durum": "ok",
-      "runId": "31329177902",
-      "sureSn": 27
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-09T18:29:21Z",
-      "durum": "ok",
-      "runId": "31329155108",
-      "sureSn": 21
     }
   ],
   "workflowTurOzet": [
@@ -1912,7 +1912,7 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 40
+      "ortSureSn": 39
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1924,7 +1924,7 @@
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 27
     },
     {
       "ad": "Webhook",
