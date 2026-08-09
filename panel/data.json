@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-09T04:48:16.644114+03:00",
+  "uretim_zamani": "2026-08-09T06:43:55.505329+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1401,7 +1401,7 @@
         },
         {
           "metin": "FitCheck kütüphanelerine yeni ögeler çekme (titizlikle)",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Yeni firma Ads kurulumları",
@@ -1409,7 +1409,7 @@
         },
         {
           "metin": "Son ve en önemlisi: Gün içinde uyumama ve gece geç saatte yatmama",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         }
       ]
     },
@@ -1791,10 +1791,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-09T01:48:02Z",
+      "zaman": "2026-08-09T03:43:28Z",
       "durum": "warn",
+      "runId": "31293021995",
+      "sureSn": 14
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T02:55:26Z",
+      "durum": "ok",
+      "runId": "31291357822",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-09T02:15:51Z",
+      "durum": "ok",
+      "runId": "31289979567",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-09T01:54:14Z",
+      "durum": "ok",
+      "runId": "31289214202",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-09T01:54:13Z",
+      "durum": "ok",
+      "runId": "31289213569",
+      "sureSn": 31
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-09T01:48:02Z",
+      "durum": "ok",
       "runId": "31289005557",
-      "sureSn": 3
+      "sureSn": 39
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1858,41 +1893,6 @@
       "durum": "ok",
       "runId": "31282084382",
       "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-08T22:29:45Z",
-      "durum": "ok",
-      "runId": "31281819461",
-      "sureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T22:15:41Z",
-      "durum": "ok",
-      "runId": "31281280068",
-      "sureSn": 19
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-08T21:51:44Z",
-      "durum": "ok",
-      "runId": "31280332434",
-      "sureSn": 14
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-08T21:47:32Z",
-      "durum": "ok",
-      "runId": "31280160583",
-      "sureSn": 44
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-08T21:36:55Z",
-      "durum": "ok",
-      "runId": "31279734940",
-      "sureSn": 24
     }
   ],
   "workflowTurOzet": [
@@ -1904,7 +1904,7 @@
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 16,
+      "toplam": 15,
       "oran": 100,
       "ortSureSn": 18
     },
@@ -1912,13 +1912,13 @@
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 30
     },
     {
       "ad": "Webhook",
-      "toplam": 5,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 38
+      "ortSureSn": 35
     },
     {
       "ad": "Gönder",
