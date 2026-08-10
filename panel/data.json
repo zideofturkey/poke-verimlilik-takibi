@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-10T16:09:52.914846+03:00",
+  "uretim_zamani": "2026-08-10T17:36:32.839803+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1837,10 +1837,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-10T13:09:30Z",
+      "zaman": "2026-08-10T14:36:19Z",
       "durum": "warn",
+      "runId": "31399058699",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-10T13:54:59Z",
+      "durum": "ok",
+      "runId": "31395342451",
+      "sureSn": 14
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-10T13:24:32Z",
+      "durum": "ok",
+      "runId": "31392732469",
+      "sureSn": 37
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-10T13:09:30Z",
+      "durum": "ok",
       "runId": "31391462945",
-      "sureSn": 10
+      "sureSn": 49
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1918,47 +1939,26 @@
       "durum": "ok",
       "runId": "31371426970",
       "sureSn": 25
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-10T08:09:36Z",
-      "durum": "ok",
-      "runId": "31368837460",
-      "sureSn": 200
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-10T08:09:10Z",
-      "durum": "ok",
-      "runId": "31368807054",
-      "sureSn": 157
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-10T08:05:45Z",
-      "durum": "ok",
-      "runId": "31368564875",
-      "sureSn": 206
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 10,
-      "oran": 90,
+      "toplam": 11,
+      "oran": 91,
       "ortSureSn": 40
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 13,
+      "toplam": 14,
       "oran": 100,
       "ortSureSn": 17
     },
     {
       "ad": "Dinle",
-      "toplam": 8,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 26
+      "ortSureSn": 28
     },
     {
       "ad": "Gönder",
@@ -1968,9 +1968,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 6,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 111
+      "ortSureSn": 188
     },
     {
       "ad": "Temizle",
