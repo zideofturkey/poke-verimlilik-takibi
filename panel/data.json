@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-10T06:57:11.499541+03:00",
+  "uretim_zamani": "2026-08-10T08:38:33.013118+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1716,28 +1716,6 @@
           "durum": "Yapılmadı"
         }
       ]
-    },
-    {
-      "tarih": "25 July",
-      "gunAdi": "Cumartesi",
-      "gorevler": [
-        {
-          "metin": "portföy takip listesini güncelle",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "sorun olmazsa dışarıda güzel bir hava al",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Sirinspot url extend",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "New ads profile set-up",
-          "durum": "Yapıldı"
-        }
-      ]
     }
   ],
   "haftalikHedefGecmisi": [
@@ -1803,10 +1781,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-10T03:56:54Z",
+      "zaman": "2026-08-10T05:38:08Z",
       "durum": "warn",
+      "runId": "31359219255",
+      "sureSn": 9
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-10T04:50:21Z",
+      "durum": "ok",
+      "runId": "31356739688",
+      "sureSn": 20
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-10T04:45:11Z",
+      "durum": "ok",
+      "runId": "31356475516",
+      "sureSn": 42
+    },
+    {
+      "ad": "Temizle",
+      "zaman": "2026-08-10T04:38:28Z",
+      "durum": "ok",
+      "runId": "31356126376",
+      "sureSn": 20
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-10T03:56:54Z",
+      "durum": "ok",
       "runId": "31354022485",
-      "sureSn": 3
+      "sureSn": 44
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1877,34 +1883,6 @@
       "durum": "ok",
       "runId": "31339892907",
       "sureSn": 25
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-09T22:31:47Z",
-      "durum": "ok",
-      "runId": "31339621551",
-      "sureSn": 42
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-09T22:24:47Z",
-      "durum": "ok",
-      "runId": "31339323060",
-      "sureSn": 17
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T22:03:35Z",
-      "durum": "ok",
-      "runId": "31338429629",
-      "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T22:03:33Z",
-      "durum": "ok",
-      "runId": "31338428111",
-      "sureSn": 39
     }
   ],
   "workflowTurOzet": [
@@ -1912,25 +1890,31 @@
       "ad": "Panel",
       "toplam": 8,
       "oran": 88,
-      "ortSureSn": 36
+      "ortSureSn": 37
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 13,
+      "toplam": 14,
       "oran": 100,
       "ortSureSn": 17
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 27
+      "ortSureSn": 29
+    },
+    {
+      "ad": "Temizle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Webhook",
-      "toplam": 12,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 41
+      "ortSureSn": 42
     }
   ],
   "kocKararlari": [],
