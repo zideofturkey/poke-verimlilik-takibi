@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-08-10T21:23:18.354934+03:00",
+  "uretim_zamani": "2026-08-10T22:31:03.156241+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 46
+    "haftaTamamlamaYuzdesi": 51
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "10 August 2026",
       "tarih_iso": "2026-08-10",
-      "level": 0,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 70
+      "oran": 71
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1406,19 +1406,19 @@
       "gorevler": [
         {
           "metin": "Stage 10.30",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Stajda; FollowUrFirm AI bağlama ve UI dönüştürme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Stajda; FitCheck Global Yemek ve Malzemeler Ekleme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Bisikletçi Ahmet Abi'yi arayıp balata için randevu isteme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "YUNSA planları tahtaya yazılacak (kısa+orta vade) EMA'lar ve elle çizilmiş üst seviye önemli + 4h grafik",
@@ -1841,10 +1841,87 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-10T18:22:58Z",
+      "zaman": "2026-08-10T19:30:46Z",
       "durum": "warn",
+      "runId": "31424454385",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:40Z",
+      "durum": "ok",
+      "runId": "31424029816",
+      "sureSn": 27
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:37Z",
+      "durum": "ok",
+      "runId": "31424025489",
+      "sureSn": 42
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:26Z",
+      "durum": "ok",
+      "runId": "31424010851",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:24Z",
+      "durum": "ok",
+      "runId": "31424008106",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:24Z",
+      "durum": "ok",
+      "runId": "31424007024",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:20Z",
+      "durum": "ok",
+      "runId": "31424002201",
+      "sureSn": 39
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-10T19:25:08Z",
+      "durum": "ok",
+      "runId": "31423984736",
+      "sureSn": 42
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-10T19:05:49Z",
+      "durum": "ok",
+      "runId": "31422398026",
+      "sureSn": 39
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-10T18:46:02Z",
+      "durum": "ok",
+      "runId": "31420734630",
+      "sureSn": 23
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-10T18:30:13Z",
+      "durum": "ok",
+      "runId": "31419389743",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-10T18:22:58Z",
+      "durum": "ok",
       "runId": "31418783739",
-      "sureSn": 4
+      "sureSn": 50
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1866,121 +1943,38 @@
       "durum": "ok",
       "runId": "31411832027",
       "sureSn": 41
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-10T16:40:17Z",
-      "durum": "ok",
-      "runId": "31410152169",
-      "sureSn": 16
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-10T15:59:50Z",
-      "durum": "ok",
-      "runId": "31406587307",
-      "sureSn": 50
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-10T15:47:19Z",
-      "durum": "ok",
-      "runId": "31405489694",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-10T15:06:10Z",
-      "durum": "ok",
-      "runId": "31401762600",
-      "sureSn": 37
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-10T15:04:39Z",
-      "durum": "ok",
-      "runId": "31401624041",
-      "sureSn": 31
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-10T14:48:49Z",
-      "durum": "ok",
-      "runId": "31400190795",
-      "sureSn": 23
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-10T14:40:55Z",
-      "durum": "ok",
-      "runId": "31399472401",
-      "sureSn": 217
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-10T14:36:19Z",
-      "durum": "ok",
-      "runId": "31399058699",
-      "sureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-10T13:54:59Z",
-      "durum": "ok",
-      "runId": "31395342451",
-      "sureSn": 14
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-10T13:24:32Z",
-      "durum": "ok",
-      "runId": "31392732469",
-      "sureSn": 37
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-10T13:09:30Z",
-      "durum": "ok",
-      "runId": "31391462945",
-      "sureSn": 49
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
-      "ortSureSn": 42
+      "toplam": 9,
+      "oran": 89,
+      "ortSureSn": 40
     },
     {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 13,
+      "ad": "Webhook",
+      "toplam": 11,
       "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 93
     },
     {
       "ad": "Dinle",
-      "toplam": 8,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 33
     },
     {
       "ad": "Gönder",
       "toplam": 3,
       "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 24
     },
     {
-      "ad": "Webhook",
-      "toplam": 4,
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 10,
       "oran": 100,
-      "ortSureSn": 195
-    },
-    {
-      "ad": "Temizle",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 16
     }
   ],
   "kocKararlari": [],
