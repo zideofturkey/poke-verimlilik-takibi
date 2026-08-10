@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-10T02:32:07.126461+03:00",
+  "uretim_zamani": "2026-08-10T04:52:14.198799+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1803,10 +1803,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-09T23:31:49Z",
+      "zaman": "2026-08-10T01:52:01Z",
       "durum": "warn",
+      "runId": "31348221337",
+      "sureSn": 2
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-10T00:48:30Z",
+      "durum": "ok",
+      "runId": "31345431573",
+      "sureSn": 12
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-09T23:54:48Z",
+      "durum": "ok",
+      "runId": "31343059880",
+      "sureSn": 20
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-09T23:38:01Z",
+      "durum": "ok",
+      "runId": "31342371452",
+      "sureSn": 22
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-09T23:31:49Z",
+      "durum": "ok",
       "runId": "31342113565",
-      "sureSn": 3
+      "sureSn": 44
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1877,34 +1905,6 @@
       "durum": "ok",
       "runId": "31338409516",
       "sureSn": 27
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T22:03:07Z",
-      "durum": "ok",
-      "runId": "31338405552",
-      "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T22:03:02Z",
-      "durum": "ok",
-      "runId": "31338401577",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-09T22:02:59Z",
-      "durum": "ok",
-      "runId": "31338399705",
-      "sureSn": 32
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-09T21:57:40Z",
-      "durum": "ok",
-      "runId": "31338169710",
-      "sureSn": 12
     }
   ],
   "workflowTurOzet": [
@@ -1924,7 +1924,7 @@
       "ad": "Dinle",
       "toplam": 6,
       "oran": 100,
-      "ortSureSn": 28
+      "ortSureSn": 27
     },
     {
       "ad": "Webhook",
