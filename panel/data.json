@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-10T19:00:11.281752+03:00",
+  "uretim_zamani": "2026-08-10T20:02:39.969093+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1841,10 +1841,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-10T15:59:50Z",
+      "zaman": "2026-08-10T17:02:24Z",
       "durum": "warn",
+      "runId": "31412020817",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-10T17:00:11Z",
+      "durum": "ok",
+      "runId": "31411832027",
+      "sureSn": 41
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-10T16:40:17Z",
+      "durum": "ok",
+      "runId": "31410152169",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-10T15:59:50Z",
+      "durum": "ok",
       "runId": "31406587307",
-      "sureSn": 10
+      "sureSn": 50
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1922,47 +1943,26 @@
       "durum": "ok",
       "runId": "31385487726",
       "sureSn": 23
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-10T11:47:24Z",
-      "durum": "ok",
-      "runId": "31385052183",
-      "sureSn": 47
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-10T11:39:59Z",
-      "durum": "ok",
-      "runId": "31384505770",
-      "sureSn": 15
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-10T11:10:15Z",
-      "durum": "ok",
-      "runId": "31382319345",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 10,
-      "oran": 90,
-      "ortSureSn": 40
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "toplam": 13,
-      "oran": 100,
-      "ortSureSn": 17
+      "toplam": 11,
+      "oran": 91,
+      "ortSureSn": 41
     },
     {
       "ad": "Dinle",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 31
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "toplam": 12,
+      "oran": 100,
+      "ortSureSn": 18
     },
     {
       "ad": "Gönder",
