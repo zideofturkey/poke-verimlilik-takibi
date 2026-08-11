@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-11T06:45:18.322982+03:00",
+  "uretim_zamani": "2026-08-11T08:10:02.641677+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1841,10 +1841,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-11T03:45:05Z",
+      "zaman": "2026-08-11T05:09:35Z",
       "durum": "warn",
-      "runId": "31456340927",
+      "runId": "31460736835",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-11T04:25:24Z",
+      "durum": "ok",
+      "runId": "31458422049",
+      "sureSn": 37
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-11T04:15:36Z",
+      "durum": "ok",
+      "runId": "31457919820",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-11T03:45:05Z",
+      "durum": "ok",
+      "runId": "31456340927",
+      "sureSn": 38
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1922,27 +1943,6 @@
       "durum": "ok",
       "runId": "31438178053",
       "sureSn": 17
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-10T21:55:06Z",
-      "durum": "ok",
-      "runId": "31436029824",
-      "sureSn": 17
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-10T21:50:00Z",
-      "durum": "ok",
-      "runId": "31435642873",
-      "sureSn": 35
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-10T21:41:29Z",
-      "durum": "ok",
-      "runId": "31435001303",
-      "sureSn": 45
     }
   ],
   "workflowTurOzet": [
@@ -1950,19 +1950,19 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 40
+      "ortSureSn": 39
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 32
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
       "toplam": 11,
       "oran": 100,
       "ortSureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 33
     },
     {
       "ad": "Webhook",
