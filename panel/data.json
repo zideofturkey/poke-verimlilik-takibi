@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-11T19:05:33.901356+03:00",
+  "uretim_zamani": "2026-08-11T21:27:06.940908+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1841,10 +1841,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-11T16:05:11Z",
+      "zaman": "2026-08-11T18:26:51Z",
       "durum": "warn",
+      "runId": "31522755265",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-11T17:36:31Z",
+      "durum": "ok",
+      "runId": "31518429506",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-11T17:27:24Z",
+      "durum": "warn",
+      "runId": "31517644337",
+      "sureSn": 18
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-11T17:04:09Z",
+      "durum": "ok",
+      "runId": "31515678971",
+      "sureSn": 30
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-11T16:31:24Z",
+      "durum": "ok",
+      "runId": "31512840174",
+      "sureSn": 18
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-11T16:05:11Z",
+      "durum": "ok",
       "runId": "31510535262",
-      "sureSn": 0
+      "sureSn": 61
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1908,48 +1943,13 @@
       "durum": "ok",
       "runId": "31489901070",
       "sureSn": 39
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-11T12:05:42Z",
-      "durum": "ok",
-      "runId": "31489599135",
-      "sureSn": 12
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-11T11:51:13Z",
-      "durum": "ok",
-      "runId": "31488485513",
-      "sureSn": 34
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-11T11:26:46Z",
-      "durum": "ok",
-      "runId": "31486659230",
-      "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-11T11:19:43Z",
-      "durum": "ok",
-      "runId": "31486132906",
-      "sureSn": 43
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-11T10:56:24Z",
-      "durum": "ok",
-      "runId": "31484404758",
-      "sureSn": 28
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
-      "oran": 92,
+      "toplam": 13,
+      "oran": 85,
       "ortSureSn": 42
     },
     {
@@ -1960,9 +1960,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 10,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 34
+      "ortSureSn": 35
     },
     {
       "ad": "Gönder",
