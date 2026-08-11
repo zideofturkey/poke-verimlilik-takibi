@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-11T17:58:12.843369+03:00",
+  "uretim_zamani": "2026-08-11T19:05:33.901356+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1841,10 +1841,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-11T14:57:58Z",
+      "zaman": "2026-08-11T16:05:11Z",
       "durum": "warn",
+      "runId": "31510535262",
+      "sureSn": 0
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-11T15:35:53Z",
+      "durum": "ok",
+      "runId": "31507901355",
+      "sureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-11T15:04:36Z",
+      "durum": "ok",
+      "runId": "31505065440",
+      "sureSn": 43
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-11T15:03:45Z",
+      "durum": "ok",
+      "runId": "31504985530",
+      "sureSn": 24
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-11T14:57:58Z",
+      "durum": "ok",
       "runId": "31504446059",
-      "sureSn": 3
+      "sureSn": 57
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1915,42 +1943,14 @@
       "durum": "ok",
       "runId": "31484404758",
       "sureSn": 28
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-11T10:51:17Z",
-      "durum": "ok",
-      "runId": "31484038110",
-      "sureSn": 28
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-11T10:30:40Z",
-      "durum": "ok",
-      "runId": "31482524982",
-      "sureSn": 13
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-11T10:05:41Z",
-      "durum": "ok",
-      "runId": "31480669134",
-      "sureSn": 49
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-11T09:39:28Z",
-      "durum": "ok",
-      "runId": "31478683211",
-      "sureSn": 22
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 13,
+      "toplam": 12,
       "oran": 92,
-      "ortSureSn": 41
+      "ortSureSn": 42
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1962,13 +1962,13 @@
       "ad": "Dinle",
       "toplam": 10,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 34
     },
     {
       "ad": "Gönder",
-      "toplam": 2,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 23
     }
   ],
   "kocKararlari": [],
