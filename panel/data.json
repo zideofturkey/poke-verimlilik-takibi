@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-12T21:29:49.193205+03:00",
+  "uretim_zamani": "2026-08-12T22:41:30.660556+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 74
   },
@@ -1841,10 +1841,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-12T18:29:33Z",
+      "zaman": "2026-08-12T19:41:11Z",
       "durum": "warn",
-      "runId": "31627899683",
+      "runId": "31633865373",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-12T19:16:22Z",
+      "durum": "ok",
+      "runId": "31631833466",
+      "sureSn": 14
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-12T19:11:01Z",
+      "durum": "ok",
+      "runId": "31631382005",
+      "sureSn": 33
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-12T18:52:50Z",
+      "durum": "ok",
+      "runId": "31629854166",
+      "sureSn": 23
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-12T18:29:33Z",
+      "durum": "ok",
+      "runId": "31627899683",
+      "sureSn": 43
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1915,34 +1943,6 @@
       "durum": "ok",
       "runId": "31610294212",
       "sureSn": 30
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-12T15:03:00Z",
-      "durum": "ok",
-      "runId": "31610164707",
-      "sureSn": 23
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-12T14:55:03Z",
-      "durum": "ok",
-      "runId": "31609429747",
-      "sureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-12T14:51:30Z",
-      "durum": "ok",
-      "runId": "31609102911",
-      "sureSn": 194
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-12T14:51:11Z",
-      "durum": "ok",
-      "runId": "31609074882",
-      "sureSn": 38
     }
   ],
   "workflowTurOzet": [
@@ -1950,7 +1950,7 @@
       "ad": "Panel",
       "toplam": 10,
       "oran": 90,
-      "ortSureSn": 41
+      "ortSureSn": 40
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1959,16 +1959,16 @@
       "ortSureSn": 20
     },
     {
-      "ad": "Gönder",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 22
-    },
-    {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 34
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Webhook",
