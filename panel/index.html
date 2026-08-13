@@ -1037,7 +1037,7 @@
       "Dinle": "Webhook bir şekilde başarısız olursa diye saatte bir çalışan yedek mekanizma. Kaçırılmış olabilecek bir mesaj/buton var mı diye Telegram'ı kontrol eder, varsa işler.",
       "Temizle": "Haftada bir (pazartesi) çalışır. Artık gerekli olmayan eski veriyi (15+ günlük günlük görevler, 14+ günlük haftalık hedefler) Sheets'ten temizler. Takip sekmesine hiç dokunmaz.",
       "Panel": "Gözlemlenebilirlik panelinin gösterdiği veriyi (bu sayfayı) Sheets ve GitHub'dan üretir, commit'ler, ve Cloudflare'e otomatik olarak yeniden deploy eder.",
-      "Aforizma": "Her gün RASTGELE bir saatte (sabit bir cron saati değil), saygın yatırımcıların (Warren Buffett, Jesse Livermore, Paul Tudor Jones vb.) plan sadakati/sabır temalı bir sözünü gönderir. Sabit bir saatte değil çünkü 'rastgele saat' isteği; bu yüzden HER 15 DAKİKADA bir çalışıp o günün önceden belirlenmiş rastgele hedef saatinin geçip geçmediğini kontrol eder - hedef saat henüz gelmediyse hiçbir şey yapmadan çıkar (bu yüzden çoğu çalıştırması 'kısa ve mesaj göndermeden biten' türden olur, bu normaldir).",
+      "Aforizma": "Piyasalara dair rehavete kapılıp yanlış ve ivedi hamleler yapmamı engellemesi için saygın yatırımcıların üstüne düşünülmesi gereken sözleri her gün rastgele bir saatte mesaj olarak gönderilir. Sabit bir saatte değil çünkü rastgele saatte gelmesini özellikle istedim; bu yüzden her 15 dakikada bir çalışıp o günün önceden belirlenmiş rastgele hedef saatinin geçip geçmediğini kontrol eder - hedef saat henüz gelmediyse hiçbir şey yapmadan çıkar (bu yüzden çoğu çalıştırması 'kısa ve mesaj göndermeden biten' türden olur, bu normaldir).",
       "Gecici Panel Test": "Geliştirme sırasında bir özelliği test etmek için oluşturulan geçici bir çalıştırma - kalıcı bir işlevi yok, zamanla geçmişten düşecek.",
     };
 
@@ -1065,9 +1065,9 @@
         const yuzde = Math.round((d.sayi / toplam) * 100);
         return `
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
-            <span style="width:130px; font-size:12.5px; font-weight:600; color:var(--text-primary);">${d.kategori}</span>
-            <div class="bar-track" style="flex:1;"><div class="bar-fill" style="width:${yuzde}%"></div></div>
-            <span style="width:70px; text-align:right; font-size:12.5px; color:var(--text-muted);">${d.sayi} (%${yuzde})</span>
+            <span title="${d.kategori}" style="width:150px; flex-shrink:0; font-size:12.5px; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${d.kategori}</span>
+            <div class="bar-track" style="flex:1; min-width:0;"><div class="bar-fill" style="width:${yuzde}%"></div></div>
+            <span style="width:70px; flex-shrink:0; text-align:right; font-size:12.5px; color:var(--text-muted);">${d.sayi} (%${yuzde})</span>
           </div>
         `;
       }).join('');
