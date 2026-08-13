@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-13T02:42:29.884116+03:00",
+  "uretim_zamani": "2026-08-13T05:02:54.048466+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1841,10 +1841,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-12T23:42:07Z",
+      "zaman": "2026-08-13T02:02:36Z",
       "durum": "warn",
+      "runId": "31659598491",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-13T00:57:13Z",
+      "durum": "ok",
+      "runId": "31656131916",
+      "sureSn": 20
+    },
+    {
+      "ad": "Aforizma - Rastgele Saatte Gönder",
+      "zaman": "2026-08-12T23:54:42Z",
+      "durum": "ok",
+      "runId": "31652587962",
+      "sureSn": 19
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-12T23:49:53Z",
+      "durum": "ok",
+      "runId": "31652300639",
+      "sureSn": 26
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-12T23:42:07Z",
+      "durum": "ok",
       "runId": "31651839498",
-      "sureSn": 10
+      "sureSn": 49
     },
     {
       "ad": "Aforizma - Rastgele Saatte Gönder",
@@ -1915,34 +1943,6 @@
       "durum": "ok",
       "runId": "31639412640",
       "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-12T20:47:38Z",
-      "durum": "ok",
-      "runId": "31639412433",
-      "sureSn": 32
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-12T20:45:13Z",
-      "durum": "ok",
-      "runId": "31639200222",
-      "sureSn": 43
-    },
-    {
-      "ad": "Aforizma - Rastgele Saatte Gönder",
-      "zaman": "2026-08-12T20:07:26Z",
-      "durum": "ok",
-      "runId": "31636055871",
-      "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-12T19:41:11Z",
-      "durum": "ok",
-      "runId": "31633865373",
-      "sureSn": 45
     }
   ],
   "workflowTurOzet": [
@@ -1962,7 +1962,7 @@
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 30
     },
     {
       "ad": "Webhook",
