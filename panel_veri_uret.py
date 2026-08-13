@@ -255,7 +255,8 @@ def workflow_gecmisi():
                        .replace("Analiz - Haftalık SLM Özeti", "Analiz")
                        .replace("Dinle - Buton Kontrolü", "Dinle")
                        .replace("Temizle - Eski Veri", "Temizle")
-                       .replace("Panel - Veri Güncelle", "Panel"))
+                       .replace("Panel - Veri Güncelle", "Panel")
+                       .replace("Aforizma - Rastgele Saatte Gönder", "Aforizma"))
 
     sonuc = []
     tur_istatistik = {}  # ad -> {"toplam": n, "basarili": n, "sureler": [sn, ...]}
