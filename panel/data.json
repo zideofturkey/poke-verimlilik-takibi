@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-15T19:50:54.018747+03:00",
+  "uretim_zamani": "2026-08-15T20:20:46.401275+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 80
   },
@@ -1833,10 +1833,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-15T16:50:37Z",
+      "zaman": "2026-08-15T17:20:34Z",
       "durum": "warn",
+      "runId": "31898030678",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-15T17:15:59Z",
+      "durum": "ok",
+      "runId": "31897815571",
+      "sureSn": 14
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-15T16:57:24Z",
+      "durum": "ok",
+      "runId": "31896943673",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-15T16:50:37Z",
+      "durum": "ok",
       "runId": "31896630025",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -1914,27 +1935,6 @@
       "durum": "ok",
       "runId": "31891293721",
       "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-15T14:48:46Z",
-      "durum": "ok",
-      "runId": "31890948152",
-      "sureSn": 44
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-15T14:36:20Z",
-      "durum": "ok",
-      "runId": "31890366025",
-      "sureSn": 14
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-15T14:29:34Z",
-      "durum": "ok",
-      "runId": "31890050904",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
@@ -1942,7 +1942,7 @@
       "ad": "Panel",
       "toplam": 12,
       "oran": 92,
-      "ortSureSn": 39
+      "ortSureSn": 40
     },
     {
       "ad": "Aforizma",
