@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-15T20:46:03.998251+03:00",
+  "uretim_zamani": "2026-08-15T21:30:18.512167+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 80
   },
@@ -1833,10 +1833,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-15T17:45:47Z",
+      "zaman": "2026-08-15T18:30:00Z",
       "durum": "warn",
+      "runId": "31901285381",
+      "sureSn": 5
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-15T18:17:52Z",
+      "durum": "ok",
+      "runId": "31900738303",
+      "sureSn": 24
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-15T18:11:57Z",
+      "durum": "ok",
+      "runId": "31900466378",
+      "sureSn": 12
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-15T17:55:09Z",
+      "durum": "ok",
+      "runId": "31899670625",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-15T17:45:47Z",
+      "durum": "ok",
       "runId": "31899230542",
-      "sureSn": 3
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -1907,42 +1935,20 @@
       "durum": "ok",
       "runId": "31894766235",
       "sureSn": 17
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-15T15:54:13Z",
-      "durum": "ok",
-      "runId": "31894025648",
-      "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-15T15:46:05Z",
-      "durum": "ok",
-      "runId": "31893647676",
-      "sureSn": 40
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-15T15:33:24Z",
-      "durum": "ok",
-      "runId": "31893046129",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-15T15:27:41Z",
-      "durum": "ok",
-      "runId": "31892773023",
-      "sureSn": 25
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 13,
+      "toplam": 12,
       "oran": 92,
-      "ortSureSn": 39
+      "ortSureSn": 40
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 22
     },
     {
       "ad": "Aforizma",
@@ -1955,12 +1961,6 @@
       "toplam": 7,
       "oran": 100,
       "ortSureSn": 30
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 19
     }
   ],
   "kocKararlari": [],
