@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-16T23:22:42.084051+03:00",
+  "uretim_zamani": "2026-08-16T23:48:14.783809+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 83
   },
@@ -1833,10 +1833,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-16T20:22:26Z",
+      "zaman": "2026-08-16T20:48:01Z",
       "durum": "warn",
-      "runId": "31970351389",
+      "runId": "31971600979",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-16T20:35:10Z",
+      "durum": "ok",
+      "runId": "31970973788",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-16T20:30:09Z",
+      "durum": "ok",
+      "runId": "31970716556",
+      "sureSn": 32
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-16T20:22:26Z",
+      "durum": "ok",
+      "runId": "31970351389",
+      "sureSn": 45
     },
     {
       "ad": "Aforizma",
@@ -1914,35 +1935,14 @@
       "durum": "ok",
       "runId": "31964738853",
       "sureSn": 48
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-16T18:18:35Z",
-      "durum": "ok",
-      "runId": "31964206945",
-      "sureSn": 23
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-16T18:11:15Z",
-      "durum": "ok",
-      "runId": "31963843283",
-      "sureSn": 18
-    },
-    {
-      "ad": "Analiz",
-      "zaman": "2026-08-16T18:10:18Z",
-      "durum": "ok",
-      "runId": "31963793356",
-      "sureSn": 319
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
+      "toplam": 13,
       "oran": 92,
-      "ortSureSn": 39
+      "ortSureSn": 40
     },
     {
       "ad": "Aforizma",
@@ -1952,9 +1952,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 34
+      "ortSureSn": 33
     },
     {
       "ad": "Gönder",
@@ -1970,9 +1970,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 4,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 154
+      "ortSureSn": 180
     }
   ],
   "kocKararlari": [],
