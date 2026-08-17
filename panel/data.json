@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-17T11:45:40.865991+03:00",
+  "uretim_zamani": "2026-08-17T12:41:47.225818+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 74
   },
@@ -1760,10 +1760,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-17T08:45:25Z",
+      "zaman": "2026-08-17T09:41:34Z",
       "durum": "warn",
+      "runId": "32016503116",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-17T09:05:18Z",
+      "durum": "ok",
+      "runId": "32013453944",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-17T08:52:13Z",
+      "durum": "ok",
+      "runId": "32012402016",
+      "sureSn": 25
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-17T08:45:25Z",
+      "durum": "ok",
       "runId": "32011874341",
-      "sureSn": 4
+      "sureSn": 42
     },
     {
       "ad": "Aforizma",
@@ -1841,33 +1862,12 @@
       "durum": "ok",
       "runId": "31997492653",
       "sureSn": 21
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-17T04:51:15Z",
-      "durum": "ok",
-      "runId": "31995875604",
-      "sureSn": 37
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-17T04:41:59Z",
-      "durum": "ok",
-      "runId": "31995373079",
-      "sureSn": 46
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-17T04:39:53Z",
-      "durum": "ok",
-      "runId": "31995260441",
-      "sureSn": 17
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
+      "toplam": 13,
       "oran": 92,
       "ortSureSn": 40
     },
@@ -1879,9 +1879,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 34
+      "ortSureSn": 33
     },
     {
       "ad": "Gönder",
@@ -1894,12 +1894,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 26
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 34
     }
   ],
   "kocKararlari": [],
