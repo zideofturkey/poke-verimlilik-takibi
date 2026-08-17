@@ -17,6 +17,23 @@ import re
 import datetime
 
 
+def _ekle_koku_var_mi(metin_kucuk):
+    """'ekle' kökünün KELİME BAŞINDA geçip geçmediğini kontrol eder -
+    ekle/ekledim/ekleme/ekleyeyim gibi tüm türevlerini yakalar (kelime
+    başında 'ekle' ile başlayan her şey), ama 'bekleyen' gibi ORTASINDA
+    'ekle' alt-dizisi barındıran tamamen alakasız kelimeleri YAKALAMAZ.
+    Gerçek bir olayda 'bekleyen' kelimesi ('b' + 'ekle' + 'yen') yüzünden
+    kaydet_niyeti_var yanlışlıkla True oldu - bu da içinde açıkça
+    'sorgula' geçen bir cümlenin bile karışık/belirsiz sinyal sanılıp
+    SLM'e (ki o da o mesajda yanlış karar vermişti) bırakılmasına yol
+    açtı. Diğer anahtar kelimeler (kaydet, ekliyorum, yazıyorum vb.) bu
+    tuzağa düşecek kadar yaygın Türkçe kelimelerin içine gömülü
+    olmadığından onlar hâlâ düz alt-dize eşleşmesiyle kontrol ediliyor -
+    sadece 'ekle' kısa ve sık rastlanan bir gövde olduğu için özel bir
+    kelime-başı kontrolü gerektiriyor."""
+    return bool(re.search(r"\bekle", metin_kucuk))
+
+
 def satirlari_ayikla(text):
     """Serbest metinden madde listesi çıkarır. İki kural birlikte çalışır:
     (1) Eğer mesajda numaralı satır(lar) varsa, SADECE numaralı satırlar
@@ -873,7 +890,7 @@ def process_message(message):
         return
 
     metin_kucuk = text.lower()
-    if "aforizma" in metin_kucuk and ("ekle" in metin_kucuk or "kaydet" in metin_kucuk):
+    if "aforizma" in metin_kucuk and (_ekle_koku_var_mi(metin_kucuk) or "kaydet" in metin_kucuk):
         _aforizma_ekle_isle(text)
         return
 
@@ -990,8 +1007,8 @@ def _gunluk_gorev_isle(text):
         tek = numarali_liste[0]
         if ":" in tek:
             olasi_talimat, icerik = tek.split(":", 1)
-            talimat_kelimeleri = ["ekle", "kaydet", "yaz", "gir"]
-            if icerik.strip() and any(k in olasi_talimat.lower() for k in talimat_kelimeleri):
+            talimat_kelimeleri = ["kaydet", "yaz", "gir"]
+            if icerik.strip() and (_ekle_koku_var_mi(olasi_talimat.lower()) or any(k in olasi_talimat.lower() for k in talimat_kelimeleri)):
                 gorevler = [icerik.strip()]
             else:
                 gorevler = [tek]
@@ -1079,8 +1096,8 @@ def _haftalik_hedef_isle(text):
         tek = numarali_liste[0]
         if ":" in tek:
             olasi_talimat, icerik = tek.split(":", 1)
-            talimat_kelimeleri = ["ekle", "kaydet", "yaz", "gir"]
-            if icerik.strip() and any(k in olasi_talimat.lower() for k in talimat_kelimeleri):
+            talimat_kelimeleri = ["kaydet", "yaz", "gir"]
+            if icerik.strip() and (_ekle_koku_var_mi(olasi_talimat.lower()) or any(k in olasi_talimat.lower() for k in talimat_kelimeleri)):
                 hedefler = [icerik.strip()]
             else:
                 hedefler = [tek]
@@ -1140,7 +1157,7 @@ def _sorgu_niyeti_var_mi(metin_kucuk):
     sorgu_kaliplari = [
         "sorgula", "göster", "listele", "hatırlat", "nedir", "neydi",
         "neler", "ne kadar", "hangi", "gönderir misin", "gönder misin",
-        "söyler misin", "yazar mısın", "durumum ne", "ilerledim mi",
+        "gönder", "söyler misin", "yazar mısın", "durumum ne", "ilerledim mi",
         "kaçırdım", "ne kadar ilerledim", "kaç tane", "nerede", "kimin",
     ]
     if any(k in metin_kucuk for k in sorgu_kaliplari):
@@ -1170,12 +1187,31 @@ def _kural_tahmini(text):
     eskalasyon yapılır."""
     metin_kucuk = text.lower()
 
-    if _sorgu_niyeti_var_mi(metin_kucuk):
-        return None
-
     kaydet_niyeti_var = any(k in metin_kucuk for k in [
-        "kaydet", "kayıt et", "ekle", "ekliyorum", "yazıyorum",
-    ])
+        "kaydet", "kayıt et", "ekliyorum", "yazıyorum",
+    ]) or _ekle_koku_var_mi(metin_kucuk)
+
+    if _sorgu_niyeti_var_mi(metin_kucuk):
+        if kaydet_niyeti_var:
+            # Karışık/belirsiz sinyal (hem sorgu hem kaydetme kelimesi
+            # var) - eski davranışla aynı: kural sessiz kalır, SLM'in
+            # kararına güvenilir.
+            return None
+        # YENİ (önceden burası da sadece None dönüyordu - TEK YÖNLÜ bir
+        # güvenlik ağıydı, sadece kuralın kendi kötü bir OLUMLU tahminini
+        # (yanlış GUNLUK_GOREV/HAFTALIK_HEDEF) engelliyordu ama SLM'in
+        # KENDİSİ başka yanlış bir kategoriye (GUNLUK_GOREV, BOSA_VAKIT
+        # vb.) giderse bunu hiç YAKALAMIYORDU - README'nin "Bekleyen
+        # Geliştirmeler" listesinde belgelenen, çözülmemiş kör noktaydı.
+        # Gerçek bir olayda "ulen dünkü görev ve rutinlerimi gönder,
+        # işaretlemediklerimi" mesajı SLM(3b) tarafından GUNLUK_GOREV
+        # sanıldı ve TÜM CÜMLE sahte bir görev olarak kaydedildi - kural
+        # None döndüğü için hiçbir düzeltme tetiklenmedi. Artık net bir
+        # sorgu sinyali VARSA VE kaydetme niyeti YOKSA, kural PROAKTIF
+        # olarak "SORGULA" diyor - SLM'in kararı ne olursa olsun bu ya bir
+        # ANLAŞMAZLIK yaratıp 7b'ye eskale edilmesini, ya da SLM zaten
+        # SORGULA demişse sessizce doğrulanmasını sağlıyor.
+        return "SORGULA"
 
     # Geçmiş görev tamamlama güvenlik ağı: mesajda tırnak içi bir görev VE
     # geçmiş zamanlı bir tamamlama fiili (yaptım/yapmıştım/tamamladım/
@@ -1235,8 +1271,8 @@ def _kural_tahmini(text):
     # mesajlarda SADECE gerçek bir eylem fiili (ekle/kaydet/yaz/gir) kabul
     # ediliyor - bare bir isim asla yeterli değil.
     eylem_fiili_var = any(k in metin_kucuk for k in [
-        "kaydet", "kayıt et", "yazıyorum", "ekliyorum", "ekleme yap", "ekle",
-    ])
+        "kaydet", "kayıt et", "yazıyorum", "ekliyorum",
+    ]) or _ekle_koku_var_mi(metin_kucuk)
     if not eylem_fiili_var:
         return None
 

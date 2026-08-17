@@ -662,7 +662,7 @@ def metinden_tarih_cikar(text):
     metin = text.lower()
     bugun = datetime.datetime.now(TR_TZ).date()
 
-    if re.search(r"\bdün\b", metin):
+    if re.search(r"\bdün(kü|den|ü)?\b", metin):
         return (bugun - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 
     eslesme = re.search(r"\b(\d{1,2})\s+([a-zçğıöşü]+)\b", metin)
