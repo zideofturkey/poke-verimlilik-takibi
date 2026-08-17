@@ -421,6 +421,24 @@ def _sorguyu_cevapla(text):
         _haftalik_rutin_durumu_cevapla()
         return
 
+    # "Geçen hafta / geçtiğimiz hafta / önceki hafta ... görev(ler)im/
+    # rutinlerim" — biten haftanın (7 gün öncesinin Pazartesi'sinden
+    # dünkü Pazar'a kadar) bekleyen günlük görev ve rutinlerini sorar.
+    # BU KONTROL, aşağıdaki "bu hafta" + hedef/görev kontrolünden ÖNCE
+    # gelmeli: aksi halde "geçen haftaki ... görevlerimi gönder" mesajı
+    # da "hafta"+"görev" içerdiği için yanlışlıkla BU HAFTANIN
+    # HaftalikHedefler'ine (checkbox'lı hedef listesine) yönlenirdi -
+    # kullanıcının istediği ise biten haftanın GÜNLÜK görev/rutinleri,
+    # bambaşka bir veri. Regex ("geç(en|tiğimiz)"/"önceki" + "hafta")
+    # kullanılıyor ki tek tek cümle ezberlemek yerine doğal varyasyonların
+    # (geçen hafta/geçen haftaki/geçtiğimiz hafta/önceki haftaki gibi)
+    # hepsi tek seferde yakalansın - tıpkı "öncek\w* gün" regex'inde
+    # olduğu gibi, sabit kelime listelerinin doğası gereği eksik kalması
+    # sorununu tekrarlamamak için.
+    if re.search(r"\b(geç(en|tiğimiz)|önceki)\s+hafta", metin_kucuk):
+        _gecen_hafta_bekleyenleri_cevapla()
+        return
+
     # "Bu haftaki HEDEFLERİM/GÖREVLERİM" — HaftalikHedefler sekmesindeki
     # (checkbox'lı, Yolunda/Geride) haftalık hedefleri sorar. Önceden bu
     # dal HİÇ YOKTU: "hedef" kelimesi metinde geçmezse ("bu haftaki
@@ -731,6 +749,89 @@ def _kalan_durumu_interaktif_gonder(hedef_tarih, ifade, erken_saat_varsayimi=Fal
         bir_sey_gonderildi = True
 
     return bir_sey_gonderildi
+
+
+def _gecen_hafta_bekleyenleri_cevapla():
+    """'Geçen hafta / geçtiğimiz hafta / önceki hafta ...' sorgularını
+    karşılar - BİTEN haftanın (bugünü içeren haftanın Pazartesi'sinden
+    7 gün öncesi, yani geçen Pazartesi'den geçen Pazar'a kadar 7 gün)
+    bekleyen GÜNLÜK görev ve rutinlerini bulur. _tum_bekleyen_gorevleri_
+    cevapla'nın (TÜM zamanlar) ve _haftalik_hedef_durumu_cevapla'nın
+    (BU haftanın HaftalikHedefler'i - checkbox'lı hedefler, apayrı bir
+    veri) İKİSİNDEN de farklı, üçüncü bir kapsam: belirli bir 7 günlük
+    tarih ARALIĞI + günlük görev/rutin (haftalık hedef DEĞİL).
+
+    Kasıtlı tasarım kararı: her gün için ayrı ayrı mesaj göndermek
+    (7 gün x görev+rutin = potansiyel 14 mesaj) yerine, TÜM haftayı
+    güne göre gruplayıp EN FAZLA 2 mesajda (biri görevler, biri
+    rutinler için) topluyor - kullanıcının "haftalık kontrol mesajları
+    art arda gelince karışık oluyor" geri bildirimiyle aynı doğrultuda,
+    bu sorgu da gereksiz yere çok sayıda ayrı mesaja bölünmüyor."""
+    bu_hafta_pazartesi = datetime.datetime.strptime(hafta_baslangic_str(), "%Y-%m-%d").date()
+    gecen_hafta_pazartesi = bu_hafta_pazartesi - datetime.timedelta(days=7)
+    tarihler = [
+        (gecen_hafta_pazartesi + datetime.timedelta(days=i)).strftime("%Y-%m-%d")
+        for i in range(7)
+    ]
+    tarih_seti = set(tarihler)
+
+    # --- Bekleyen ad-hoc günlük görevler (geçen hafta içindeki) ---
+    ws_gorev = get_gorevler_sheet()
+    rows = ws_gorev.get_all_records()
+    bekleyen_gorevler = [
+        (i + 2, r) for i, r in enumerate(rows)
+        if r.get("Tarih") in tarih_seti and r.get("Durum") == "Bekliyor"
+    ]
+    bekleyen_gorevler.sort(key=lambda x: x[1].get("Tarih", ""))
+
+    # --- Bekleyen (cevaplanmamış) günlük rutinler (geçen hafta içindeki) ---
+    aktif_rutinler = get_aktif_rutinler()
+    bekleyen_rutinler = []  # (tarih, rutin_dict)
+    for tarih in tarihler:
+        cevaplanan = cevaplanan_rutinler(tarih)
+        for r in aktif_rutinler:
+            if r["isim"] not in cevaplanan:
+                bekleyen_rutinler.append((tarih, r))
+
+    if not bekleyen_gorevler and not bekleyen_rutinler:
+        send_message(
+            f"Geçen hafta ({tarihler[0]} - {tarihler[-1]}) için bekleyen "
+            "hiçbir görev veya rutin yok - hepsi işaretlenmiş! 🎉"
+        )
+        return
+
+    if bekleyen_gorevler:
+        satirlar = []
+        buton_satirlari = []
+        mevcut_tarih = None
+        for i, (row_num, r) in enumerate(bekleyen_gorevler):
+            tarih = r.get("Tarih", "")
+            if tarih != mevcut_tarih:
+                mevcut_tarih = tarih
+                satirlar.append(f"\n📅 {_gun_ifadesi(tarih)} ({tarih}):")
+            satirlar.append(f"{i+1}. {r.get('GorevMetni', '')}")
+            buton_satirlari.append([
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"gorev_{row_num}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"gorev_{row_num}_hayir"},
+            ])
+        baslik = f"Geçen hafta ({tarihler[0]} - {tarihler[-1]}) kalan {len(bekleyen_gorevler)} bekleyen görevin var:"
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+
+    if bekleyen_rutinler:
+        satirlar = []
+        buton_satirlari = []
+        mevcut_tarih = None
+        for i, (tarih, r) in enumerate(bekleyen_rutinler):
+            if tarih != mevcut_tarih:
+                mevcut_tarih = tarih
+                satirlar.append(f"\n📅 {_gun_ifadesi(tarih)} ({tarih}):")
+            satirlar.append(f"{i+1}. {r['soru']}")
+            buton_satirlari.append([
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"rutin_{r['id']}_{tarih}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"rutin_{r['id']}_{tarih}_hayir"},
+            ])
+        baslik = f"Geçen hafta ({tarihler[0]} - {tarihler[-1]}) kalan {len(bekleyen_rutinler)} bekleyen rutin var:"
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
 
 
 def _tum_bekleyen_gorevleri_cevapla():
