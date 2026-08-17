@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-17T15:44:33.135136+03:00",
+  "uretim_zamani": "2026-08-17T16:39:52.672565+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 83
   },
@@ -1414,16 +1414,6 @@
   ],
   "gunlukGorevGecmisi": [
     {
-      "tarih": "17 August",
-      "gunAdi": "Pazartesi",
-      "gorevler": [
-        {
-          "metin": "ulen dünkü görev ve rutinlerimi gönder, işaretlemediklerimi",
-          "durum": "Bekliyor"
-        }
-      ]
-    },
-    {
       "tarih": "16 August",
       "gunAdi": "Pazar",
       "gorevler": [
@@ -1783,10 +1773,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-17T12:44:20Z",
+      "zaman": "2026-08-17T13:39:35Z",
       "durum": "warn",
+      "runId": "32036161080",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-17T13:24:14Z",
+      "durum": "ok",
+      "runId": "32034922403",
+      "sureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-17T12:56:47Z",
+      "durum": "ok",
+      "runId": "32032418350",
+      "sureSn": 35
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-17T12:44:20Z",
+      "durum": "ok",
       "runId": "32031350939",
-      "sureSn": 3
+      "sureSn": 36
     },
     {
       "ad": "Aforizma",
@@ -1864,27 +1875,6 @@
       "durum": "ok",
       "runId": "32025379207",
       "sureSn": 32
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-17T11:26:28Z",
-      "durum": "ok",
-      "runId": "32024935465",
-      "sureSn": 43
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-17T11:14:47Z",
-      "durum": "ok",
-      "runId": "32024011169",
-      "sureSn": 15
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-17T10:53:30Z",
-      "durum": "ok",
-      "runId": "32022291970",
-      "sureSn": 13
     }
   ],
   "workflowTurOzet": [
@@ -1892,25 +1882,25 @@
       "ad": "Panel",
       "toplam": 10,
       "oran": 90,
-      "ortSureSn": 38
+      "ortSureSn": 37
     },
     {
       "ad": "Aforizma",
-      "toplam": 15,
+      "toplam": 14,
       "oran": 100,
       "ortSureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 32
     },
     {
       "ad": "Webhook",
       "toplam": 6,
       "oran": 100,
       "ortSureSn": 111
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 31
     },
     {
       "ad": "Gönder",
