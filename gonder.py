@@ -265,17 +265,19 @@ def haftalik_rutin_sorulari_gonder():
 
 def hatirlat():
     """Gün içinde birkaç kez (öğle/akşam üstü) tetiklenir. Sadece o ana
-    kadar cevaplanmamış rutinleri sorar. Haftada 3 kez (Pazartesi/
-    Çarşamba/Cuma) hâlâ bekleyen haftalık hedefleri de kontrol eder -
-    hangi gün eklenmiş olurlarsa olsunlar (ör. hedefler Perşembe günü
-    yazılmışsa bile artık kaçırılmıyor)."""
+    kadar cevaplanmamış rutinleri sorar. ÖNCEDEN burada Pazartesi/Çarşamba/
+    Cuma günleri haftalık hedef+rutin kontrolü de yapılıyordu - kullanıcı
+    haklı bir geri bildirimde bulundu: bu, haftalık kontrolleri hem çok
+    sık (günde 2 kez x haftada 3 gün) hem de HER SEFERİNDE günlük rutin
+    hatırlatmasıyla aynı anda, art arda göndererek kafa karıştırıyordu.
+    Haftalık kontroller artık SADECE kendi bağımsız zaman dilimlerinde
+    gönderiliyor - hafta_ortasi() (Çarşamba 20:00) ve pazar() (Pazar
+    10:00), ikisi de zaten tek başına, başka hiçbir kontrol mesajıyla
+    aynı anda gelmiyor. Bu, cron zamanlamasına DOKUNMADAN (sadece hangi
+    fonksiyonun neyi çağırdığını değiştirerek) haftalık kontrolleri
+    haftada 6 olası gönderimden 2'ye indiriyor."""
     _sabah_kacti_mi_kontrol_et()
     rutin_sorulari_gonder(baslik="🔔 Hatırlatma — henüz cevaplamadığın rutinler:")
-
-    bugun_gun_no = datetime.datetime.now(TR_TZ).weekday()  # 0=Pazartesi, 4=Cuma
-    if bugun_gun_no in (0, 2, 4):
-        haftalik_hedef_sorulari_gonder()
-        haftalik_rutin_sorulari_gonder()
 
 
 def aksam():
@@ -399,7 +401,15 @@ def haftalik_hedef_sorulari_gonder(sessiz_gecerse_hicbir_sey_yapma=True):
 
 
 def hafta_ortasi():
+    """Çarşamba 20:00 TR - kendi başına, başka hiçbir kontrol mesajıyla
+    aynı anda gelmeyen, HAFTALIK kontrollere ayrılmış tek zaman dilimi
+    (pazar() ile birlikte). Hem haftalık hedef hem haftalık (tekrarlayan
+    kategori) rutin durumunu birlikte sorar - ikisi de aynı 'haftalık
+    kontrol' ailesinden olduğu için burada birlikte gönderilmeleri sorun
+    değil, kullanıcının asıl itirazı bunların GÜNLÜK rutin hatırlatmasıyla
+    aynı ana denk gelmesiydi (bkz. hatirlat())."""
     haftalik_hedef_sorulari_gonder(sessiz_gecerse_hicbir_sey_yapma=False)
+    haftalik_rutin_sorulari_gonder()
 
 
 def aforizma_kontrol():
