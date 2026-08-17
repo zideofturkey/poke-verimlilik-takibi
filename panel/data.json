@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-08-17T23:56:07.554508+03:00",
+  "uretim_zamani": "2026-08-18T00:28:28.044627+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 83
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
-    {
-      "tarih": "04 July 2026",
-      "tarih_iso": "2026-07-04",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "05 July 2026",
       "tarih_iso": "2026-07-05",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "18 August 2026",
+      "tarih_iso": "2026-08-18",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 75
+      "oran": 74
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1235,7 +1235,7 @@
     },
     {
       "isim": "Verimli video izleme",
-      "oran": 89
+      "oran": 88
     },
     {
       "isim": "Mewing",
@@ -1773,10 +1773,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-17T20:55:52Z",
+      "zaman": "2026-08-17T21:28:13Z",
       "durum": "warn",
+      "runId": "32071262805",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-17T21:14:34Z",
+      "durum": "ok",
+      "runId": "32070072511",
+      "sureSn": 18
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-17T20:56:13Z",
+      "durum": "ok",
+      "runId": "32068450843",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-17T20:55:52Z",
+      "durum": "ok",
       "runId": "32068420055",
-      "sureSn": 3
+      "sureSn": 42
     },
     {
       "ad": "Gönder",
@@ -1854,53 +1875,32 @@
       "durum": "ok",
       "runId": "32063089040",
       "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-17T19:53:00Z",
-      "durum": "ok",
-      "runId": "32062781493",
-      "sureSn": 49
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-17T19:37:17Z",
-      "durum": "ok",
-      "runId": "32061361377",
-      "sureSn": 24
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-17T19:33:06Z",
-      "durum": "ok",
-      "runId": "32060972577",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
+      "toplam": 12,
+      "oran": 92,
       "ortSureSn": 43
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 3,
-      "oran": 100,
-      "ortSureSn": 21
-    },
-    {
-      "ad": "gecici-check-gh",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 26
     },
     {
       "ad": "Aforizma",
       "toplam": 14,
       "oran": 100,
       "ortSureSn": 17
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 20
+    },
+    {
+      "ad": "gecici-check-gh",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 26
     },
     {
       "ad": "Webhook",
@@ -1922,9 +1922,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 28
     }
   ],
   "kocKararlari": [],
