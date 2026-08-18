@@ -1315,19 +1315,30 @@ def _kural_tahmini(text):
         return "SORGULA"
 
     # Geçmiş görev tamamlama güvenlik ağı: mesajda tırnak içi bir görev VE
-    # geçmiş zamanlı bir tamamlama fiili (yaptım/yapmıştım/tamamladım/
-    # bitirdim/bitirmiştim) varsa VE açık bir 'ekle/kaydet' niyeti YOKSA,
-    # bu neredeyse kesin bir GECMIS_GOREV_TAMAMLA'dır - kimse tırnak içinde
-    # bir görevi GEÇMİŞ ZAMANLA anıp aynı anda onu YENİ ekliyor olamaz.
-    # Bu kontrol tarih güvenlik ağından ÖNCE geliyor çünkü '22 Temmuz'daki
-    # X görevini yapmıştım' gibi bir mesaj her ikisini de tetikleyebilir -
-    # tamamlama niyeti burada daha spesifik/doğru sinyal. Gerçek bir olayda
-    # SLM(3b) bunu GUNLUK_GOREV sanıp bugüne sahte bir görev daha ekledi,
-    # bu kural o durumu 7b'ye eskale eder.
+    # bir tamamlama İFADESİ (birinci şahıs geçmiş zaman: yaptım/yapmıştım/
+    # tamamladım/bitirdim/bitirmiştim; YA DA emir kipi/edilgen kalıp:
+    # 'tamamlandı olarak işaretle', 'yapıldı olarak işaretle', 'bitti
+    # olarak işaretle', 'tamamlandı işaretle') varsa VE açık bir
+    # 'ekle/kaydet' niyeti YOKSA, bu neredeyse kesin bir
+    # GECMIS_GOREV_TAMAMLA'dır - kimse tırnak içinde bir görevi tamamlanmış
+    # olarak ANIP aynı anda onu YENİ ekliyor olamaz. Gerçek bir olayda
+    # SADECE birinci şahıs fiiller (yaptım vb.) aranıyordu - kullanıcının
+    # asıl kullandığı '"X görevini" tamamlandı olarak işaretle' kalıbı
+    # (emir kipi + edilgen sıfat-fiil, birinci şahıs YOK) bu listeye hiç
+    # uymadığı için kural None döndü, SLM'e bırakıldı, SLM de bunu YENİ bir
+    # görev eklemek sanıp aynı görevi tekrar (duplicate olarak) kaydetti -
+    # kullanıcının "özel fonksiyonu yazmıştık ama çalışmıyor" şikayetinin
+    # kök nedeni buydu; fonksiyonun kendisi hep doğruydu, ona hiç
+    # ulaşılamıyordu. Bu kontrol tarih güvenlik ağından ÖNCE geliyor çünkü
+    # '22 Temmuz'daki X görevini yapmıştım' gibi bir mesaj her ikisini de
+    # tetikleyebilir - tamamlama niyeti burada daha spesifik/doğru sinyal.
     tirnak_var = '"' in text or "\u201c" in text or "\u201d" in text
     tamamlama_fiili_var = any(k in metin_kucuk for k in [
         "yaptım", "yapmıştım", "tamamladım", "bitirdim", "bitirmiştim",
-    ])
+    ]) or bool(re.search(
+        r"\b(tamamlandı|yapıldı|bitti|bitmiş)\s+(olarak\s+)?işaretle",
+        metin_kucuk,
+    ))
     if tirnak_var and tamamlama_fiili_var and not kaydet_niyeti_var:
         return "GECMIS_GOREV_TAMAMLA"
 
