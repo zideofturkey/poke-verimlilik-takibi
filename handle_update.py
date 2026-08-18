@@ -1010,18 +1010,25 @@ BEKLEYEN_ACIKLAMA = {
 
 
 def _en_iyi_gorev_eslesmesini_bul(arama_metni, tarih=None):
-    """arama_metni ile GunlukGorevler'deki (SADECE Bekliyor/Süresi Doldu
-    durumundaki - zaten Yapıldı olan bir şeyi tekrar 'bulup' bozmayalım)
-    satırlar arasında en iyi eşleşmeyi arar. Üç aşamalı, temkinli bir
-    yaklaşım: (1) tam eşleşme, (2) biri diğerini kapsıyor mu, (3) kelime
-    örtüşme oranı - SADECE yeterince güvenli VE tek bir aday varsa kabul
-    edilir. Belirsizse ASLA tahmin etmez, None döner - yanlış bir görevi
-    'yapıldı' işaretlemek, hiç işaretlememekten daha kötü bir hata."""
+    """arama_metni ile GunlukGorevler'deki satırlar arasında en iyi
+    eşleşmeyi arar. SADECE zaten 'Yapıldı' olan satırlar hariç tutulur -
+    onu tekrar 'bulup' hiçbir şey değiştirmeye gerek yok zaten. ÖNCEDEN
+    sadece 'Bekliyor'/'Süresi Doldu' durumundaki satırlar aday kabul
+    ediliyordu - bu, kullanıcının GERÇEKTEN 'yapmıştım' dediği ama
+    Sheets'te (ör. otomatik süre-dolma mantığı ya da kullanıcının kendi
+    önceki yanlış işaretlemesi yüzünden) 'Yapılmadı' ya da 'Telafi'
+    durumunda kalmış bir görevi SONRADAN düzeltmesini imkansız
+    kılıyordu - gerçek bir olayda tam olarak bu yaşandı (görev
+    'Yapılmadı' durumundaydı, kullanıcı 'tamamlandı olarak işaretle'
+    dediğinde None dönüp hiçbir şey değişmedi). Üç aşamalı temkinli
+    eşleştirme mantığı (tam eşleşme -> kapsama -> %60+ örtüşme VE tek
+    net aday) DEĞİŞMEDİ - hâlâ belirsizse ASLA tahmin etmiyor, sadece
+    artık HANGİ durumdaki satırların aday olabileceği genişledi."""
     ws = get_gorevler_sheet()
     rows = ws.get_all_records()
     adaylar = [
         i for i, r in enumerate(rows)
-        if r.get("Durum") in ("Bekliyor", "Süresi Doldu")
+        if r.get("Durum") != "Yapıldı"
         and (tarih is None or r.get("Tarih") == tarih)
     ]
     if not adaylar:
