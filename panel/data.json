@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-19T14:32:02.221036+03:00",
+  "uretim_zamani": "2026-08-19T15:48:47.320281+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 77
   },
@@ -1791,17 +1791,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-19T11:31:48Z",
+      "zaman": "2026-08-19T12:48:29Z",
       "durum": "warn",
+      "runId": "32254595196",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-19T12:38:16Z",
+      "durum": "ok",
+      "runId": "32253689023",
+      "sureSn": 16
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-19T11:58:04Z",
+      "durum": "ok",
+      "runId": "32250213529",
+      "sureSn": 13
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-19T11:39:38Z",
+      "durum": "ok",
+      "runId": "32248671877",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-19T11:31:48Z",
+      "durum": "ok",
       "runId": "32248020121",
-      "sureSn": 3
+      "sureSn": 40
     },
     {
       "ad": "Dinle",
       "zaman": "2026-08-19T11:31:29Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "32247995622",
-      "sureSn": 4
+      "sureSn": 35
     },
     {
       "ad": "Aforizma",
@@ -1865,54 +1893,26 @@
       "durum": "ok",
       "runId": "32242989718",
       "sureSn": 19
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-19T10:29:32Z",
-      "durum": "ok",
-      "runId": "32242933487",
-      "sureSn": 43
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-19T10:16:20Z",
-      "durum": "ok",
-      "runId": "32241859649",
-      "sureSn": 14
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-19T09:46:33Z",
-      "durum": "ok",
-      "runId": "32239329015",
-      "sureSn": 19
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-19T09:40:26Z",
-      "durum": "ok",
-      "runId": "32238803764",
-      "sureSn": 46
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 91,
-      "ortSureSn": 40
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 30
+      "toplam": 10,
+      "oran": 90,
+      "ortSureSn": 39
     },
     {
       "ad": "Aforizma",
-      "toplam": 14,
-      "oran": 93,
+      "toplam": 16,
+      "oran": 94,
       "ortSureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 34
     },
     {
       "ad": "Webhook",
