@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-20T02:23:09.384312+03:00",
+  "uretim_zamani": "2026-08-20T02:47:57.424553+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1808,10 +1808,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-19T23:22:52Z",
+      "zaman": "2026-08-19T23:47:40Z",
       "durum": "warn",
-      "runId": "32312995458",
+      "runId": "32314735312",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-19T23:34:31Z",
+      "durum": "ok",
+      "runId": "32313824008",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-19T23:28:55Z",
+      "durum": "ok",
+      "runId": "32313421107",
+      "sureSn": 26
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-19T23:22:52Z",
+      "durum": "ok",
+      "runId": "32312995458",
+      "sureSn": 42
     },
     {
       "ad": "Aforizma",
@@ -1889,34 +1910,13 @@
       "durum": "ok",
       "runId": "32306507285",
       "sureSn": 16
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-19T21:53:46Z",
-      "durum": "ok",
-      "runId": "32306177620",
-      "sureSn": 40
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-19T21:36:49Z",
-      "durum": "ok",
-      "runId": "32304768445",
-      "sureSn": 20
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-19T21:31:51Z",
-      "durum": "ok",
-      "runId": "32304339625",
-      "sureSn": 25
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 10,
-      "oran": 90,
+      "toplam": 11,
+      "oran": 91,
       "ortSureSn": 40
     },
     {
@@ -1927,9 +1927,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 31
     },
     {
       "ad": "Webhook",
@@ -1948,18 +1948,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 15
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 20
-    },
-    {
-      "ad": "gecici-temizle-durum",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 18
     }
   ],
   "kocKararlari": [],
