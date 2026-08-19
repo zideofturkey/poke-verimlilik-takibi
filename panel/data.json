@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-19T22:25:55.796122+03:00",
+  "uretim_zamani": "2026-08-19T22:51:03.151531+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 77
   },
@@ -1808,10 +1808,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-19T19:25:39Z",
+      "zaman": "2026-08-19T19:50:47Z",
       "durum": "warn",
+      "runId": "32295269241",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-19T19:46:06Z",
+      "durum": "ok",
+      "runId": "32294842997",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-19T19:31:23Z",
+      "durum": "ok",
+      "runId": "32293490220",
+      "sureSn": 39
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-19T19:25:39Z",
+      "durum": "ok",
       "runId": "32292960478",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -1889,53 +1910,32 @@
       "durum": "ok",
       "runId": "32287091481",
       "sureSn": 15
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-19T18:23:10Z",
-      "durum": "ok",
-      "runId": "32287037426",
-      "sureSn": 20
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-19T18:16:12Z",
-      "durum": "ok",
-      "runId": "32286378002",
-      "sureSn": 16
-    },
-    {
-      "ad": "gecici-temizle-durum",
-      "zaman": "2026-08-19T18:09:22Z",
-      "durum": "ok",
-      "runId": "32285728495",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
+      "toplam": 7,
+      "oran": 86,
       "ortSureSn": 39
     },
     {
       "ad": "Aforizma",
-      "toplam": 10,
+      "toplam": 9,
       "oran": 100,
       "ortSureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 32
     },
     {
       "ad": "Webhook",
       "toplam": 9,
       "oran": 100,
       "ortSureSn": 99
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 31
     },
     {
       "ad": "gecici-check-slm2",
