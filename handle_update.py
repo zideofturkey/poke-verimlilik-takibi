@@ -752,21 +752,27 @@ def _kalan_durumu_interaktif_gonder(hedef_tarih, ifade, erken_saat_varsayimi=Fal
 
 
 def _gecen_hafta_bekleyenleri_cevapla():
-    """'Geçen hafta / geçtiğimiz hafta / önceki hafta ...' sorgularını
-    karşılar - BİTEN haftanın (bugünü içeren haftanın Pazartesi'sinden
-    7 gün öncesi, yani geçen Pazartesi'den geçen Pazar'a kadar 7 gün)
-    bekleyen GÜNLÜK görev ve rutinlerini bulur. _tum_bekleyen_gorevleri_
-    cevapla'nın (TÜM zamanlar) ve _haftalik_hedef_durumu_cevapla'nın
-    (BU haftanın HaftalikHedefler'i - checkbox'lı hedefler, apayrı bir
-    veri) İKİSİNDEN de farklı, üçüncü bir kapsam: belirli bir 7 günlük
-    tarih ARALIĞI + günlük görev/rutin (haftalık hedef DEĞİL).
+    """'Geçen hafta / geçtiğimiz hafta / önceki hafta ... görev ve
+    rutinlerimi gönder' tarzı sorguları karşılar - BİTEN haftaya (bugünü
+    içeren haftanın Pazartesi'sinden 7 gün öncesi, geçen Pazartesi'den
+    geçen Pazar'a kadar) ait TÜM DÖRT kaynaktaki bekleyenleri bulur:
+    (1) ad-hoc günlük görevler (GunlukGorevler, tarih bazlı), (2) günlük
+    rutinler (Rutinler + Takip, tarih bazlı), (3) haftalık hedefler
+    (HaftalikHedefler, HaftaBaslangic bazlı), (4) haftalık kategori
+    rutinleri (HaftalikRutinTakip, HaftaBaslangic bazlı). ÖNCEDEN sadece
+    (1) ve (2)'yi kapsıyordu - kullanıcı açıkça "haftalık rutin VE
+    görevleri" dediğinde haftalık hedef/rutin sekmelerine hiç bakılmadığı
+    için eksik/yanıltıcı bir cevap veriliyordu; "dünkü bekleyenleri
+    sorgula" ne kadar kapsamlıysa (tüm kategorileri kapsıyor) bunun da
+    o kadar kapsamlı olması beklentisi netleşti - artık simetrik.
 
-    Kasıtlı tasarım kararı: her gün için ayrı ayrı mesaj göndermek
-    (7 gün x görev+rutin = potansiyel 14 mesaj) yerine, TÜM haftayı
-    güne göre gruplayıp EN FAZLA 2 mesajda (biri görevler, biri
-    rutinler için) topluyor - kullanıcının "haftalık kontrol mesajları
-    art arda gelince karışık oluyor" geri bildirimiyle aynı doğrultuda,
-    bu sorgu da gereksiz yere çok sayıda ayrı mesaja bölünmüyor."""
+    Kasıtlı tasarım kararı: her kaynak için ayrı ayrı mesaj göndermek
+    (tek bir dev mesaja sıkıştırmak yerine) - kullanıcının "haftalık
+    kontrol mesajları art arda gelince karışık oluyor" geri bildirimiyle
+    ÇELİŞMİYOR çünkü bu sorgu KULLANICININ KENDİ İSTEĞİYLE tetikleniyor
+    (proaktif otomatik gönderim değil) - o an zaten "hepsini göster"
+    diyor, ayrı mesajlar okunabilirliği artırıyor, kaynak boşsa o mesaj
+    hiç gönderilmiyor (gereksiz "boş" mesajları da yok)."""
     bu_hafta_pazartesi = datetime.datetime.strptime(hafta_baslangic_str(), "%Y-%m-%d").date()
     gecen_hafta_pazartesi = bu_hafta_pazartesi - datetime.timedelta(days=7)
     tarihler = [
@@ -792,13 +798,6 @@ def _gecen_hafta_bekleyenleri_cevapla():
         for r in aktif_rutinler:
             if r["isim"] not in cevaplanan:
                 bekleyen_rutinler.append((tarih, r))
-
-    if not bekleyen_gorevler and not bekleyen_rutinler:
-        send_message(
-            f"Geçen hafta ({tarihler[0]} - {tarihler[-1]}) için bekleyen "
-            "hiçbir görev veya rutin yok - hepsi işaretlenmiş! 🎉"
-        )
-        return
 
     if bekleyen_gorevler:
         satirlar = []
@@ -832,6 +831,60 @@ def _gecen_hafta_bekleyenleri_cevapla():
             ])
         baslik = f"Geçen hafta ({tarihler[0]} - {tarihler[-1]}) kalan {len(bekleyen_rutinler)} bekleyen rutin var:"
         send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+
+    # --- Bekleyen HAFTALIK HEDEFLER (geçen haftanın HaftalikHedefler
+    # satırları - günlük görev/rutinden apayrı bir veri, HaftaBaslangic
+    # ile eşleşir, gün bazlı değil). Kullanıcı "geçen haftadan kalan
+    # haftalık rutin VE GÖREVLERİ gönder" dediğinde bunları da beklediği
+    # açıkça belirtti - önceden bu fonksiyon SADECE günlük görev/rutini
+    # kapsıyordu, haftalık hedef/rutin sekmelerine hiç bakmıyordu; "dünkü
+    # bekleyenleri sorgula" ne kadar kapsamlıysa bunun da o kadar
+    # kapsamlı olması bekleniyor - aynı prensip, haftalık ölçeğe taşındı.
+    gecen_hafta_str = gecen_hafta_pazartesi.strftime("%Y-%m-%d")
+    ws_hedef = get_haftalik_sheet()
+    hedef_rows = ws_hedef.get_all_values()
+    bekleyen_hedefler = [
+        (i + 1, row[1]) for i, row in enumerate(hedef_rows[1:], start=1)
+        if row[0] == gecen_hafta_str and row[2] == "Bekliyor"
+    ]
+    if bekleyen_hedefler:
+        satirlar = [f"{i+1}. {isim}" for i, (_, isim) in enumerate(bekleyen_hedefler)]
+        buton_satirlari = [
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"hedef_{satir_no}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"hedef_{satir_no}_hayir"},
+            ]
+            for i, (satir_no, _) in enumerate(bekleyen_hedefler)
+        ]
+        baslik = f"Geçen hafta ({gecen_hafta_str} haftası) kalan {len(bekleyen_hedefler)} bekleyen haftalık hedefin var:"
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+
+    # --- Bekleyen HAFTALIK RUTİNLER (geçen haftanın HaftalikRutinTakip
+    # satırları - Oda tozu alma, Making Music gibi tekrarlayan kategori
+    # rutinleri, günlük rutinlerden apayrı bir veri).
+    ws_hrutin = get_haftalik_rutin_takip_sheet()
+    hrutin_rows = ws_hrutin.get_all_values()
+    bekleyen_hrutinler = [
+        (i + 1, row[2]) for i, row in enumerate(hrutin_rows[1:], start=1)
+        if row[0] == gecen_hafta_str and row[3] == "Bekliyor"
+    ]
+    if bekleyen_hrutinler:
+        satirlar = [f"{i+1}. {isim}" for i, (_, isim) in enumerate(bekleyen_hrutinler)]
+        buton_satirlari = [
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"haftarutin_{satir_no}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"haftarutin_{satir_no}_hayir"},
+            ]
+            for i, (satir_no, _) in enumerate(bekleyen_hrutinler)
+        ]
+        baslik = f"Geçen hafta ({gecen_hafta_str} haftası) kalan {len(bekleyen_hrutinler)} bekleyen haftalık (tekrarlayan) işin var:"
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+
+    if not bekleyen_gorevler and not bekleyen_rutinler and not bekleyen_hedefler and not bekleyen_hrutinler:
+        send_message(
+            f"Geçen hafta ({tarihler[0]} - {tarihler[-1]}) için bekleyen "
+            "hiçbir görev, rutin ya da hedef yok - hepsi işaretlenmiş! 🎉"
+        )
 
 
 def _tum_bekleyen_gorevleri_cevapla():
