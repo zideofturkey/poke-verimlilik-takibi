@@ -1,4 +1,4 @@
-name: gecici-check-hrt
+name: gecici-test-son-sans
 on: workflow_dispatch
 jobs:
   check:
@@ -14,4 +14,4 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python3 temp_check_hrt.py
+        run: python3 temp_test_son_sans.py
