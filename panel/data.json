@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-20T01:25:27.762950+03:00",
+  "uretim_zamani": "2026-08-20T01:52:05.758724+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1808,10 +1808,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-19T22:25:08Z",
+      "zaman": "2026-08-19T22:51:48Z",
       "durum": "warn",
+      "runId": "32310739896",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-19T22:46:49Z",
+      "durum": "ok",
+      "runId": "32310375503",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-19T22:31:11Z",
+      "durum": "ok",
+      "runId": "32309182346",
+      "sureSn": 35
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-19T22:25:08Z",
+      "durum": "ok",
       "runId": "32308718910",
-      "sureSn": 4
+      "sureSn": 48
     },
     {
       "ad": "Aforizma",
@@ -1889,53 +1910,32 @@
       "durum": "ok",
       "runId": "32301844588",
       "sureSn": 20
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-19T20:56:29Z",
-      "durum": "ok",
-      "runId": "32301260205",
-      "sureSn": 49
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-19T20:44:23Z",
-      "durum": "ok",
-      "runId": "32300167990",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-19T20:35:33Z",
-      "durum": "ok",
-      "runId": "32299359861",
-      "sureSn": 37
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 8,
-      "oran": 88,
-      "ortSureSn": 38
+      "toplam": 9,
+      "oran": 89,
+      "ortSureSn": 39
     },
     {
       "ad": "Aforizma",
-      "toplam": 10,
+      "toplam": 11,
       "oran": 100,
       "ortSureSn": 16
     },
     {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 64
-    },
-    {
       "ad": "Dinle",
-      "toplam": 4,
+      "toplam": 5,
       "oran": 100,
       "ortSureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 10,
+      "oran": 100,
+      "ortSureSn": 67
     },
     {
       "ad": "gecici-check-slm2",
@@ -1966,18 +1966,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 26
-    },
-    {
-      "ad": "gecici-test-kapat",
-      "toplam": 1,
-      "oran": 0,
-      "ortSureSn": 12
-    },
-    {
-      "ad": "gecici-check-deger",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 16
     }
   ],
   "kocKararlari": [],
