@@ -107,8 +107,95 @@ def gun_etiketi(fark):
     return f"{fark} gün önce"
 
 
+def _gecen_hafta_rutin_son_sans_ver():
+    """Yeni hafta (Pazartesi) sabahı çalışır. Kullanıcının şikayeti:
+    haftalık rutinler (Oda tozu, Making Music vb.) hiçbir zaman otomatik
+    süre-dolma kapsamında değildi - _suresi_dolanlari_isaretle_ve_bildir()
+    bilinçli olarak rutinleri dışarıda bırakıyordu, bu yüzden cevapsız
+    kalan haftalık rutin satırları SONSUZA KADAR 'Bekliyor' durumunda
+    kalıp birikiyordu. Kullanıcı çözüm olarak TAM OLARAK 'Süresi Doldu'
+    (günlük görevlerdeki gibi) değil, ÖNCE SON BİR ŞANS istedi: yeni hafta
+    başladığında geçen haftadan kalan bekleyenleri BİR KEZ DAHA, tıklanabilir
+    butonlarla sorsun; o soruya da cevap gelmezse (ertesi gün, bkz.
+    _gecen_hafta_rutin_cevapsizlari_kapat) ancak o zaman 'Süresi Doldu'
+    sayılsın. Zaten var olan haftarutin_<satır>_evet/hayir callback formatı
+    kullanılıyor - process_callback'te hiçbir değişiklik gerekmedi, yeni
+    hafta başladığında GEÇEN haftanın satırları hâlâ 'Bekliyor' ise onlar
+    işaretlenmiş olur (rutinler o hafta içinde herhangi bir gün
+    tamamlanabildiği için doğru davranış bu)."""
+    bu_hafta = hafta_baslangic_str()
+    gecen_hafta = (
+        datetime.datetime.strptime(bu_hafta, "%Y-%m-%d").date() - datetime.timedelta(days=7)
+    ).strftime("%Y-%m-%d")
+
+    ws = get_haftalik_rutin_takip_sheet()
+    rows = ws.get_all_values()
+    bekleyenler = [
+        (i + 1, row[2])  # satır no (1-indexed, header dahil), isim
+        for i, row in enumerate(rows[1:], start=1)
+        if row[0] == gecen_hafta and row[3] == "Bekliyor"
+    ]
+    if not bekleyenler:
+        return
+
+    send_message(
+        f"⏰ Son şans — geçen hafta ({gecen_hafta}) işaretlemediğin "
+        "tekrarlayan işler var. Bugün cevap vermezsen 'Süresi Doldu' "
+        "sayacağım:\n\n" +
+        "\n".join(f"{i+1}. {isim}" for i, (_, isim) in enumerate(bekleyenler)),
+        buttons=[
+            [
+                {"text": f"{i+1}️⃣ ✅", "callback_data": f"haftarutin_{satir_no}_evet"},
+                {"text": f"{i+1}️⃣ ❌", "callback_data": f"haftarutin_{satir_no}_hayir"},
+            ]
+            for i, (satir_no, isim) in enumerate(bekleyenler)
+        ],
+    )
+    set_deger("gecen_hafta_rutin_son_sans_tarihi", bugun_str())
+
+
+def _gecen_hafta_rutin_cevapsizlari_kapat():
+    """_gecen_hafta_rutin_son_sans_ver'in gönderdiği son-şans mesajından
+    TAM 1 GÜN sonra çalışır (yani bir sonraki sabah() çağrısında) - o
+    mesajdaki satırlardan hâlâ 'Bekliyor' kalanları 'Süresi Doldu' olarak
+    işaretler. Bilinçli olarak 'Yapılmadı' DEĞİL - günlük görevlerdeki
+    'Süresi Doldu' ile aynı gerekçe: kullanıcının gerçekten yapmadığını
+    değil, sadece iki fırsatta da cevap vermediğini biliyoruz. Sadece
+    tam olarak DÜN son-şans mesajı gönderilmişse çalışır (set_deger ile
+    işaretlenen tarih kontrolü) - her sabah() çağrısında gereksiz yere
+    taramaz, ve son-şans mesajı gönderilmemiş bir haftayı yanlışlıkla
+    süresi dolmuş saymaz."""
+    son_sans_tarihi = get_deger("gecen_hafta_rutin_son_sans_tarihi")
+    dun = (datetime.datetime.now(TR_TZ).date() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    if son_sans_tarihi != dun:
+        return
+
+    hedef_hafta = (
+        datetime.datetime.now(TR_TZ).date() - datetime.timedelta(days=8)
+    ).strftime("%Y-%m-%d")
+
+    ws = get_haftalik_rutin_takip_sheet()
+    rows = ws.get_all_values()
+    kapatilanlar = []
+    for i, row in enumerate(rows[1:], start=1):
+        if row[0] == hedef_hafta and row[3] == "Bekliyor":
+            ws.update_cell(i + 1, 4, "Süresi Doldu")
+            kapatilanlar.append(row[2])
+
+    if kapatilanlar:
+        send_message(
+            "⏳ Geçen haftaki şu tekrarlayan işleri 'Süresi Doldu' olarak "
+            "işaretledim (gerçekten yaptıysan söyle, düzeltirim):\n" +
+            "\n".join(f"• {isim}" for isim in kapatilanlar)
+        )
+    set_deger("gecen_hafta_rutin_son_sans_tarihi", "")
+
+
 def sabah():
     _suresi_dolanlari_isaretle_ve_bildir()
+    _gecen_hafta_rutin_cevapsizlari_kapat()
+    if datetime.datetime.now(TR_TZ).weekday() == 0:  # Pazartesi
+        _gecen_hafta_rutin_son_sans_ver()
 
     # Son birkaç günün kaçırılan görevlerine bak (telafi mantığı)
     ws = get_gorevler_sheet()
