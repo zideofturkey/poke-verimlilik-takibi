@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-20T23:29:19.480417+03:00",
+  "uretim_zamani": "2026-08-20T23:58:47.204177+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 74
   },
@@ -1830,10 +1830,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-20T20:29:03Z",
+      "zaman": "2026-08-20T20:58:24Z",
       "durum": "warn",
+      "runId": "32416960604",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-20T20:42:34Z",
+      "durum": "ok",
+      "runId": "32415550497",
+      "sureSn": 20
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-20T20:36:08Z",
+      "durum": "ok",
+      "runId": "32414969897",
+      "sureSn": 27
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-20T20:29:03Z",
+      "durum": "ok",
       "runId": "32414324705",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Webhook",
@@ -1911,27 +1932,6 @@
       "durum": "ok",
       "runId": "32400620985",
       "sureSn": 44
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-20T17:52:49Z",
-      "durum": "ok",
-      "runId": "32400058973",
-      "sureSn": 14
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-20T17:35:50Z",
-      "durum": "ok",
-      "runId": "32398487123",
-      "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-20T17:29:54Z",
-      "durum": "ok",
-      "runId": "32397932160",
-      "sureSn": 49
     }
   ],
   "workflowTurOzet": [
@@ -1942,22 +1942,22 @@
       "ortSureSn": 42
     },
     {
-      "ad": "Webhook",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 96
-    },
-    {
       "ad": "Aforizma",
-      "toplam": 15,
+      "toplam": 14,
       "oran": 100,
       "ortSureSn": 17
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 96
     },
     {
       "ad": "Gönder",
