@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-20T05:37:53.145279+03:00",
+  "uretim_zamani": "2026-08-20T06:47:36.255761+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1808,10 +1808,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-20T02:37:37Z",
+      "zaman": "2026-08-20T03:47:12Z",
       "durum": "warn",
+      "runId": "32329481794",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-20T03:08:09Z",
+      "durum": "ok",
+      "runId": "32327146789",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-20T03:03:23Z",
+      "durum": "ok",
+      "runId": "32326851370",
+      "sureSn": 31
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-20T02:37:37Z",
+      "durum": "ok",
       "runId": "32325305070",
-      "sureSn": 4
+      "sureSn": 52
     },
     {
       "ad": "Aforizma",
@@ -1889,53 +1910,32 @@
       "durum": "ok",
       "runId": "32310739896",
       "sureSn": 44
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-19T22:46:49Z",
-      "durum": "ok",
-      "runId": "32310375503",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-19T22:31:11Z",
-      "durum": "ok",
-      "runId": "32309182346",
-      "sureSn": 35
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-19T22:25:08Z",
-      "durum": "ok",
-      "runId": "32308718910",
-      "sureSn": 48
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 12,
+      "toplam": 13,
       "oran": 92,
-      "ortSureSn": 41
+      "ortSureSn": 42
     },
     {
       "ad": "Aforizma",
-      "toplam": 14,
+      "toplam": 15,
       "oran": 100,
       "ortSureSn": 16
     },
     {
       "ad": "Dinle",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
       "ortSureSn": 32
     },
     {
       "ad": "Webhook",
-      "toplam": 8,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 56
+      "ortSureSn": 38
     }
   ],
   "kocKararlari": [],
