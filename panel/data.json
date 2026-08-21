@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-21T19:35:34.719779+03:00",
+  "uretim_zamani": "2026-08-21T20:29:32.880502+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1818,10 +1818,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-21T16:35:14Z",
+      "zaman": "2026-08-21T17:29:12Z",
       "durum": "warn",
-      "runId": "32503681428",
+      "runId": "32508400524",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-21T17:22:53Z",
+      "durum": "ok",
+      "runId": "32507858228",
+      "sureSn": 17
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-21T16:57:26Z",
+      "durum": "ok",
+      "runId": "32505611614",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-21T16:41:32Z",
+      "durum": "ok",
+      "runId": "32504227646",
+      "sureSn": 25
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-21T16:35:14Z",
+      "durum": "ok",
+      "runId": "32503681428",
+      "sureSn": 48
     },
     {
       "ad": "Aforizma",
@@ -1892,34 +1920,6 @@
       "durum": "ok",
       "runId": "32490105648",
       "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T13:45:24Z",
-      "durum": "ok",
-      "runId": "32488504536",
-      "sureSn": 46
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T13:23:10Z",
-      "durum": "ok",
-      "runId": "32486562178",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-21T13:01:00Z",
-      "durum": "ok",
-      "runId": "32484687280",
-      "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T12:49:11Z",
-      "durum": "ok",
-      "runId": "32483718174",
-      "sureSn": 40
     }
   ],
   "workflowTurOzet": [
@@ -1931,13 +1931,13 @@
     },
     {
       "ad": "Aforizma",
-      "toplam": 16,
+      "toplam": 17,
       "oran": 100,
       "ortSureSn": 15
     },
     {
       "ad": "Dinle",
-      "toplam": 9,
+      "toplam": 8,
       "oran": 100,
       "ortSureSn": 30
     },
