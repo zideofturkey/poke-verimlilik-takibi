@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-21T07:38:38.395100+03:00",
+  "uretim_zamani": "2026-08-21T08:33:20.562580+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1830,10 +1830,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-21T04:38:25Z",
+      "zaman": "2026-08-21T05:33:05Z",
       "durum": "warn",
-      "runId": "32447648140",
+      "runId": "32450962127",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-21T05:21:48Z",
+      "durum": "ok",
+      "runId": "32450267581",
+      "sureSn": 13
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-21T04:50:46Z",
+      "durum": "ok",
+      "runId": "32448378000",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-21T04:47:07Z",
+      "durum": "ok",
+      "runId": "32448159267",
+      "sureSn": 38
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-21T04:38:25Z",
+      "durum": "ok",
+      "runId": "32447648140",
+      "sureSn": 40
     },
     {
       "ad": "Aforizma",
@@ -1904,34 +1932,6 @@
       "durum": "ok",
       "runId": "32436009193",
       "sureSn": 41
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T01:19:57Z",
-      "durum": "ok",
-      "runId": "32435916142",
-      "sureSn": 42
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T00:54:36Z",
-      "durum": "ok",
-      "runId": "32434404318",
-      "sureSn": 21
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-21T00:11:30Z",
-      "durum": "ok",
-      "runId": "32431700736",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-21T00:11:20Z",
-      "durum": "ok",
-      "runId": "32431691285",
-      "sureSn": 34
     }
   ],
   "workflowTurOzet": [
@@ -1945,13 +1945,13 @@
       "ad": "Aforizma",
       "toplam": 15,
       "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 16
     },
     {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 31
     },
     {
       "ad": "Webhook",
