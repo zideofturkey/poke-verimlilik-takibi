@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-21T15:49:26.536766+03:00",
+  "uretim_zamani": "2026-08-21T16:45:40.517746+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1818,10 +1818,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-21T12:49:11Z",
+      "zaman": "2026-08-21T13:45:24Z",
       "durum": "warn",
+      "runId": "32488504536",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-21T13:23:10Z",
+      "durum": "ok",
+      "runId": "32486562178",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-21T13:01:00Z",
+      "durum": "ok",
+      "runId": "32484687280",
+      "sureSn": 29
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-21T12:49:11Z",
+      "durum": "ok",
       "runId": "32483718174",
-      "sureSn": 3
+      "sureSn": 40
     },
     {
       "ad": "Webhook",
@@ -1899,27 +1920,6 @@
       "durum": "ok",
       "runId": "32473057323",
       "sureSn": 17
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T10:31:04Z",
-      "durum": "ok",
-      "runId": "32472996302",
-      "sureSn": 45
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T10:21:57Z",
-      "durum": "ok",
-      "runId": "32472293717",
-      "sureSn": 14
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T09:56:52Z",
-      "durum": "ok",
-      "runId": "32470313616",
-      "sureSn": 12
     }
   ],
   "workflowTurOzet": [
@@ -1927,13 +1927,7 @@
       "ad": "Panel",
       "toplam": 11,
       "oran": 91,
-      "ortSureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 124
+      "ortSureSn": 39
     },
     {
       "ad": "Aforizma",
@@ -1945,7 +1939,13 @@
       "ad": "Dinle",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 124
     },
     {
       "ad": "Gönder",
