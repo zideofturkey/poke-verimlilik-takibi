@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-22T08:55:46.027021+03:00",
+  "uretim_zamani": "2026-08-22T09:42:32.610199+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1463,7 +1463,7 @@
         },
         {
           "metin": "FitCheck davet linkleri kullanım testleri yapılacak hem user hem admin gözüyle kullanılacak",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -1818,10 +1818,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-22T05:55:29Z",
+      "zaman": "2026-08-22T06:42:07Z",
       "durum": "warn",
+      "runId": "32557646723",
+      "sureSn": 5
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-22T06:40:33Z",
+      "durum": "ok",
+      "runId": "32557581276",
+      "sureSn": 16
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-22T06:18:33Z",
+      "durum": "ok",
+      "runId": "32556630862",
+      "sureSn": 13
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-22T05:55:29Z",
+      "durum": "ok",
       "runId": "32555602618",
-      "sureSn": 3
+      "sureSn": 43
     },
     {
       "ad": "Aforizma",
@@ -1899,27 +1920,6 @@
       "durum": "ok",
       "runId": "32547992837",
       "sureSn": 17
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-22T03:00:25Z",
-      "durum": "ok",
-      "runId": "32547782425",
-      "sureSn": 34
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-22T02:35:15Z",
-      "durum": "ok",
-      "runId": "32546654844",
-      "sureSn": 43
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-22T02:07:07Z",
-      "durum": "ok",
-      "runId": "32545370086",
-      "sureSn": 16
     }
   ],
   "workflowTurOzet": [
@@ -1927,13 +1927,19 @@
       "ad": "Panel",
       "toplam": 13,
       "oran": 92,
-      "ortSureSn": 41
+      "ortSureSn": 42
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 16
     },
     {
       "ad": "Aforizma",
-      "toplam": 17,
+      "toplam": 16,
       "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 18
     },
     {
       "ad": "Dinle",
