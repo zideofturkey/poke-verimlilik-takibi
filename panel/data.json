@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-08-23T00:47:11.321671+03:00",
+  "uretim_zamani": "2026-08-23T01:22:31.494657+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 66
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
     {
@@ -1168,7 +1168,7 @@
     {
       "tarih": "22 August 2026",
       "tarih_iso": "2026-08-22",
-      "level": 2,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1188,7 +1188,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1423,7 +1423,7 @@
         },
         {
           "metin": "FitCheck güvenlik teslerini bitir ve form gönderim sorunlarına geç",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Portföy takip listeni güncelle",
@@ -1810,10 +1810,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-22T21:46:51Z",
+      "zaman": "2026-08-22T22:22:15Z",
       "durum": "warn",
-      "runId": "32600574738",
+      "runId": "32602240073",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-22T22:09:32Z",
+      "durum": "ok",
+      "runId": "32601649572",
+      "sureSn": 17
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-22T21:54:59Z",
+      "durum": "ok",
+      "runId": "32600959936",
+      "sureSn": 17
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-22T21:48:15Z",
+      "durum": "ok",
+      "runId": "32600639267",
+      "sureSn": 39
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-22T21:47:57Z",
+      "durum": "ok",
+      "runId": "32600626051",
+      "sureSn": 31
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-22T21:46:51Z",
+      "durum": "ok",
+      "runId": "32600574738",
+      "sureSn": 47
     },
     {
       "ad": "Aforizma",
@@ -1877,41 +1912,6 @@
       "durum": "ok",
       "runId": "32597889525",
       "sureSn": 40
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-22T20:49:07Z",
-      "durum": "ok",
-      "runId": "32597782803",
-      "sureSn": 41
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-22T20:36:16Z",
-      "durum": "ok",
-      "runId": "32597162962",
-      "sureSn": 20
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-22T20:30:32Z",
-      "durum": "ok",
-      "runId": "32596877865",
-      "sureSn": 36
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-22T20:22:49Z",
-      "durum": "ok",
-      "runId": "32596505630",
-      "sureSn": 46
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-22T20:09:23Z",
-      "durum": "ok",
-      "runId": "32595846605",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
@@ -1919,25 +1919,25 @@
       "ad": "Panel",
       "toplam": 11,
       "oran": 91,
-      "ortSureSn": 39
+      "ortSureSn": 40
     },
     {
       "ad": "Aforizma",
-      "toplam": 17,
+      "toplam": 16,
       "oran": 100,
       "ortSureSn": 16
     },
     {
-      "ad": "Dinle",
-      "toplam": 6,
+      "ad": "Webhook",
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 39
+      "ortSureSn": 38
     },
     {
-      "ad": "Webhook",
+      "ad": "Dinle",
       "toplam": 5,
       "oran": 100,
-      "ortSureSn": 39
+      "ortSureSn": 41
     },
     {
       "ad": "Gönder",
