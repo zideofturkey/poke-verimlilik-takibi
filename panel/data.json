@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-23T01:22:31.494657+03:00",
+  "uretim_zamani": "2026-08-23T01:48:44.154799+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1810,10 +1810,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-22T22:22:15Z",
+      "zaman": "2026-08-22T22:48:28Z",
       "durum": "warn",
-      "runId": "32602240073",
+      "runId": "32603475083",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-22T22:35:42Z",
+      "durum": "ok",
+      "runId": "32602875602",
+      "sureSn": 14
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-22T22:28:34Z",
+      "durum": "ok",
+      "runId": "32602532535",
+      "sureSn": 35
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-22T22:22:15Z",
+      "durum": "ok",
+      "runId": "32602240073",
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -1891,27 +1912,6 @@
       "durum": "ok",
       "runId": "32597899559",
       "sureSn": 39
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-22T20:51:34Z",
-      "durum": "ok",
-      "runId": "32597896936",
-      "sureSn": 36
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-22T20:51:25Z",
-      "durum": "ok",
-      "runId": "32597889781",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-22T20:51:25Z",
-      "durum": "ok",
-      "runId": "32597889525",
-      "sureSn": 40
     }
   ],
   "workflowTurOzet": [
@@ -1919,25 +1919,25 @@
       "ad": "Panel",
       "toplam": 11,
       "oran": 91,
-      "ortSureSn": 40
+      "ortSureSn": 39
     },
     {
       "ad": "Aforizma",
-      "toplam": 16,
+      "toplam": 15,
       "oran": 100,
       "ortSureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 40
     },
     {
       "ad": "Webhook",
       "toplam": 7,
       "oran": 100,
       "ortSureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 41
     },
     {
       "ad": "Gönder",
