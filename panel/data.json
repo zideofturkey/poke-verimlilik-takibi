@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-22T02:49:13.402452+03:00",
+  "uretim_zamani": "2026-08-22T04:15:48.733634+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1818,10 +1818,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-21T23:48:55Z",
+      "zaman": "2026-08-22T01:15:32Z",
       "durum": "warn",
-      "runId": "32538214165",
+      "runId": "32542900905",
       "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-22T00:50:41Z",
+      "durum": "ok",
+      "runId": "32541629640",
+      "sureSn": 17
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-21T23:56:51Z",
+      "durum": "ok",
+      "runId": "32538679516",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-21T23:48:55Z",
+      "durum": "ok",
+      "runId": "32538214165",
+      "sureSn": 46
     },
     {
       "ad": "Webhook",
@@ -1899,27 +1920,6 @@
       "durum": "ok",
       "runId": "32532899612",
       "sureSn": 52
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T22:25:12Z",
-      "durum": "ok",
-      "runId": "32532876810",
-      "sureSn": 15
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T21:59:37Z",
-      "durum": "ok",
-      "runId": "32531028345",
-      "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T21:49:49Z",
-      "durum": "ok",
-      "runId": "32530304579",
-      "sureSn": 44
     }
   ],
   "workflowTurOzet": [
@@ -1927,7 +1927,13 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 41
+      "ortSureSn": 42
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 13,
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "Webhook",
@@ -1936,14 +1942,8 @@
       "ortSureSn": 61
     },
     {
-      "ad": "Aforizma",
-      "toplam": 12,
-      "oran": 100,
-      "ortSureSn": 17
-    },
-    {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 31
     }
