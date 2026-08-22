@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-22T05:35:30.391260+03:00",
+  "uretim_zamani": "2026-08-22T06:42:05.650675+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1818,10 +1818,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-22T02:35:15Z",
+      "zaman": "2026-08-22T03:41:50Z",
       "durum": "warn",
-      "runId": "32546654844",
+      "runId": "32549682410",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-22T03:04:49Z",
+      "durum": "ok",
+      "runId": "32547992837",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-22T03:00:25Z",
+      "durum": "ok",
+      "runId": "32547782425",
+      "sureSn": 34
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-22T02:35:15Z",
+      "durum": "ok",
+      "runId": "32546654844",
+      "sureSn": 43
     },
     {
       "ad": "Aforizma",
@@ -1899,53 +1920,32 @@
       "durum": "ok",
       "runId": "32537068990",
       "sureSn": 25
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T23:24:38Z",
-      "durum": "ok",
-      "runId": "32536752644",
-      "sureSn": 45
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-21T23:12:25Z",
-      "durum": "ok",
-      "runId": "32536007527",
-      "sureSn": 14
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-21T22:51:38Z",
-      "durum": "ok",
-      "runId": "32534682115",
-      "sureSn": 46
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 10,
-      "oran": 90,
+      "toplam": 11,
+      "oran": 91,
       "ortSureSn": 42
     },
     {
       "ad": "Aforizma",
-      "toplam": 12,
+      "toplam": 13,
       "oran": 100,
       "ortSureSn": 16
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 6,
       "oran": 100,
       "ortSureSn": 31
     },
     {
       "ad": "Webhook",
-      "toplam": 13,
+      "toplam": 10,
       "oran": 100,
-      "ortSureSn": 63
+      "ortSureSn": 71
     }
   ],
   "kocKararlari": [],
