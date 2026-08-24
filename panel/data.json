@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-24T22:57:49.856273+03:00",
+  "uretim_zamani": "2026-08-24T23:39:25.921035+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1711,10 +1711,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-24T19:57:30Z",
+      "zaman": "2026-08-24T20:39:09Z",
       "durum": "warn",
+      "runId": "32775099689",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-24T20:38:20Z",
+      "durum": "ok",
+      "runId": "32775023659",
+      "sureSn": 37
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-24T20:00:03Z",
+      "durum": "ok",
+      "runId": "32771376503",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-24T19:57:30Z",
+      "durum": "ok",
       "runId": "32771140723",
-      "sureSn": 5
+      "sureSn": 47
     },
     {
       "ad": "Aforizma",
@@ -1792,27 +1813,6 @@
       "durum": "ok",
       "runId": "32757143817",
       "sureSn": 47
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-24T17:20:26Z",
-      "durum": "ok",
-      "runId": "32756055818",
-      "sureSn": 21
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-24T16:52:40Z",
-      "durum": "ok",
-      "runId": "32753363762",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-24T16:47:00Z",
-      "durum": "ok",
-      "runId": "32752817256",
-      "sureSn": 31
     }
   ],
   "workflowTurOzet": [
@@ -1823,22 +1823,22 @@
       "ortSureSn": 120
     },
     {
+      "ad": "Dinle",
+      "toplam": 10,
+      "oran": 100,
+      "ortSureSn": 32
+    },
+    {
       "ad": "Aforizma",
       "toplam": 16,
       "oran": 100,
       "ortSureSn": 29
     },
     {
-      "ad": "Dinle",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 32
-    },
-    {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 18
+      "ortSureSn": 20
     }
   ],
   "kocKararlari": [],
