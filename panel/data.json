@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-24T06:54:47.915469+03:00",
+  "uretim_zamani": "2026-08-24T07:45:26.099445+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1666,80 +1666,6 @@
           "durum": "Yapıldı"
         }
       ]
-    },
-    {
-      "tarih": "05 August",
-      "gunAdi": "Çarşamba",
-      "gorevler": [
-        {
-          "metin": "Evde spora dönüş",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "akbedding yeni video tasarımı",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "17.00 Uğur Abi ile görüşme",
-          "durum": "Yapılmadı"
-        }
-      ]
-    },
-    {
-      "tarih": "03 August",
-      "gunAdi": "Pazartesi",
-      "gorevler": [
-        {
-          "metin": "10:30 stage",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "FollowUrFirm en azından 1-2 çıktı al",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "FitCheck'i kullan  ve Tokenin izin verdiği ölçüde geliştirmelerine devam et",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "GANZO popMusic'i bitir ve teslim et",
-          "durum": "Süresi Doldu"
-        },
-        {
-          "metin": "İşBank Kredi kartı ödemesi + Enpara'ya atılacak para (650₺) + Faturaları hallet",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Scooter'ın ile bir tur at",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
-    {
-      "tarih": "02 August",
-      "gunAdi": "Pazar",
-      "gorevler": [
-        {
-          "metin": "Sabah anne ile ev temizliği",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Mail'deki haftalık bültenleri okuma",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Kitap okuma hangisini dilersen",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "Artık FollowUrFirm'e girizgah yapmalısın",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "GANZO club music",
-          "durum": "Yapılmadı"
-        }
-      ]
     }
   ],
   "haftalikHedefGecmisi": [
@@ -1780,51 +1706,36 @@
           "durum": "Bekliyor"
         }
       ]
-    },
-    {
-      "hafta": "2026-08-03",
-      "hedefler": [
-        {
-          "hedef": "fatura-k.kartı-needToBuy hesaplarının tümünü kapat ve hedefler doğrultusunda kalan miktarı debt+investment hesaplarına aktar",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "document de Stage",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "BaharSpot travail de reelSeo",
-          "durum": "Yapılmadı"
-        },
-        {
-          "hedef": "Berbere git",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "Tahtanı bir takım planına dönüştür",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "A&K Bedding yeni ürününe mağazamızdan evinize içerik fikri denenecek",
-          "durum": "Yapıldı"
-        }
-      ]
     }
   ],
   "workflowGecmisi": [
     {
+      "ad": "Panel",
+      "zaman": "2026-08-24T04:45:03Z",
+      "durum": "warn",
+      "runId": "32691167463",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-24T04:04:57Z",
+      "durum": "ok",
+      "runId": "32688687327",
+      "sureSn": 16
+    },
+    {
       "ad": "Temizle",
       "zaman": "2026-08-24T03:54:33Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "32688075670",
-      "sureSn": 2
+      "sureSn": 22
     },
     {
       "ad": "Panel",
       "zaman": "2026-08-24T03:54:30Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "32688073829",
-      "sureSn": 4
+      "sureSn": 47
     },
     {
       "ad": "Webhook",
@@ -1902,29 +1813,9 @@
       "durum": "ok",
       "runId": "32685752639",
       "sureSn": 17
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-24T03:10:52Z",
-      "durum": "ok",
-      "runId": "32685555973",
-      "sureSn": 30
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-24T02:45:42Z",
-      "durum": "ok",
-      "runId": "32684126236",
-      "sureSn": 52
     }
   ],
   "workflowTurOzet": [
-    {
-      "ad": "Temizle",
-      "toplam": 1,
-      "oran": 0,
-      "ortSureSn": 2
-    },
     {
       "ad": "Panel",
       "toplam": 10,
@@ -1932,16 +1823,22 @@
       "ortSureSn": 41
     },
     {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 59
-    },
-    {
       "ad": "Aforizma",
       "toplam": 13,
       "oran": 100,
       "ortSureSn": 16
+    },
+    {
+      "ad": "Temizle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 22
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 59
     },
     {
       "ad": "Dinle",
