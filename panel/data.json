@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-28T08:10:11.406836+03:00",
+  "uretim_zamani": "2026-08-28T20:37:29.952350+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 57
   },
@@ -1734,10 +1734,66 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-28T05:09:54Z",
+      "zaman": "2026-08-28T17:37:11Z",
       "durum": "warn",
+      "runId": "33195517080",
+      "sureSn": 5
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-28T17:17:32Z",
+      "durum": "ok",
+      "runId": "33193996423",
+      "sureSn": 25
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-28T16:07:21Z",
+      "durum": "ok",
+      "runId": "33188451932",
+      "sureSn": 23
+    },
+    {
+      "ad": "gecici-cleanup-test",
+      "zaman": "2026-08-28T15:53:47Z",
+      "durum": "ok",
+      "runId": "33187356693",
+      "sureSn": 16
+    },
+    {
+      "ad": "gecici-test-set-deger",
+      "zaman": "2026-08-28T15:52:59Z",
+      "durum": "ok",
+      "runId": "33187295069",
+      "sureSn": 17
+    },
+    {
+      "ad": "gecici-check-durum",
+      "zaman": "2026-08-28T15:50:41Z",
+      "durum": "ok",
+      "runId": "33187115039",
+      "sureSn": 15
+    },
+    {
+      "ad": "gecici-check-hatalog",
+      "zaman": "2026-08-28T15:48:46Z",
+      "durum": "ok",
+      "runId": "33186960453",
+      "sureSn": 17
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-28T12:43:43Z",
+      "durum": "ok",
+      "runId": "33172277845",
+      "sureSn": 18
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-28T05:09:54Z",
+      "durum": "ok",
       "runId": "33143930177",
-      "sureSn": 3
+      "sureSn": 45
     },
     {
       "ad": "Dinle",
@@ -1780,88 +1836,56 @@
       "durum": "ok",
       "runId": "33115457486",
       "sureSn": 50
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-27T20:15:39Z",
-      "durum": "ok",
-      "runId": "33112452096",
-      "sureSn": 30
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-27T20:15:36Z",
-      "durum": "ok",
-      "runId": "33112449254",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-27T20:15:35Z",
-      "durum": "ok",
-      "runId": "33112447455",
-      "sureSn": 30
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-27T20:11:13Z",
-      "durum": "ok",
-      "runId": "33112083425",
-      "sureSn": 15
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-27T19:46:15Z",
-      "durum": "ok",
-      "runId": "33110046548",
-      "sureSn": 34
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-08-27T17:24:05Z",
-      "durum": "ok",
-      "runId": "33098203992",
-      "sureSn": 20
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-27T16:37:17Z",
-      "durum": "ok",
-      "runId": "33094164214",
-      "sureSn": 21
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-27T14:01:13Z",
-      "durum": "ok",
-      "runId": "33079930225",
-      "sureSn": 35
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 8,
-      "oran": 88,
-      "ortSureSn": 41
+      "toplam": 6,
+      "oran": 83,
+      "ortSureSn": 38
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 30
     },
     {
       "ad": "Gönder",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 21
+    },
+    {
+      "ad": "gecici-cleanup-test",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 16
+    },
+    {
+      "ad": "gecici-test-set-deger",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 17
+    },
+    {
+      "ad": "gecici-check-durum",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 15
+    },
+    {
+      "ad": "gecici-check-hatalog",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "Aforizma",
-      "toplam": 8,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 16
     },
     {
       "ad": "Webhook",
