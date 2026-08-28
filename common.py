@@ -108,22 +108,66 @@ def get_deger(anahtar, varsayilan=""):
 
 
 def set_deger(anahtar, deger):
+    """Durum sekmesine genel amaçlı bir anahtar-değer yazar. Gerçek bir
+    olayda `update_cell` (mevcut satır güncelleme dalı) SESSİZCE
+    başarısız oldu - hiçbir exception fırlatmadan, `sabah()` normal
+    şekilde 'Gönderildi: sabah' diye tamamlandı ama Sheets'teki
+    `son_sabah_tarihi` değeri GÜNCELLENMEDİ. Sonuç: birkaç saat sonra
+    `_sabah_kacti_mi_kontrol_et()` bekçisi eski tarihi okuyup sabah
+    mesajının hiç gitmediğini sandı ve `sabah()`'ı TEKRAR tetikledi -
+    kullanıcı gece yarısından sonra art arda iki 'Günaydın' mesajı aldı.
+    Bu, `guvenli_append_row`'un GunlukGorevler'de daha önce çözdüğü
+    sorunla AYNI hastalık ailesi (Google Sheets API'nin ara sıra rastgele
+    başarısız olması) - o zaman sadece yeni-satır-ekleme (append_row)
+    korunmuştu, mevcut-satır-güncelleme (update_cell/append_row burada)
+    hiç korunmamıştı. Artık her iki dal da (güncelleme VE yeni ekleme)
+    önce normal gspread çağrısını dener, o başarısız olursa ham Google
+    Sheets API'siyle (values.update / values.append) otomatik tekrar
+    dener - guvenli_append_row ile birebir aynı desen."""
     ws = get_durum_sheet()
     values = ws.get_all_values()
     for i, row in enumerate(values[1:], start=2):
         if row and row[0] == anahtar:
-            ws.update_cell(i, 2, deger)
-            return
-    ws.append_row([anahtar, deger])
+            try:
+                ws.update_cell(i, 2, deger)
+                return
+            except Exception as e:
+                print(f"set_deger (güncelleme) başarısız ({e}), ham API ile tekrar deneniyor...")
+                creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+                gc = gspread.authorize(creds)
+                url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}/values/{ws.title}!B{i}"
+                params = {"valueInputOption": "RAW"}
+                body = {"values": [[deger]]}
+                resp = gc.http_client.request("PUT", url, params=params, json=body)
+                if resp.status_code != 200:
+                    raise RuntimeError(f"Ham API de başarısız (güncelleme): {resp.status_code} {resp.text[:500]}")
+                return
+    guvenli_append_row(ws, [anahtar, deger])
 
 
 def set_bekleyen_soru(deger):
     """Hangi serbest-metin sorusunun cevabını beklediğimizi kaydeder
     (ör. 'gunluk_gorev', 'haftalik_hedef', ya da bekleme yoksa '').
     Ne zaman set edildiğini de kaydeder - bayat (birkaç günlük) bir
-    bekleme sonsuza kadar yeni soruları engellemesin diye."""
+    bekleme sonsuza kadar yeni soruları engellemesin diye. set_deger'de
+    bulunan aynı sessiz-başarısızlık riskine karşı (bkz. set_deger'in
+    docstring'i) burada da aynı ham-API yedek deseni uygulanıyor - bu
+    değer yanlış kalırsa kullanıcının bir sonraki serbest metin cevabı
+    yanlış soruya verilmiş sayılabilir, bu yüzden update_acell'in de
+    sessizce başarısız olmasına izin verilemez."""
     ws = get_durum_sheet()
-    ws.update_acell("B2", deger)
+    try:
+        ws.update_acell("B2", deger)
+    except Exception as e:
+        print(f"set_bekleyen_soru başarısız ({e}), ham API ile tekrar deneniyor...")
+        creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+        gc = gspread.authorize(creds)
+        url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}/values/{ws.title}!B2"
+        params = {"valueInputOption": "RAW"}
+        body = {"values": [[deger]]}
+        resp = gc.http_client.request("PUT", url, params=params, json=body)
+        if resp.status_code != 200:
+            raise RuntimeError(f"Ham API de başarısız (bekleyen_soru): {resp.status_code} {resp.text[:500]}")
     if deger:
         set_deger("bekleyen_soru_tarihi", datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d"))
 
