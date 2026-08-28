@@ -1,3 +1,21 @@
 name = "poke-telegram-webhook"
 main = "index.js"
 compatibility_date = "2025-01-01"
+
+# YEDEK tetikleyici (bkz. index.js'teki scheduled() dokümantasyonu) -
+# GitHub Actions'ın kendi schedule tetiklemesi Ağustos 2026'da ciddi
+# şekilde kaymaya/gecikmeye başladığı için (platform kaynaklı, koddan
+# düzeltilemeyen bir sorun), Cloudflare Workers'ın KENDİ Cron Triggers
+# altyapısı (GitHub'dan tamamen bağımsız) burada yedek olarak devreye
+# giriyor. Saatler gonder.yml'deki `schedule:` ile BİREBİR AYNI (UTC) -
+# ikisi de aynı anda tetiklenebilir, sabah()/hatirlat()/aksam()'daki
+# "zaten cevaplanmış mı" kontrolleri çakışmayı zaten engelliyor.
+[triggers]
+crons = [
+  "0 6 * * *",   # 09:00 TR - sabah
+  "0 10 * * *",  # 13:00 TR - hatirlat (öğle)
+  "0 14 * * *",  # 17:00 TR - hatirlat (akşamüstü)
+  "0 18 * * *",  # 21:00 TR - aksam
+  "0 17 * * 3",  # Çarşamba 20:00 TR - hafta_ortasi
+  "0 7 * * 0",   # Pazar 10:00 TR - pazar
+]

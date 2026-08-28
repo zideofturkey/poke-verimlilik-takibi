@@ -29,8 +29,37 @@
  * Secrets (wrangler ile ayarlanir, kodda yazili DEGIL):
  *   - GITHUB_TOKEN: repository_dispatch tetikleme yetkisi olan GitHub token
  *   - BOT_TOKEN: Telegram bot token'ı (answerCallbackQuery için)
+ *
+ * ============================================================
+ * scheduled() - GitHub'ın KENDİ cron'una YEDEK tetikleyici
+ * ============================================================
+ * Ağustos 2026'da gerçek bir olay: GitHub Actions'ın scheduled workflow
+ * tetiklemesi (gonder.yml) ciddi şekilde kaymaya/gecikmeye başladı -
+ * bazı günler sabah (09:00 TR) ve öğle (13:00 TR) çalıştırmaları SAATLER
+ * SONRA (bazen +12 saat) tetiklendi, ÜSTELİK gecikmiş çalıştırma GitHub
+ * tarafından hangi cron satırına ait olduğu YANLIŞ raporlandı (21:00
+ * hedefli slot 'sabah' görevini çalıştırdı). Bu GitHub'ın kendi status
+ * sayfasında da o günlerde art arda "Incident with Actions" kayıtlarıyla
+ * doğrulandı - koddan düzeltilemeyen bir platform sorunu. Kullanıcının
+ * BAŞKA bir sisteminde de AYNI kayma gözlemlendi - GitHub'a özgü, genel
+ * bir zamanlayıcı sorunu.
+ *
+ * Çözüm: GitHub'ın schedule tetiklemesini TAMAMEN kaldırmak yerine
+ * (tek noktadan bağımlılığı artırmamak için), Cloudflare Workers'ın
+ * KENDİ Cron Triggers'ı (wrangler.toml'daki [triggers] crons - ayrı bir
+ * altyapı, GitHub'ın zamanlayıcısından bağımsız) burada YEDEK bir
+ * tetikleyici olarak ekleniyor. GitHub'ın schedule string eşleştirme
+ * hatasını (yanlış görev seçme riskini) TAMAMEN ortadan kaldırmak için,
+ * Worker hangi görevin çalışacağını KENDİSİ hesaplayıp `workflow_dispatch`
+ * API'sine `inputs.gorev` olarak AÇIKÇA gönderiyor - GitHub'ın
+ * `github.event.schedule` string'ine hiç güvenilmiyor.
+ *
+ * Bilinçli tasarım: GitHub'ın kendi cron'u (gonder.yml'deki `schedule:`)
+ * KALDIRILMADI, sadece bu YEDEK eklendi - ikisi birden çalışırsa (GitHub
+ * kendi cron'unu da tetiklerse) `sabah()`/`hatirlat()`/`aksam()`
+ * içindeki mevcut "zaten cevaplanmış mı" kontrolleri fazladan mesaj
+ * gitmesini zaten engelliyor (idempotent), bu yüzden çakışma riski yok.
  */
-
 export default {
   async fetch(request, env, ctx) {
     if (request.method !== "POST") {
@@ -81,5 +110,45 @@ export default {
     }
 
     return new Response("OK", { status: 200 });
+  },
+
+  async scheduled(event, env, ctx) {
+    // event.cron, Worker'ın wrangler.toml'daki HANGİ cron satırının
+    // tetiklendiğini söylüyor - GitHub'ın schedule string'i gibi bir
+    // eşleştirme belirsizliği yok, Cloudflare bunu güvenilir veriyor.
+    const GOREV_HARITASI = {
+      "0 6 * * *": "sabah",         // 09:00 TR
+      "0 10 * * *": "hatirlat",     // 13:00 TR
+      "0 14 * * *": "hatirlat",     // 17:00 TR
+      "0 18 * * *": "aksam",        // 21:00 TR
+      "0 17 * * 3": "hafta_ortasi", // Çarşamba 20:00 TR
+      "0 7 * * 0": "pazar",         // Pazar 10:00 TR
+    };
+    const gorev = GOREV_HARITASI[event.cron];
+    if (!gorev) {
+      console.log("Bilinmeyen cron:", event.cron);
+      return;
+    }
+
+    ctx.waitUntil(
+      fetch(
+        "https://api.github.com/repos/zideofturkey/poke-verimlilik-takibi/actions/workflows/gonder.yml/dispatches",
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${env.GITHUB_TOKEN}`,
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "poke-cron-backup-worker",
+          },
+          body: JSON.stringify({ ref: "main", inputs: { gorev } }),
+        }
+      ).then(async (resp) => {
+        if (!resp.ok) {
+          console.log(`Cloudflare yedek tetikleme hatasi (${gorev}):`, await resp.text());
+        } else {
+          console.log(`Cloudflare yedek tetikleme basarili: ${gorev}`);
+        }
+      }).catch((err) => console.log("Cloudflare yedek tetikleme fetch hatasi:", err.message))
+    );
   },
 };
