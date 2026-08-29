@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-08-29T04:29:48.519774+03:00",
+  "uretim_zamani": "2026-08-29T11:16:39.631987+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1734,10 +1734,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-29T01:29:32Z",
+      "zaman": "2026-08-29T08:16:23Z",
       "durum": "warn",
+      "runId": "33242760057",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-08-29T03:51:08Z",
+      "durum": "ok",
+      "runId": "33232411725",
+      "sureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-29T01:40:55Z",
+      "durum": "ok",
+      "runId": "33227045189",
+      "sureSn": 37
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-08-29T01:29:32Z",
+      "durum": "ok",
       "runId": "33226545605",
-      "sureSn": 3
+      "sureSn": 47
     },
     {
       "ad": "Gönder",
@@ -1815,27 +1836,6 @@
       "durum": "ok",
       "runId": "33187295069",
       "sureSn": 17
-    },
-    {
-      "ad": "gecici-check-durum",
-      "zaman": "2026-08-28T15:50:41Z",
-      "durum": "ok",
-      "runId": "33187115039",
-      "sureSn": 15
-    },
-    {
-      "ad": "gecici-check-hatalog",
-      "zaman": "2026-08-28T15:48:46Z",
-      "durum": "ok",
-      "runId": "33186960453",
-      "sureSn": 17
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-28T12:43:43Z",
-      "durum": "ok",
-      "runId": "33172277845",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
@@ -1843,25 +1843,25 @@
       "ad": "Panel",
       "toplam": 6,
       "oran": 83,
-      "ortSureSn": 39
+      "ortSureSn": 40
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 29
     },
     {
       "ad": "Gönder",
       "toplam": 10,
       "oran": 100,
       "ortSureSn": 21
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 6,
-      "oran": 100,
-      "ortSureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 27
     },
     {
       "ad": "gecici-cleanup-test",
