@@ -409,7 +409,28 @@ def _bosa_vakit_sor():
     sorusu hiç gitmedi). Bu, kodun geri kalanıyla (sabah()/pazar()) TUTARSIZDI
     - onlar aynı durumda SESSİZCE atlamak yerine önce eski soruyu geçersiz
     saydığını açıkça söylüyor, sonra yeni soruyu soruyorlar. Artık aynı
-    tutarlı desen kullanılıyor."""
+    tutarlı desen kullanılıyor.
+
+    SONRADAN BULUNAN İKİNCİ BUG: GitHub Actions'ın kendi cron'unun
+    kayması/gecikmesi yüzünden eklenen Cloudflare yedek tetikleyicisi
+    (bkz. worker/index.js) sayesinde artık `aksam()` bazı akşamlar İKİ
+    KEZ çağrılabiliyor (biri GitHub'ın gecikmiş cron'u, biri Cloudflare'in
+    zamanında tetiklemesi) - `aksam()` içindeki rutin/görev soruları
+    "zaten cevaplanmış mı" kontrolüyle idempotent ama BU fonksiyon
+    değildi, her çağrıldığında KOŞULSUZ soruyordu. Gerçek bir olayda
+    kullanıcı 21:01'de soruyu aldı, 22:33'te cevapladı (bekleyen_soru
+    o an temizlendi) - ama 23:15'te GitHub'ın gecikmiş cron'u `aksam()`'ı
+    İKİNCİ KEZ çağırdı ve bu fonksiyon `bekleyen_soru`'nun boş/temiz
+    olduğunu görüp (cevaplanmış olmasının bir önemi yoktu) soruyu
+    SIFIRDAN tekrar sordu. Düzeltme: artık `bosa_vakit_son_soru_tarihi`
+    adında AYRI bir iz tutuluyor - bu, `bekleyen_soru` cevaplanıp
+    temizlense bile KALICI (sadece ertesi gün geçersiz sayılır), bu
+    yüzden ikinci çağrıda "bugün zaten sordum" diye sessizce çıkılıyor."""
+    bugun = datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
+    if get_deger("bosa_vakit_son_soru_tarihi") == bugun:
+        print("Boşa vakit sorusu bugün zaten soruldu (aksam() muhtemelen ikinci kez çağrıldı), tekrar sorulmuyor.")
+        return
+
     onceki = get_bekleyen_soru()
     if onceki and onceki != "bosa_vakit":
         send_message(
@@ -422,6 +443,7 @@ def _bosa_vakit_sor():
         "dakika Instagram\" gibi."
     )
     set_bekleyen_soru("bosa_vakit")
+    set_deger("bosa_vakit_son_soru_tarihi", bugun)
 
 
 def pazar():
