@@ -10,12 +10,15 @@ compatibility_date = "2025-01-01"
 # giriyor. Saatler gonder.yml'deki `schedule:` ile BİREBİR AYNI (UTC) -
 # ikisi de aynı anda tetiklenebilir, sabah()/hatirlat()/aksam()'daki
 # "zaten cevaplanmış mı" kontrolleri çakışmayı zaten engelliyor.
+#
+# KRİTİK KISIT: Cloudflare Workers'ın FREE PLAN'ı worker başına EN FAZLA
+# 3 Cron Trigger'a izin veriyor - ilk denemede buraya 6 ayrı cron satırı
+# konmuştu, bu yüzden `wrangler deploy` "Some triggers failed to deploy"
+# / Cloudflare API'den 400 Bad Request hatası aldı (limit aşıldığı için
+# TÜM istek reddedildi, kısmi kabul yok). Çözüm: TEK bir saatlik tetikleyici
+# (`0 * * * *`) tanımlanıyor, hangi görevin (sabah/hatirlat/aksam/vb.)
+# çalışacağına worker'ın KENDİSİ (index.js'teki scheduled()) o anki UTC
+# saatine bakarak karar veriyor - 6 ayrı cron yerine dallanma mantığı,
+# limitin çok altında (1/3) kalıyor.
 [triggers]
-crons = [
-  "0 6 * * *",   # 09:00 TR - sabah
-  "0 10 * * *",  # 13:00 TR - hatirlat (öğle)
-  "0 14 * * *",  # 17:00 TR - hatirlat (akşamüstü)
-  "0 18 * * *",  # 21:00 TR - aksam
-  "0 17 * * 3",  # Çarşamba 20:00 TR - hafta_ortasi
-  "0 7 * * 0",   # Pazar 10:00 TR - pazar
-]
+crons = ["0 * * * *"]

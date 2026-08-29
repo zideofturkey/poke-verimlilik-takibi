@@ -48,11 +48,20 @@
  * (tek noktadan bağımlılığı artırmamak için), Cloudflare Workers'ın
  * KENDİ Cron Triggers'ı (wrangler.toml'daki [triggers] crons - ayrı bir
  * altyapı, GitHub'ın zamanlayıcısından bağımsız) burada YEDEK bir
- * tetikleyici olarak ekleniyor. GitHub'ın schedule string eşleştirme
- * hatasını (yanlış görev seçme riskini) TAMAMEN ortadan kaldırmak için,
- * Worker hangi görevin çalışacağını KENDİSİ hesaplayıp `workflow_dispatch`
- * API'sine `inputs.gorev` olarak AÇIKÇA gönderiyor - GitHub'ın
- * `github.event.schedule` string'ine hiç güvenilmiyor.
+ * tetikleyici olarak ekleniyor.
+ *
+ * KRİTİK KISIT (ilk deploy denemesinde keşfedildi): Cloudflare Workers
+ * Free Plan, worker başına EN FAZLA 3 Cron Trigger'a izin veriyor. İlk
+ * tasarımda buraya gonder.yml'deki 6 cron satırının BİREBİR aynısı
+ * (6 ayrı trigger) konmuştu - `wrangler deploy` bu yüzden Cloudflare
+ * API'sinden 400 Bad Request aldı ("Some triggers failed to deploy"),
+ * limit aşıldığı için istek TAMAMEN reddedildi (kısmi kabul yok). Çözüm:
+ * TEK bir saatlik tetikleyici (`0 * * * *`, wrangler.toml'da) tanımlı,
+ * hangi görevin (sabah/hatirlat/aksam/hafta_ortasi/pazar) çalışacağına
+ * worker'ın KENDİSİ o anki UTC saat/gün/dakikaya bakarak karar veriyor -
+ * GitHub'ın schedule string eşleştirme hatasına (yanlış görev seçme
+ * riskine) hiç güvenmeden, VE Cloudflare'in 3-trigger limitinin çok
+ * altında (1/3) kalarak.
  *
  * Bilinçli tasarım: GitHub'ın kendi cron'u (gonder.yml'deki `schedule:`)
  * KALDIRILMADI, sadece bu YEDEK eklendi - ikisi birden çalışırsa (GitHub
@@ -113,21 +122,40 @@ export default {
   },
 
   async scheduled(event, env, ctx) {
-    // event.cron, Worker'ın wrangler.toml'daki HANGİ cron satırının
-    // tetiklendiğini söylüyor - GitHub'ın schedule string'i gibi bir
-    // eşleştirme belirsizliği yok, Cloudflare bunu güvenilir veriyor.
-    const GOREV_HARITASI = {
-      "0 6 * * *": "sabah",         // 09:00 TR
-      "0 10 * * *": "hatirlat",     // 13:00 TR
-      "0 14 * * *": "hatirlat",     // 17:00 TR
-      "0 18 * * *": "aksam",        // 21:00 TR
-      "0 17 * * 3": "hafta_ortasi", // Çarşamba 20:00 TR
-      "0 7 * * 0": "pazar",         // Pazar 10:00 TR
-    };
-    const gorev = GOREV_HARITASI[event.cron];
+    // Cloudflare Free plan worker basina EN FAZLA 3 Cron Trigger'a izin
+    // veriyor (bkz. wrangler.toml'daki not) - bu yuzden 6 ayri saat yerine
+    // TEK bir saatlik tetikleyici (`0 * * * *`) kullaniliyor, hangi
+    // gorevin calisacagina worker'in kendisi o anki UTC saat/gun/dakikaya
+    // bakarak karar veriyor. `event.scheduledTime`, Cloudflare'in bu
+    // tetiklemeyi HANGI dakika icin planladigini soyluyor (Date.now()
+    // degil - calisirken gecen gecikme yuzunden yanlis saate duşulmesin
+    // diye scheduledTime kullaniliyor, tipki GitHub'in kendi schedule
+    // string'i yerine bunun tercih edilmesi gibi).
+    const zaman = new Date(event.scheduledTime);
+    const saat = zaman.getUTCHours();
+    const dakika = zaman.getUTCMinutes();
+    const gun = zaman.getUTCDay(); // 0=Pazar, 3=Çarşamba
+
+    // Sadece saat başında (dakika 0'a yakın) hareket et - saatlik tetikleyici
+    // teorik olarak her zaman :00'da ateşlenir ama gecikme payı için
+    // birkaç dakikalık tolerans bırakılıyor.
+    if (dakika > 5) return;
+
+    let gorev = null;
+    if (gun === 3 && saat === 17) {
+      gorev = "hafta_ortasi"; // Çarşamba 20:00 TR
+    } else if (gun === 0 && saat === 7) {
+      gorev = "pazar"; // Pazar 10:00 TR
+    } else if (saat === 6) {
+      gorev = "sabah"; // 09:00 TR
+    } else if (saat === 10 || saat === 14) {
+      gorev = "hatirlat"; // 13:00 / 17:00 TR
+    } else if (saat === 18) {
+      gorev = "aksam"; // 21:00 TR
+    }
+
     if (!gorev) {
-      console.log("Bilinmeyen cron:", event.cron);
-      return;
+      return; // Bu saat bizim hedef saatlerimizden biri değil, sessizce çık.
     }
 
     ctx.waitUntil(
