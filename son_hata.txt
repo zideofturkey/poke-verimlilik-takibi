@@ -1,4 +1,4 @@
-Zaman: 2026-08-26T15:22:05.969117+03:00
+Zaman: 2026-08-30T16:38:29.209604+03:00
 Bağlam: slm_sorgula deneme 1/5 (model=qwen2.5:7b)
 
 Traceback (most recent call last):
@@ -47,10 +47,10 @@ urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=1
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 272, in slm_sorgula
+  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 316, in slm_sorgula
     return _slm_sorgula_tek_deneme(prompt, sicaklik, zaman_asimi, kullanilacak_model)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 232, in _slm_sorgula_tek_deneme
+  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/common.py", line 276, in _slm_sorgula_tek_deneme
     resp = requests.post(
            ^^^^^^^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/requests/api.py", line 134, in post
