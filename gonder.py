@@ -192,6 +192,26 @@ def _gecen_hafta_rutin_cevapsizlari_kapat():
 
 
 def sabah():
+    """SONRADAN BULUNAN BUG (aynı hastalık ailesi, bkz. _bosa_vakit_sor'un
+    docstring'i): Cloudflare yedek tetikleyicisi eklendikten sonra,
+    GitHub'ın kendi (kayan) cron'u ARTIK sadece hatirlat()/aksam()
+    içindeki bekçi (_sabah_kacti_mi_kontrol_et) üzerinden değil, `sabah`
+    cron satırının KENDİSİ üzerinden de tetiklenebiliyor - GitHub'ın
+    schedule'ı '09:00 hedefli sabah cron'u' saatler sonra (ör. 15:56 TR)
+    tekrar ateşleyip aynı günü ikinci kez 'sabah' olarak işaretleyebiliyor,
+    Cloudflare zaten 09:00'da doğru şekilde çalıştırmış olsa bile.
+    Önceki koruma (`bugun_zaten_var` - aşağıda) SADECE kullanıcının
+    ZATEN görev yazıp yazmadığını kontrol ediyordu - kullanıcı henüz
+    cevap vermediyse (soru sorulmuş ama bekleniyor durumdaysa) bu koruma
+    işe yaramıyordu, mesaj koşulsuz tekrar gönderiliyordu. Artık AYRI,
+    kalıcı bir 'bugün sabah mesajını zaten gönderdim mi' izi tutuluyor
+    (`son_sabah_tarihi` - zaten satırın sonunda set ediliyordu ama sadece
+    YAZMAK için kullanılıyordu, buraya kadar hiç OKUNMUYORDU) - artık
+    fonksiyonun en başında okunup, bugünse sessizce çıkılıyor."""
+    if get_deger("son_sabah_tarihi") == bugun_str():
+        print("Sabah mesajı bugün için zaten gönderilmiş (muhtemelen GitHub'ın kayan cron'u ikinci kez tetikledi), tekrar gönderilmiyor.")
+        return
+
     _suresi_dolanlari_isaretle_ve_bildir()
     _gecen_hafta_rutin_cevapsizlari_kapat()
     if datetime.datetime.now(TR_TZ).weekday() == 0:  # Pazartesi
