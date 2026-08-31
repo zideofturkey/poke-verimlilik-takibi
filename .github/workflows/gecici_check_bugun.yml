@@ -1,4 +1,4 @@
-name: gecici-reset-sabah
+name: gecici-check-bugun
 on: workflow_dispatch
 jobs:
   check:
@@ -14,4 +14,4 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python3 temp_reset_sabah.py
+        run: python3 temp_check_bugun.py
