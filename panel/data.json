@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-08-31T10:32:34.830337+03:00",
+  "uretim_zamani": "2026-08-31T18:54:57.076469+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 60
+    "haftaTamamlamaYuzdesi": 63
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "31 August 2026",
       "tarih_iso": "2026-08-31",
-      "level": 0,
+      "level": 1,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 72
+      "oran": 69
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1597,128 +1597,6 @@
           "durum": "Yapıldı"
         }
       ]
-    },
-    {
-      "tarih": "15 August",
-      "gunAdi": "Cumartesi",
-      "gorevler": [
-        {
-          "metin": "Finansal Özgürlük Oku",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "Github Copilot ile FollowUrFirm üzerinde çalışmayı dene",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "FitCheck roadmap’ini welcome page’e entegre et",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Markete git ve ekmek, süt, sebze, gerekirse de protein al",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Vakit kalırsa müzik yapabilir veya film izleyebilirsin",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
-    {
-      "tarih": "13 August",
-      "gunAdi": "Perşembe",
-      "gorevler": [
-        {
-          "metin": "FollowUrFirm düzgün haber kanallarından düzgün veriler çekilecek ve bültene yazılabilecek duruma getirilecek",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "FitCheck welcome page tasarımı yapılacak",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "1 deniz pulcu videosu izlenecek",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
-    {
-      "tarih": "12 August",
-      "gunAdi": "Çarşamba",
-      "gorevler": [
-        {
-          "metin": "13.15 Burun randevusu",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "fitcheck welcome page tasarımı",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "FollowUrFirm mail’e hazır hâle getirme",
-          "durum": "Yapılmadı"
-        },
-        {
-          "metin": "Finansal Özgürlük okuma",
-          "durum": "Yapılmadı"
-        }
-      ]
-    },
-    {
-      "tarih": "10 August",
-      "gunAdi": "Pazartesi",
-      "gorevler": [
-        {
-          "metin": "Stage 10.30",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Stajda; FollowUrFirm AI bağlama ve UI dönüştürme",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Stajda; FitCheck Global Yemek ve Malzemeler Ekleme",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Bisikletçi Ahmet Abi'yi arayıp balata için randevu isteme",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "YUNSA planları tahtaya yazılacak (kısa+orta vade) EMA'lar ve elle çizilmiş üst seviye önemli + 4h grafik",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
-    {
-      "tarih": "09 August",
-      "gunAdi": "Pazar",
-      "gorevler": [
-        {
-          "metin": "Ufak oda toz alımı",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "BillGates' belgeselini bitirme",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "BaharSpot travail de reelSeo",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "MuratAbi'ye sorgu mesajı atma",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Oto&Moto Ads Hatırlatması",
-          "durum": "Yapıldı"
-        },
-        {
-          "metin": "Dilediğin bir kitabı 30 dakika okuma",
-          "durum": "Yapıldı"
-        }
-      ]
     }
   ],
   "haftalikHedefGecmisi": [
@@ -1738,166 +1616,163 @@
           "durum": "Yapılmadı"
         }
       ]
-    },
-    {
-      "hafta": "2026-08-10",
-      "hedefler": [
-        {
-          "hedef": "Scooter arka balatası tamiri",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "Eve bir miktar para ayırma",
-          "durum": "Yapıldı"
-        },
-        {
-          "hedef": "Yucuf'un elbisesine kuru temizleme ve terzi işleri",
-          "durum": "Süresi Doldu"
-        },
-        {
-          "hedef": "BaharSpot travail de reelSeo",
-          "durum": "Süresi Doldu"
-        }
-      ]
     }
   ],
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-08-31T07:32:21Z",
+      "zaman": "2026-08-31T15:54:36Z",
       "durum": "warn",
-      "runId": "33368809142",
-      "sureSn": 3
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-08-31T06:06:57Z",
-      "durum": "ok",
-      "runId": "33362906270",
-      "sureSn": 13
+      "runId": "33411119457",
+      "sureSn": 4
     },
     {
       "ad": "Gönder",
-      "zaman": "2026-08-31T06:00:54Z",
+      "zaman": "2026-08-31T14:12:35Z",
       "durum": "ok",
-      "runId": "33362528177",
-      "sureSn": 20
+      "runId": "33401293561",
+      "sureSn": 18
     },
     {
-      "ad": "Dinle",
-      "zaman": "2026-08-31T05:10:27Z",
+      "ad": "Gönder",
+      "zaman": "2026-08-31T14:09:42Z",
       "durum": "ok",
-      "runId": "33359573559",
-      "sureSn": 31
+      "runId": "33401012007",
+      "sureSn": 29
     },
     {
-      "ad": "Panel",
-      "zaman": "2026-08-31T01:28:39Z",
+      "ad": "Gönder",
+      "zaman": "2026-08-31T14:08:54Z",
       "durum": "ok",
-      "runId": "33347689370",
-      "sureSn": 57
+      "runId": "33400934969",
+      "sureSn": 21
     },
     {
-      "ad": "Aforizma",
-      "zaman": "2026-08-31T00:32:51Z",
+      "ad": "gecici-check-bugun",
+      "zaman": "2026-08-31T14:08:12Z",
       "durum": "ok",
-      "runId": "33344892215",
-      "sureSn": 19
+      "runId": "33400866871",
+      "sureSn": 12
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-08-30T23:27:23Z",
-      "durum": "ok",
-      "runId": "33341859676",
-      "sureSn": 34
+      "ad": "gecici-check-bugun",
+      "zaman": "2026-08-31T14:07:24Z",
+      "durum": "warn",
+      "runId": "33400789001",
+      "sureSn": 18
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-08-30T23:27:20Z",
+      "ad": "gecici-reset-sabah",
+      "zaman": "2026-08-31T14:06:31Z",
       "durum": "ok",
-      "runId": "33341857780",
-      "sureSn": 32
+      "runId": "33400701807",
+      "sureSn": 25
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-08-30T23:27:19Z",
+      "ad": "Gönder",
+      "zaman": "2026-08-31T14:05:30Z",
       "durum": "ok",
-      "runId": "33341856783",
-      "sureSn": 39
+      "runId": "33400603271",
+      "sureSn": 16
     },
     {
-      "ad": "Webhook",
-      "zaman": "2026-08-30T23:27:09Z",
+      "ad": "Gönder",
+      "zaman": "2026-08-31T14:00:54Z",
       "durum": "ok",
-      "runId": "33341849591",
-      "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-30T23:27:06Z",
-      "durum": "ok",
-      "runId": "33341847619",
-      "sureSn": 34
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-08-30T23:27:02Z",
-      "durum": "ok",
-      "runId": "33341844627",
-      "sureSn": 40
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-08-30T23:21:12Z",
-      "durum": "ok",
-      "runId": "33341587741",
-      "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-08-30T23:15:19Z",
-      "durum": "ok",
-      "runId": "33341325627",
-      "sureSn": 39
+      "runId": "33400159118",
+      "sureSn": 18
     },
     {
       "ad": "Aforizma",
-      "zaman": "2026-08-30T22:03:03Z",
+      "zaman": "2026-08-31T13:38:43Z",
       "durum": "ok",
-      "runId": "33338063190",
-      "sureSn": 13
+      "runId": "33398104709",
+      "sureSn": 18
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-08-31T13:24:50Z",
+      "durum": "ok",
+      "runId": "33396835344",
+      "sureSn": 27
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-08-31T12:56:21Z",
+      "durum": "ok",
+      "runId": "33394278305",
+      "sureSn": 21
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-31T12:40:00Z",
+      "durum": "ok",
+      "runId": "33392894130",
+      "sureSn": 38
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-31T12:39:52Z",
+      "durum": "ok",
+      "runId": "33392884369",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-08-31T12:39:50Z",
+      "durum": "ok",
+      "runId": "33392880914",
+      "sureSn": 34
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 39
-    },
-    {
-      "ad": "Aforizma",
       "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 15
+      "oran": 80,
+      "ortSureSn": 37
     },
     {
       "ad": "Gönder",
-      "toplam": 7,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 21
+    },
+    {
+      "ad": "gecici-check-bugun",
+      "toplam": 2,
+      "oran": 50,
+      "ortSureSn": 15
+    },
+    {
+      "ad": "gecici-reset-sabah",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 25
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 16
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 26
     },
     {
       "ad": "Webhook",
-      "toplam": 16,
+      "toplam": 13,
       "oran": 100,
-      "ortSureSn": 63
+      "ortSureSn": 49
+    },
+    {
+      "ad": "Temizle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 28
     },
     {
       "ad": "Analiz",
