@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-04T00:13:29.189162+03:00",
+  "uretim_zamani": "2026-09-04T02:26:09.336054+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 74
   },
@@ -1695,10 +1695,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-03T21:13:13Z",
+      "zaman": "2026-09-03T23:25:54Z",
       "durum": "warn",
-      "runId": "33806735406",
+      "runId": "33817575415",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-03T22:57:29Z",
+      "durum": "ok",
+      "runId": "33815439177",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-03T21:37:27Z",
+      "durum": "ok",
+      "runId": "33808937363",
+      "sureSn": 45
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-03T21:13:13Z",
+      "durum": "ok",
+      "runId": "33806735406",
+      "sureSn": 41
     },
     {
       "ad": "Webhook",
@@ -1776,53 +1797,32 @@
       "durum": "ok",
       "runId": "33804052727",
       "sureSn": 47
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-03T20:44:53Z",
-      "durum": "ok",
-      "runId": "33804051285",
-      "sureSn": 39
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-03T20:44:49Z",
-      "durum": "ok",
-      "runId": "33804045070",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-03T20:44:48Z",
-      "durum": "ok",
-      "runId": "33804043168",
-      "sureSn": 41
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 67,
-      "ortSureSn": 47
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 19,
-      "oran": 84,
-      "ortSureSn": 95
+      "toplam": 7,
+      "oran": 71,
+      "ortSureSn": 46
     },
     {
       "ad": "Aforizma",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 21
     },
     {
       "ad": "Dinle",
       "toplam": 5,
       "oran": 100,
-      "ortSureSn": 35
+      "ortSureSn": 39
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 17,
+      "oran": 82,
+      "ortSureSn": 103
     },
     {
       "ad": "Gönder",
