@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-03T03:58:52.506305+03:00",
+  "uretim_zamani": "2026-09-03T08:39:12.027740+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1665,10 +1665,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-03T00:58:36Z",
+      "zaman": "2026-09-03T05:38:47Z",
       "durum": "warn",
+      "runId": "33719729412",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-03T04:14:15Z",
+      "durum": "ok",
+      "runId": "33714305794",
+      "sureSn": 37
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-03T01:14:38Z",
+      "durum": "ok",
+      "runId": "33702857309",
+      "sureSn": 13
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-03T00:58:36Z",
+      "durum": "ok",
       "runId": "33701744344",
-      "sureSn": 4
+      "sureSn": 43
     },
     {
       "ad": "Webhook",
@@ -1746,27 +1767,6 @@
       "durum": "ok",
       "runId": "33667706941",
       "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-02T18:20:40Z",
-      "durum": "ok",
-      "runId": "33666616481",
-      "sureSn": 36
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-02T18:01:55Z",
-      "durum": "ok",
-      "runId": "33664711633",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-02T18:01:54Z",
-      "durum": "ok",
-      "runId": "33664710107",
-      "sureSn": 34
     }
   ],
   "workflowTurOzet": [
@@ -1777,22 +1777,22 @@
       "ortSureSn": 38
     },
     {
-      "ad": "Webhook",
-      "toplam": 10,
-      "oran": 100,
-      "ortSureSn": 62
-    },
-    {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
-      "ortSureSn": 35
+      "ortSureSn": 36
     },
     {
       "ad": "Aforizma",
-      "toplam": 9,
+      "toplam": 10,
       "oran": 100,
       "ortSureSn": 18
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 63
     },
     {
       "ad": "Gönder",
