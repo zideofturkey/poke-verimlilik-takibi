@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-05T21:49:38.215253+03:00",
+  "uretim_zamani": "2026-09-05T23:57:43.057411+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 74
   },
@@ -1440,7 +1440,7 @@
         },
         {
           "metin": "Followurfirm geliştirmelerine devam et",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1713,10 +1713,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-05T18:49:25Z",
+      "zaman": "2026-09-05T20:57:27Z",
       "durum": "warn",
-      "runId": "33985246879",
+      "runId": "33991614548",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-05T20:19:24Z",
+      "durum": "ok",
+      "runId": "33989755965",
+      "sureSn": 11
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-05T20:13:45Z",
+      "durum": "ok",
+      "runId": "33989468472",
+      "sureSn": 37
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-05T18:49:25Z",
+      "durum": "ok",
+      "runId": "33985246879",
+      "sureSn": 39
     },
     {
       "ad": "Aforizma",
@@ -1794,27 +1815,6 @@
       "durum": "ok",
       "runId": "33966403269",
       "sureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-05T11:20:49Z",
-      "durum": "ok",
-      "runId": "33963083911",
-      "sureSn": 156
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-05T11:19:50Z",
-      "durum": "ok",
-      "runId": "33963036476",
-      "sureSn": 36
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-05T11:19:49Z",
-      "durum": "ok",
-      "runId": "33963035904",
-      "sureSn": 38
     }
   ],
   "workflowTurOzet": [
@@ -1822,13 +1822,19 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 37
+      "ortSureSn": 36
     },
     {
       "ad": "Aforizma",
       "toplam": 9,
       "oran": 100,
       "ortSureSn": 18
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 70
     },
     {
       "ad": "Dinle",
@@ -1841,12 +1847,6 @@
       "toplam": 4,
       "oran": 100,
       "ortSureSn": 21
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 100,
-      "ortSureSn": 70
     }
   ],
   "kocKararlari": [],
