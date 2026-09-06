@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-06T01:46:17.260341+03:00",
+  "uretim_zamani": "2026-09-06T03:39:02.434177+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1713,10 +1713,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-05T22:45:53Z",
+      "zaman": "2026-09-06T00:38:47Z",
       "durum": "warn",
+      "runId": "34001831445",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-05T23:51:21Z",
+      "durum": "ok",
+      "runId": "33999762594",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-05T23:43:38Z",
+      "durum": "ok",
+      "runId": "33999427482",
+      "sureSn": 33
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-05T22:45:53Z",
+      "durum": "ok",
       "runId": "33996829432",
-      "sureSn": 3
+      "sureSn": 51
     },
     {
       "ad": "Aforizma",
@@ -1794,27 +1815,6 @@
       "durum": "ok",
       "runId": "33976533740",
       "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-05T15:54:12Z",
-      "durum": "ok",
-      "runId": "33976204109",
-      "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-05T15:38:29Z",
-      "durum": "ok",
-      "runId": "33975419133",
-      "sureSn": 280
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-05T14:00:29Z",
-      "durum": "ok",
-      "runId": "33970522061",
-      "sureSn": 16
     }
   ],
   "workflowTurOzet": [
@@ -1822,11 +1822,11 @@
       "ad": "Panel",
       "toplam": 10,
       "oran": 90,
-      "ortSureSn": 37
+      "ortSureSn": 38
     },
     {
       "ad": "Aforizma",
-      "toplam": 10,
+      "toplam": 11,
       "oran": 100,
       "ortSureSn": 17
     },
@@ -1834,13 +1834,13 @@
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 32
     },
     {
       "ad": "Webhook",
-      "toplam": 8,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 82
+      "ortSureSn": 88
     },
     {
       "ad": "Gönder",
