@@ -1804,7 +1804,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         # netleştirme ister) - bu yüzden SLM'e danışmadan doğrudan kurala
         # güveniliyor. Bonus: gereksiz bir 7b çağrısından (ve onun Ollama
         # segfault riskinden) da kaçınılmış oluyor.
-        print(f"[sınıflandırma] GECMIS_GOREV_TAMAMLA: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
+        print(f"[sınıflandırma] GECMIS_GOREV_TAMAMLA: SLM(günlük)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
         log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
         tip = "GECMIS_GOREV_TAMAMLA"
     elif kural_tahmini == "HAFTALIK_HEDEF" and tip != "HAFTALIK_HEDEF":
@@ -1821,7 +1821,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         # (_haftalik_hedef_isle) kendi güvenlik ağına sahip (içerik
         # çıkaramazsa netleştirme ister, sessizce yanlış yere yazmaz) -
         # bu yüzden SLM'e/7b'ye danışmadan doğrudan kurala güveniliyor.
-        print(f"[sınıflandırma] HAFTALIK_HEDEF: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
+        print(f"[sınıflandırma] HAFTALIK_HEDEF: SLM(günlük)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
         log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
         tip = "HAFTALIK_HEDEF"
     elif kural_tahmini == "SORGULA" and tip != "SORGULA":
@@ -1845,7 +1845,7 @@ def _siniflandir_ve_isle(text, bekleyen):
         # SAHTE BİR KAYIT OLUŞTURMA riski SIFIR. Bu yüzden diğer iki
         # istisnadan bile daha az riskli - SLM'e/7b'ye danışmadan
         # doğrudan kurala güveniliyor.
-        print(f"[sınıflandırma] SORGULA: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
+        print(f"[sınıflandırma] SORGULA: SLM(günlük)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
         log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
         tip = "SORGULA"
     elif kural_tahmini is not None and kural_tahmini != tip:

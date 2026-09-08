@@ -178,8 +178,8 @@ def hafta_baslangic_str():
     return pazartesi.strftime("%Y-%m-%d")
 
 
-SLM_MODEL = "qwen2.5:3b"       # günlük sınıflandırma/cevap - hız/güvenilirlik öncelikli
-SLM_MODEL_KALITELI = "qwen2.5:7b"  # haftalık analiz - kalite öncelikli, hız kritik değil
+SLM_MODEL = "qwen2.5:7b"       # günlük sınıflandırma/cevap - önceden 3b'ydi, kullanıcı isteğiyle bir kademe büyütüldü (bkz. README)
+SLM_MODEL_KALITELI = "qwen2.5:14b"  # haftalık analiz + eskalasyon - önceden 7b'ydi, aynı sebeple büyütüldü
 SLM_URL = "http://localhost:11434/api/generate"
 
 
