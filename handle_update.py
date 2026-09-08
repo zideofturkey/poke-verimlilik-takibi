@@ -1800,6 +1800,30 @@ def _siniflandir_ve_isle(text, bekleyen):
         print(f"[sınıflandırma] HAFTALIK_HEDEF: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
         log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
         tip = "HAFTALIK_HEDEF"
+    elif kural_tahmini == "SORGULA" and tip != "SORGULA":
+        # ÖZEL DURUM #3 (GECMIS_GOREV_TAMAMLA/HAFTALIK_HEDEF ile AYNI kör
+        # nokta ailesi, en riskli tekrarı): gerçek bir olayda "Dünden kalan
+        # rutin ve görevlerimi sorgula" mesajı - içinde kelimenin tam
+        # kendisi "sorgula" geçmesine rağmen - SLM(3b) tarafından
+        # GUNLUK_GOREV sanıldı ve BÜTÜN CÜMLE sahte bir görev olarak
+        # kaydedildi. Bu, README'nin "Bekleyen Geliştirmeler" listesinde
+        # başlangıçta tek yönlü olarak belgelenen kör noktanın (kural
+        # sadece kötü bir OLUMLU tahmini engelliyordu, SLM'in başka yanlış
+        # bir kategoriye gitmesini yakalamıyordu) düzeltilmesinden SONRA
+        # bile devam edebildiğini gösteriyor - çünkü düzeltme kuralın
+        # PROAKTİF olarak SORGULA önermesini sağladı, ama eskalasyon
+        # (7b) yine de aynı yanlış kategoride (GUNLUK_GOREV) 3b ile
+        # birleşebiliyor. SORGULA burada özellikle GÜVENLİ bir istisna:
+        # alt işleyiciler (_sorguyu_cevapla ve onun çağırdığı
+        # _gecen_hafta_bekleyenleri_cevapla / _tum_bekleyen_gorevleri_
+        # cevapla / vb.) SALT OKUNUR - hiçbiri Sheets'e yazmıyor, en kötü
+        # ihtimalle yanlış/eksik bir liste gösterirler, GUNLUK_GOREV gibi
+        # SAHTE BİR KAYIT OLUŞTURMA riski SIFIR. Bu yüzden diğer iki
+        # istisnadan bile daha az riskli - SLM'e/7b'ye danışmadan
+        # doğrudan kurala güveniliyor.
+        print(f"[sınıflandırma] SORGULA: SLM(3b)={tip} yanlış, kural doğrudan kullanılıyor (bilinen kör nokta)")
+        log_anlasmazlik(text, kural_tahmini, tip, "KURAL DOĞRUDAN KULLANILDI (bilinen SLM kör noktası)")
+        tip = "SORGULA"
     elif kural_tahmini is not None and kural_tahmini != tip:
         print(f"[sınıflandırma] Anlaşmazlık: kural={kural_tahmini} slm(3b)={tip} - 7b'ye eskale ediliyor")
         try:
