@@ -557,7 +557,22 @@ def _haftalik_rutin_durumu_cevapla():
     durumundaki olanlar için TIKLANABİLİR butonlar ekliyor -
     `haftarutin_<satır>_evet/hayir` (process_callback'te ve gonder.py'nin
     otomatik hatırlatmasında ZATEN kullanılan aynı format, satır bazlı) -
-    günlük tarafta yapılan _kalan_durumu_interaktif_gonder ile aynı fikir."""
+    günlük tarafta yapılan _kalan_durumu_interaktif_gonder ile aynı fikir.
+
+    Gerçek bir olayda kullanıcı bu haftanın PROAKTİF hatırlatması
+    (gonder.py'deki haftalik_rutin_sorulari_gonder - Pazartesi/Çarşamba/
+    Cuma tetiklenir, ve bu hafta için HaftalikRutinTakip'e satır
+    OTOMATIK OLUŞTURAN tek yer buydu) daha hiç gelmeden kendi isteğiyle
+    sorduğunda, bu fonksiyon (o zaman) satır oluşturma mantığına sahip
+    OLMADIĞI için "Bu hafta için henüz kayıtlı bir haftalık rutin durumu
+    yok" diyordu - kullanıcı bunu "sorumu yanlış anladı / haftalık
+    rutinlerimi bulamadı" diye yorumladı, ama aslında veri gerçekten
+    yoktu, sınıflandırma/yönlendirme doğruydu. Düzeltme: sorgu fonksiyonu
+    artık gonder.py'deki İLE BİREBİR AYNI otomatik-satır-oluşturma
+    mantığını kendi içinde çalıştırıyor - proaktif hatırlatma daha hiç
+    gelmemiş olsa bile, kullanıcı kendi isteğiyle sorduğunda bu hafta
+    için satırlar (Bekliyor durumunda) o an oluşturuluyor, kendi kendine
+    yeterli hale geldi."""
     haftalik_rutinler = get_aktif_haftalik_rutinler()
     if not haftalik_rutinler:
         send_message("Tanımlı bir haftalık rutin yok.")
@@ -566,6 +581,15 @@ def _haftalik_rutin_durumu_cevapla():
     ws = get_haftalik_rutin_takip_sheet()
     hafta = hafta_baslangic_str()
     rows = ws.get_all_values()
+
+    mevcut_id_seti = {row[1] for row in rows[1:] if len(row) >= 2 and row[0] == hafta}
+    for rutin in haftalik_rutinler:
+        if rutin["id"] not in mevcut_id_seti:
+            guvenli_append_row(ws, [hafta, rutin["id"], rutin["isim"], "Bekliyor"])
+
+    if mevcut_id_seti != {r["id"] for r in haftalik_rutinler}:
+        # Yeni satır(lar) eklendiyse taze durumu tekrar oku.
+        rows = ws.get_all_values()
 
     satirlar = []
     bekleyenler = []  # (satir_no, isim) - sadece 'Bekliyor' durumundakiler
