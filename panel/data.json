@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-09T00:59:46.991002+03:00",
+  "uretim_zamani": "2026-09-09T03:03:51.883565+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1711,10 +1711,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-08T21:59:33Z",
+      "zaman": "2026-09-09T00:03:36Z",
       "durum": "warn",
+      "runId": "34293354173",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-08T23:59:33Z",
+      "durum": "ok",
+      "runId": "34293049409",
+      "sureSn": 33
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-08T22:36:30Z",
+      "durum": "ok",
+      "runId": "34286767183",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-08T21:59:33Z",
+      "durum": "ok",
       "runId": "34283555567",
-      "sureSn": 3
+      "sureSn": 42
     },
     {
       "ad": "Dinle",
@@ -1792,35 +1813,14 @@
       "durum": "ok",
       "runId": "34257316905",
       "sureSn": 14
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-08T16:09:41Z",
-      "durum": "ok",
-      "runId": "34249342775",
-      "sureSn": 69
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-08T14:41:21Z",
-      "durum": "ok",
-      "runId": "34239872048",
-      "sureSn": 49
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-08T14:41:19Z",
-      "durum": "ok",
-      "runId": "34239868007",
-      "sureSn": 39
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 4,
-      "oran": 50,
-      "ortSureSn": 36
+      "toplam": 5,
+      "oran": 60,
+      "ortSureSn": 37
     },
     {
       "ad": "Dinle",
@@ -1832,7 +1832,7 @@
       "ad": "Aforizma",
       "toplam": 4,
       "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 18
     },
     {
       "ad": "Webhook",
@@ -1842,9 +1842,9 @@
     },
     {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 22
     },
     {
       "ad": "gecici-check-model-result",
