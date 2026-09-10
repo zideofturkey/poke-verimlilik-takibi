@@ -1,4 +1,4 @@
-Zaman: 2026-09-10T04:33:35.785607+03:00
+Zaman: 2026-09-10T04:42:11.851329+03:00
 Bağlam: slm_sorgula deneme 2/5 (model=qwen2.5:7b)
 
 Traceback (most recent call last):
