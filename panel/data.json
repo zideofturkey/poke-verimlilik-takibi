@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-09-11T22:32:19.154501+03:00",
+  "uretim_zamani": "2026-09-12T01:18:15.580536+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 71
+    "haftaTamamlamaYuzdesi": 66
   },
   "heatmap": [
-    {
-      "tarih": "29 July 2026",
-      "tarih_iso": "2026-07-29",
-      "level": 4,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Mewing",
-          "durum": "Yapılmadı"
-        }
-      ]
-    },
     {
       "tarih": "30 July 2026",
       "tarih_iso": "2026-07-30",
@@ -1195,11 +1168,11 @@
     {
       "tarih": "11 September 2026",
       "tarih_iso": "2026-09-11",
-      "level": 1,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1215,7 +1188,34 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
+        }
+      ]
+    },
+    {
+      "tarih": "12 September 2026",
+      "tarih_iso": "2026-09-12",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 61
+      "oran": 59
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1466,15 +1466,15 @@
       "gorevler": [
         {
           "metin": "13.00 Piyano kursu mülakatına gitme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "GPT ile yeni bir otomasyon oluşturma Midas-Fiyatın Ardında raporuna baz alarak",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "coupe d’ongles",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1781,10 +1781,66 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-11T19:31:57Z",
+      "zaman": "2026-09-11T22:18:01Z",
       "durum": "warn",
-      "runId": "34639342499",
+      "runId": "34653379432",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-11T21:07:39Z",
+      "durum": "ok",
+      "runId": "34647799343",
+      "sureSn": 13
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-11T21:05:44Z",
+      "durum": "ok",
+      "runId": "34647631785",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-11T21:05:43Z",
+      "durum": "ok",
+      "runId": "34647630269",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-11T21:05:42Z",
+      "durum": "ok",
+      "runId": "34647629481",
+      "sureSn": 39
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-11T21:05:36Z",
+      "durum": "ok",
+      "runId": "34647620570",
+      "sureSn": 37
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-11T21:05:35Z",
+      "durum": "ok",
+      "runId": "34647618021",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-11T21:05:33Z",
+      "durum": "ok",
+      "runId": "34647615181",
+      "sureSn": 31
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-11T19:31:57Z",
+      "durum": "ok",
+      "runId": "34639342499",
+      "sureSn": 48
     },
     {
       "ad": "Dinle",
@@ -1827,62 +1883,6 @@
       "durum": "ok",
       "runId": "34624970913",
       "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-11T16:57:38Z",
-      "durum": "ok",
-      "runId": "34624965255",
-      "sureSn": 28
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-11T16:57:27Z",
-      "durum": "ok",
-      "runId": "34624946372",
-      "sureSn": 41
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-11T16:18:54Z",
-      "durum": "ok",
-      "runId": "34621265702",
-      "sureSn": 33
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-11T15:11:05Z",
-      "durum": "ok",
-      "runId": "34614603460",
-      "sureSn": 16
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-11T14:00:47Z",
-      "durum": "ok",
-      "runId": "34607612167",
-      "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-11T12:56:22Z",
-      "durum": "ok",
-      "runId": "34601540161",
-      "sureSn": 42
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-11T11:34:33Z",
-      "durum": "ok",
-      "runId": "34594695408",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-11T11:03:16Z",
-      "durum": "ok",
-      "runId": "34592163575",
-      "sureSn": 24
     }
   ],
   "workflowTurOzet": [
@@ -1890,13 +1890,7 @@
       "ad": "Panel",
       "toplam": 7,
       "oran": 86,
-      "ortSureSn": 36
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 6,
-      "oran": 100,
-      "ortSureSn": 30
+      "ortSureSn": 37
     },
     {
       "ad": "Aforizma",
@@ -1905,16 +1899,22 @@
       "ortSureSn": 15
     },
     {
+      "ad": "Webhook",
+      "toplam": 16,
+      "oran": 100,
+      "ortSureSn": 74
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 30
+    },
+    {
       "ad": "Gönder",
       "toplam": 4,
       "oran": 100,
       "ortSureSn": 20
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 16,
-      "oran": 100,
-      "ortSureSn": 115
     }
   ],
   "kocKararlari": [],
