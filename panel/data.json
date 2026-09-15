@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-15T04:44:33.886974+03:00",
+  "uretim_zamani": "2026-09-15T10:19:04.070081+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1771,10 +1771,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-15T01:44:18Z",
+      "zaman": "2026-09-15T07:18:41Z",
       "durum": "warn",
-      "runId": "34918453957",
+      "runId": "34941055311",
       "sureSn": 3
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-09-15T06:01:02Z",
+      "durum": "ok",
+      "runId": "34935096001",
+      "sureSn": 23
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-15T05:19:02Z",
+      "durum": "ok",
+      "runId": "34932243420",
+      "sureSn": 19
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-15T04:35:02Z",
+      "durum": "ok",
+      "runId": "34929390749",
+      "sureSn": 44
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-15T01:44:18Z",
+      "durum": "ok",
+      "runId": "34918453957",
+      "sureSn": 43
     },
     {
       "ad": "Aforizma",
@@ -1845,78 +1873,44 @@
       "durum": "ok",
       "runId": "34878245860",
       "sureSn": 20
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-14T16:11:42Z",
-      "durum": "ok",
-      "runId": "34867070225",
-      "sureSn": 49
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-14T15:23:03Z",
-      "durum": "ok",
-      "runId": "34861786487",
-      "sureSn": 44
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-14T15:22:55Z",
-      "durum": "ok",
-      "runId": "34861773035",
-      "sureSn": 43
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-14T14:01:15Z",
-      "durum": "ok",
-      "runId": "34852877581",
-      "sureSn": 23
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 8,
-      "oran": 88,
+      "toplam": 9,
+      "oran": 89,
       "ortSureSn": 37
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 22
     },
     {
       "ad": "Aforizma",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 16
+      "ortSureSn": 17
     },
     {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 34
     },
     {
       "ad": "Webhook",
-      "toplam": 10,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 66
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 35
     },
     {
       "ad": "Temizle",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 25
-    },
-    {
-      "ad": "Analiz",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 638
     }
   ],
   "kocKararlari": [],
