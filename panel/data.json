@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-17T02:36:44.173899+03:00",
+  "uretim_zamani": "2026-09-17T06:50:56.919929+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1814,10 +1814,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-16T23:36:27Z",
+      "zaman": "2026-09-17T03:50:41Z",
       "durum": "warn",
-      "runId": "35163036293",
+      "runId": "35179677544",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-17T01:20:41Z",
+      "durum": "ok",
+      "runId": "35170183070",
+      "sureSn": 18
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-17T01:15:36Z",
+      "durum": "ok",
+      "runId": "35169858303",
+      "sureSn": 28
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-16T23:36:27Z",
+      "durum": "ok",
+      "runId": "35163036293",
+      "sureSn": 47
     },
     {
       "ad": "Aforizma",
@@ -1895,27 +1916,6 @@
       "durum": "ok",
       "runId": "35132207709",
       "sureSn": 29
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-16T18:01:02Z",
-      "durum": "ok",
-      "runId": "35131746045",
-      "sureSn": 22
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-16T17:30:25Z",
-      "durum": "ok",
-      "runId": "35128602744",
-      "sureSn": 49
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-16T17:21:21Z",
-      "durum": "ok",
-      "runId": "35127660459",
-      "sureSn": 17
     }
   ],
   "workflowTurOzet": [
@@ -1923,11 +1923,11 @@
       "ad": "Panel",
       "toplam": 8,
       "oran": 88,
-      "ortSureSn": 40
+      "ortSureSn": 41
     },
     {
       "ad": "Aforizma",
-      "toplam": 8,
+      "toplam": 9,
       "oran": 100,
       "ortSureSn": 17
     },
@@ -1935,11 +1935,11 @@
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 27
     },
     {
       "ad": "Webhook",
-      "toplam": 12,
+      "toplam": 11,
       "oran": 100,
       "ortSureSn": 34
     },
