@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-09-20T23:26:48.814521+03:00",
+  "uretim_zamani": "2026-09-21T01:38:34.392330+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 77
+    "haftaTamamlamaYuzdesi": 71
   },
   "heatmap": [
-    {
-      "tarih": "07 August 2026",
-      "tarih_iso": "2026-08-07",
-      "level": 0,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": null
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": null
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": null
-        },
-        {
-          "isim": "Mewing",
-          "durum": null
-        }
-      ]
-    },
     {
       "tarih": "08 August 2026",
       "tarih_iso": "2026-08-08",
@@ -1195,11 +1168,11 @@
     {
       "tarih": "20 September 2026",
       "tarih_iso": "2026-09-20",
-      "level": 1,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
@@ -1218,6 +1191,33 @@
           "durum": "Yapılmadı"
         }
       ]
+    },
+    {
+      "tarih": "21 September 2026",
+      "tarih_iso": "2026-09-21",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1227,11 +1227,11 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 61
+      "oran": 63
     },
     {
       "isim": "Gece telefonsuzluğu",
-      "oran": 86
+      "oran": 85
     },
     {
       "isim": "Verimli video izleme",
@@ -1243,13 +1243,6 @@
     }
   ],
   "haftalikRutinHeatmap": [
-    {
-      "tarih": "29 Haz - 5 Tem",
-      "tarih_iso": "2026-06-29",
-      "level": 0,
-      "maks": 1,
-      "rutinler": []
-    },
     {
       "tarih": "6 - 12 Tem",
       "tarih_iso": "2026-07-06",
@@ -1456,6 +1449,13 @@
           "durum": "Yapıldı"
         }
       ]
+    },
+    {
+      "tarih": "21 - 27 Eyl",
+      "tarih_iso": "2026-09-21",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
     }
   ],
   "haftalikRutinOranlari": [
@@ -1483,11 +1483,11 @@
       "gorevler": [
         {
           "metin": "Anne dosyasını bitirme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Sevgili ile Kronotrop çalışması",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Ahmet Enişte videolarını aktarma",
@@ -1503,7 +1503,7 @@
         },
         {
           "metin": "Burnt filmini bitirme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Ütü yapma",
@@ -1511,7 +1511,7 @@
         },
         {
           "metin": "Pazar duşu alma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1852,10 +1852,101 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-20T20:26:35Z",
+      "zaman": "2026-09-20T22:38:20Z",
       "durum": "warn",
-      "runId": "35535558366",
+      "runId": "35542293757",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-20T21:23:42Z",
+      "durum": "ok",
+      "runId": "35538561767",
+      "sureSn": 37
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-20T21:02:39Z",
+      "durum": "ok",
+      "runId": "35537446471",
+      "sureSn": 18
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:48:13Z",
+      "durum": "ok",
+      "runId": "35536700785",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:54Z",
+      "durum": "warn",
+      "runId": "35536683587",
+      "sureSn": 23
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:51Z",
+      "durum": "warn",
+      "runId": "35536681202",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:45Z",
+      "durum": "warn",
+      "runId": "35536676572",
+      "sureSn": 34
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:36Z",
+      "durum": "ok",
+      "runId": "35536669920",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:23Z",
+      "durum": "ok",
+      "runId": "35536659420",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:19Z",
+      "durum": "ok",
+      "runId": "35536655280",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:16Z",
+      "durum": "ok",
+      "runId": "35536652093",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:12Z",
+      "durum": "ok",
+      "runId": "35536648468",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-09-20T20:47:09Z",
+      "durum": "ok",
+      "runId": "35536645673",
+      "sureSn": 28
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-20T20:26:35Z",
+      "durum": "ok",
+      "runId": "35535558366",
+      "sureSn": 38
     },
     {
       "ad": "Analiz",
@@ -1863,105 +1954,32 @@
       "durum": "ok",
       "runId": "35533742363",
       "sureSn": 411
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-20T18:39:26Z",
-      "durum": "ok",
-      "runId": "35529760937",
-      "sureSn": 24
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-20T18:31:22Z",
-      "durum": "ok",
-      "runId": "35529331258",
-      "sureSn": 17
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-20T18:01:08Z",
-      "durum": "ok",
-      "runId": "35527694164",
-      "sureSn": 19
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-20T17:34:25Z",
-      "durum": "ok",
-      "runId": "35526289792",
-      "sureSn": 52
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-20T15:59:50Z",
-      "durum": "ok",
-      "runId": "35521293667",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-20T15:54:12Z",
-      "durum": "ok",
-      "runId": "35521020153",
-      "sureSn": 25
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-20T14:05:13Z",
-      "durum": "ok",
-      "runId": "35515407528",
-      "sureSn": 40
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-20T14:01:11Z",
-      "durum": "ok",
-      "runId": "35515200431",
-      "sureSn": 17
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-20T12:43:16Z",
-      "durum": "ok",
-      "runId": "35511426192",
-      "sureSn": 538
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-20T12:40:12Z",
-      "durum": "ok",
-      "runId": "35511277576",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-20T12:40:01Z",
-      "durum": "ok",
-      "runId": "35511267953",
-      "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-20T12:39:59Z",
-      "durum": "ok",
-      "runId": "35511266460",
-      "sureSn": 41
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-20T12:39:34Z",
-      "durum": "ok",
-      "runId": "35511249812",
-      "sureSn": 29
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 7,
-      "oran": 86,
-      "ortSureSn": 36
+      "toplam": 6,
+      "oran": 83,
+      "ortSureSn": 35
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 28
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 5,
+      "oran": 100,
+      "ortSureSn": 16
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 18,
+      "oran": 83,
+      "ortSureSn": 60
     },
     {
       "ad": "Analiz",
@@ -1970,28 +1988,10 @@
       "ortSureSn": 411
     },
     {
-      "ad": "Dinle",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 28
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 16
-    },
-    {
       "ad": "Gönder",
       "toplam": 5,
       "oran": 100,
       "ortSureSn": 18
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 13,
-      "oran": 100,
-      "ortSureSn": 72
     }
   ],
   "kocKararlari": [],
