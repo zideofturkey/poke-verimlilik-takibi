@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-23T15:57:08.405782+03:00",
+  "uretim_zamani": "2026-09-23T20:47:18.017725+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1454,26 +1454,43 @@
       "tarih": "21 - 27 Eyl",
       "tarih_iso": "2026-09-21",
       "level": 0,
-      "maks": 1,
-      "rutinler": []
+      "maks": 4,
+      "rutinler": [
+        {
+          "isim": "Oda tozu alma",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Uzun metraj izlence",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Making Music",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Haftada 3 gün spor",
+          "durum": "Bekliyor"
+        }
+      ]
     }
   ],
   "haftalikRutinOranlari": [
     {
       "isim": "Oda tozu alma",
-      "oran": 80
+      "oran": 73
     },
     {
       "isim": "Uzun metraj izlence",
-      "oran": 100
+      "oran": 90
     },
     {
       "isim": "Making Music",
-      "oran": 44
+      "oran": 40
     },
     {
       "isim": "Haftada 3 gün spor",
-      "oran": 100
+      "oran": 67
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1856,10 +1873,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-23T12:56:50Z",
+      "zaman": "2026-09-23T17:47:02Z",
       "durum": "warn",
-      "runId": "35863741528",
+      "runId": "35897969175",
       "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-23T17:44:53Z",
+      "durum": "ok",
+      "runId": "35897721014",
+      "sureSn": 20
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-09-23T17:01:10Z",
+      "durum": "ok",
+      "runId": "35892743171",
+      "sureSn": 29
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-23T16:40:46Z",
+      "durum": "ok",
+      "runId": "35890411852",
+      "sureSn": 34
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-09-23T14:01:16Z",
+      "durum": "ok",
+      "runId": "35871138095",
+      "sureSn": 22
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-23T12:59:59Z",
+      "durum": "ok",
+      "runId": "35864072569",
+      "sureSn": 12
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-23T12:56:50Z",
+      "durum": "ok",
+      "runId": "35863741528",
+      "sureSn": 47
     },
     {
       "ad": "Dinle",
@@ -1916,48 +1975,6 @@
       "durum": "ok",
       "runId": "35847000413",
       "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-23T10:07:50Z",
-      "durum": "ok",
-      "runId": "35846998101",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-23T10:07:47Z",
-      "durum": "ok",
-      "runId": "35846994066",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-23T10:07:45Z",
-      "durum": "ok",
-      "runId": "35846991046",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-23T10:07:43Z",
-      "durum": "ok",
-      "runId": "35846987544",
-      "sureSn": 39
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-23T10:01:07Z",
-      "durum": "ok",
-      "runId": "35846322861",
-      "sureSn": 17
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-23T07:42:14Z",
-      "durum": "ok",
-      "runId": "35833105262",
-      "sureSn": 20
     }
   ],
   "workflowTurOzet": [
@@ -1968,28 +1985,28 @@
       "ortSureSn": 39
     },
     {
+      "ad": "Aforizma",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 18
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 22
+    },
+    {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 34
     },
     {
       "ad": "Webhook",
       "toplam": 11,
       "oran": 100,
       "ortSureSn": 90
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 6,
-      "oran": 100,
-      "ortSureSn": 20
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 18
     }
   ],
   "kocKararlari": [],
