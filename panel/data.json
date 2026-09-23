@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-23T02:09:44.394159+03:00",
+  "uretim_zamani": "2026-09-23T04:39:50.477081+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 63
   },
@@ -1834,10 +1834,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-22T23:09:29Z",
+      "zaman": "2026-09-23T01:39:35Z",
       "durum": "warn",
+      "runId": "35807201169",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-23T00:17:37Z",
+      "durum": "ok",
+      "runId": "35801416093",
+      "sureSn": 35
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-22T23:48:43Z",
+      "durum": "ok",
+      "runId": "35799186249",
+      "sureSn": 17
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-22T23:09:29Z",
+      "durum": "ok",
       "runId": "35796032549",
-      "sureSn": 3
+      "sureSn": 45
     },
     {
       "ad": "Dinle",
@@ -1915,53 +1936,32 @@
       "durum": "ok",
       "runId": "35726993849",
       "sureSn": 48
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-22T10:18:14Z",
-      "durum": "ok",
-      "runId": "35715231591",
-      "sureSn": 14
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-22T10:01:09Z",
-      "durum": "ok",
-      "runId": "35713642926",
-      "sureSn": 21
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-22T09:47:49Z",
-      "durum": "ok",
-      "runId": "35712407912",
-      "sureSn": 29
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 8,
-      "oran": 88,
-      "ortSureSn": 40
+      "toplam": 9,
+      "oran": 89,
+      "ortSureSn": 41
     },
     {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
-      "ortSureSn": 33
+      "ortSureSn": 34
     },
     {
       "ad": "Aforizma",
       "toplam": 9,
       "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 18
     },
     {
       "ad": "Gönder",
-      "toplam": 6,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 21
     },
     {
       "ad": "Webhook",
