@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-26T04:49:16.352181+03:00",
+  "uretim_zamani": "2026-09-26T10:09:28.662174+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1512,7 +1512,7 @@
         },
         {
           "metin": "gübretaş q2 raporunu okuma",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -1873,10 +1873,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-26T01:49:01Z",
+      "zaman": "2026-09-26T07:09:07Z",
       "durum": "warn",
+      "runId": "36225900157",
+      "sureSn": 5
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-26T06:36:45Z",
+      "durum": "ok",
+      "runId": "36224279135",
+      "sureSn": 14
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-09-26T06:01:11Z",
+      "durum": "ok",
+      "runId": "36222491311",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-26T01:49:01Z",
+      "durum": "ok",
       "runId": "36209680263",
-      "sureSn": 3
+      "sureSn": 39
     },
     {
       "ad": "Aforizma",
@@ -1954,34 +1975,13 @@
       "durum": "ok",
       "runId": "36173433399",
       "sureSn": 38
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-25T18:01:11Z",
-      "durum": "ok",
-      "runId": "36170755356",
-      "sureSn": 22
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-25T17:06:05Z",
-      "durum": "ok",
-      "runId": "36164979835",
-      "sureSn": 17
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-25T15:53:16Z",
-      "durum": "ok",
-      "runId": "36157180732",
-      "sureSn": 46
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 10,
-      "oran": 90,
+      "toplam": 11,
+      "oran": 91,
       "ortSureSn": 40
     },
     {
@@ -1989,6 +1989,12 @@
       "toplam": 11,
       "oran": 100,
       "ortSureSn": 17
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Dinle",
@@ -2001,12 +2007,6 @@
       "toplam": 3,
       "oran": 100,
       "ortSureSn": 38
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 20
     }
   ],
   "kocKararlari": [],
