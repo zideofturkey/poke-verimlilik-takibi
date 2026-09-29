@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-29T01:25:48.747360+03:00",
+  "uretim_zamani": "2026-09-29T05:12:04.569233+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 57
   },
@@ -1785,10 +1785,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-28T22:25:35Z",
+      "zaman": "2026-09-29T02:11:44Z",
       "durum": "warn",
+      "runId": "36511445796",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-29T01:21:33Z",
+      "durum": "ok",
+      "runId": "36507516036",
+      "sureSn": 17
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-28T23:09:31Z",
+      "durum": "ok",
+      "runId": "36496481159",
+      "sureSn": 34
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-28T22:25:35Z",
+      "durum": "ok",
       "runId": "36492311088",
-      "sureSn": 4
+      "sureSn": 37
     },
     {
       "ad": "Aforizma",
@@ -1866,59 +1887,38 @@
       "durum": "ok",
       "runId": "36432819029",
       "sureSn": 22
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-28T10:01:14Z",
-      "durum": "ok",
-      "runId": "36407131181",
-      "sureSn": 25
-    },
-    {
-      "ad": "Temizle",
-      "zaman": "2026-09-28T09:27:00Z",
-      "durum": "ok",
-      "runId": "36403562122",
-      "sureSn": 20
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-28T08:33:53Z",
-      "durum": "ok",
-      "runId": "36398105482",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
+      "toplam": 7,
+      "oran": 86,
       "ortSureSn": 36
     },
     {
       "ad": "Aforizma",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 14
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 15,
-      "oran": 100,
-      "ortSureSn": 88
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 15
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 6,
       "oran": 100,
       "ortSureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 14,
+      "oran": 100,
+      "ortSureSn": 80
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Temizle",
