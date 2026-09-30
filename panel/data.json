@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-09-30T02:53:25.265116+03:00",
+  "uretim_zamani": "2026-09-30T07:26:33.909152+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1785,10 +1785,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-09-29T23:53:10Z",
+      "zaman": "2026-09-30T04:26:14Z",
       "durum": "warn",
-      "runId": "36647524033",
+      "runId": "36668829368",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-09-30T02:03:56Z",
+      "durum": "ok",
+      "runId": "36658075442",
+      "sureSn": 15
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-09-30T01:57:38Z",
+      "durum": "ok",
+      "runId": "36657569129",
+      "sureSn": 24
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-09-29T23:53:10Z",
+      "durum": "ok",
+      "runId": "36647524033",
+      "sureSn": 40
     },
     {
       "ad": "Aforizma",
@@ -1866,27 +1887,6 @@
       "durum": "ok",
       "runId": "36552909253",
       "sureSn": 20
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-29T08:53:27Z",
-      "durum": "ok",
-      "runId": "36545588306",
-      "sureSn": 38
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-29T07:04:06Z",
-      "durum": "ok",
-      "runId": "36534470059",
-      "sureSn": 22
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-29T06:01:21Z",
-      "durum": "ok",
-      "runId": "36528957166",
-      "sureSn": 102
     }
   ],
   "workflowTurOzet": [
@@ -1894,7 +1894,7 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 39
+      "ortSureSn": 38
     },
     {
       "ad": "Aforizma",
@@ -1904,15 +1904,15 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 31
     },
     {
       "ad": "Gönder",
-      "toplam": 8,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 32
+      "ortSureSn": 34
     },
     {
       "ad": "Webhook",
