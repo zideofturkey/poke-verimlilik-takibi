@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-01T03:42:21.728669+03:00",
+  "uretim_zamani": "2026-10-01T09:56:11.359279+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 49
   },
@@ -1547,15 +1547,15 @@
         },
         {
           "metin": "Şirin Spot bütçe harcamama sorununu çözme",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "Akşam evde spor yapma",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "Kancar+ yeni meta reels'ı ekleme",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -1824,10 +1824,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-01T00:42:07Z",
+      "zaman": "2026-10-01T06:55:56Z",
       "durum": "warn",
-      "runId": "36797478611",
+      "runId": "36827433506",
       "sureSn": 3
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-01T06:01:27Z",
+      "durum": "ok",
+      "runId": "36822620777",
+      "sureSn": 24
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-01T02:15:26Z",
+      "durum": "ok",
+      "runId": "36804966929",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-01T00:42:07Z",
+      "durum": "ok",
+      "runId": "36797478611",
+      "sureSn": 41
     },
     {
       "ad": "Dinle",
@@ -1905,27 +1926,6 @@
       "durum": "ok",
       "runId": "36725937674",
       "sureSn": 18
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-30T11:25:53Z",
-      "durum": "ok",
-      "runId": "36708491627",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-30T11:25:53Z",
-      "durum": "ok",
-      "runId": "36708491362",
-      "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-09-30T11:25:43Z",
-      "durum": "ok",
-      "runId": "36708474958",
-      "sureSn": 38
     }
   ],
   "workflowTurOzet": [
@@ -1933,25 +1933,25 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 41
+      "ortSureSn": 42
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 21
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 18
     },
     {
       "ad": "Dinle",
       "toplam": 8,
       "oran": 100,
       "ortSureSn": 33
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 19
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 30
     },
     {
       "ad": "Webhook",
