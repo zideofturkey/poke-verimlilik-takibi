@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-01T09:56:11.359279+03:00",
+  "uretim_zamani": "2026-10-01T17:19:01.976133+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 49
   },
@@ -1824,10 +1824,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-01T06:55:56Z",
+      "zaman": "2026-10-01T14:18:37Z",
       "durum": "warn",
+      "runId": "36875324569",
+      "sureSn": 5
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-01T14:01:25Z",
+      "durum": "ok",
+      "runId": "36873096150",
+      "sureSn": 19
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-01T10:01:01Z",
+      "durum": "ok",
+      "runId": "36846439723",
+      "sureSn": 17
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-01T09:08:27Z",
+      "durum": "ok",
+      "runId": "36840782269",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-01T07:06:05Z",
+      "durum": "ok",
+      "runId": "36828395917",
+      "sureSn": 27
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-01T06:55:56Z",
+      "durum": "ok",
       "runId": "36827433506",
-      "sureSn": 3
+      "sureSn": 40
     },
     {
       "ad": "Gönder",
@@ -1891,41 +1926,6 @@
       "durum": "ok",
       "runId": "36755606036",
       "sureSn": 25
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-30T17:01:18Z",
-      "durum": "ok",
-      "runId": "36748422221",
-      "sureSn": 22
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-09-30T16:41:46Z",
-      "durum": "ok",
-      "runId": "36746076557",
-      "sureSn": 43
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-09-30T15:48:40Z",
-      "durum": "ok",
-      "runId": "36739554900",
-      "sureSn": 41
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-09-30T15:03:44Z",
-      "durum": "ok",
-      "runId": "36733844599",
-      "sureSn": 21
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-09-30T14:01:16Z",
-      "durum": "ok",
-      "runId": "36725937674",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
@@ -1933,7 +1933,7 @@
       "ad": "Panel",
       "toplam": 9,
       "oran": 89,
-      "ortSureSn": 42
+      "ortSureSn": 41
     },
     {
       "ad": "Gönder",
