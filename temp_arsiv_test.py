@@ -63,6 +63,19 @@ with open("gecici_arsiv_test_sonuc.txt", "w", encoding="utf-8") as f:
     except Exception as e:
         f.write(f"HATA: {e}\n")
 
+    f.write("\n=== ARŞİV SEKMELERİNİN HAM İÇERİĞİ (son durum) ===\n")
+    for ad in ["GunlukGorevArsiv", "HaftalikHedefArsiv", "HaftalikRutinTakipArsiv"]:
+        try:
+            ws = spreadsheet.worksheet(ad)
+            ham = ws.get_all_values()
+            f.write(f"\n--- {ad} ({len(ham)} satır) ---\n")
+            for satir in ham[:5]:
+                f.write(f"{satir}\n")
+            if len(ham) > 5:
+                f.write(f"... ({len(ham) - 5} satır daha)\n")
+        except Exception as e:
+            f.write(f"{ad}: HATA {e}\n")
+
     f.write("\n=== ARŞİVDEN OKUMA SONUÇLARI ===\n")
     try:
         f.write("gunluk_gorev_gecmisi (ilk 2):\n")
