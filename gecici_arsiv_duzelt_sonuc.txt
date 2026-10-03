@@ -1,6 +1,0 @@
-
-==================== HaftalikRutinTakipArsiv ====================
-Düzeltme ÖNCESİ satır sayısı: 152
-Benzersiz satır sayısı: 38
-Yeniden oluşturulan sekme ilk satırı: ['HaftaBaslangic', 'RutinID', 'Isim', 'Durum']
-Düzeltme SONRASI satır sayısı: 39
