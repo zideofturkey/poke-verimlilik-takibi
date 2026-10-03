@@ -1,7 +1,7 @@
 === MEVCUT ARŞİV SEKMELERİ DURUMU ===
 GunlukGorevArsiv: 60 satır (başlık dahil)
-HaftalikHedefArsiv: 12 satır (başlık dahil)
-HaftalikRutinTakipArsiv: 76 satır (başlık dahil)
+HaftalikHedefArsiv: 7 satır (başlık dahil)
+HaftalikRutinTakipArsiv: 114 satır (başlık dahil)
 
 === GunlukGorevler GERÇEK ŞEMA KONTROLÜ ===
 Toplam satır: 58
@@ -10,7 +10,7 @@ GorevID boş olan satır sayısı: 58
 
 === ARŞİVLEME ÇALIŞTIRILIYOR ===
 gunluk_gorev_arsivle: {'eklenen': 0, 'guncellenen': 0}
-haftalik_hedef_arsivle: {'eklenen': 6, 'guncellenen': 0}
+haftalik_hedef_arsivle: {'eklenen': 0, 'guncellenen': 0}
 haftalik_rutin_takip_arsivle: {'eklenen': 38, 'guncellenen': 0}
 
 === 2. ÇALIŞTIRMA (idempotency testi - hiçbir şey eklenmemeli/güncellenmemeli) ===
@@ -26,21 +26,21 @@ gunluk_gorev_arsivle (2. kez): {'eklenen': 0, 'guncellenen': 0}
 ['2026-09-15', '', 'Kancar+ uygunsa bütçesini artırma', 'Yapıldı']
 ... (55 satır daha)
 
---- HaftalikHedefArsiv (18 satır) ---
+--- HaftalikHedefArsiv (7 satır) ---
+['HaftaBaslangic', 'HedefMetni', 'Durum']
 ['2026-09-28', 'Tufan Abi adsleri para harcamıyor sorunu çözülecek', 'Bekliyor']
 ['2026-09-28', 'Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak', 'Bekliyor']
 ['2026-09-28', 'Azot ile çarşamba günü Kartal’a gidilecek', 'Bekliyor']
 ['2026-09-28', 'Pazartesi kancar+ ads toplantısı', 'Bekliyor']
-['2026-09-28', 'OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı', 'Bekliyor']
-... (13 satır daha)
+... (2 satır daha)
 
---- HaftalikRutinTakipArsiv (114 satır) ---
+--- HaftalikRutinTakipArsiv (152 satır) ---
 ['2026-07-13', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
 ['2026-07-20', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
 ['2026-07-20', 'uzun_metraj_izlence', 'Uzun metraj izlence', 'Yapıldı']
 ['2026-07-20', 'making_music', 'Making Music', 'Yapılmadı']
 ['2026-07-27', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
-... (109 satır daha)
+... (147 satır daha)
 
 === ARŞİVDEN OKUMA SONUÇLARI ===
 gunluk_gorev_gecmisi (ilk 2):
@@ -96,7 +96,37 @@ gunluk_gorev_gecmisi (ilk 2):
 ]
 
 haftalik_hedef_gecmisi:
-[]
+[
+  {
+    "hafta": "2026-09-28",
+    "hedefler": [
+      {
+        "hedef": "Tufan Abi adsleri para harcamıyor sorunu çözülecek",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "Azot ile çarşamba günü Kartal’a gidilecek",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "Pazartesi kancar+ ads toplantısı",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "FollowUrFirm üzerine 100$ bütçe ile tekrar çalışılmaya başlanacak",
+        "durum": "Bekliyor"
+      }
+    ]
+  }
+]
 
 haftalik_rutin_heatmap_topla eleman sayısı: 12
 [
