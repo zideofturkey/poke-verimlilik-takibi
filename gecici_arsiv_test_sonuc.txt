@@ -1,101 +1,20 @@
+=== MEVCUT ARŞİV SEKMELERİ DURUMU ===
+GunlukGorevArsiv: 60 satır (başlık dahil)
+HaftalikHedefArsiv: 1 satır (başlık dahil)
+HaftalikRutinTakipArsiv: 1 satır (başlık dahil)
+
 === GunlukGorevler GERÇEK ŞEMA KONTROLÜ ===
 Toplam satır: 59
 İlk satır örneği: {'Tarih': '2026-09-15', 'GorevID': '', 'GorevMetni': '12.00 work-out', 'Durum': 'Yapıldı'}
 GorevID boş olan satır sayısı: 59
 
 === ARŞİVLEME ÇALIŞTIRILIYOR ===
-gunluk_gorev_arsivle: {'eklenen': 59, 'guncellenen': 0}
-haftalik_hedef_arsivle HATA: APIError: [429]: Quota exceeded for quota metric 'Write requests' and limit 'Write requests per minute per user' of service 'sheets.googleapis.com' for consumer 'project_number:856366961624'.
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/spreadsheet.py", line 327, in worksheet
-    item = finditem(
-           ^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/utils.py", line 224, in finditem
-    return next(item for item in seq if func(item))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-StopIteration
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/panel_veri_uret.py", line 47, in _arsiv_sheet_al
-    return spreadsheet.worksheet(ad)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/spreadsheet.py", line 333, in worksheet
-    raise WorksheetNotFound(title)
-gspread.exceptions.WorksheetNotFound: HaftalikHedefArsiv
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/temp_arsiv_test.py", line 33, in <module>
-    sonuc2 = haftalik_hedef_arsivle()
-             ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/panel_veri_uret.py", line 333, in haftalik_hedef_arsivle
-    ws_arsiv = _arsiv_sheet_al("HaftalikHedefArsiv", HAFTALIK_HEDEF_ARSIV_BASLIKLARI)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/panel_veri_uret.py", line 50, in _arsiv_sheet_al
-    ws.append_row(basliklar)
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/worksheet.py", line 1812, in append_row
-    return self.append_rows(
-           ^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/worksheet.py", line 1862, in append_rows
-    res = self.client.values_append(self.spreadsheet_id, range_label, params, body)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/http_client.py", line 191, in values_append
-    r = self.request("post", url, params=params, json=body)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/http_client.py", line 128, in request
-    raise APIError(response)
-gspread.exceptions.APIError: APIError: [429]: Quota exceeded for quota metric 'Write requests' and limit 'Write requests per minute per user' of service 'sheets.googleapis.com' for consumer 'project_number:856366961624'.
-
-haftalik_rutin_takip_arsivle HATA: APIError: [429]: Quota exceeded for quota metric 'Write requests' and limit 'Write requests per minute per user' of service 'sheets.googleapis.com' for consumer 'project_number:856366961624'.
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/spreadsheet.py", line 327, in worksheet
-    item = finditem(
-           ^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/utils.py", line 224, in finditem
-    return next(item for item in seq if func(item))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-StopIteration
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/panel_veri_uret.py", line 47, in _arsiv_sheet_al
-    return spreadsheet.worksheet(ad)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/spreadsheet.py", line 333, in worksheet
-    raise WorksheetNotFound(title)
-gspread.exceptions.WorksheetNotFound: HaftalikRutinTakipArsiv
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/temp_arsiv_test.py", line 40, in <module>
-    sonuc3 = haftalik_rutin_takip_arsivle()
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/panel_veri_uret.py", line 174, in haftalik_rutin_takip_arsivle
-    ws_arsiv = _arsiv_sheet_al("HaftalikRutinTakipArsiv", HAFTALIK_RUTIN_TAKIP_ARSIV_BASLIKLARI)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/poke-verimlilik-takibi/poke-verimlilik-takibi/panel_veri_uret.py", line 50, in _arsiv_sheet_al
-    ws.append_row(basliklar)
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/worksheet.py", line 1812, in append_row
-    return self.append_rows(
-           ^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/worksheet.py", line 1862, in append_rows
-    res = self.client.values_append(self.spreadsheet_id, range_label, params, body)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/http_client.py", line 191, in values_append
-    r = self.request("post", url, params=params, json=body)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/gspread/http_client.py", line 128, in request
-    raise APIError(response)
-gspread.exceptions.APIError: APIError: [429]: Quota exceeded for quota metric 'Write requests' and limit 'Write requests per minute per user' of service 'sheets.googleapis.com' for consumer 'project_number:856366961624'.
-
+gunluk_gorev_arsivle: {'eklenen': 0, 'guncellenen': 0}
+haftalik_hedef_arsivle: {'eklenen': 6, 'guncellenen': 0}
+haftalik_rutin_takip_arsivle: {'eklenen': 38, 'guncellenen': 0}
 
 === 2. ÇALIŞTIRMA (idempotency testi - hiçbir şey eklenmemeli/güncellenmemeli) ===
-HATA: APIError: [429]: Quota exceeded for quota metric 'Write requests' and limit 'Write requests per minute per user' of service 'sheets.googleapis.com' for consumer 'project_number:856366961624'.
+gunluk_gorev_arsivle (2. kez): {'eklenen': 0, 'guncellenen': 0}
 
 === ARŞİVDEN OKUMA SONUÇLARI ===
 gunluk_gorev_gecmisi (ilk 2):
@@ -151,7 +70,8 @@ gunluk_gorev_gecmisi (ilk 2):
 ]
 
 haftalik_hedef_gecmisi:
-[]
+HATA: 'HaftaBaslangic'
+
 
 haftalik_rutin_heatmap_topla eleman sayısı: 12
 [
