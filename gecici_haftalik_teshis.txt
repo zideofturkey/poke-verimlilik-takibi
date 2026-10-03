@@ -1,0 +1,45 @@
+HaftalikHedefler toplam satır: 6
+
+Mevcut farklı HaftaBaslangic değerleri (1 adet):
+  2026-09-28: 6 hedef
+
+=== TÜM HAM SATIRLAR ===
+{'HaftaBaslangic': '2026-09-28', 'HedefMetni': 'Tufan Abi adsleri para harcamıyor sorunu çözülecek', 'Durum': 'Bekliyor'}
+{'HaftaBaslangic': '2026-09-28', 'HedefMetni': 'Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak', 'Durum': 'Bekliyor'}
+{'HaftaBaslangic': '2026-09-28', 'HedefMetni': 'Azot ile çarşamba günü Kartal’a gidilecek', 'Durum': 'Bekliyor'}
+{'HaftaBaslangic': '2026-09-28', 'HedefMetni': 'Pazartesi kancar+ ads toplantısı', 'Durum': 'Bekliyor'}
+{'HaftaBaslangic': '2026-09-28', 'HedefMetni': 'OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı', 'Durum': 'Bekliyor'}
+{'HaftaBaslangic': '2026-09-28', 'HedefMetni': 'FollowUrFirm üzerine 100$ bütçe ile tekrar çalışılmaya başlanacak', 'Durum': 'Bekliyor'}
+
+=== panel_veri_uret.haftalik_hedef_gecmisi() ÇIKTISI ===
+[
+  {
+    "hafta": "2026-09-28",
+    "hedefler": [
+      {
+        "hedef": "Tufan Abi adsleri para harcamıyor sorunu çözülecek",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "Azot ile çarşamba günü Kartal’a gidilecek",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "Pazartesi kancar+ ads toplantısı",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı",
+        "durum": "Bekliyor"
+      },
+      {
+        "hedef": "FollowUrFirm üzerine 100$ bütçe ile tekrar çalışılmaya başlanacak",
+        "durum": "Bekliyor"
+      }
+    ]
+  }
+]
