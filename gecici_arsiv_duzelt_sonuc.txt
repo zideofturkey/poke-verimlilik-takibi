@@ -1,19 +1,6 @@
-Düzeltme ÖNCESİ satır sayısı: 18
-Benzersiz satır sayısı: 6
-['2026-09-28', 'Tufan Abi adsleri para harcamıyor sorunu çözülecek', 'Bekliyor']
-['2026-09-28', 'Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak', 'Bekliyor']
-['2026-09-28', 'Azot ile çarşamba günü Kartal’a gidilecek', 'Bekliyor']
-['2026-09-28', 'Pazartesi kancar+ ads toplantısı', 'Bekliyor']
-['2026-09-28', 'OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı', 'Bekliyor']
-['2026-09-28', 'FollowUrFirm üzerine 100$ bütçe ile tekrar çalışılmaya başlanacak', 'Bekliyor']
 
-Yeniden oluşturulan sekme ilk satırı: ['HaftaBaslangic', 'HedefMetni', 'Durum']
-
-Düzeltme SONRASI satır sayısı: 7
-['HaftaBaslangic', 'HedefMetni', 'Durum']
-['2026-09-28', 'Tufan Abi adsleri para harcamıyor sorunu çözülecek', 'Bekliyor']
-['2026-09-28', 'Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak', 'Bekliyor']
-['2026-09-28', 'Azot ile çarşamba günü Kartal’a gidilecek', 'Bekliyor']
-['2026-09-28', 'Pazartesi kancar+ ads toplantısı', 'Bekliyor']
-['2026-09-28', 'OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı', 'Bekliyor']
-['2026-09-28', 'FollowUrFirm üzerine 100$ bütçe ile tekrar çalışılmaya başlanacak', 'Bekliyor']
+==================== HaftalikRutinTakipArsiv ====================
+Düzeltme ÖNCESİ satır sayısı: 152
+Benzersiz satır sayısı: 38
+Yeniden oluşturulan sekme ilk satırı: ['HaftaBaslangic', 'RutinID', 'Isim', 'Durum']
+Düzeltme SONRASI satır sayısı: 39
