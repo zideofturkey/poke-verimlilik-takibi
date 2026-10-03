@@ -1,7 +1,7 @@
 === MEVCUT ARŞİV SEKMELERİ DURUMU ===
 GunlukGorevArsiv: 60 satır (başlık dahil)
 HaftalikHedefArsiv: 7 satır (başlık dahil)
-HaftalikRutinTakipArsiv: 114 satır (başlık dahil)
+HaftalikRutinTakipArsiv: 39 satır (başlık dahil)
 
 === GunlukGorevler GERÇEK ŞEMA KONTROLÜ ===
 Toplam satır: 58
@@ -11,7 +11,7 @@ GorevID boş olan satır sayısı: 58
 === ARŞİVLEME ÇALIŞTIRILIYOR ===
 gunluk_gorev_arsivle: {'eklenen': 0, 'guncellenen': 0}
 haftalik_hedef_arsivle: {'eklenen': 0, 'guncellenen': 0}
-haftalik_rutin_takip_arsivle: {'eklenen': 38, 'guncellenen': 0}
+haftalik_rutin_takip_arsivle: {'eklenen': 0, 'guncellenen': 0}
 
 === 2. ÇALIŞTIRMA (idempotency testi - hiçbir şey eklenmemeli/güncellenmemeli) ===
 gunluk_gorev_arsivle (2. kez): {'eklenen': 0, 'guncellenen': 0}
@@ -34,13 +34,13 @@ gunluk_gorev_arsivle (2. kez): {'eklenen': 0, 'guncellenen': 0}
 ['2026-09-28', 'Pazartesi kancar+ ads toplantısı', 'Bekliyor']
 ... (2 satır daha)
 
---- HaftalikRutinTakipArsiv (152 satır) ---
+--- HaftalikRutinTakipArsiv (39 satır) ---
+['HaftaBaslangic', 'RutinID', 'Isim', 'Durum']
 ['2026-07-13', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
 ['2026-07-20', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
 ['2026-07-20', 'uzun_metraj_izlence', 'Uzun metraj izlence', 'Yapıldı']
 ['2026-07-20', 'making_music', 'Making Music', 'Yapılmadı']
-['2026-07-27', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
-... (147 satır daha)
+... (34 satır daha)
 
 === ARŞİVDEN OKUMA SONUÇLARI ===
 gunluk_gorev_gecmisi (ilk 2):
@@ -133,16 +133,50 @@ haftalik_rutin_heatmap_topla eleman sayısı: 12
   {
     "tarih": "21 - 27 Eyl",
     "tarih_iso": "2026-09-21",
-    "level": 0,
-    "maks": 1,
-    "rutinler": []
+    "level": 3,
+    "maks": 4,
+    "rutinler": [
+      {
+        "isim": "Oda tozu alma",
+        "durum": "Yapıldı"
+      },
+      {
+        "isim": "Uzun metraj izlence",
+        "durum": "Yapıldı"
+      },
+      {
+        "isim": "Making Music",
+        "durum": "Yapıldı"
+      },
+      {
+        "isim": "Haftada 3 gün spor",
+        "durum": "Yapılmadı"
+      }
+    ]
   },
   {
     "tarih": "28 Eyl - 4 Eki",
     "tarih_iso": "2026-09-28",
     "level": 0,
-    "maks": 1,
-    "rutinler": []
+    "maks": 4,
+    "rutinler": [
+      {
+        "isim": "Oda tozu alma",
+        "durum": "Bekliyor"
+      },
+      {
+        "isim": "Uzun metraj izlence",
+        "durum": "Bekliyor"
+      },
+      {
+        "isim": "Making Music",
+        "durum": "Bekliyor"
+      },
+      {
+        "isim": "Haftada 3 gün spor",
+        "durum": "Bekliyor"
+      }
+    ]
   }
 ]
 
@@ -150,18 +184,18 @@ haftalik_rutin_oranlari_hesapla:
 [
   {
     "isim": "Oda tozu alma",
-    "oran": 0
+    "oran": 75
   },
   {
     "isim": "Uzun metraj izlence",
-    "oran": 0
+    "oran": 91
   },
   {
     "isim": "Making Music",
-    "oran": 0
+    "oran": 45
   },
   {
     "isim": "Haftada 3 gün spor",
-    "oran": 0
+    "oran": 50
   }
 ]
