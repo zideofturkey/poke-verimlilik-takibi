@@ -364,13 +364,23 @@ def haftalik_hedef_arsivle():
 
 def haftalik_hedef_gecmisi(kac_hafta=12):
     """Artık HaftalikHedefArsiv'den (KALICI) okuyor - HaftalikHedefler'in
-    14 günlük saklama penceresinden bağımsız."""
+    14 günlük saklama penceresinden bağımsız.
+
+    Savunmacı: r["HaftaBaslangic"] yerine r.get(...) kullanılıyor -
+    gerçek pipeline testinde bir KeyError yaşandı (muhtemelen
+    get_all_records()'un döndürdüğü bir satırda beklenmeyen eksik/boş
+    bir anahtar vardı, kök neden netleşene kadar bu satırı ATLAYIP
+    günlüğe yazmak, tüm fonksiyonu çökertmekten daha güvenli)."""
     ws = _arsiv_sheet_al("HaftalikHedefArsiv", HAFTALIK_HEDEF_ARSIV_BASLIKLARI)
     rows = ws.get_all_records()
     gruplu = {}
-    for r in rows:
-        gruplu.setdefault(r["HaftaBaslangic"], []).append(
-            {"hedef": r["HedefMetni"], "durum": r["Durum"]}
+    for i, r in enumerate(rows):
+        hafta = r.get("HaftaBaslangic")
+        if not hafta:
+            print(f"UYARI: haftalik_hedef_gecmisi - {i}. satırda HaftaBaslangic eksik/boş: {r}")
+            continue
+        gruplu.setdefault(hafta, []).append(
+            {"hedef": r.get("HedefMetni", ""), "durum": r.get("Durum", "")}
         )
     sonuc = []
     for hafta in sorted(gruplu.keys(), reverse=True)[:kac_hafta]:
