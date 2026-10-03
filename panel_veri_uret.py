@@ -26,6 +26,74 @@ GITHUB_REPO = "zideofturkey/poke-verimlilik-takibi"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 
+# ========== PANEL ARŞİVLEME ALTYAPISI ==========
+# NEDEN: GunlukGorevler (15 gün) ve HaftalikHedefler (14 gün) sheet'leri
+# bilinçli olarak kısa ömürlü tutuluyor - Sheets'in şişmemesi için. Ama
+# panelin KALICI bir geçmiş göstermesi isteniyor (kullanıcı talebi: "panel
+# verileri daima panelde kalmalı, Sheets'teki düzenleme sheets'in çok
+# dolmaması içindi"). Çözüm: Takip sekmesinin zaten kullandığı "asla
+# silinmez log" desenini panel'e özel üç arşiv sekmesine de uyguluyoruz.
+# panel_veri_uret.py her çalıştığında (30 dakikada bir, temizle.py'den
+# TAMAMEN bağımsız) canlı sekmelerdeki GÜNCEL satırları bu arşivlere
+# upsert eder - aynı anahtar (ör. Tarih+GorevID) zaten varsa Durum'u
+# günceller, yoksa yeni satır ekler. Hiçbir zaman satır SİLMEZ. Panel
+# artık data.json'ı canlı (kısa ömürlü) sekmelerden değil, bu arşivlerden
+# üretiyor - canlı sekme 14 gün sonra boşalsa bile arşivdeki geçmiş durur.
+def _arsiv_sheet_al(ad, basliklar):
+    """Adı verilen arşiv sekmesini döndürür, yoksa başlık satırıyla oluşturur."""
+    import gspread
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        return spreadsheet.worksheet(ad)
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title=ad, rows=3000, cols=len(basliklar) + 1)
+        ws.append_row(basliklar)
+        return ws
+
+
+def _arsive_upsert(ws, basliklar, anahtar_kolonlari, kaynak_satirlari):
+    """kaynak_satirlari (dict listesi, basliklar ile aynı anahtarları
+    taşıyor) içindeki her satırı arşive upsert eder. anahtar_kolonlari,
+    hangi sütun(lar)ın birlikte eşsiz kimlik oluşturduğunu belirtir (ör.
+    ('Tarih', 'GorevID')). Zaten var olan bir anahtar için SADECE farklı
+    olan hücreleri tek tek değil, mevcut satırın tamamını güncelliyoruz
+    (Durum değişmiş olabilir); yoksa guvenli_append_row ile ekliyoruz.
+    Performans: tüm mevcut arşiv TEK OKUMA ile belleğe alınır, her
+    güncelleme ayrı bir API çağrısı olsa da (gspread'in satır bazlı
+    update_cell'i yerine tam satır update'i) bu, arşivin büyüklüğü
+    makul kaldığı sürece (binlerce değil, yüzlerce satır) kabul
+    edilebilir bir maliyet - gerçek pipeline'da ölçüldü."""
+    from common import guvenli_append_row
+
+    mevcut_satirlar = ws.get_all_records()
+    # anahtar -> (1-indexli sheet satır numarası, mevcut dict)
+    anahtar_to_satir = {}
+    for i, r in enumerate(mevcut_satirlar, start=2):  # satır 1 başlık
+        anahtar = tuple(str(r.get(k, "")) for k in anahtar_kolonlari)
+        anahtar_to_satir[anahtar] = (i, r)
+
+    eklenecekler = []
+    guncellenecekler = []  # (satir_no, değerler_listesi)
+    for kaynak in kaynak_satirlari:
+        anahtar = tuple(str(kaynak.get(k, "")) for k in anahtar_kolonlari)
+        degerler = [kaynak.get(b, "") for b in basliklar]
+        if anahtar in anahtar_to_satir:
+            satir_no, mevcut = anahtar_to_satir[anahtar]
+            mevcut_degerler = [str(mevcut.get(b, "")) for b in basliklar]
+            if [str(d) for d in degerler] != mevcut_degerler:
+                guncellenecekler.append((satir_no, degerler))
+        else:
+            eklenecekler.append(degerler)
+
+    for satir_no, degerler in guncellenecekler:
+        ws.update(f"A{satir_no}", [degerler])
+
+    for degerler in eklenecekler:
+        guvenli_append_row(ws, degerler)
+
+    return {"eklenen": len(eklenecekler), "guncellenen": len(guncellenecekler)}
+
+
 def gunluk_verileri_topla():
     ws = get_sheet()
     rows = ws.get_all_records()
@@ -92,10 +160,24 @@ def _hafta_etiketi(hafta_baslangic_str_deger):
     return f"{baslangic.day} {aylar[baslangic.month - 1]} - {bitis.day} {aylar[bitis.month - 1]}"
 
 
+HAFTALIK_RUTIN_TAKIP_ARSIV_BASLIKLARI = ["HaftaBaslangic", "RutinID", "Isim", "Durum"]
+
+
+def haftalik_rutin_takip_arsivle():
+    """HaftalikRutinTakip şu an hiçbir mekanizmayla silinmiyor, AMA
+    kullanıcı talebiyle (panel verisi daima kalıcı olmalı) aynı arşiv
+    güvencesi buraya da kuruldu - ileride biri bu sekmeye bir temizlik
+    eklerse panel zaten korunmuş olsun diye. RutinID + HaftaBaslangic
+    eşsiz anahtar (bir rutin bir haftada bir kez görünür)."""
+    ws_kaynak = get_haftalik_rutin_takip_sheet()
+    kaynak_satirlari = ws_kaynak.get_all_records()
+    ws_arsiv = _arsiv_sheet_al("HaftalikRutinTakipArsiv", HAFTALIK_RUTIN_TAKIP_ARSIV_BASLIKLARI)
+    return _arsive_upsert(ws_arsiv, HAFTALIK_RUTIN_TAKIP_ARSIV_BASLIKLARI, ("HaftaBaslangic", "RutinID"), kaynak_satirlari)
+
+
 def haftalik_rutin_heatmap_topla(kac_hafta=12):
     """Günlük ısı haritasının (gunluk_verileri_topla) haftalık eksendeki
-    eşleniği. HaftalikRutinTakip sekmesindeki satırları HaftaBaslangic'e
-    göre gruplar.
+    eşleniği. Artık HaftalikRutinTakipArsiv'den (KALICI) okuyor.
 
     ÖNEMLİ TASARIM KARARI - rutin sayısı zamanla değişebilir: ilk
     haftalarda tek bir haftalık rutin (ör. sadece 'Oda tozu alma') vardı,
@@ -113,7 +195,7 @@ def haftalik_rutin_heatmap_topla(kac_hafta=12):
     olarak yok (günün önemi olmadığı için telafi kavramı burada
     anlamsız) - bu yüzden telafi noktası mantığı haftalık modda hiç
     uygulanmaz, sadece dolgu rengi kullanılır."""
-    ws = get_haftalik_rutin_takip_sheet()
+    ws = _arsiv_sheet_al("HaftalikRutinTakipArsiv", HAFTALIK_RUTIN_TAKIP_ARSIV_BASLIKLARI)
     rows = ws.get_all_records()
 
     hafta_hafta = {}  # hafta_baslangic -> [{isim, durum}, ...] (o haftanın GERÇEK satırları)
@@ -153,7 +235,7 @@ def haftalik_rutin_oranlari_hesapla(kac_hafta=12):
     haftalik_rutinler = get_aktif_haftalik_rutinler()
     hafta_seti = set(_hafta_baslangiclari_uret(kac_hafta))
 
-    ws = get_haftalik_rutin_takip_sheet()
+    ws = _arsiv_sheet_al("HaftalikRutinTakipArsiv", HAFTALIK_RUTIN_TAKIP_ARSIV_BASLIKLARI)
     rows = ws.get_all_records()
 
     sonuc = []
@@ -200,8 +282,26 @@ def rutin_oranlari_hesapla():
     return sonuc
 
 
-def gunluk_gorev_gecmisi():
-    ws = get_gorevler_sheet()
+GUNLUK_GOREV_ARSIV_BASLIKLARI = ["Tarih", "GorevID", "GorevMetni", "Durum"]
+
+
+def gunluk_gorev_arsivle():
+    """GunlukGorevler'deki (15 günde silinen) GÜNCEL satırları kalıcı
+    GunlukGorevArsiv sekmesine upsert eder. main()'de, panel verisini
+    üretmeden ÖNCE çağrılır - böylece panel hep arşivden okur."""
+    ws_kaynak = get_gorevler_sheet()
+    kaynak_satirlari = ws_kaynak.get_all_records()
+    ws_arsiv = _arsiv_sheet_al("GunlukGorevArsiv", GUNLUK_GOREV_ARSIV_BASLIKLARI)
+    return _arsive_upsert(ws_arsiv, GUNLUK_GOREV_ARSIV_BASLIKLARI, ("Tarih", "GorevID"), kaynak_satirlari)
+
+
+def gunluk_gorev_gecmisi(kac_gun=30):
+    """Artık GunlukGorevArsiv'den (KALICI) okuyor - GunlukGorevler'in
+    15 günlük saklama penceresinden bağımsız. kac_gun varsayılanı 30 -
+    günlük görevler için makul bir panel penceresi (haftalık/rutin
+    tarafıyla tutarlı ölçekte); arşivin kendisi hiçbir zaman silinmiyor,
+    bu sadece panelde gösterilecek pencere uzunluğu."""
+    ws = _arsiv_sheet_al("GunlukGorevArsiv", GUNLUK_GOREV_ARSIV_BASLIKLARI)
     rows = ws.get_all_records()
     gruplu = {}
     for r in rows:
@@ -209,7 +309,7 @@ def gunluk_gorev_gecmisi():
             {"metin": r["GorevMetni"], "durum": r["Durum"]}
         )
     sonuc = []
-    for tarih in sorted(gruplu.keys(), reverse=True)[:14]:
+    for tarih in sorted(gruplu.keys(), reverse=True)[:kac_gun]:
         d = datetime.datetime.strptime(tarih, "%Y-%m-%d")
         sonuc.append({
             "tarih": d.strftime("%d %B"),
@@ -219,8 +319,25 @@ def gunluk_gorev_gecmisi():
     return sonuc
 
 
-def haftalik_hedef_gecmisi():
-    ws = get_haftalik_sheet()
+HAFTALIK_HEDEF_ARSIV_BASLIKLARI = ["HaftaBaslangic", "HedefMetni", "Durum"]
+
+
+def haftalik_hedef_arsivle():
+    """HaftalikHedefler'deki (14 günde silinen) GÜNCEL satırları kalıcı
+    HaftalikHedefArsiv sekmesine upsert eder. GorevID gibi bir ID sütunu
+    yok - eşsiz anahtar HaftaBaslangic+HedefMetni kombinasyonu (bir
+    haftada aynı metinli iki hedef olması beklenmiyor, olursa biri
+    diğerinin üzerine yazılır - kabul edilebilir bir sınır durumu)."""
+    ws_kaynak = get_haftalik_sheet()
+    kaynak_satirlari = ws_kaynak.get_all_records()
+    ws_arsiv = _arsiv_sheet_al("HaftalikHedefArsiv", HAFTALIK_HEDEF_ARSIV_BASLIKLARI)
+    return _arsive_upsert(ws_arsiv, HAFTALIK_HEDEF_ARSIV_BASLIKLARI, ("HaftaBaslangic", "HedefMetni"), kaynak_satirlari)
+
+
+def haftalik_hedef_gecmisi(kac_hafta=12):
+    """Artık HaftalikHedefArsiv'den (KALICI) okuyor - HaftalikHedefler'in
+    14 günlük saklama penceresinden bağımsız."""
+    ws = _arsiv_sheet_al("HaftalikHedefArsiv", HAFTALIK_HEDEF_ARSIV_BASLIKLARI)
     rows = ws.get_all_records()
     gruplu = {}
     for r in rows:
@@ -228,7 +345,7 @@ def haftalik_hedef_gecmisi():
             {"hedef": r["HedefMetni"], "durum": r["Durum"]}
         )
     sonuc = []
-    for hafta in sorted(gruplu.keys(), reverse=True)[:8]:
+    for hafta in sorted(gruplu.keys(), reverse=True)[:kac_hafta]:
         sonuc.append({"hafta": hafta, "hedefler": gruplu[hafta]})
     return sonuc
 
@@ -358,6 +475,22 @@ def hata_gecmisi():
 
 
 def main():
+    # ARŞİVLEME - veri üretiminden ÖNCE çalışmalı: canlı (kısa ömürlü)
+    # sekmelerdeki güncel satırları kalıcı arşivlere yazıyoruz, sonra
+    # panel verisini bu arşivlerden üretiyoruz. Her biri ayrı try/except
+    # içinde - biri başarısız olsa bile diğerleri ve ana panel üretimi
+    # devam etsin (arşivleme hatası tüm panel güncellemesini durdurmasın).
+    for arsivle, ad in [
+        (gunluk_gorev_arsivle, "GunlukGorevArsiv"),
+        (haftalik_hedef_arsivle, "HaftalikHedefArsiv"),
+        (haftalik_rutin_takip_arsivle, "HaftalikRutinTakipArsiv"),
+    ]:
+        try:
+            sonuc = arsivle()
+            print(f"{ad}: {sonuc['eklenen']} eklendi, {sonuc['guncellenen']} güncellendi.")
+        except Exception as e:
+            print(f"UYARI: {ad} arşivlenemedi: {e}")
+
     heatmap = gunluk_verileri_topla()
     rutin_oranlari = rutin_oranlari_hesapla()
     haftalik_rutin_heatmap = haftalik_rutin_heatmap_topla()
