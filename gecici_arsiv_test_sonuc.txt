@@ -1,7 +1,7 @@
 === MEVCUT ARŞİV SEKMELERİ DURUMU ===
 GunlukGorevArsiv: 60 satır (başlık dahil)
-HaftalikHedefArsiv: 1 satır (başlık dahil)
-HaftalikRutinTakipArsiv: 1 satır (başlık dahil)
+HaftalikHedefArsiv: 6 satır (başlık dahil)
+HaftalikRutinTakipArsiv: 38 satır (başlık dahil)
 
 === GunlukGorevler GERÇEK ŞEMA KONTROLÜ ===
 Toplam satır: 59
@@ -15,6 +15,32 @@ haftalik_rutin_takip_arsivle: {'eklenen': 38, 'guncellenen': 0}
 
 === 2. ÇALIŞTIRMA (idempotency testi - hiçbir şey eklenmemeli/güncellenmemeli) ===
 gunluk_gorev_arsivle (2. kez): {'eklenen': 0, 'guncellenen': 0}
+
+=== ARŞİV SEKMELERİNİN HAM İÇERİĞİ (son durum) ===
+
+--- GunlukGorevArsiv (60 satır) ---
+['Tarih', 'GorevID', 'GorevMetni', 'Durum']
+['2026-09-15', '', '12.00 work-out', 'Yapıldı']
+['2026-09-15', '', 'Nüfus ve toplum sorularını bitirme', 'Yapıldı']
+['2026-09-15', '', 'Ads hesaplarını genel bir kontrolden geçirme', 'Yapıldı']
+['2026-09-15', '', 'Kancar+ uygunsa bütçesini artırma', 'Yapıldı']
+... (55 satır daha)
+
+--- HaftalikHedefArsiv (12 satır) ---
+['2026-09-28', 'Tufan Abi adsleri para harcamıyor sorunu çözülecek', 'Bekliyor']
+['2026-09-28', 'Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak', 'Bekliyor']
+['2026-09-28', 'Azot ile çarşamba günü Kartal’a gidilecek', 'Bekliyor']
+['2026-09-28', 'Pazartesi kancar+ ads toplantısı', 'Bekliyor']
+['2026-09-28', 'OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı', 'Bekliyor']
+... (7 satır daha)
+
+--- HaftalikRutinTakipArsiv (76 satır) ---
+['2026-07-13', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
+['2026-07-20', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
+['2026-07-20', 'uzun_metraj_izlence', 'Uzun metraj izlence', 'Yapıldı']
+['2026-07-20', 'making_music', 'Making Music', 'Yapılmadı']
+['2026-07-27', 'oda_tozu', 'Oda tozu alma', 'Yapıldı']
+... (71 satır daha)
 
 === ARŞİVDEN OKUMA SONUÇLARI ===
 gunluk_gorev_gecmisi (ilk 2):
