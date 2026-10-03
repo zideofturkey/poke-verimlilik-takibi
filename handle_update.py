@@ -1171,6 +1171,93 @@ def _gecmis_gorev_tamamla_isle(text):
     send_message(f"✅ '{satir['GorevMetni']}' ({satir['Tarih']}) görevini yaptın olarak işaretledim, düzelttim!")
 
 
+def _en_iyi_hedef_eslesmesini_bul(arama_metni, hafta=None):
+    """_en_iyi_gorev_eslesmesini_bul ile AYNI üç aşamalı temkinli mantık
+    (tam eşleşme -> kapsama -> %60+ örtüşme VE tek net aday), ama
+    HaftalikHedefler sekmesi için - GunlukGorevler'den farklı sütun
+    yapısına sahip (HaftaBaslangic, HedefMetni, Durum - Tarih/GorevMetni
+    değil). Aday havuzu TÜM durumları kapsıyor (Yolunda/Geride/Bekliyor
+    hepsi silinebilir olmalı - 'Yapıldı' diye ayrı bir durum burada YOK,
+    GunlukGorevler'deki 'zaten Yapıldı olanı hariç tut' kuralının burada
+    bir karşılığı yok). Belirsizse ASLA tahmin etmez, None döner."""
+    ws = get_haftalik_sheet()
+    rows = ws.get_all_records()
+    adaylar = [
+        i for i, r in enumerate(rows)
+        if hafta is None or r.get("HaftaBaslangic") == hafta
+    ]
+    if not adaylar:
+        return None
+
+    arama_kucuk = arama_metni.lower().strip()
+
+    for i in adaylar:
+        if rows[i]["HedefMetni"].lower().strip() == arama_kucuk:
+            return (i + 2, rows[i])
+
+    icerenler = [
+        i for i in adaylar
+        if arama_kucuk in rows[i]["HedefMetni"].lower()
+        or rows[i]["HedefMetni"].lower() in arama_kucuk
+    ]
+    if len(icerenler) == 1:
+        return (icerenler[0] + 2, rows[icerenler[0]])
+
+    def _skor(satir_metni):
+        a = set(arama_kucuk.split())
+        b = set(satir_metni.lower().split())
+        if not a or not b:
+            return 0
+        return len(a & b) / len(a | b)
+
+    skorlar = sorted(((_skor(rows[i]["HedefMetni"]), i) for i in adaylar), reverse=True)
+    if skorlar and skorlar[0][0] >= 0.6:
+        if len(skorlar) == 1 or skorlar[0][0] - skorlar[1][0] >= 0.2:
+            i = skorlar[0][1]
+            return (i + 2, rows[i])
+
+    return None
+
+
+def _gorev_sil_isle(text):
+    """Kullanıcı bir GÜNLÜK GÖREVİ ya da HAFTALIK HEDEFİ listeden tamamen
+    SİLMEK istediğinde çağrılır (GECMIS_GOREV_TAMAMLA'dan farklı - o
+    durumu 'Yapıldı' olarak İŞARETLER, bu SATIRI TAMAMEN KALDIRIR). Önce
+    GunlukGorevler'de arar, bulamazsa HaftalikHedefler'de dener (hangi
+    kaynakta olduğunu kullanıcı genelde belirtmez, 'görev' kelimesi ikisi
+    için de kullanılabiliyor). SİLME GERİ DÖNÜŞSÜZ bir işlem olduğu için
+    eşleştirme _en_iyi_gorev_eslesmesini_bul/_en_iyi_hedef_eslesmesini_bul
+    İLE BİREBİR AYNI temkinli üç aşamalı mantığı kullanıyor - belirsizse
+    ASLA tahmin etmiyor, netleştirme istiyor; yanlış bir satırı silmek,
+    hiç silmemekten çok daha kötü bir hata. Bulunan satırı SOMUT OLARAK
+    (hangi metin, hangi tarih/hafta) geri bildiriyor - kullanıcı yanlışlık
+    olursa hemen fark edebilsin diye."""
+    tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
+    arama_metni = tirnak_ici[0] if tirnak_ici else text
+
+    gorev_eslesme = _en_iyi_gorev_eslesmesini_bul(arama_metni, None)
+    if gorev_eslesme is not None:
+        satir_no, satir = gorev_eslesme
+        ws = get_gorevler_sheet()
+        ws.delete_rows(satir_no)
+        send_message(f"🗑️ '{satir['GorevMetni']}' ({satir['Tarih']}) günlük görevini listeden sildim.")
+        return
+
+    hedef_eslesme = _en_iyi_hedef_eslesmesini_bul(arama_metni, None)
+    if hedef_eslesme is not None:
+        satir_no, satir = hedef_eslesme
+        ws = get_haftalik_sheet()
+        ws.delete_rows(satir_no)
+        send_message(f"🗑️ '{satir['HedefMetni']}' ({satir['HaftaBaslangic']} haftası) haftalık hedefini listeden sildim.")
+        return
+
+    send_message(
+        "Hangi görev/hedefi kastettiğini tam olarak eşleştiremedim - adını "
+        "tırnak içinde birebir (ya da çok yakın) yazar mısın? Ör: "
+        "\"görev metni\" sil."
+    )
+
+
 def _gunluk_gorev_isle(text):
     """Hem sabah tam liste akışını ('bugünkü görevlerim: 1) ... 2) ...')
     hem de gün içinde tek/az sayıda ad-hoc ekleme kalıbını ('günlük
@@ -1398,6 +1485,22 @@ def _kural_tahmini(text):
         # SORGULA demişse sessizce doğrulanmasını sağlıyor.
         return "SORGULA"
 
+    tirnak_var = '"' in text or "\u201c" in text or "\u201d" in text
+
+    # Görev/hedef silme güvenlik ağı: mesajda tırnak içi bir görev VE bir
+    # SİLME fiili (sil/kaldır/vazgeçtim/çıkar) varsa VE açık bir ekle/
+    # kaydet niyeti YOKSA, bu neredeyse kesin bir GOREV_SIL'dir. Bu
+    # kontrol GECMIS_GOREV_TAMAMLA kontrolünden ÖNCE geliyor çünkü ikisi
+    # de "tırnak içi + fiil" yüzeysel kalıbını paylaşıyor - 'sil' farklı
+    # bir niyet (tamamlama değil, kaldırma), bu yüzden önce o kontrol
+    # edilmeli, aksi halde yanlış kategoriye düşme riski var.
+    silme_fiili_var = bool(re.search(
+        r"\b(sil|silme|kaldır|kaldırma|vazgeç|vazgeçtim|çıkar|çıkart)\w*\b",
+        metin_kucuk,
+    ))
+    if tirnak_var and silme_fiili_var and not kaydet_niyeti_var:
+        return "GOREV_SIL"
+
     # Geçmiş görev tamamlama güvenlik ağı: mesajda tırnak içi bir görev VE
     # bir tamamlama İFADESİ (birinci şahıs geçmiş zaman: yaptım/yapmıştım/
     # tamamladım/bitirdim/bitirmiştim; YA DA emir kipi/edilgen kalıp:
@@ -1416,7 +1519,6 @@ def _kural_tahmini(text):
     # ulaşılamıyordu. Bu kontrol tarih güvenlik ağından ÖNCE geliyor çünkü
     # '22 Temmuz'daki X görevini yapmıştım' gibi bir mesaj her ikisini de
     # tetikleyebilir - tamamlama niyeti burada daha spesifik/doğru sinyal.
-    tirnak_var = '"' in text or "\u201c" in text or "\u201d" in text
     tamamlama_fiili_var = any(k in metin_kucuk for k in [
         "yaptım", "yapmıştım", "tamamladım", "bitirdim", "bitirmiştim",
     ]) or bool(re.search(
@@ -1709,6 +1811,14 @@ def _siniflandir_ve_isle(text, bekleyen):
         "GECMIS_GOREV_TAMAMLA'dır, YENI_GOREV/GUNLUK_GOREV ASLA DEĞİLDİR. "
         "Kullanıcı bazen tarih de ekler (ör. '\"kitap oku (2026-07-20)\" "
         "yapmıştım' - bu da GECMIS_GOREV_TAMAMLA'dır)\n"
+                "- GOREV_SIL: kullanıcı GEÇMİŞTE eklediği bir GÜNLÜK GÖREVİ ya da "
+        "HAFTALIK HEDEFİ listeden TAMAMEN SİLMEK/KALDIRMAK istiyor, ör. "
+        "'\"kitap oku\" görevini sil', '\"piyano çal\" hedefinden vazgeçtim, "
+        "kaldır'. GECMIS_GOREV_TAMAMLA İLE KARIŞTIRMA - o durumu "
+        "'Yapıldı' olarak İŞARETLER (tamamlandı), bu ise satırı TAMAMEN "
+        "KALDIRIR (hiç yapılmayacak/vazgeçildi). Fiile dikkat: "
+        "'sil'/'kaldır'/'vazgeçtim'/'çıkar' -> GOREV_SIL; 'yaptım'/"
+        "'tamamladım' -> GECMIS_GOREV_TAMAMLA\n"
         f"- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini "
         f"tamamladığını bildiriyor: {rutin_isim_listesi}. VEYA şu HAFTALIK "
         f"(tekrarlayan, hangi gün önemli değil) rutinlerden birini: "
@@ -1899,6 +2009,9 @@ def _siniflandir_ve_isle(text, bekleyen):
                 "Hangi rutinden bahsettiğini tam anlayamadım — akşam kontrolünde "
                 "butonla işaretleyebilirsin, orası her zaman güvenilir çalışır 👍"
             )
+
+    elif tip == "GOREV_SIL":
+        _gorev_sil_isle(text)
 
     elif tip == "GECMIS_GOREV_TAMAMLA":
         _gecmis_gorev_tamamla_isle(text)
