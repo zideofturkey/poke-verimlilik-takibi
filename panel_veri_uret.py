@@ -40,14 +40,35 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 # artık data.json'ı canlı (kısa ömürlü) sekmelerden değil, bu arşivlerden
 # üretiyor - canlı sekme 14 gün sonra boşalsa bile arşivdeki geçmiş durur.
 def _arsiv_sheet_al(ad, basliklar):
-    """Adı verilen arşiv sekmesini döndürür, yoksa başlık satırıyla oluşturur."""
+    """Adı verilen arşiv sekmesini döndürür, yoksa başlık satırıyla
+    oluşturur.
+
+    GERÇEK PIPELINE'DA BULUNAN KRİTİK BUG: ilk sürüm düz ws.append_row()
+    kullanıyordu - bu, yeni oluşturulan bir sekmede SESSİZCE başarısız
+    oldu (hata fırlatmadı, ama başlık satırı hiç yazılmadı). Sonuç:
+    get_all_records() ilk VERİ satırını başlık sandı, _arsive_upsert'in
+    anahtar eşleştirmesi tamamen bozuldu, aynı satırlar her çalıştırmada
+    tekrar tekrar eklendi (6 satır 3 çalıştırmada 18'e çıktı). Bu zaten
+    README'de belgelenmiş, guvenli_append_row'un var olma sebebi olan
+    TAM O RİSK - burada unutulmuştu. Artık guvenli_append_row
+    kullanılıyor VE yazdıktan sonra geri okunup doğrulanıyor; doğrulama
+    başarısız olursa RuntimeError fırlatılıyor (sessiz bozulma yerine
+    gürültülü, net bir hata - bir sonraki çalıştırmanın bozuk veriyle
+    devam etmesindense burada durması daha güvenli)."""
     import gspread
+    from common import guvenli_append_row
     spreadsheet = get_sheet().spreadsheet
     try:
         return spreadsheet.worksheet(ad)
     except gspread.WorksheetNotFound:
         ws = spreadsheet.add_worksheet(title=ad, rows=3000, cols=len(basliklar) + 1)
-        ws.append_row(basliklar)
+        guvenli_append_row(ws, basliklar)
+        yazilan = ws.get_all_values()
+        if not yazilan or yazilan[0] != basliklar:
+            raise RuntimeError(
+                f"{ad} sekmesi oluşturuldu ama başlık satırı doğrulanamadı "
+                f"(beklenen: {basliklar}, okunan: {yazilan[0] if yazilan else 'BOŞ'})"
+            )
         return ws
 
 
