@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-03T20:33:39.925645+03:00",
+  "uretim_zamani": "2026-10-03T22:04:11.118128+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1854,10 +1854,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-03T17:33:20Z",
+      "zaman": "2026-10-03T19:03:56Z",
       "durum": "warn",
+      "runId": "37146546424",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-03T18:44:09Z",
+      "durum": "ok",
+      "runId": "37145314760",
+      "sureSn": 53
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-03T18:01:17Z",
+      "durum": "ok",
+      "runId": "37142651409",
+      "sureSn": 24
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-03T17:33:20Z",
+      "durum": "ok",
       "runId": "37140937064",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "GEÇİCİ - Panel Arşivleme Testi",
@@ -1935,35 +1956,26 @@
       "durum": "ok",
       "runId": "37139598141",
       "sureSn": 24
-    },
-    {
-      "ad": "GEÇİCİ - Panel Arşivleme Testi",
-      "zaman": "2026-10-03T17:08:31Z",
-      "durum": "ok",
-      "runId": "37139414828",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-03T17:06:51Z",
-      "durum": "ok",
-      "runId": "37139316092",
-      "sureSn": 320
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-03T15:50:58Z",
-      "durum": "ok",
-      "runId": "37134694183",
-      "sureSn": 40
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
+      "toplam": 4,
+      "oran": 75,
+      "ortSureSn": 30
+    },
+    {
+      "ad": "Aforizma",
       "toplam": 3,
-      "oran": 67,
-      "ortSureSn": 26
+      "oran": 100,
+      "ortSureSn": 27
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "GEÇİCİ - Panel Arşivleme Testi",
@@ -1985,9 +1997,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 14,
+      "toplam": 11,
       "oran": 100,
-      "ortSureSn": 151
+      "ortSureSn": 182
     },
     {
       "ad": "gecici-check-slm-varyasyon",
@@ -1996,22 +2008,10 @@
       "ortSureSn": 15
     },
     {
-      "ad": "Aforizma",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 14
-    },
-    {
       "ad": "Dinle",
       "toplam": 2,
       "oran": 100,
       "ortSureSn": 28
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 23
     },
     {
       "ad": "gecici-check-filter",
