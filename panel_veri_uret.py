@@ -55,14 +55,20 @@ def _arsive_upsert(ws, basliklar, anahtar_kolonlari, kaynak_satirlari):
     """kaynak_satirlari (dict listesi, basliklar ile aynı anahtarları
     taşıyor) içindeki her satırı arşive upsert eder. anahtar_kolonlari,
     hangi sütun(lar)ın birlikte eşsiz kimlik oluşturduğunu belirtir (ör.
-    ('Tarih', 'GorevID')). Zaten var olan bir anahtar için SADECE farklı
-    olan hücreleri tek tek değil, mevcut satırın tamamını güncelliyoruz
-    (Durum değişmiş olabilir); yoksa guvenli_append_row ile ekliyoruz.
-    Performans: tüm mevcut arşiv TEK OKUMA ile belleğe alınır, her
-    güncelleme ayrı bir API çağrısı olsa da (gspread'in satır bazlı
-    update_cell'i yerine tam satır update'i) bu, arşivin büyüklüğü
-    makul kaldığı sürece (binlerce değil, yüzlerce satır) kabul
-    edilebilir bir maliyet - gerçek pipeline'da ölçüldü."""
+    ('Tarih', 'GorevID', 'GorevMetni')). Zaten var olan bir anahtar için
+    SADECE farklı olan hücreleri tek tek değil, mevcut satırın tamamını
+    güncelliyoruz (Durum değişmiş olabilir); yoksa guvenli_append_row
+    ile ekliyoruz.
+
+    PERFORMANS - gerçek pipeline testinde bulunan kritik bug: ilk
+    sürüm her güncellemeyi AYRI bir ws.update() çağrısıyla (satır
+    başına 1 API isteği) yapıyordu - 59 satırlık bir arşivde bile
+    Google Sheets'in 'yazma isteği/dakika' kotasını (429) aştı, bu da
+    sıradaki iki arşivleme adımının (haftalık hedef, haftalık rutin)
+    HİÇ ÇALIŞMAMASINA yol açtı. Artık tüm güncellemeler TEK bir
+    batch_update çağrısıyla (worksheet.batch_update, her biri kendi
+    aralığını hedefleyen bir 'data' listesi) gönderiliyor - kaç satır
+    güncellenirse güncellensin tek bir API isteği."""
     from common import guvenli_append_row
 
     mevcut_satirlar = ws.get_all_records()
@@ -73,7 +79,7 @@ def _arsive_upsert(ws, basliklar, anahtar_kolonlari, kaynak_satirlari):
         anahtar_to_satir[anahtar] = (i, r)
 
     eklenecekler = []
-    guncellenecekler = []  # (satir_no, değerler_listesi)
+    guncelleme_verisi = []  # batch_update formatı: [{"range": "A5:C5", "values": [[...]]}, ...]
     for kaynak in kaynak_satirlari:
         anahtar = tuple(str(kaynak.get(k, "")) for k in anahtar_kolonlari)
         degerler = [kaynak.get(b, "") for b in basliklar]
@@ -81,17 +87,32 @@ def _arsive_upsert(ws, basliklar, anahtar_kolonlari, kaynak_satirlari):
             satir_no, mevcut = anahtar_to_satir[anahtar]
             mevcut_degerler = [str(mevcut.get(b, "")) for b in basliklar]
             if [str(d) for d in degerler] != mevcut_degerler:
-                guncellenecekler.append((satir_no, degerler))
+                son_sutun = chr(ord("A") + len(basliklar) - 1)
+                guncelleme_verisi.append({
+                    "range": f"A{satir_no}:{son_sutun}{satir_no}",
+                    "values": [degerler],
+                })
         else:
             eklenecekler.append(degerler)
 
-    for satir_no, degerler in guncellenecekler:
-        ws.update(f"A{satir_no}", [degerler])
+    if guncelleme_verisi:
+        ws.batch_update(guncelleme_verisi)
 
-    for degerler in eklenecekler:
-        guvenli_append_row(ws, degerler)
+    if eklenecekler:
+        # Birden fazla yeni satır da TEK bir çağrıda eklenebilir
+        # (append_rows, append_row'un çoklu-satır hali) - tek tek
+        # guvenli_append_row çağırmak yerine, ama güvenlik ağı
+        # (Tabloya-dönüşme sorunu) olarak ham API'ye düşme mantığı
+        # korunuyor: önce toplu normal yöntemi dene, olmazsa satır
+        # satır (yavaş ama garanti) güvenli yönteme düş.
+        try:
+            ws.append_rows(eklenecekler)
+        except Exception as e:
+            print(f"Toplu append_rows başarısız ({e}), satır satır güvenli yönteme düşülüyor...")
+            for degerler in eklenecekler:
+                guvenli_append_row(ws, degerler)
 
-    return {"eklenen": len(eklenecekler), "guncellenen": len(guncellenecekler)}
+    return {"eklenen": len(eklenecekler), "guncellenen": len(guncelleme_verisi)}
 
 
 def gunluk_verileri_topla():
@@ -289,10 +310,17 @@ def gunluk_gorev_arsivle():
     """GunlukGorevler'deki (15 günde silinen) GÜNCEL satırları kalıcı
     GunlukGorevArsiv sekmesine upsert eder. main()'de, panel verisini
     üretmeden ÖNCE çağrılır - böylece panel hep arşivden okur."""
+    # NOT: gerçek Sheets verisinde GorevID sütunu HER ZAMAN boş çıktı (59/59
+    # satır) - gerçek pipeline testiyle keşfedildi. Tek başına (Tarih,GorevID)
+    # anahtarı aynı güne ait TÜM görevleri aynı boş anahtara düşürüp
+    # birbirinin üzerine yazdırırdı. GorevMetni'ni de anahtara eklemek,
+    # GorevID dolu olsa da olmasa da güvenli (ikisi birlikte eşsizliği
+    # garanti eder; GorevID gelecekte doldurulursa ekstra ayırt edicilik
+    # sağlamaya devam eder, zarar vermez).
     ws_kaynak = get_gorevler_sheet()
     kaynak_satirlari = ws_kaynak.get_all_records()
     ws_arsiv = _arsiv_sheet_al("GunlukGorevArsiv", GUNLUK_GOREV_ARSIV_BASLIKLARI)
-    return _arsive_upsert(ws_arsiv, GUNLUK_GOREV_ARSIV_BASLIKLARI, ("Tarih", "GorevID"), kaynak_satirlari)
+    return _arsive_upsert(ws_arsiv, GUNLUK_GOREV_ARSIV_BASLIKLARI, ("Tarih", "GorevID", "GorevMetni"), kaynak_satirlari)
 
 
 def gunluk_gorev_gecmisi(kac_gun=30):

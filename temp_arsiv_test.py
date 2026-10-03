@@ -11,9 +11,22 @@ from panel_veri_uret import (
     haftalik_rutin_oranlari_hesapla,
 )
 
+from common import get_sheet
+
 with open("gecici_arsiv_test_sonuc.txt", "w", encoding="utf-8") as f:
-    # Önce kaynak sheet'lerin gerçek şemasını (özellikle GorevID doluluğu) kontrol et
-    f.write("=== GunlukGorevler GERÇEK ŞEMA KONTROLÜ ===\n")
+    # Mevcut arşiv sekmelerinin durumunu kontrol et (önceki çalıştırmadan
+    # kalma, eski anahtar şemasıyla yazılmış satırlar olabilir)
+    f.write("=== MEVCUT ARŞİV SEKMELERİ DURUMU ===\n")
+    spreadsheet = get_sheet().spreadsheet
+    for ad in ["GunlukGorevArsiv", "HaftalikHedefArsiv", "HaftalikRutinTakipArsiv"]:
+        try:
+            ws = spreadsheet.worksheet(ad)
+            rows = ws.get_all_values()
+            f.write(f"{ad}: {len(rows)} satır (başlık dahil)\n")
+        except Exception as e:
+            f.write(f"{ad}: bulunamadı ({e})\n")
+
+    f.write("\n=== GunlukGorevler GERÇEK ŞEMA KONTROLÜ ===\n")
     gorevler_rows = get_gorevler_sheet().get_all_records()
     f.write(f"Toplam satır: {len(gorevler_rows)}\n")
     if gorevler_rows:
