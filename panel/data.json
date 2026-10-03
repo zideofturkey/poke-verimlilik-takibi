@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-03T03:37:45.916482+03:00",
+  "uretim_zamani": "2026-10-03T09:06:23.978151+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1543,19 +1543,19 @@
       "gorevler": [
         {
           "metin": "10.30-16.00 okulu",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "Kancar+ diyalog videosu altyazı + ses yükseltme + reklama yükleme",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "Şirin Spot hesabını elden geçirme",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "17.00 azot özel dersi Kartal'da",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -1854,10 +1854,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-03T00:37:29Z",
+      "zaman": "2026-10-03T06:06:09Z",
       "durum": "warn",
-      "runId": "37082841347",
+      "runId": "37101944506",
       "sureSn": 3
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-03T06:01:04Z",
+      "durum": "ok",
+      "runId": "37101671452",
+      "sureSn": 19
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-03T04:59:39Z",
+      "durum": "ok",
+      "runId": "37098358940",
+      "sureSn": 35
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-03T01:09:02Z",
+      "durum": "ok",
+      "runId": "37084974281",
+      "sureSn": 15
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-03T00:37:29Z",
+      "durum": "ok",
+      "runId": "37082841347",
+      "sureSn": 43
     },
     {
       "ad": "Dinle",
@@ -1928,34 +1956,6 @@
       "durum": "ok",
       "runId": "37044614184",
       "sureSn": 30
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-02T18:01:03Z",
-      "durum": "ok",
-      "runId": "37044604562",
-      "sureSn": 14
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-02T16:31:22Z",
-      "durum": "ok",
-      "runId": "37034504555",
-      "sureSn": 46
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-02T14:01:17Z",
-      "durum": "ok",
-      "runId": "37016952005",
-      "sureSn": 21
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-02T13:45:28Z",
-      "durum": "ok",
-      "runId": "37015123673",
-      "sureSn": 24
     }
   ],
   "workflowTurOzet": [
@@ -1963,7 +1963,13 @@
       "ad": "Panel",
       "toplam": 8,
       "oran": 88,
-      "ortSureSn": 41
+      "ortSureSn": 39
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Dinle",
@@ -1973,7 +1979,7 @@
     },
     {
       "ad": "Aforizma",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
       "ortSureSn": 15
     },
@@ -1982,12 +1988,6 @@
       "toplam": 11,
       "oran": 100,
       "ortSureSn": 91
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 22
     }
   ],
   "kocKararlari": [],
