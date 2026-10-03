@@ -49,6 +49,7 @@ _sheet_cache = None
 _gorevler_cache = None
 _durum_cache = None
 _haftalik_cache = None
+_cop_kutusu_cache = None
 
 
 def get_gorevler_sheet():
@@ -93,6 +94,31 @@ def get_haftalik_sheet():
         ws = spreadsheet.add_worksheet(title="HaftalikHedefler", rows=500, cols=3)
         ws.append_row(["HaftaBaslangic", "HedefMetni", "Durum"])
     _haftalik_cache = ws
+    return ws
+
+
+def get_cop_kutusu_sheet():
+    """Kullanıcının GOREV_SIL ile sildiği günlük görev/haftalık hedef
+    satırlarının GEÇİCİ olarak (7 gün) tutulduğu çöp kutusu sekmesi -
+    yanlışlıkla silinen bir şeyin geri alınabilmesi için. `temizle.py`
+    bu sekmeyi de 7 günden eski satırlar için süpürüyor (GunlukGorevler'in
+    15 gün, HaftalikHedefler'in 14 gün saklama kuralıyla AYNI desen,
+    sadece süre kullanıcının isteğiyle 7 gün). Sütunlar: SilinmeTarihi,
+    Kaynak ('GunlukGorevler'/'HaftalikHedefler'), ve kaynağın kendi
+    orijinal sütunları ardı sıra (GunlukGorevler: Tarih, [boş], GorevMetni,
+    Durum; HaftalikHedefler: HaftaBaslangic, HedefMetni, Durum) - hangi
+    kaynaktan geldiği Kaynak sütunundan anlaşılıyor, bu yüzden tek bir
+    ortak tablo yeterli, ayrı sekmelere gerek yok."""
+    global _cop_kutusu_cache
+    if _cop_kutusu_cache is not None:
+        return _cop_kutusu_cache
+    spreadsheet = get_sheet().spreadsheet
+    try:
+        ws = spreadsheet.worksheet("CopKutusu")
+    except gspread.WorksheetNotFound:
+        ws = spreadsheet.add_worksheet(title="CopKutusu", rows=500, cols=6)
+        ws.append_row(["SilinmeTarihi", "Kaynak", "Sutun1", "Sutun2", "Sutun3", "Sutun4"])
+    _cop_kutusu_cache = ws
     return ws
 
 

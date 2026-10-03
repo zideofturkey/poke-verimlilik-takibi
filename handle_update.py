@@ -64,6 +64,7 @@ from common import (
     save_last_update_id,
     get_gorevler_sheet,
     get_haftalik_sheet,
+    get_cop_kutusu_sheet,
     get_bekleyen_soru,
     set_bekleyen_soru,
     hafta_baslangic_str,
@@ -382,6 +383,30 @@ def process_callback(cq):
         else:
             send_message(f"Sorun değil, '{rutin_isim}' için hafta bitmeden hâlâ vaktin var 👍")
 
+    elif callback_data.startswith("sil_"):
+        # format: sil_gorev_<satirNo> / sil_hedef_<satirNo> - kullanıcının
+        # "silinebilecek görevlerimi listele" sorgusuna cevap olarak gönderilen
+        # listedeki butonlar. Onay adımı BİLİNÇLİ OLARAK YOK (kullanıcının
+        # kendi isteği) - ama GOREV_SIL serbest-metin yoluyla AYNI şekilde
+        # önce çöp kutusuna taşıyıp sonra siliyor, bu yüzden buton da aynı
+        # güvenlik ağına (7 gün geri alınabilirlik) sahip.
+        _, kaynak, satir_no = callback_data.split("_")
+        satir_no = int(satir_no)
+        if kaynak == "gorev":
+            ws = get_gorevler_sheet()
+            ham_satir = ws.row_values(satir_no)
+            gorev_metni = ham_satir[2] if len(ham_satir) > 2 else "?"
+            _cop_kutusuna_tasi("GunlukGorevler", ham_satir)
+            ws.delete_rows(satir_no)
+            send_message(f"🗑️ '{gorev_metni}' günlük görevini sildim (7 gün çöp kutusunda kalacak).")
+        else:
+            ws = get_haftalik_sheet()
+            ham_satir = ws.row_values(satir_no)
+            hedef_metni = ham_satir[1] if len(ham_satir) > 1 else "?"
+            _cop_kutusuna_tasi("HaftalikHedefler", ham_satir)
+            ws.delete_rows(satir_no)
+            send_message(f"🗑️ '{hedef_metni}' haftalık hedefini sildim (7 gün çöp kutusunda kalacak).")
+
 
 def _sorguyu_cevapla(text):
     """Kullanıcı bir şey sorguladığında GERÇEK veriyi Sheets'ten okuyup,
@@ -391,6 +416,15 @@ def _sorguyu_cevapla(text):
     seri/streak soruları, HAFTALIK KATEGORİ rutinlerinin bu haftaki
     durumu, günlük rutinlerin haftalık yüzdesi, ve varsayılan (bugün)."""
     metin_kucuk = text.lower()
+
+    # "Silinebilecek görevlerimi listele" tarzı sorgular - EN BAŞTA
+    # kontrol ediliyor çünkü içindeki 'görev'/'hedef' kelimeleri aşağıdaki
+    # "hafta"/"gün" bazlı yönlendirme kurallarıyla çakışabilir (ör. "sil"
+    # + "görev" bir arada geçince yanlışlıkla genel bir günlük özet
+    # sorgusuna düşmesin diye).
+    if re.search(r"\bsil(ine|eb)[a-zçğıöşü]*\b", metin_kucuk) or "çöp kutusu" in metin_kucuk:
+        _silinebilecek_gorevleri_listele()
+        return
 
     if any(k in metin_kucuk for k in ["seri", "streak", "kaç gündür"]):
         _seri_sorusunu_cevapla()
@@ -911,6 +945,86 @@ def _gecen_hafta_bekleyenleri_cevapla():
         )
 
 
+def _silinebilecek_gorevleri_listele():
+    """Kullanıcının 'silinebilecek görevlerimi listele' tarzı sorgularına
+    cevap verir - GOREV_SIL'in serbest-metin yoluna ek, daha GÜVENLİ bir
+    alternatif sunmak için eklendi (kullanıcının kendi isteği: yanlışlıkla
+    yanlış görevi silmeyi önlemek). _tum_bekleyen_gorevleri_cevapla'dan
+    FARKLI kapsam: o sadece 'Bekliyor' durumundaki ad-hoc günlük görevleri
+    gösterir, bu ise _en_iyi_gorev_eslesmesini_bul'un aday kriteriyle
+    AYNI ('Yapıldı' DIŞINDAKİ tüm durumlar - Bekliyor/Süresi Doldu/
+    Yapılmadı/Telafi) TÜM silinebilir günlük görevleri VE (ayrı bir
+    mesajda) tüm haftalık hedefleri listeler - GOREV_SIL'in serbest
+    metinle neyi silebileceğiyle BİREBİR TUTARLI bir görünüm. Her madde
+    için `sil_gorev_<satır>` / `sil_hedef_<satır>` formatında TEK bir
+    buton var (evet/hayır değil - silme ikili bir onay değil, doğrudan
+    eylem; kullanıcı bilinçli olarak onay adımı istemedi). Boş kaynak
+    hiç mesaj göndermiyor - iki mesaj yerine birini atlayabilir."""
+    ws_gorev = get_gorevler_sheet()
+    rows_gorev = ws_gorev.get_all_records()
+    silinebilir_gorevler = [
+        (i + 2, r) for i, r in enumerate(rows_gorev)
+        if r.get("Durum") != "Yapıldı"
+    ]
+
+    MAKS_GOSTERILEN = 25
+
+    if silinebilir_gorevler:
+        silinebilir_gorevler.sort(key=lambda x: x[1].get("Tarih", ""))
+        fazlasi_var = len(silinebilir_gorevler) > MAKS_GOSTERILEN
+        gosterilecekler = silinebilir_gorevler[:MAKS_GOSTERILEN]
+
+        satirlar = []
+        buton_satirlari = []
+        mevcut_tarih = None
+        for i, (row_num, r) in enumerate(gosterilecekler):
+            tarih = r.get("Tarih", "")
+            if tarih != mevcut_tarih:
+                mevcut_tarih = tarih
+                satirlar.append(f"\n📅 {_gun_ifadesi(tarih)} ({tarih}):")
+            satirlar.append(f"{i+1}. {r.get('GorevMetni', '')} [{r.get('Durum', '')}]")
+            buton_satirlari.append([
+                {"text": f"🗑️ {i+1}️⃣ Sil", "callback_data": f"sil_gorev_{row_num}"},
+            ])
+
+        baslik = f"Silinebilecek {len(silinebilir_gorevler)} günlük görevin var:"
+        if fazlasi_var:
+            baslik += f" (ilk {MAKS_GOSTERILEN} tanesi gösteriliyor.)"
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+
+    ws_hedef = get_haftalik_sheet()
+    rows_hedef = ws_hedef.get_all_records()
+    silinebilir_hedefler = [
+        (i + 2, r) for i, r in enumerate(rows_hedef)
+        if r.get("Durum") != "Yapıldı"
+    ]
+
+    if silinebilir_hedefler:
+        fazlasi_var = len(silinebilir_hedefler) > MAKS_GOSTERILEN
+        gosterilecekler = silinebilir_hedefler[:MAKS_GOSTERILEN]
+
+        satirlar = []
+        buton_satirlari = []
+        mevcut_hafta = None
+        for i, (row_num, r) in enumerate(gosterilecekler):
+            hafta = r.get("HaftaBaslangic", "")
+            if hafta != mevcut_hafta:
+                mevcut_hafta = hafta
+                satirlar.append(f"\n📅 {hafta} haftası:")
+            satirlar.append(f"{i+1}. {r.get('HedefMetni', '')} [{r.get('Durum', '')}]")
+            buton_satirlari.append([
+                {"text": f"🗑️ {i+1}️⃣ Sil", "callback_data": f"sil_hedef_{row_num}"},
+            ])
+
+        baslik = f"Silinebilecek {len(silinebilir_hedefler)} haftalık hedefin var:"
+        if fazlasi_var:
+            baslik += f" (ilk {MAKS_GOSTERILEN} tanesi gösteriliyor.)"
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+
+    if not silinebilir_gorevler and not silinebilir_hedefler:
+        send_message("Silinebilecek bir günlük görev ya da haftalık hedef yok. 🎉")
+
+
 def _tum_bekleyen_gorevleri_cevapla():
     """'Geçmişten kalan tüm bekleyen günlük görevlerim' tarzı sorguları
     karşılar - _bugunku_durumu_cevapla'nın tersine TEK bir güne değil,
@@ -1219,19 +1333,35 @@ def _en_iyi_hedef_eslesmesini_bul(arama_metni, hafta=None):
     return None
 
 
+def _cop_kutusuna_tasi(kaynak, satir_degerleri):
+    """Silinen bir satırı (ham değerleri, sütun sırasıyla) CopKutusu
+    sekmesine SilinmeTarihi + Kaynak etiketiyle kopyalar - gerçek silme
+    işleminden ÖNCE çağrılmalı, böylece silme sırasında bir hata olursa
+    bile veri hiçbir zaman iz bırakmadan kaybolmaz. `temizle.py` bu
+    sekmeyi 7 gün sonra kalıcı olarak süpürüyor (bkz. get_cop_kutusu_sheet
+    docstring'i)."""
+    ws = get_cop_kutusu_sheet()
+    bugun = bugun_str()
+    guvenli_append_row(ws, [bugun, kaynak] + list(satir_degerleri))
+
+
 def _gorev_sil_isle(text):
-    """Kullanıcı bir GÜNLÜK GÖREVİ ya da HAFTALIK HEDEFİ listeden tamamen
+    """Kullanıcı bir GÜNLÜK GÖREVİ ya da HAFTALIK HEDEFİ listeden
     SİLMEK istediğinde çağrılır (GECMIS_GOREV_TAMAMLA'dan farklı - o
-    durumu 'Yapıldı' olarak İŞARETLER, bu SATIRI TAMAMEN KALDIRIR). Önce
-    GunlukGorevler'de arar, bulamazsa HaftalikHedefler'de dener (hangi
-    kaynakta olduğunu kullanıcı genelde belirtmez, 'görev' kelimesi ikisi
-    için de kullanılabiliyor). SİLME GERİ DÖNÜŞSÜZ bir işlem olduğu için
-    eşleştirme _en_iyi_gorev_eslesmesini_bul/_en_iyi_hedef_eslesmesini_bul
-    İLE BİREBİR AYNI temkinli üç aşamalı mantığı kullanıyor - belirsizse
-    ASLA tahmin etmiyor, netleştirme istiyor; yanlış bir satırı silmek,
-    hiç silmemekten çok daha kötü bir hata. Bulunan satırı SOMUT OLARAK
-    (hangi metin, hangi tarih/hafta) geri bildiriyor - kullanıcı yanlışlık
-    olursa hemen fark edebilsin diye."""
+    durumu 'Yapıldı' olarak İŞARETLER, bu SATIRI KALDIRIR). SİLME
+    aslında bir SOFT-DELETE: satır önce CopKutusu sekmesine kopyalanıyor,
+    SONRA asıl sekmeden siliniyor - kullanıcı yanlışlıkla sildiğinde 7
+    gün içinde geri alınabilsin diye (kullanıcının kendi isteği; kalıcı
+    silme yerine çöp kutusu). Önce GunlukGorevler'de arar, bulamazsa
+    HaftalikHedefler'de dener (hangi kaynakta olduğunu kullanıcı genelde
+    belirtmez, 'görev' kelimesi ikisi için de kullanılabiliyor). Eşleştirme
+    _en_iyi_gorev_eslesmesini_bul/_en_iyi_hedef_eslesmesini_bul İLE
+    BİREBİR AYNI temkinli üç aşamalı mantığı kullanıyor - belirsizse ASLA
+    tahmin etmiyor, netleştirme istiyor; yanlış bir satırı silmek, hiç
+    silmemekten çok daha kötü bir hata (çöp kutusu bunu kısmen telafi
+    etse de, varsayılan davranış hâlâ temkinli olmalı). Bulunan satırı
+    SOMUT OLARAK (hangi metin, hangi tarih/hafta) geri bildiriyor -
+    kullanıcı yanlışlık olursa hemen fark edebilsin diye."""
     tirnak_ici = re.findall(r'["\u201c\u201d]([^"\u201c\u201d]+)["\u201c\u201d]', text)
     arama_metni = tirnak_ici[0] if tirnak_ici else text
 
@@ -1239,16 +1369,20 @@ def _gorev_sil_isle(text):
     if gorev_eslesme is not None:
         satir_no, satir = gorev_eslesme
         ws = get_gorevler_sheet()
+        ham_satir = ws.row_values(satir_no)
+        _cop_kutusuna_tasi("GunlukGorevler", ham_satir)
         ws.delete_rows(satir_no)
-        send_message(f"🗑️ '{satir['GorevMetni']}' ({satir['Tarih']}) günlük görevini listeden sildim.")
+        send_message(f"🗑️ '{satir['GorevMetni']}' ({satir['Tarih']}) günlük görevini sildim (7 gün çöp kutusunda kalacak).")
         return
 
     hedef_eslesme = _en_iyi_hedef_eslesmesini_bul(arama_metni, None)
     if hedef_eslesme is not None:
         satir_no, satir = hedef_eslesme
         ws = get_haftalik_sheet()
+        ham_satir = ws.row_values(satir_no)
+        _cop_kutusuna_tasi("HaftalikHedefler", ham_satir)
         ws.delete_rows(satir_no)
-        send_message(f"🗑️ '{satir['HedefMetni']}' ({satir['HaftaBaslangic']} haftası) haftalık hedefini listeden sildim.")
+        send_message(f"🗑️ '{satir['HedefMetni']}' ({satir['HaftaBaslangic']} haftası) haftalık hedefini sildim (7 gün çöp kutusunda kalacak).")
         return
 
     send_message(
