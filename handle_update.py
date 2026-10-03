@@ -949,22 +949,28 @@ def _silinebilecek_gorevleri_listele():
     """Kullanıcının 'silinebilecek görevlerimi listele' tarzı sorgularına
     cevap verir - GOREV_SIL'in serbest-metin yoluna ek, daha GÜVENLİ bir
     alternatif sunmak için eklendi (kullanıcının kendi isteği: yanlışlıkla
-    yanlış görevi silmeyi önlemek). _tum_bekleyen_gorevleri_cevapla'dan
-    FARKLI kapsam: o sadece 'Bekliyor' durumundaki ad-hoc günlük görevleri
-    gösterir, bu ise _en_iyi_gorev_eslesmesini_bul'un aday kriteriyle
-    AYNI ('Yapıldı' DIŞINDAKİ tüm durumlar - Bekliyor/Süresi Doldu/
-    Yapılmadı/Telafi) TÜM silinebilir günlük görevleri VE (ayrı bir
-    mesajda) tüm haftalık hedefleri listeler - GOREV_SIL'in serbest
-    metinle neyi silebileceğiyle BİREBİR TUTARLI bir görünüm. Her madde
-    için `sil_gorev_<satır>` / `sil_hedef_<satır>` formatında TEK bir
-    buton var (evet/hayır değil - silme ikili bir onay değil, doğrudan
-    eylem; kullanıcı bilinçli olarak onay adımı istemedi). Boş kaynak
-    hiç mesaj göndermiyor - iki mesaj yerine birini atlayabilir."""
+    yanlış görevi silmeyi önlemek). SADECE 'Bekliyor' durumundaki günlük
+    görev/haftalık hedefleri listeler - ÖNCEDEN 'Yapıldı' DIŞINDAKİ her
+    şeyi (Süresi Doldu/Yapılmadı/Telafi dahil) gösteriyordu, ama kullanıcı
+    bunun mantıksız olduğunu belirtti: 'Süresi Doldu'/'Yapılmadı' zaten
+    SONUÇLANMIŞ kayıtlar (bir karar verilmiş), 'silinebilir' listesinde
+    görünmeleri kafa karıştırıcıydı - kullanıcının asıl istediği, HENÜZ
+    hiç işaretlenmemiş, vazgeçmek isteyebileceği 'Bekliyor' durumundaki
+    maddeler. Her madde için `sil_gorev_<satır>` / `sil_hedef_<satır>`
+    formatında TEK bir buton var (evet/hayır değil - silme ikili bir onay
+    değil, doğrudan eylem; kullanıcı bilinçli olarak onay adımı
+    istemedi). Boş kaynak hiç mesaj göndermiyor - iki mesaj yerine birini
+    atlayabilir. NOT: GOREV_SIL'in serbest-metin yolu (_en_iyi_gorev_
+    eslesmesini_bul) hâlâ 'Yapıldı' DIŞINDAKİ her durumu aday kabul
+    ediyor - bu BİLİNÇLİ bir asimetri: kullanıcı '"X" görevini sil'
+    diye özellikle bir "Süresi Doldu" kaydını hedef alabilir (nadir ama
+    meşru), sadece bu LİSTEME ekranı varsayılan olarak dar ve net
+    tutuluyor."""
     ws_gorev = get_gorevler_sheet()
     rows_gorev = ws_gorev.get_all_records()
     silinebilir_gorevler = [
         (i + 2, r) for i, r in enumerate(rows_gorev)
-        if r.get("Durum") != "Yapıldı"
+        if r.get("Durum") == "Bekliyor"
     ]
 
     MAKS_GOSTERILEN = 25
@@ -982,7 +988,7 @@ def _silinebilecek_gorevleri_listele():
             if tarih != mevcut_tarih:
                 mevcut_tarih = tarih
                 satirlar.append(f"\n📅 {_gun_ifadesi(tarih)} ({tarih}):")
-            satirlar.append(f"{i+1}. {r.get('GorevMetni', '')} [{r.get('Durum', '')}]")
+            satirlar.append(f"{i+1}. {r.get('GorevMetni', '')}")
             buton_satirlari.append([
                 {"text": f"🗑️ {i+1}️⃣ Sil", "callback_data": f"sil_gorev_{row_num}"},
             ])
@@ -996,7 +1002,7 @@ def _silinebilecek_gorevleri_listele():
     rows_hedef = ws_hedef.get_all_records()
     silinebilir_hedefler = [
         (i + 2, r) for i, r in enumerate(rows_hedef)
-        if r.get("Durum") != "Yapıldı"
+        if r.get("Durum") == "Bekliyor"
     ]
 
     if silinebilir_hedefler:
@@ -1011,7 +1017,7 @@ def _silinebilecek_gorevleri_listele():
             if hafta != mevcut_hafta:
                 mevcut_hafta = hafta
                 satirlar.append(f"\n📅 {hafta} haftası:")
-            satirlar.append(f"{i+1}. {r.get('HedefMetni', '')} [{r.get('Durum', '')}]")
+            satirlar.append(f"{i+1}. {r.get('HedefMetni', '')}")
             buton_satirlari.append([
                 {"text": f"🗑️ {i+1}️⃣ Sil", "callback_data": f"sil_hedef_{row_num}"},
             ])
