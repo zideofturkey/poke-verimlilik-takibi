@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-10-04T10:52:40.255151+03:00",
+  "uretim_zamani": "2026-10-04T16:45:54.328890+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 43
+    "haftaTamamlamaYuzdesi": 49
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "04 October 2026",
       "tarih_iso": "2026-10-04",
-      "level": 0,
+      "level": 2,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 62
+      "oran": 63
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1470,7 +1470,7 @@
     {
       "tarih": "28 Eyl - 4 Eki",
       "tarih_iso": "2026-09-28",
-      "level": 0,
+      "level": 1,
       "maks": 4,
       "rutinler": [
         {
@@ -1487,7 +1487,7 @@
         },
         {
           "isim": "Haftada 3 gün spor",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     }
@@ -1507,7 +1507,7 @@
     },
     {
       "isim": "Haftada 3 gün spor",
-      "oran": 50
+      "oran": 75
     }
   ],
   "gunlukGorevGecmisi": [
@@ -1852,23 +1852,23 @@
       "hedefler": [
         {
           "hedef": "Tufan Abi adsleri para harcamıyor sorunu çözülecek",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "Arnavutluk’a gidene dek tüm ödemeler halledilecek ve kenara 100€ ayrılacak",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "Azot ile çarşamba günü Kartal’a gidilecek",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "Pazartesi kancar+ ads toplantısı",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "hedef": "OtoTıkla P.Max Youtube Kampanyası: Elektrik Ağırlıklı",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "FollowUrFirm üzerine 100$ bütçe ile tekrar çalışılmaya başlanacak",
@@ -1880,10 +1880,101 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-04T07:52:25Z",
+      "zaman": "2026-10-04T13:45:34Z",
       "durum": "warn",
+      "runId": "37206762259",
+      "sureSn": 2
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-04T11:26:04Z",
+      "durum": "ok",
+      "runId": "37198727093",
+      "sureSn": 16
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:05:17Z",
+      "durum": "ok",
+      "runId": "37194225758",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:05:15Z",
+      "durum": "ok",
+      "runId": "37194223188",
+      "sureSn": 29
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:04:32Z",
+      "durum": "ok",
+      "runId": "37194184041",
+      "sureSn": 33
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:04:23Z",
+      "durum": "ok",
+      "runId": "37194175621",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:04:19Z",
+      "durum": "ok",
+      "runId": "37194172807",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:04:15Z",
+      "durum": "ok",
+      "runId": "37194169600",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:04:12Z",
+      "durum": "ok",
+      "runId": "37194167009",
+      "sureSn": 36
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:04:07Z",
+      "durum": "ok",
+      "runId": "37194162266",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-04T10:03:54Z",
+      "durum": "ok",
+      "runId": "37194149192",
+      "sureSn": 30
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-04T10:01:01Z",
+      "durum": "ok",
+      "runId": "37193997095",
+      "sureSn": 19
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-04T09:34:34Z",
+      "durum": "ok",
+      "runId": "37192600273",
+      "sureSn": 33
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-04T07:52:25Z",
+      "durum": "ok",
       "runId": "37187107718",
-      "sureSn": 3
+      "sureSn": 39
     },
     {
       "ad": "Gönder",
@@ -1891,97 +1982,6 @@
       "durum": "ok",
       "runId": "37184518798",
       "sureSn": 23
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-04T06:12:16Z",
-      "durum": "ok",
-      "runId": "37182119764",
-      "sureSn": 329
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-04T06:00:58Z",
-      "durum": "ok",
-      "runId": "37181547975",
-      "sureSn": 18
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-04T05:46:52Z",
-      "durum": "ok",
-      "runId": "37180867590",
-      "sureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-04T02:29:40Z",
-      "durum": "ok",
-      "runId": "37171214777",
-      "sureSn": 34
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-04T01:50:55Z",
-      "durum": "ok",
-      "runId": "37169243699",
-      "sureSn": 44
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-04T00:11:22Z",
-      "durum": "ok",
-      "runId": "37164165394",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-03T22:48:17Z",
-      "durum": "ok",
-      "runId": "37159664732",
-      "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-03T22:19:22Z",
-      "durum": "ok",
-      "runId": "37158037891",
-      "sureSn": 50
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-03T21:46:34Z",
-      "durum": "ok",
-      "runId": "37156256499",
-      "sureSn": 14
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-03T20:48:25Z",
-      "durum": "ok",
-      "runId": "37152854636",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-03T20:18:21Z",
-      "durum": "ok",
-      "runId": "37151060247",
-      "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-03T20:18:17Z",
-      "durum": "ok",
-      "runId": "37151055667",
-      "sureSn": 27
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-03T20:18:07Z",
-      "durum": "ok",
-      "runId": "37151046003",
-      "sureSn": 37
     }
   ],
   "workflowTurOzet": [
@@ -1989,19 +1989,7 @@
       "ad": "Panel",
       "toplam": 6,
       "oran": 83,
-      "ortSureSn": 37
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 3,
-      "oran": 100,
-      "ortSureSn": 22
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 12,
-      "oran": 100,
-      "ortSureSn": 81
+      "ortSureSn": 36
     },
     {
       "ad": "Aforizma",
@@ -2010,16 +1998,28 @@
       "ortSureSn": 23
     },
     {
+      "ad": "Webhook",
+      "toplam": 16,
+      "oran": 100,
+      "ortSureSn": 51
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 4,
+      "oran": 100,
+      "ortSureSn": 21
+    },
+    {
       "ad": "Dinle",
       "toplam": 4,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 31
     },
     {
       "ad": "GEÇİCİ - Panel Arşivleme Testi",
-      "toplam": 6,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 29
+      "ortSureSn": 37
     },
     {
       "ad": "GEÇİCİ - HaftalikHedefArsiv Düzeltme",
@@ -2032,12 +2032,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 16
-    },
-    {
-      "ad": "gecici-check-slm-varyasyon",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
     }
   ],
   "kocKararlari": [],
