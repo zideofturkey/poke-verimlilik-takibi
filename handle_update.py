@@ -493,8 +493,14 @@ def _sorguyu_cevapla(text):
     # rutinler (Oda tozu alma vb., HaftalikRutinTakip'te) hiç
     # gönderilmiyordu - kullanıcı bu eksikliği bildirdi.
     if "hafta" in metin_kucuk and ("görev" in metin_kucuk or "gorev" in metin_kucuk or "hedef" in metin_kucuk) and "rutin" in metin_kucuk:
-        _haftalik_hedef_durumu_cevapla()
-        _haftalik_rutin_durumu_cevapla()
+        # Her iki alt fonksiyon da artık (kullanıcının isteğiyle) hepsi
+        # cevaplanmışsa sessiz kalıp False dönüyor - ikisi birden sessiz
+        # kalırsa kullanıcı hiçbir cevap almamış olur, bu yüzden burada
+        # en azından bir onay mesajı garanti ediliyor.
+        hedef_gonderildi = _haftalik_hedef_durumu_cevapla()
+        rutin_gonderildi = _haftalik_rutin_durumu_cevapla()
+        if not hedef_gonderildi and not rutin_gonderildi:
+            send_message("Bu hafta için bekleyen bir haftalık hedef ya da rutin yok. 🎉")
         return
 
     # "Bu haftaki HEDEFLERİM/GÖREVLERİM" — HaftalikHedefler sekmesindeki
@@ -553,76 +559,62 @@ def _haftalik_hedef_durumu_cevapla():
     rutinlerin 7 günlük yüzdesi) ve _haftalik_rutin_durumu_cevapla (ayrı bir
     HAFTALIK RUTİN kategorisi - Oda tozu alma vb.) ile KARIŞTIRILMASIN - bu
     üçü Sheets'te üç ayrı sekmeye (Takip, HaftalikRutinTakip, HaftalikHedefler)
-    karşılık gelen üç farklı veri. 'Bekliyor' durumundaki hedefler için
-    TIKLANABİLİR butonlar ekler - `hedef_<satır>_evet/hayir`
-    (gonder.py'nin haftalik_hedef_sorulari_gonder'inde ve process_callback'te
-    ZATEN kullanılan aynı format, satır bazlı) - sıfırdan yazmaya gerek yok.
+    karşılık gelen üç farklı veri.
 
-    GERÇEK BUG (kullanıcı bildirdi): eski kod sadece 'Yolunda'/'Geride'
-    (botun kendi hedef_ callback'inin yazdığı) ve 'Bekliyor' durumlarını
-    tanıyordu - BAŞKA HERHANGİ bir değer (ör. kullanıcının Google Sheets'ten
-    ELLE 'Yapıldı'/'Yapılmadı' yazması, ya da _suresi_dolanlari_isaretle_
-    ve_bildir'in yazdığı 'Süresi Doldu') `else` dalına düşüp SESSİZCE
-    'Bekliyor' gibi davranıyordu - yani ZATEN İŞARETLENMİŞ bir hedef
-    tekrar ⏳ ile ve tıklanabilir butonla listeleniyordu. Kullanıcı
-    öğlen Sheets'ten elle 5 hedefi 'Yapıldı' yazmıştı, akşam sorduğunda
-    hepsi yeniden 'bekliyor' gibi sunuldu. Düzeltme: artık 'Yolunda' VEYA
-    'Yapıldı' ikisi de ✅ sayılıyor, 'Geride' VEYA 'Yapılmadı' ikisi de
-    ❌ sayılıyor, 'Süresi Doldu' kendi ⏰ işaretiyle AYRI gösteriliyor -
-    SADECE gerçekten 'Bekliyor' olan satırlar hâlâ bekleyenler listesine
-    giriyor ve buton alıyor."""
+    DAVRANIŞ (kullanıcının açık isteği): `gonder.py`'deki
+    `rutin_sorulari_gonder`'in (günlük rutin hatırlatması) deseniyle
+    BİREBİR TUTARLI - zaten sonuçlanmış (Yolunda/Geride/Yapıldı/
+    Yapılmadı/Süresi Doldu) hedefler mesaja HİÇ GİRMİYOR, ne satır ne
+    buton. SADECE 'Bekliyor' durumundaki hedefler listeleniyor, her biri
+    TIKLANABİLİR butonla - `hedef_<satır>_evet/hayir` (gonder.py'nin
+    haftalik_hedef_sorulari_gonder'inde ve process_callback'te ZATEN
+    kullanılan aynı format). Önceki sürüm TÜM durumları (✅/❌ işaretiyle
+    de olsa) listeliyordu - kullanıcı bunun günlük rutin hatırlatmasıyla
+    tutarsız olduğunu, zaten işaretlenmiş hiçbir şeyin mesajda hiç
+    görünmemesi gerektiğini belirtti. Hepsi zaten cevaplanmışsa (ya da
+    hiç hedef yoksa) mesaj hiç gönderilmiyor - `rutin_sorulari_gonder`
+    ile aynı "sessiz kal" davranışı."""
     ws = get_haftalik_sheet()
     hafta = hafta_baslangic_str()
     rows = ws.get_all_records()
 
-    satirlar = []
-    bekleyenler = []  # (satir_no, metin) - sadece 'Bekliyor' durumundakiler
-    for i, r in enumerate(rows):
-        if r.get("HaftaBaslangic") != hafta:
-            continue
-        durum = r.get("Durum")
-        metin = r.get("HedefMetni", "")
-        satir_no = i + 2  # header satırı + 1-index
-        if durum in ("Yolunda", "Yapıldı"):
-            isaret = "✅"
-        elif durum in ("Geride", "Yapılmadı"):
-            isaret = "❌"
-        elif durum == "Süresi Doldu":
-            isaret = "⏰"
-        elif durum == "Bekliyor":
-            isaret = "⏳"
-            bekleyenler.append((satir_no, metin))
-        else:
-            # Tanınmayan/beklenmedik bir durum değeri - temkinli ol,
-            # yine de bekliyor say ama bu ARTIK sadece gerçekten hiç
-            # bilinmeyen bir değer için devreye giriyor, 'Yapıldı' gibi
-            # bilinen tamamlanmış durumlar için değil.
-            isaret = "⏳"
-            bekleyenler.append((satir_no, metin))
-        satirlar.append(f"{isaret} {metin}")
-
-    if not satirlar:
+    bu_hafta_satirlari = [r for r in rows if r.get("HaftaBaslangic") == hafta]
+    if not bu_hafta_satirlari:
+        # Bu, 'hepsi cevaplanmış' DEĞİL - bu hafta için HİÇ kayıt yok.
+        # Kullanıcının Pazar mesajına hiç cevap vermemiş olma ihtimali
+        # var, bu durumda sessiz kalmak yerine bilgilendirmek hâlâ
+        # değerli (rutin_sorulari_gonder'de bu ayrım yok çünkü aktif
+        # rutinler her zaman tanımlı, ama haftalık hedefler kullanıcının
+        # kendi girdiği serbest metin).
         send_message(
             "Bu hafta için henüz kaydedilmiş bir haftalık hedef bulamadım — "
             "Pazar mesajına cevap vermeyi unuttun mu? 🤔 Şimdi yazarsan "
             "(1. / 2. / 3. şeklinde) onları da kaydederim."
         )
         set_bekleyen_soru("haftalik_hedef")
-        return
+        return True
 
-    mesaj = "Bu haftaki hedeflerinin durumu:\n" + "\n".join(satirlar)
+    bekleyenler = [
+        (i + 2, r.get("HedefMetni", ""))  # +2: header + 1-index
+        for i, r in enumerate(rows)
+        if r.get("HaftaBaslangic") == hafta and r.get("Durum") == "Bekliyor"
+    ]
 
-    if bekleyenler:
-        buton_satirlari = [
-            [
-                {"text": f"{i+1}️⃣ ✅", "callback_data": f"hedef_{satir_no}_evet"},
-                {"text": f"{i+1}️⃣ ❌", "callback_data": f"hedef_{satir_no}_hayir"},
-            ]
-            for i, (satir_no, _) in enumerate(bekleyenler)
+    if not bekleyenler:
+        print("Bu haftanın tüm haftalık hedefleri zaten cevaplanmış, sorgu sessiz kalıyor.")
+        return False
+
+    satirlar = [f"⏳ {metin}" for _, metin in bekleyenler]
+    mesaj = "Bu haftaki bekleyen hedeflerin:\n" + "\n".join(satirlar)
+    buton_satirlari = [
+        [
+            {"text": f"{i+1}️⃣ ✅", "callback_data": f"hedef_{satir_no}_evet"},
+            {"text": f"{i+1}️⃣ ❌", "callback_data": f"hedef_{satir_no}_hayir"},
         ]
-        send_message(mesaj, buttons=buton_satirlari)
-    else:
-        send_message(mesaj)
+        for i, (satir_no, _) in enumerate(bekleyenler)
+    ]
+    send_message(mesaj, buttons=buton_satirlari)
+    return True
 
 
 def _haftalik_rutin_durumu_cevapla():
@@ -631,8 +623,10 @@ def _haftalik_rutin_durumu_cevapla():
     durumunu gösterir. _haftalik_ozet_sorusunu_cevapla ile KARIŞTIRILMASIN
     - o, günlük rutinlerin (Fransızca, telefonsuzluk vb.) SON 7 GÜNLÜK
     yüzdesini gösterir; bu fonksiyon ise ayrı bir kategorinin BU HAFTAKİ
-    ham durumunu (Yapıldı/Bekliyor/Yapılmadı) gösterir. 'Bekliyor'
-    durumundaki olanlar için TIKLANABİLİR butonlar ekliyor -
+    durumunu gösterir. SADECE 'Bekliyor' durumundaki rutinler listeleniyor
+    (zaten Yapıldı/Yapılmadı olanlar mesaja hiç girmiyor - kullanıcının
+    isteğiyle rutin_sorulari_gonder'in günlük hatırlatma deseniyle
+    tutarlı hale getirildi), her biri TIKLANABİLİR butonla -
     `haftarutin_<satır>_evet/hayir` (process_callback'te ve gonder.py'nin
     otomatik hatırlatmasında ZATEN kullanılan aynı format, satır bazlı) -
     günlük tarafta yapılan _kalan_durumu_interaktif_gonder ile aynı fikir.
@@ -654,7 +648,7 @@ def _haftalik_rutin_durumu_cevapla():
     haftalik_rutinler = get_aktif_haftalik_rutinler()
     if not haftalik_rutinler:
         send_message("Tanımlı bir haftalık rutin yok.")
-        return
+        return True
 
     ws = get_haftalik_rutin_takip_sheet()
     hafta = hafta_baslangic_str()
@@ -669,38 +663,32 @@ def _haftalik_rutin_durumu_cevapla():
         # Yeni satır(lar) eklendiyse taze durumu tekrar oku.
         rows = ws.get_all_values()
 
-    satirlar = []
+    # DAVRANIŞ (kullanıcının açık isteği): rutin_sorulari_gonder (günlük
+    # rutin hatırlatması) ile BİREBİR TUTARLI - zaten cevaplanmış
+    # (Yapıldı/Yapılmadı) rutinler mesaja HİÇ GİRMİYOR. Önceki sürüm
+    # hepsini (✅/❌ işaretiyle de olsa) listeliyordu.
     bekleyenler = []  # (satir_no, isim) - sadece 'Bekliyor' durumundakiler
     for i, row in enumerate(rows[1:], start=1):
         if len(row) < 4 or row[0] != hafta:
             continue
-        isim, durum = row[2], row[3]
-        if durum == "Yapıldı":
-            isaret = "✅"
-        elif durum == "Yapılmadı":
-            isaret = "❌"
-        else:
-            isaret = "⏳"
-            bekleyenler.append((i + 1, isim))  # +1: header satırı + 1-index
-        satirlar.append(f"{isaret} {isim}")
+        if row[3] == "Bekliyor":
+            bekleyenler.append((i + 1, row[2]))  # +1: header satırı + 1-index
 
-    if not satirlar:
-        send_message("Bu hafta için henüz kayıtlı bir haftalık rutin durumu yok.")
-        return
+    if not bekleyenler:
+        print("Bu haftanın tüm haftalık rutinleri zaten cevaplanmış, sorgu sessiz kalıyor.")
+        return False
 
-    mesaj = "Bu haftaki (haftalık) rutin durumun:\n" + "\n".join(satirlar)
-
-    if bekleyenler:
-        buton_satirlari = [
-            [
-                {"text": f"{i+1}️⃣ ✅", "callback_data": f"haftarutin_{satir_no}_evet"},
-                {"text": f"{i+1}️⃣ ❌", "callback_data": f"haftarutin_{satir_no}_hayir"},
-            ]
-            for i, (satir_no, _) in enumerate(bekleyenler)
+    satirlar = [f"⏳ {isim}" for _, isim in bekleyenler]
+    mesaj = "Bu haftaki bekleyen (haftalık) rutinlerin:\n" + "\n".join(satirlar)
+    buton_satirlari = [
+        [
+            {"text": f"{i+1}️⃣ ✅", "callback_data": f"haftarutin_{satir_no}_evet"},
+            {"text": f"{i+1}️⃣ ❌", "callback_data": f"haftarutin_{satir_no}_hayir"},
         ]
-        send_message(mesaj, buttons=buton_satirlari)
-    else:
-        send_message(mesaj)
+        for i, (satir_no, _) in enumerate(bekleyenler)
+    ]
+    send_message(mesaj, buttons=buton_satirlari)
+    return True
 
 
 def _seri_sorusunu_cevapla():
