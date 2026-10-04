@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-04T01:19:38.817591+03:00",
+  "uretim_zamani": "2026-10-04T04:51:13.775184+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1854,10 +1854,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-03T22:19:22Z",
+      "zaman": "2026-10-04T01:50:55Z",
       "durum": "warn",
+      "runId": "37169243699",
+      "sureSn": 4
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-04T00:11:22Z",
+      "durum": "ok",
+      "runId": "37164165394",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-03T22:48:17Z",
+      "durum": "ok",
+      "runId": "37159664732",
+      "sureSn": 29
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-03T22:19:22Z",
+      "durum": "ok",
       "runId": "37158037891",
-      "sureSn": 3
+      "sureSn": 50
     },
     {
       "ad": "Aforizma",
@@ -1935,53 +1956,32 @@
       "durum": "ok",
       "runId": "37142651409",
       "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-03T17:33:20Z",
-      "durum": "ok",
-      "runId": "37140937064",
-      "sureSn": 44
-    },
-    {
-      "ad": "GEÇİCİ - Panel Arşivleme Testi",
-      "zaman": "2026-10-03T17:31:14Z",
-      "durum": "ok",
-      "runId": "37140809508",
-      "sureSn": 18
-    },
-    {
-      "ad": "GEÇİCİ - HaftalikHedefArsiv Düzeltme",
-      "zaman": "2026-10-03T17:29:18Z",
-      "durum": "ok",
-      "runId": "37140681937",
-      "sureSn": 21
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 5,
-      "oran": 80,
-      "ortSureSn": 32
+      "toplam": 6,
+      "oran": 83,
+      "ortSureSn": 35
     },
     {
       "ad": "Aforizma",
-      "toplam": 4,
+      "toplam": 5,
       "oran": 100,
-      "ortSureSn": 24
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 12,
-      "oran": 100,
-      "ortSureSn": 84
+      "ortSureSn": 22
     },
     {
       "ad": "Dinle",
-      "toplam": 3,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 100,
+      "ortSureSn": 58
     },
     {
       "ad": "Gönder",
@@ -2018,18 +2018,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 12
-    },
-    {
-      "ad": "GEÇİCİ - Haftalık Hedef Geçmişi Teşhis",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
-    },
-    {
-      "ad": "gecici-verify-cop",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
     }
   ],
   "kocKararlari": [],
