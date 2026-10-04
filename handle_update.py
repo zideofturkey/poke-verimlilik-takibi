@@ -359,6 +359,16 @@ def process_callback(cq):
 
     elif callback_data.startswith("hedef_"):
         # format: hedef_<satirNo>_evet / hedef_<satirNo>_hayir
+        # GERÇEK BUG (kullanıcı bildirdi): bu callback hep "Yapıldı"/
+        # "Yapılmadı" YAZIYORDU (satırın altındaki durum değişkenine
+        # bak), ama _haftalik_hedef_durumu_cevapla (sorgu fonksiyonu)
+        # SADECE "Yolunda"/"Geride" durumlarını tanıyordu - callback'in
+        # kendi gönderdiği onay mesajı bile yanıltıcıydı ("yolunda olarak
+        # kaydedildi" diyordu ama Sheets'e "Yapıldı" yazıyordu). Sonuç:
+        # kullanıcı butona tıklayıp işaretlediği HER hedef, sorguladığında
+        # "Yapıldı" tanınmadığı için ⏳ bekliyor gibi gösterilip TEKRAR
+        # soruluyordu. Mesaj metni artık gerçekten yazılan değerle
+        # (Yapıldı/Yapılmadı) tutarlı.
         _, satir_no, sonuc = callback_data.split("_")
         ws = get_haftalik_sheet()
         satir_no = int(satir_no)
@@ -366,9 +376,9 @@ def process_callback(cq):
         durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
         ws.update_cell(satir_no, 3, durum)
         if sonuc == "evet":
-            send_message(f"✅ '{hedef_metni}' yolunda olarak kaydedildi. Devam!")
+            send_message(f"✅ '{hedef_metni}' tamamlandı olarak kaydedildi. Tebrikler!")
         else:
-            send_message(f"Not aldım, '{hedef_metni}' geride kalmış — toparlamaya çalış 💪")
+            send_message(f"Not aldım, '{hedef_metni}' yapılamamış — gelecek haftaya bakarsın 💪")
 
     elif callback_data.startswith("haftarutin_"):
         # format: haftarutin_<satirNo>_evet / haftarutin_<satirNo>_hayir
@@ -473,6 +483,20 @@ def _sorguyu_cevapla(text):
         _gecen_hafta_bekleyenleri_cevapla()
         return
 
+    # "Kalan haftalık GÖREV VE RUTİNLERİMİ hatırlat" tarzı - kullanıcı
+    # AÇIKÇA hem hedef hem rutin istediğinde (hem 'görev'/'hedef' HEM
+    # 'rutin' kelimesi bir arada, BU hafta için - 'geçen hafta' kontrolü
+    # yukarıda ÖNCE geçtiği için o özel durumu zaten yakalayıp çıkmış
+    # oluyor) ikisini de ayrı mesajlarda göndermeli. GERÇEK BUG: önceden
+    # bu kombinasyon aşağıdaki "hafta"+"görev" dalına düşüyordu ve SADECE
+    # HaftalikHedefler gösteriliyordu, kullanıcının açıkça istediği
+    # rutinler (Oda tozu alma vb., HaftalikRutinTakip'te) hiç
+    # gönderilmiyordu - kullanıcı bu eksikliği bildirdi.
+    if "hafta" in metin_kucuk and ("görev" in metin_kucuk or "gorev" in metin_kucuk or "hedef" in metin_kucuk) and "rutin" in metin_kucuk:
+        _haftalik_hedef_durumu_cevapla()
+        _haftalik_rutin_durumu_cevapla()
+        return
+
     # "Bu haftaki HEDEFLERİM/GÖREVLERİM" — HaftalikHedefler sekmesindeki
     # (checkbox'lı, Yolunda/Geride) haftalık hedefleri sorar. Önceden bu
     # dal HİÇ YOKTU: "hedef" kelimesi metinde geçmezse ("bu haftaki
@@ -532,7 +556,21 @@ def _haftalik_hedef_durumu_cevapla():
     karşılık gelen üç farklı veri. 'Bekliyor' durumundaki hedefler için
     TIKLANABİLİR butonlar ekler - `hedef_<satır>_evet/hayir`
     (gonder.py'nin haftalik_hedef_sorulari_gonder'inde ve process_callback'te
-    ZATEN kullanılan aynı format, satır bazlı) - sıfırdan yazmaya gerek yok."""
+    ZATEN kullanılan aynı format, satır bazlı) - sıfırdan yazmaya gerek yok.
+
+    GERÇEK BUG (kullanıcı bildirdi): eski kod sadece 'Yolunda'/'Geride'
+    (botun kendi hedef_ callback'inin yazdığı) ve 'Bekliyor' durumlarını
+    tanıyordu - BAŞKA HERHANGİ bir değer (ör. kullanıcının Google Sheets'ten
+    ELLE 'Yapıldı'/'Yapılmadı' yazması, ya da _suresi_dolanlari_isaretle_
+    ve_bildir'in yazdığı 'Süresi Doldu') `else` dalına düşüp SESSİZCE
+    'Bekliyor' gibi davranıyordu - yani ZATEN İŞARETLENMİŞ bir hedef
+    tekrar ⏳ ile ve tıklanabilir butonla listeleniyordu. Kullanıcı
+    öğlen Sheets'ten elle 5 hedefi 'Yapıldı' yazmıştı, akşam sorduğunda
+    hepsi yeniden 'bekliyor' gibi sunuldu. Düzeltme: artık 'Yolunda' VEYA
+    'Yapıldı' ikisi de ✅ sayılıyor, 'Geride' VEYA 'Yapılmadı' ikisi de
+    ❌ sayılıyor, 'Süresi Doldu' kendi ⏰ işaretiyle AYRI gösteriliyor -
+    SADECE gerçekten 'Bekliyor' olan satırlar hâlâ bekleyenler listesine
+    giriyor ve buton alıyor."""
     ws = get_haftalik_sheet()
     hafta = hafta_baslangic_str()
     rows = ws.get_all_records()
@@ -545,14 +583,20 @@ def _haftalik_hedef_durumu_cevapla():
         durum = r.get("Durum")
         metin = r.get("HedefMetni", "")
         satir_no = i + 2  # header satırı + 1-index
-        if durum == "Yolunda":
+        if durum in ("Yolunda", "Yapıldı"):
             isaret = "✅"
-        elif durum == "Geride":
+        elif durum in ("Geride", "Yapılmadı"):
             isaret = "❌"
+        elif durum == "Süresi Doldu":
+            isaret = "⏰"
         elif durum == "Bekliyor":
             isaret = "⏳"
             bekleyenler.append((satir_no, metin))
         else:
+            # Tanınmayan/beklenmedik bir durum değeri - temkinli ol,
+            # yine de bekliyor say ama bu ARTIK sadece gerçekten hiç
+            # bilinmeyen bir değer için devreye giriyor, 'Yapıldı' gibi
+            # bilinen tamamlanmış durumlar için değil.
             isaret = "⏳"
             bekleyenler.append((satir_no, metin))
         satirlar.append(f"{isaret} {metin}")
