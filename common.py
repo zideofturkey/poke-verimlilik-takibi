@@ -133,14 +133,22 @@ def get_deger(anahtar, varsayilan=""):
     webhook.yml çöküp "workflow failed" maili gönderdi. set_deger/
     set_bekleyen_soru'ya daha önce eklenen "sessiz başarısızlık" koruması
     (ham API'ye düşme) burada işe yaramazdı çünkü sorun satır bulunamaması
-    değil, Google'ın tarafında geçici bir kesintiydi - o yüzden burada
-    retry+backoff (Ollama'nın slm_sorgula'sındaki İLE AYNI desen - 5
-    deneme, artan bekleme) daha doğru çözüm. Sadece geçici (5xx/bağlantı)
-    hatalarda tekrar deniyor - kalıcı bir hata (ör. yetki sorunu) varsa
-    gereksiz yere 5 kez beklemek yerine hemen fırlatıyor."""
+    değil, Google'ın tarafında geçici bir kesintiydi. Google'ın kendi
+    resmi dokümantasyonu (developers.google.com/workspace/sheets/api/
+    troubleshoot-api-errors) 503'ün SADECE genel bir kesinti değil, AYNI
+    ZAMANDA 'the complexity of the request or spreadsheet is high'
+    durumunda da döndüğünü ve çözüm olarak 'exponential backoff'
+    önerdiğini belirtiyor - bizim spreadsheet'imiz (çok sayıda sekme,
+    aylardır biriken binlerce satır) tam bu profile uyuyor. İlk denemede
+    lineer bekleme (2/4/6/8/10sn) kullanılmıştı ama gerçek olayda bu
+    yetmedi (5 deneme boyunca hep 503 geldi) - artık Google'ın önerdiği
+    ÜSTEL backoff (2/4/8/16/32sn) ve 6 deneme kullanılıyor, toplam bekleme
+    süresi önemli ölçüde arttı. Sadece geçici (5xx/bağlantı) hatalarda
+    tekrar deniyor - kalıcı bir hata (ör. yetki sorunu) varsa gereksiz
+    yere beklemek yerine hemen fırlatıyor."""
     GECICI_HATA_KODLARI = (500, 502, 503, 504)
     son_hata = None
-    for deneme in range(5):
+    for deneme in range(6):
         try:
             ws = get_durum_sheet()
             rows = ws.get_all_records()
@@ -153,13 +161,13 @@ def get_deger(anahtar, varsayilan=""):
             kod = e.response.status_code if e.response is not None else None
             if kod not in GECICI_HATA_KODLARI:
                 raise
-            bekleme = 2 * (deneme + 1)
-            print(f"get_deger: Sheets API geçici hata ({kod}), {bekleme}sn sonra tekrar denenecek ({deneme + 1}/5)...")
+            bekleme = 2 ** (deneme + 1)
+            print(f"get_deger: Sheets API geçici hata ({kod}), {bekleme}sn sonra tekrar denenecek ({deneme + 1}/6)...")
             time.sleep(bekleme)
         except requests.exceptions.RequestException as e:
             son_hata = e
-            bekleme = 2 * (deneme + 1)
-            print(f"get_deger: bağlantı hatası ({e}), {bekleme}sn sonra tekrar denenecek ({deneme + 1}/5)...")
+            bekleme = 2 ** (deneme + 1)
+            print(f"get_deger: bağlantı hatası ({e}), {bekleme}sn sonra tekrar denenecek ({deneme + 1}/6)...")
             time.sleep(bekleme)
     raise son_hata
 
