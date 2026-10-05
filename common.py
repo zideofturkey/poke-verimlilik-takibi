@@ -124,13 +124,44 @@ def get_cop_kutusu_sheet():
 
 def get_deger(anahtar, varsayilan=""):
     """Durum sekmesinden genel amaçlı bir anahtar-değer okur (ör. 'sabah
-    en son ne zaman çalıştı' gibi bekçi/watchdog kontrolleri için)."""
-    ws = get_durum_sheet()
-    rows = ws.get_all_records()
-    for r in rows:
-        if r.get("anahtar") == anahtar:
-            return r.get("deger", varsayilan)
-    return varsayilan
+    en son ne zaman çalıştı' gibi bekçi/watchdog kontrolleri için).
+
+    Gerçek bir olayda Google Sheets API'si art arda birkaç dakika boyunca
+    503 ("service unavailable") döndürdü - bu fonksiyon HİÇBİR retry'a
+    sahip olmadığı için, `update_zaten_islendi_mi()` üzerinden HER TEK
+    buton tıklamasında çağrıldığından, kullanıcı her butona bastığında
+    webhook.yml çöküp "workflow failed" maili gönderdi. set_deger/
+    set_bekleyen_soru'ya daha önce eklenen "sessiz başarısızlık" koruması
+    (ham API'ye düşme) burada işe yaramazdı çünkü sorun satır bulunamaması
+    değil, Google'ın tarafında geçici bir kesintiydi - o yüzden burada
+    retry+backoff (Ollama'nın slm_sorgula'sındaki İLE AYNI desen - 5
+    deneme, artan bekleme) daha doğru çözüm. Sadece geçici (5xx/bağlantı)
+    hatalarda tekrar deniyor - kalıcı bir hata (ör. yetki sorunu) varsa
+    gereksiz yere 5 kez beklemek yerine hemen fırlatıyor."""
+    GECICI_HATA_KODLARI = (500, 502, 503, 504)
+    son_hata = None
+    for deneme in range(5):
+        try:
+            ws = get_durum_sheet()
+            rows = ws.get_all_records()
+            for r in rows:
+                if r.get("anahtar") == anahtar:
+                    return r.get("deger", varsayilan)
+            return varsayilan
+        except APIError as e:
+            son_hata = e
+            kod = e.response.status_code if e.response is not None else None
+            if kod not in GECICI_HATA_KODLARI:
+                raise
+            bekleme = 2 * (deneme + 1)
+            print(f"get_deger: Sheets API geçici hata ({kod}), {bekleme}sn sonra tekrar denenecek ({deneme + 1}/5)...")
+            time.sleep(bekleme)
+        except requests.exceptions.RequestException as e:
+            son_hata = e
+            bekleme = 2 * (deneme + 1)
+            print(f"get_deger: bağlantı hatası ({e}), {bekleme}sn sonra tekrar denenecek ({deneme + 1}/5)...")
+            time.sleep(bekleme)
+    raise son_hata
 
 
 def set_deger(anahtar, deger):
