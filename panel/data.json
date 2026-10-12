@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-12T03:15:35.817460+03:00",
+  "uretim_zamani": "2026-10-12T09:19:40.589181+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 29
   },
@@ -1974,10 +1974,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-12T00:15:16Z",
+      "zaman": "2026-10-12T06:19:24Z",
       "durum": "warn",
-      "runId": "38187296850",
+      "runId": "38211958166",
       "sureSn": 3
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-12T06:00:57Z",
+      "durum": "ok",
+      "runId": "38210511454",
+      "sureSn": 18
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-12T01:45:12Z",
+      "durum": "ok",
+      "runId": "38193104948",
+      "sureSn": 18
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-12T01:09:06Z",
+      "durum": "ok",
+      "runId": "38190764896",
+      "sureSn": 28
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-12T00:15:16Z",
+      "durum": "ok",
+      "runId": "38187296850",
+      "sureSn": 48
     },
     {
       "ad": "Aforizma",
@@ -2048,34 +2076,6 @@
       "durum": "ok",
       "runId": "38145494134",
       "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-11T12:34:30Z",
-      "durum": "ok",
-      "runId": "38139779884",
-      "sureSn": 34
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-11T11:15:54Z",
-      "durum": "ok",
-      "runId": "38134920960",
-      "sureSn": 45
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-11T10:00:54Z",
-      "durum": "ok",
-      "runId": "38130423302",
-      "sureSn": 16
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-11T08:49:23Z",
-      "durum": "ok",
-      "runId": "38126162293",
-      "sureSn": 37
     }
   ],
   "workflowTurOzet": [
@@ -2084,6 +2084,12 @@
       "toplam": 9,
       "oran": 89,
       "ortSureSn": 40
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 19
     },
     {
       "ad": "Aforizma",
@@ -2102,12 +2108,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 333
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 19
     },
     {
       "ad": "Webhook",
