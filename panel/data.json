@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-13T01:45:31.617281+03:00",
+  "uretim_zamani": "2026-10-13T06:22:52.353808+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 20
   },
@@ -1974,10 +1974,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-12T22:45:15Z",
+      "zaman": "2026-10-13T03:22:30Z",
       "durum": "warn",
+      "runId": "38341404576",
+      "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-13T01:56:28Z",
+      "durum": "ok",
+      "runId": "38334512765",
+      "sureSn": 30
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-12T23:53:17Z",
+      "durum": "ok",
+      "runId": "38324463963",
+      "sureSn": 19
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-12T22:45:15Z",
+      "durum": "ok",
       "runId": "38318437268",
-      "sureSn": 3
+      "sureSn": 43
     },
     {
       "ad": "Dinle",
@@ -2055,53 +2076,32 @@
       "durum": "ok",
       "runId": "38210511454",
       "sureSn": 18
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-12T01:45:12Z",
-      "durum": "ok",
-      "runId": "38193104948",
-      "sureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-12T01:09:06Z",
-      "durum": "ok",
-      "runId": "38190764896",
-      "sureSn": 28
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-12T00:15:16Z",
-      "durum": "ok",
-      "runId": "38187296850",
-      "sureSn": 48
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 41
+      "toplam": 8,
+      "oran": 88,
+      "ortSureSn": 40
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 8,
       "oran": 100,
       "ortSureSn": 30
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "Gönder",
       "toplam": 9,
       "oran": 100,
       "ortSureSn": 19
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 16
     },
     {
       "ad": "Temizle",
