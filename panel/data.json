@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-14T10:12:36.944778+03:00",
+  "uretim_zamani": "2026-10-14T15:59:05.352860+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 17
   },
@@ -1511,6 +1511,28 @@
   ],
   "gunlukGorevGecmisi": [
     {
+      "tarih": "14 October",
+      "gunAdi": "Çarşamba",
+      "gorevler": [
+        {
+          "metin": "10.30 okulu",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "17.30 kapanışlarına göz atma",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "FollowUrFirm çıktılarına bakıp geliştirmelerde bulunma",
+          "durum": "Bekliyor"
+        },
+        {
+          "metin": "FitCheck ctrl+enter fonksiyonlarını genişletme",
+          "durum": "Bekliyor"
+        }
+      ]
+    },
+    {
       "tarih": "13 October",
       "gunAdi": "Salı",
       "gorevler": [
@@ -1528,7 +1550,7 @@
         },
         {
           "metin": "Kitap okuma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -1996,10 +2018,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-14T07:12:20Z",
+      "zaman": "2026-10-14T12:58:44Z",
       "durum": "warn",
-      "runId": "38526822259",
+      "runId": "38568008961",
       "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-14T12:31:42Z",
+      "durum": "ok",
+      "runId": "38564485201",
+      "sureSn": 15
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-14T10:00:55Z",
+      "durum": "ok",
+      "runId": "38546559027",
+      "sureSn": 26
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-14T08:32:30Z",
+      "durum": "ok",
+      "runId": "38535836760",
+      "sureSn": 489
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-14T08:24:14Z",
+      "durum": "ok",
+      "runId": "38534853431",
+      "sureSn": 34
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-14T07:25:19Z",
+      "durum": "ok",
+      "runId": "38528207148",
+      "sureSn": 35
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-14T07:12:20Z",
+      "durum": "ok",
+      "runId": "38526822259",
+      "sureSn": 42
     },
     {
       "ad": "Aforizma",
@@ -2056,48 +2120,6 @@
       "durum": "ok",
       "runId": "38478560401",
       "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-13T21:31:34Z",
-      "durum": "ok",
-      "runId": "38471269376",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-13T21:31:33Z",
-      "durum": "ok",
-      "runId": "38471267270",
-      "sureSn": 27
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-13T21:31:32Z",
-      "durum": "ok",
-      "runId": "38471265517",
-      "sureSn": 39
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-13T21:31:30Z",
-      "durum": "ok",
-      "runId": "38471262296",
-      "sureSn": 29
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-13T21:31:26Z",
-      "durum": "ok",
-      "runId": "38471253573",
-      "sureSn": 36
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-13T21:18:57Z",
-      "durum": "ok",
-      "runId": "38469654102",
-      "sureSn": 29
     }
   ],
   "workflowTurOzet": [
@@ -2105,7 +2127,7 @@
       "ad": "Panel",
       "toplam": 8,
       "oran": 88,
-      "ortSureSn": 40
+      "ortSureSn": 39
     },
     {
       "ad": "Aforizma",
@@ -2115,31 +2137,32 @@
     },
     {
       "ad": "Gönder",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 21
-    },
-    {
-      "ad": "Dinle",
       "toplam": 6,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 22
     },
     {
       "ad": "Webhook",
-      "toplam": 9,
+      "toplam": 11,
       "oran": 100,
-      "ortSureSn": 84
+      "ortSureSn": 117
     },
     {
-      "ad": "Temizle",
-      "toplam": 1,
+      "ad": "Dinle",
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 25
+      "ortSureSn": 32
     }
   ],
   "kocKararlari": [],
   "slmKararlari": [
+    {
+      "tarih": "2026-10-14",
+      "saat": "11:40",
+      "kategori": "GUNLUK_GOREV",
+      "ozet": "Günaydın bugünün işleri:\n1. 10.30 okulu\n2. 17.30 kapanışlarına göz atma\n3. Follo",
+      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Kullanıcıya az önce sorduğum, henüz cevap bekleyen bir soru var: sabah sorduğum 'bugün ne yapacaksın' sorusu.\n\nKullanıcı şunu yazdı:\n\"Günaydın bugünün işleri:\n1. 10.30 okulu\n2. 17.30 kapanışlarına göz atma\n3. FollowUrFirm çıktılarına bakıp geliştirmelerde bulunma\n4. FitCheck ctrl+enter fonksiyonlarını genişletme\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor (kullanıcı kendi içeriğini/madde listesini SAĞLIYOR, YENİ görev(ler) olarak eklenmesini istiyor). ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. AMA BU KURAL SORGULA KURALINDAN SONRA GELİR: mesaj soru kipindeyse (mı/mi/mu/mü İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye' gibi soru sözcükleriyle) VE kullanıcı kendi içeriğini SAĞLAMIYORSA (sadece soruyor), 'günlük' kelimesi geçse bile bu SORGULA'dır, GUNLUK_GOREV DEĞİLDİR - ör. 'kalan günlük görevlerim neler' bir SORGULA'dır, içinde 'günlük' geçmesi onu GUNLUK_GOREV yapmaz. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil. AYRICA ÇOK ÖNEMLİ: eğer kullanıcı tırnak içinde bir görev anıp GEÇMİŞ ZAMANLA ('yaptım'/'yapmıştım'/'tamamladım'/'bitirdim' gibi) TAMAMLADIĞINI söylüyorsa, bu GUNLUK_GOREV DEĞİL, GECMIS_GOREV_TAMAMLA'dır - 'günlük' kelimesi geçse bile, YENİ bir görev SAĞLAMIYOR, VAR OLAN bir görevi tamamladığını bildiriyor\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden YENİ bir GÜNLÜK (haftalık DEĞİL) görev/iş EKLİYOR (şimdiki/gelecek zaman: 'ekliyorum', 'ekle', henüz yapılmamış bir şey). 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir.\n- GECMIS_GOREV_TAMAMLA: kullanıcı GEÇMİŞTE (bugün ya da önceki bir günde) kendi eklediği bir GÜNLÜK GÖREVİ (sabit rutin listesinde OLMAYAN, kullanıcının kendi yazdığı ad-hoc bir iş) aslında TAMAMLADIĞINI bildiriyor, kaydı düzeltmek istiyor. ÇOK DİKKAT: YENI_GOREV ile TAM AYNI yüzeysel özelliği (tırnak içinde görev adı) paylaşır - bu ikisini birbirinden ayıran TEK ŞEY FİİLİN ZAMANIDIR, başka hiçbir ipucuna güvenme. Doğrudan karşılaştır (aynı görev metniyle, sadece fiil zamanı farklı):\n    * '\"kitap oku\" ekliyorum' -> YENI_GOREV (şimdiki zaman, henüz yapılmadı, YENİ bir şey ekleniyor)\n    * '\"kitap oku\" yaptım' / '\"kitap oku\" yapmıştım' -> GECMIS_GOREV_TAMAMLA (geçmiş zaman, ZATEN tamamlanmış, sadece kayıt düzeltiliyor, hiçbir şey YENİ eklenmiyor)\nKısacası: 'yaptım'/'yapmıştım'/'tamamladım'/'bitirdim'/'bitirmiştim' gibi GEÇMİŞ ZAMANLI bir fiil + tırnak içinde bir görev adı görürsen, tırnağın kendisine ALDANMA - bu KESİNLİKLE GECMIS_GOREV_TAMAMLA'dır, YENI_GOREV/GUNLUK_GOREV ASLA DEĞİLDİR. Kullanıcı bazen tarih de ekler (ör. '\"kitap oku (2026-07-20)\" yapmıştım' - bu da GECMIS_GOREV_TAMAMLA'dır)\n- GOREV_SIL: kullanıcı GEÇMİŞTE eklediği bir GÜNLÜK GÖREVİ ya da HAFTALIK HEDEFİ listeden TAMAMEN SİLMEK/KALDIRMAK istiyor, ör. '\"kitap oku\" görevini sil', '\"piyano çal\" hedefinden vazgeçtim, kaldır'. GECMIS_GOREV_TAMAMLA İLE KARIŞTIRMA - o durumu 'Yapıldı' olarak İŞARETLER (tamamlandı), bu ise satırı TAMAMEN KALDIRIR (hiç yapılmayacak/vazgeçildi). Fiile dikkat: 'sil'/'kaldır'/'vazgeçtim'/'çıkar' -> GOREV_SIL; 'yaptım'/'tamamladım' -> GECMIS_GOREV_TAMAMLA\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music', 'Haftada 3 gün spor'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim', 'kalan günlük görevlerim neler'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb. İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye/kim' gibi soru sözcükleriyle) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır. AYRICA ÖNEMLİ: kullanıcı GEÇMİŞ bir tarihe ait görev/rutin bilgisini istiyorsa (ör. 'dün ne yapmıştım', '22 Temmuz'dan kalan görevlerimi istiyorum', 'geçen hafta salı ne yapacaktım') bu DA SORGULA'dır, SOHBET DEĞİLDİR - tarihin bugün olmaması onu SOHBET yapmaz, sadece geçmişe dönük bir SORGULA örneğidir\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music', 'Haftada 3 gün spor'. Diğer TIP'lerde boş bırak>\nSURE_DAKIKA: <SADECE TIP=BOSA_VAKIT ise: kullanıcının anlattığı TOPLAM süreyi DAKİKA cinsinden tam sayı olarak yaz (ör. '1 saat 30 dakika' -> 90, 'yaklaşık 40 dakika' -> 40, '2 saat' -> 120, '60 dakika Instagram 30 dakika YouTube' -> 90 - hepsini TOPLA). Net bir süre çıkaramıyorsan boş bırak. Diğer TIP'lerde boş bırak>\nFAYDALI_DAKIKA: <SADECE TIP=BOSA_VAKIT ise VE kullanıcı bu sürenin bir kısmının FAYDALI/ÜRETKEN içerik olduğunu SAYISAL olarak belirtmişse (ör. '30 dakikası faydalı bir video izlemekti', '20 dakika belgesel de vardı') o sayıyı yaz. Kullanıcı sadece belirsiz bir ifade kullanmışsa ('bir kısmı faydalıydı', 'kısmen faydalıydı' gibi - SAYI VERMEMİŞSE) BOŞ BIRAK, sayı uydurma. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise bu alanı boş bırakabilirsin - asıl cevap ayrıca Python tarafında, o günün gerçek görev/rutin durumuna bakılarak oluşturuluyor. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: GUNLUK_GOREV\nGOREVLER: 10.30 okulu | 17.30 kapanışlarına göz atma | FollowUrFirm çıktılarına bakıp geliştirmelerde bulunma | FitCheck ctrl+enter fonksiyonlarını genişletme\nRUTIN: \nSURE_DAKİKA: \nFAYDALI_DAKİKA:"
+    },
     {
       "tarih": "2026-10-13",
       "saat": "10:18",
@@ -2272,19 +2295,12 @@
       "kategori": "SORGULA",
       "ozet": "silinebilecek görevlerimi listele",
       "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok.\n\nKullanıcı şunu yazdı:\n\"silinebilecek görevlerimi listele\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor (kullanıcı kendi içeriğini/madde listesini SAĞLIYOR, YENİ görev(ler) olarak eklenmesini istiyor). ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. AMA BU KURAL SORGULA KURALINDAN SONRA GELİR: mesaj soru kipindeyse (mı/mi/mu/mü İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye' gibi soru sözcükleriyle) VE kullanıcı kendi içeriğini SAĞLAMIYORSA (sadece soruyor), 'günlük' kelimesi geçse bile bu SORGULA'dır, GUNLUK_GOREV DEĞİLDİR - ör. 'kalan günlük görevlerim neler' bir SORGULA'dır, içinde 'günlük' geçmesi onu GUNLUK_GOREV yapmaz. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil. AYRICA ÇOK ÖNEMLİ: eğer kullanıcı tırnak içinde bir görev anıp GEÇMİŞ ZAMANLA ('yaptım'/'yapmıştım'/'tamamladım'/'bitirdim' gibi) TAMAMLADIĞINI söylüyorsa, bu GUNLUK_GOREV DEĞİL, GECMIS_GOREV_TAMAMLA'dır - 'günlük' kelimesi geçse bile, YENİ bir görev SAĞLAMIYOR, VAR OLAN bir görevi tamamladığını bildiriyor\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden YENİ bir GÜNLÜK (haftalık DEĞİL) görev/iş EKLİYOR (şimdiki/gelecek zaman: 'ekliyorum', 'ekle', henüz yapılmamış bir şey). 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir.\n- GECMIS_GOREV_TAMAMLA: kullanıcı GEÇMİŞTE (bugün ya da önceki bir günde) kendi eklediği bir GÜNLÜK GÖREVİ (sabit rutin listesinde OLMAYAN, kullanıcının kendi yazdığı ad-hoc bir iş) aslında TAMAMLADIĞINI bildiriyor, kaydı düzeltmek istiyor. ÇOK DİKKAT: YENI_GOREV ile TAM AYNI yüzeysel özelliği (tırnak içinde görev adı) paylaşır - bu ikisini birbirinden ayıran TEK ŞEY FİİLİN ZAMANIDIR, başka hiçbir ipucuna güvenme. Doğrudan karşılaştır (aynı görev metniyle, sadece fiil zamanı farklı):\n    * '\"kitap oku\" ekliyorum' -> YENI_GOREV (şimdiki zaman, henüz yapılmadı, YENİ bir şey ekleniyor)\n    * '\"kitap oku\" yaptım' / '\"kitap oku\" yapmıştım' -> GECMIS_GOREV_TAMAMLA (geçmiş zaman, ZATEN tamamlanmış, sadece kayıt düzeltiliyor, hiçbir şey YENİ eklenmiyor)\nKısacası: 'yaptım'/'yapmıştım'/'tamamladım'/'bitirdim'/'bitirmiştim' gibi GEÇMİŞ ZAMANLI bir fiil + tırnak içinde bir görev adı görürsen, tırnağın kendisine ALDANMA - bu KESİNLİKLE GECMIS_GOREV_TAMAMLA'dır, YENI_GOREV/GUNLUK_GOREV ASLA DEĞİLDİR. Kullanıcı bazen tarih de ekler (ör. '\"kitap oku (2026-07-20)\" yapmıştım' - bu da GECMIS_GOREV_TAMAMLA'dır)\n- GOREV_SIL: kullanıcı GEÇMİŞTE eklediği bir GÜNLÜK GÖREVİ ya da HAFTALIK HEDEFİ listeden TAMAMEN SİLMEK/KALDIRMAK istiyor, ör. '\"kitap oku\" görevini sil', '\"piyano çal\" hedefinden vazgeçtim, kaldır'. GECMIS_GOREV_TAMAMLA İLE KARIŞTIRMA - o durumu 'Yapıldı' olarak İŞARETLER (tamamlandı), bu ise satırı TAMAMEN KALDIRIR (hiç yapılmayacak/vazgeçildi). Fiile dikkat: 'sil'/'kaldır'/'vazgeçtim'/'çıkar' -> GOREV_SIL; 'yaptım'/'tamamladım' -> GECMIS_GOREV_TAMAMLA\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music', 'Haftada 3 gün spor'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim', 'kalan günlük görevlerim neler'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb. İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye/kim' gibi soru sözcükleriyle) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır. AYRICA ÖNEMLİ: kullanıcı GEÇMİŞ bir tarihe ait görev/rutin bilgisini istiyorsa (ör. 'dün ne yapmıştım', '22 Temmuz'dan kalan görevlerimi istiyorum', 'geçen hafta salı ne yapacaktım') bu DA SORGULA'dır, SOHBET DEĞİLDİR - tarihin bugün olmaması onu SOHBET yapmaz, sadece geçmişe dönük bir SORGULA örneğidir\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music', 'Haftada 3 gün spor'. Diğer TIP'lerde boş bırak>\nSURE_DAKIKA: <SADECE TIP=BOSA_VAKIT ise: kullanıcının anlattığı TOPLAM süreyi DAKİKA cinsinden tam sayı olarak yaz (ör. '1 saat 30 dakika' -> 90, 'yaklaşık 40 dakika' -> 40, '2 saat' -> 120, '60 dakika Instagram 30 dakika YouTube' -> 90 - hepsini TOPLA). Net bir süre çıkaramıyorsan boş bırak. Diğer TIP'lerde boş bırak>\nFAYDALI_DAKIKA: <SADECE TIP=BOSA_VAKIT ise VE kullanıcı bu sürenin bir kısmının FAYDALI/ÜRETKEN içerik olduğunu SAYISAL olarak belirtmişse (ör. '30 dakikası faydalı bir video izlemekti', '20 dakika belgesel de vardı') o sayıyı yaz. Kullanıcı sadece belirsiz bir ifade kullanmışsa ('bir kısmı faydalıydı', 'kısmen faydalıydı' gibi - SAYI VERMEMİŞSE) BOŞ BIRAK, sayı uydurma. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise bu alanı boş bırakabilirsin - asıl cevap ayrıca Python tarafında, o günün gerçek görev/rutin durumuna bakılarak oluşturuluyor. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: GUNLUK_GOREV\nGOREVLER: \nRUTIN: \nSURE_DAKIKA: \nFAYDALI_DAKIKA: \nCEVAP: Size silinebilecek görevlerinizi listelemek için şu görevleri kontrol edebilirsiniz: \"Evden temizlik yap\", \"kitap oku\", \"spor yap\". Lütfen bu görevlerden gereksiz olanları silin."
-    },
-    {
-      "tarih": "2026-10-03",
-      "saat": "11:43",
-      "kategori": "YENI_GOREV",
-      "ozet": "\"Claude cop kutusu test gorevi\" ekliyorum",
-      "detay": "PROMPT:\nSen bir verimlilik takip botusun (adın Poke). Şu an kullanıcıya sorduğum, cevap beklediğim bir soru yok.\n\nKullanıcı şunu yazdı:\n\"\"Claude cop kutusu test gorevi\" ekliyorum\"\n\nBu mesajı aşağıdaki kategorilerden EN UYGUN olanına ata (bekleyen soru sadece bir ipucu, mesajın gerçek içeriğine göre karar ver - biri başka bir konuda yazmış olabilir):\n- GUNLUK_GOREV: bugün için yapılacaklar listesi veriyor (kullanıcı kendi içeriğini/madde listesini SAĞLIYOR, YENİ görev(ler) olarak eklenmesini istiyor). ÇOK ÖNEMLİ KURAL: 'bugün/bugünkü/günlük' kelimelerinden HERHANGİ biri geçiyorsa VE 'hafta/haftalık' kelimesi HİÇ GEÇMİYORSA, bu KESİNLİKLE GUNLUK_GOREV'dir, HAFTALIK_HEDEF ASLA DEĞİLDİR - liste veriyor olması (madde madde yazması) seni HAFTALIK_HEDEF sanmaya İTMESİN. AMA BU KURAL SORGULA KURALINDAN SONRA GELİR: mesaj soru kipindeyse (mı/mi/mu/mü İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye' gibi soru sözcükleriyle) VE kullanıcı kendi içeriğini SAĞLAMIYORSA (sadece soruyor), 'günlük' kelimesi geçse bile bu SORGULA'dır, GUNLUK_GOREV DEĞİLDİR - ör. 'kalan günlük görevlerim neler' bir SORGULA'dır, içinde 'günlük' geçmesi onu GUNLUK_GOREV yapmaz. HAFTALIK_HEDEF SADECE 'hafta/haftalık' kelimesi AÇIKÇA geçtiğinde kullanılır, başka hiçbir durumda değil. AYRICA ÇOK ÖNEMLİ: eğer kullanıcı tırnak içinde bir görev anıp GEÇMİŞ ZAMANLA ('yaptım'/'yapmıştım'/'tamamladım'/'bitirdim' gibi) TAMAMLADIĞINI söylüyorsa, bu GUNLUK_GOREV DEĞİL, GECMIS_GOREV_TAMAMLA'dır - 'günlük' kelimesi geçse bile, YENİ bir görev SAĞLAMIYOR, VAR OLAN bir görevi tamamladığını bildiriyor\n- HAFTALIK_HEDEF: bu haftanın hedeflerini veriyor VEYA mevcut haftalık hedeflere yeni ekleme yapıyor (ör. 'haftalık hedeflere ekle: piyano çal' - 'hafta/haftalık' kelimesi + ekleme niyeti varsa bu kategori, YENI_GOREV DEĞİL)\n- BOSA_VAKIT: bugün ne kadar boşa vakit geçirdiğini anlatıyor\n- YENI_GOREV: herhangi bir an kendiliğinden YENİ bir GÜNLÜK (haftalık DEĞİL) görev/iş EKLİYOR (şimdiki/gelecek zaman: 'ekliyorum', 'ekle', henüz yapılmamış bir şey). 'hafta/haftalık' kelimesi GEÇMİYORSA bu kategori kullanılır. Kullanıcı genelde eklenecek görev(ler)i tırnak içinde yazar, ör: 'bugüne şunu ekliyorum: \"kitap oku\", \"spor yap\"' - birden fazla görev aynı mesajda olabilir.\n- GECMIS_GOREV_TAMAMLA: kullanıcı GEÇMİŞTE (bugün ya da önceki bir günde) kendi eklediği bir GÜNLÜK GÖREVİ (sabit rutin listesinde OLMAYAN, kullanıcının kendi yazdığı ad-hoc bir iş) aslında TAMAMLADIĞINI bildiriyor, kaydı düzeltmek istiyor. ÇOK DİKKAT: YENI_GOREV ile TAM AYNI yüzeysel özelliği (tırnak içinde görev adı) paylaşır - bu ikisini birbirinden ayıran TEK ŞEY FİİLİN ZAMANIDIR, başka hiçbir ipucuna güvenme. Doğrudan karşılaştır (aynı görev metniyle, sadece fiil zamanı farklı):\n    * '\"kitap oku\" ekliyorum' -> YENI_GOREV (şimdiki zaman, henüz yapılmadı, YENİ bir şey ekleniyor)\n    * '\"kitap oku\" yaptım' / '\"kitap oku\" yapmıştım' -> GECMIS_GOREV_TAMAMLA (geçmiş zaman, ZATEN tamamlanmış, sadece kayıt düzeltiliyor, hiçbir şey YENİ eklenmiyor)\nKısacası: 'yaptım'/'yapmıştım'/'tamamladım'/'bitirdim'/'bitirmiştim' gibi GEÇMİŞ ZAMANLI bir fiil + tırnak içinde bir görev adı görürsen, tırnağın kendisine ALDANMA - bu KESİNLİKLE GECMIS_GOREV_TAMAMLA'dır, YENI_GOREV/GUNLUK_GOREV ASLA DEĞİLDİR. Kullanıcı bazen tarih de ekler (ör. '\"kitap oku (2026-07-20)\" yapmıştım' - bu da GECMIS_GOREV_TAMAMLA'dır)\n- GOREV_SIL: kullanıcı GEÇMİŞTE eklediği bir GÜNLÜK GÖREVİ ya da HAFTALIK HEDEFİ listeden TAMAMEN SİLMEK/KALDIRMAK istiyor, ör. '\"kitap oku\" görevini sil', '\"piyano çal\" hedefinden vazgeçtim, kaldır'. GECMIS_GOREV_TAMAMLA İLE KARIŞTIRMA - o durumu 'Yapıldı' olarak İŞARETLER (tamamlandı), bu ise satırı TAMAMEN KALDIRIR (hiç yapılmayacak/vazgeçildi). Fiile dikkat: 'sil'/'kaldır'/'vazgeçtim'/'çıkar' -> GOREV_SIL; 'yaptım'/'tamamladım' -> GECMIS_GOREV_TAMAMLA\n- RUTIN_TAMAMLA: kullanıcı şu sabit GÜNLÜK rutinlerden birini tamamladığını bildiriyor: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing'. VEYA şu HAFTALIK (tekrarlayan, hangi gün önemli değil) rutinlerden birini: 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music', 'Haftada 3 gün spor'. Ör: 'Fransızca rutinimi tamamladım', 'bugün spor yaptım', 'oda tozunu aldım' gibi doğal cümleler. YENI_GOREV ile KARIŞTIRMA - bu kategori sadece yukarıdaki listelerdeki rutinler için\n- SORGULA: kullanıcı bir şeyi EKLEMİYOR, var olan bilgiyi SORUYOR/İSTİYOR/HATIRLATMAMI istiyor. Ör: 'bugünkü görevlerimi hatırlatır mısın', 'bu hafta hedeflerim neydi', 'hangi rutinleri kaçırdım', 'bugünkü rutin tamamlama listemi gönderir misin', 'durumum ne', 'ne kadar ilerledim', 'kalan günlük görevlerim neler'. ÖNEMLİ KURAL: eğer cümle soru kipiyle bitiyorsa (mı/mi/mu/mü/misin/mısın/mısınız vb. İLE YA DA 'ne/neler/nedir/kaç/hangi/nereye/kim' gibi soru sözcükleriyle) VE kullanıcı kendisi bir liste/içerik SAĞLAMIYORSA (sadece istek/talep var), bu KESİNLİKLE SORGULA'dır, ASLA GUNLUK_GOREV/HAFTALIK_HEDEF/YENI_GOREV değildir - o kategoriler SADECE kullanıcı kendi içeriğini (görev/hedef metni) verdiğinde kullanılır. AYRICA ÖNEMLİ: kullanıcı GEÇMİŞ bir tarihe ait görev/rutin bilgisini istiyorsa (ör. 'dün ne yapmıştım', '22 Temmuz'dan kalan görevlerimi istiyorum', 'geçen hafta salı ne yapacaktım') bu DA SORGULA'dır, SOHBET DEĞİLDİR - tarihin bugün olmaması onu SOHBET yapmaz, sadece geçmişe dönük bir SORGULA örneğidir\n- SOHBET: yukarıdakilerin hiçbiriyle ilgili değil, genel sohbet/soru\n\nSADECE şu formatta cevap ver, başka hiçbir şey ekleme:\nTIP: <KATEGORI>\nGOREVLER: <SADECE TIP=YENI_GOREV ise: her görevi \" | \" ile ayırarak yaz (tırnak işaretleri olmadan). Diğer TIP'lerde boş bırak>\nRUTIN: <SADECE TIP=RUTIN_TAMAMLA ise: şu listelerden BİREBİR aynı şekilde yaz, birden fazla rutin tamamlandıysa \" | \" ile ayır: 'Fransızca çalışma', 'Sabah telefonsuzluğu', 'Gece telefonsuzluğu', 'Verimli video izleme', 'Mewing', 'Oda tozu alma', 'Uzun metraj izlence', 'Making Music', 'Haftada 3 gün spor'. Diğer TIP'lerde boş bırak>\nSURE_DAKIKA: <SADECE TIP=BOSA_VAKIT ise: kullanıcının anlattığı TOPLAM süreyi DAKİKA cinsinden tam sayı olarak yaz (ör. '1 saat 30 dakika' -> 90, 'yaklaşık 40 dakika' -> 40, '2 saat' -> 120, '60 dakika Instagram 30 dakika YouTube' -> 90 - hepsini TOPLA). Net bir süre çıkaramıyorsan boş bırak. Diğer TIP'lerde boş bırak>\nFAYDALI_DAKIKA: <SADECE TIP=BOSA_VAKIT ise VE kullanıcı bu sürenin bir kısmının FAYDALI/ÜRETKEN içerik olduğunu SAYISAL olarak belirtmişse (ör. '30 dakikası faydalı bir video izlemekti', '20 dakika belgesel de vardı') o sayıyı yaz. Kullanıcı sadece belirsiz bir ifade kullanmışsa ('bir kısmı faydalıydı', 'kısmen faydalıydı' gibi - SAYI VERMEMİŞSE) BOŞ BIRAK, sayı uydurma. Diğer TIP'lerde boş bırak>\nCEVAP: <kullanıcıya vereceğin kısa (1-2 cümle), doğal, samimi Türkçe yanıt - SADECE Türkçe ve Latin alfabesi kullan, başka dil/alfabe YASAK. TIP=BOSA_VAKIT ise bu alanı boş bırakabilirsin - asıl cevap ayrıca Python tarafında, o günün gerçek görev/rutin durumuna bakılarak oluşturuluyor. ÇOK ÖNEMLİ KURAL: TIP=SOHBET ya da SORGULA ise, ASLA 'kaydettim', 'ekledim', 'belirledim', 'işledim' gibi bir EYLEMİ YAPMIŞ GİBİ KONUŞMA - bu kategorilerde HİÇBİR ŞEY KAYDEDİLMEZ, sadece konuşma/soru cevabı verilir. Yapılmamış bir şeyi yapmış gibi söylemek YASAK.\n\nCEVAP (ham):\nTIP: YENI_GOREV\nGOREVLER: claude cop kutusu test\nRUTIN: \nSURE_DAKİKA: \nFAYDALI_DAKİKA:"
     }
   ],
   "slmDagilim": [
     {
       "kategori": "GUNLUK_GOREV",
-      "sayi": 106
+      "sayi": 107
     },
     {
       "kategori": "SORGULA",
@@ -2316,6 +2332,16 @@
     }
   ],
   "hataGecmisi": [
+    {
+      "tarih": "2026-10-14",
+      "saat": "11:39",
+      "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
+    },
+    {
+      "tarih": "2026-10-14",
+      "saat": "11:37",
+      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
+    },
     {
       "tarih": "2026-10-13",
       "saat": "10:16",
@@ -2380,16 +2406,6 @@
       "tarih": "2026-10-05",
       "saat": "10:20",
       "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
-    },
-    {
-      "tarih": "2026-10-05",
-      "saat": "10:18",
-      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
-    },
-    {
-      "tarih": "2026-10-05",
-      "saat": "10:18",
-      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
     }
   ]
 }
