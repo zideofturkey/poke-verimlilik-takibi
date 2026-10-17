@@ -1597,15 +1597,49 @@ def _sorgu_niyeti_var_mi(metin_kucuk):
     kaçırıldı) - bu yüzden asıl güvence bu listede değil, aşağıdaki
     _kural_tahmini'nin tek-maddeli mesajlarda salt bir İSİM (görevlerim/
     hedeflerim) yerine GERÇEK BİR EYLEM FİİLİ (ekle/kaydet) arayan yapısal
-    tasarımında - bu liste sadece ek bir hızlı-yakalama katmanı."""
-    sorgu_kaliplari = [
-        "sorgula", "göster", "listele", "hatırlat", "nedir", "neydi",
-        "neler", "ne kadar", "hangi", "gönderir misin", "gönder misin",
-        "gönder", "söyler misin", "yazar mısın", "durumum ne", "ilerledim mi",
-        "kaçırdım", "ne kadar ilerledim", "kaç tane", "nerede", "kimin",
+    tasarımında - bu liste sadece ek bir hızlı-yakalama katmanı.
+
+    GERÇEK OLAY (2026-10-17): bu kontrol düz bir substring check'ti (`k in
+    metin_kucuk`), kelime sınırı YOKTU. Kullanıcının 6 maddelik günlük
+    görev listesindeki '... listelerini düzenleme' maddesi, içinde
+    'listele' alt-dizisini barındırdığı için (lis-TELE-rini) bu kalıpla
+    EŞLEŞTİ ve TÜM mesaj yanlışlıkla bir sorgu/istek sanıldı - kural
+    SORGULA dedi, SLM(7b) doğru şekilde GUNLUK_GOREV demiş olsa bile bu
+    anlaşmazlık 14b'ye eskale oldu ve 14b o anki Ollama kesintisi
+    (son_hata.txt: ReadTimeoutError) yüzünden hiç çalışamadı - kod bu
+    durumda SLM'in (7b'nin doğru) kararında kalması gerekirken, aslında
+    kuralın SORGULA'sına düşülmüş gözlemlendi (bkz. SLMLog/AnlasmazlikLog).
+    Bu, README'nin "whack-a-mole sabit kelime listesi" dersinin (madde
+    bazında regex ile kelime sınırı kullanmak gerektiği) bu listede hiç
+    uygulanmamış olmasının sonucu. Artık tek-kök kalıplar (sorgula/göster/
+    listele/hatırlat/nedir/neydi/neler/hangi/gönder/nerede/kimin/kaçırdım)
+    kelime BAŞI sınırıyla (\\b) VE hemen ardından ya kelime sonu ya da
+    bilinen bir fiil-çekim eki (ör. '-r misin', '-ir misin', '-elim',
+    '-eyim', boşluk+'mi/mu/mü') gelmesi şartıyla eşleşiyor - 'listele'
+    tek başına ya da 'listele misin/listeler misin' gibi devam ederken
+    eşleşir, ama 'listelerini' (devamında İYELİK eki gelen bir isim)
+    eşleşmez. Çok kelimeli kalıplar (ör. 'ne kadar', 'gönder misin') zaten
+    boşlukla doğal olarak sınırlı, değişmeden kaldı."""
+    coklu_kelime_kaliplari = [
+        "ne kadar", "gönderir misin", "gönder misin", "söyler misin",
+        "yazar mısın", "durumum ne", "ilerledim mi", "ne kadar ilerledim",
+        "kaç tane",
     ]
-    if any(k in metin_kucuk for k in sorgu_kaliplari):
+    if any(k in metin_kucuk for k in coklu_kelime_kaliplari):
         return True
+
+    # Tek-kök kalıplar: kelime BAŞI sınırı (\\b) + kökün hemen ardından
+    # "r + harf" (listeLERini, listeLERim: çoğul+iyelik/hal eki alan bir
+    # İSİM) ya da bilinen isim türevleri (gösterge/gösteriş) GELMEMELİ.
+    # Fiil çekimleri (listele, listele., listeler misin, listeleyin,
+    # gösterir misin, hatırlatır mısın, gönderdim) eskisi gibi eşleşir.
+    tek_kok_kaliplari = [
+        "sorgula", "göster", "listele", "hatırlat", "nedir", "neydi",
+        "neler", "hangi", "gönder", "nerede", "kimin", "kaçırdım",
+    ]
+    for kok in tek_kok_kaliplari:
+        if re.search(rf"\b{kok}(?!r\w)(?!ge)(?!iş)", metin_kucuk):
+            return True
     # Soru kipi PARÇACIĞI (mı/mi/mu/mü ve türevleri) - Türkçe'de bu her
     # zaman AYRI bir kelimedir ('yaptın mı', 'geliyor musun'), bir isme
     # SUFFIX olarak eklenmez. Önceki hâlde baştaki '\w*' bu ayrımı
@@ -1635,7 +1669,11 @@ def _kural_tahmini(text):
         "kaydet", "kayıt et", "ekliyorum", "yazıyorum",
     ]) or _ekle_koku_var_mi(metin_kucuk)
 
-    if _sorgu_niyeti_var_mi(metin_kucuk):
+    numarali_satir_sayisi = len(re.findall(r"(?m)^\s*\d+[\.\)\-]", text))
+    # YAPISAL SAVUNMA (2026-10-17 olayı): 3+ numaralı satırlık bir liste
+    # sorgu değil içerik sağlamadır; tek bir kelime eşleşmesi (ör.
+    # 'listelerini') bunu SORGULA'ya çevirmemeli.
+    if numarali_satir_sayisi < 3 and _sorgu_niyeti_var_mi(metin_kucuk):
         if kaydet_niyeti_var:
             # Karışık/belirsiz sinyal (hem sorgu hem kaydetme kelimesi
             # var) - eski davranışla aynı: kural sessiz kalır, SLM'in
@@ -1725,11 +1763,26 @@ def _kural_tahmini(text):
         # 'ekle/kaydet' fiili aramaya GEREK YOK, tam da bu yüzden numaralı
         # liste akışları (ör. 'bugünkü görevlerim: 1) ... 2) ...') zaten
         # hiç 'ekle' fiili içermeden çalışıyordu ve çalışmaya devam etmeli.
+        #
+        # GERÇEK OLAY (2026-10-17): Kullanıcı "1. 12.00 work-out\n2. ...\n
+        # ...\n6. ..." şeklinde 6 maddelik, çok satırlı bir günlük görev
+        # listesi gönderdi - AMA mesajda ne "günlük" ne "bugün" kelimesi
+        # geçiyordu (sadece saat + madde sıralanmıştı). gunluk_sinyali=
+        # False olduğu için bu kural None döndü, karar TAMAMEN SLM'e
+        # kaldı - ve SLM o anda Ollama'nın timeout/yeniden-başlatma
+        # döngüsünden geçerken (son_hata.txt: ReadTimeoutError) yanlışlıkla
+        # SORGULA dedi, hiçbir görev kaydedilmedi. "günlük"/"bugün"
+        # kelimesine bağımlı olmak, açık uçlu Türkçe ifadeler için doğası
+        # gereği eksik bir whack-a-mole kalıbıydı (README'deki ders).
+        # Düzeltme: çok maddeli bir liste zaten dictation sinyali - haftalık
+        # sinyali YOKSA, "günlük"/"bugün" kelimesi hiç geçmese de GÜVENLE
+        # GUNLUK_GOREV sayılabilir (haftalık bir niyetin aksi ispat
+        # edilmemiş hali, günlük varsayılan). Sadece haftalık_sinyali varsa
+        # ve günlük_sinyali yoksa HAFTALIK_HEDEF'e gidiyoruz; aksi halde
+        # (günlük sinyali var YA DA hiçbir sinyal yoksa) GUNLUK_GOREV.
         if haftalik_sinyali and not gunluk_sinyali:
             return "HAFTALIK_HEDEF"
-        if gunluk_sinyali:
-            return "GUNLUK_GOREV"
-        return None
+        return "GUNLUK_GOREV"
 
     # TEK maddelik mesajlarda durum FARKLI ve daha riskli: 'görevlerim/
     # hedeflerim/yapacaklarım' gibi bir İSMİN varlığı TEK BAŞINA yeterli
