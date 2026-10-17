@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-17T03:14:04.019121+03:00",
+  "uretim_zamani": "2026-10-17T07:50:47.517268+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 49
   },
@@ -2086,10 +2086,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-17T00:13:48Z",
+      "zaman": "2026-10-17T04:50:25Z",
       "durum": "warn",
-      "runId": "38985387480",
+      "runId": "39004063274",
       "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-17T04:02:36Z",
+      "durum": "ok",
+      "runId": "39001069930",
+      "sureSn": 29
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-17T01:52:57Z",
+      "durum": "ok",
+      "runId": "38992701881",
+      "sureSn": 12
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-17T00:13:48Z",
+      "durum": "ok",
+      "runId": "38985387480",
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -2167,51 +2188,30 @@
       "durum": "ok",
       "runId": "38944219670",
       "sureSn": 39
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-16T18:00:52Z",
-      "durum": "ok",
-      "runId": "38944068301",
-      "sureSn": 25
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-16T17:54:39Z",
-      "durum": "ok",
-      "runId": "38943291686",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-10-16T17:47:17Z",
-      "durum": "ok",
-      "runId": "38942357521",
-      "sureSn": 355
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 7,
-      "oran": 86,
-      "ortSureSn": 41
-    },
-    {
-      "ad": "Aforizma",
       "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 16
+      "oran": 88,
+      "ortSureSn": 42
     },
     {
       "ad": "Dinle",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
       "ortSureSn": 27
     },
     {
+      "ad": "Aforizma",
+      "toplam": 9,
+      "oran": 100,
+      "ortSureSn": 16
+    },
+    {
       "ad": "Webhook",
-      "toplam": 15,
+      "toplam": 12,
       "oran": 100,
       "ortSureSn": 88
     },
