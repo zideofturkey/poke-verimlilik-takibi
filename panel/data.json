@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-22T08:12:40.948079+03:00",
+  "uretim_zamani": "2026-10-22T13:27:19.077991+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -1567,7 +1567,7 @@
         },
         {
           "metin": "Seminer dersi kendi bölümünü tamamlama",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "Busined’s cron-job kurma ve geliştirme",
@@ -1575,7 +1575,7 @@
         },
         {
           "metin": "Vakit kalırsa FitCheck gramaj-adet mantığını kurgulama",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -2202,10 +2202,45 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-22T05:12:22Z",
+      "zaman": "2026-10-22T10:27:02Z",
       "durum": "warn",
-      "runId": "39726683542",
+      "runId": "39763180110",
       "sureSn": 4
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-22T10:00:28Z",
+      "durum": "ok",
+      "runId": "39759795695",
+      "sureSn": 21
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-22T09:58:40Z",
+      "durum": "ok",
+      "runId": "39759563356",
+      "sureSn": 35
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-22T06:45:47Z",
+      "durum": "ok",
+      "runId": "39735989170",
+      "sureSn": 16
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-22T06:00:29Z",
+      "durum": "ok",
+      "runId": "39731285753",
+      "sureSn": 20
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-22T05:12:22Z",
+      "durum": "ok",
+      "runId": "39726683542",
+      "sureSn": 42
     },
     {
       "ad": "Dinle",
@@ -2269,49 +2304,20 @@
       "durum": "ok",
       "runId": "39648831573",
       "sureSn": 23
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-21T17:32:33Z",
-      "durum": "ok",
-      "runId": "39644715506",
-      "sureSn": 53
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-21T17:25:15Z",
-      "durum": "ok",
-      "runId": "39643628970",
-      "sureSn": 14
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-21T17:00:29Z",
-      "durum": "ok",
-      "runId": "39639881826",
-      "sureSn": 25
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-21T15:05:52Z",
-      "durum": "ok",
-      "runId": "39622628687",
-      "sureSn": 120
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-21T14:00:29Z",
-      "durum": "ok",
-      "runId": "39612989118",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 40
+      "toplam": 10,
+      "oran": 90,
+      "ortSureSn": 41
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Dinle",
@@ -2323,19 +2329,13 @@
       "ad": "Aforizma",
       "toplam": 10,
       "oran": 100,
-      "ortSureSn": 17
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 6,
-      "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 16
     },
     {
       "ad": "Webhook",
-      "toplam": 6,
+      "toplam": 4,
       "oran": 100,
-      "ortSureSn": 35
+      "ortSureSn": 32
     }
   ],
   "kocKararlari": [],
