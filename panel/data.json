@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-10-27T18:49:20.554644+03:00",
+  "uretim_zamani": "2026-10-27T23:28:28.641280+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 37
   },
@@ -1524,11 +1524,11 @@
       "gorevler": [
         {
           "metin": "9.00 sporu",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "11.00 dersi",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "FollowUrFirm için Opus hasbihali",
@@ -1540,7 +1540,7 @@
         },
         {
           "metin": "Kahveli 20 sayfa kitap",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -2318,10 +2318,59 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-10-27T15:49:05Z",
+      "zaman": "2026-10-27T20:28:09Z",
       "durum": "warn",
+      "runId": "40578311382",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-27T18:49:36Z",
+      "durum": "ok",
+      "runId": "40563552575",
+      "sureSn": 42
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-27T18:49:34Z",
+      "durum": "ok",
+      "runId": "40563547419",
+      "sureSn": 40
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-10-27T18:49:31Z",
+      "durum": "ok",
+      "runId": "40563539162",
+      "sureSn": 41
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-10-27T18:00:52Z",
+      "durum": "ok",
+      "runId": "40555955101",
+      "sureSn": 24
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-10-27T16:34:24Z",
+      "durum": "ok",
+      "runId": "40542228817",
+      "sureSn": 22
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-10-27T16:22:03Z",
+      "durum": "ok",
+      "runId": "40540200680",
+      "sureSn": 33
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-10-27T15:49:05Z",
+      "durum": "ok",
       "runId": "40534737418",
-      "sureSn": 3
+      "sureSn": 43
     },
     {
       "ad": "Gönder",
@@ -2371,55 +2420,6 @@
       "durum": "ok",
       "runId": "40463634755",
       "sureSn": 221
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-10-27T06:00:11Z",
-      "durum": "ok",
-      "runId": "40458511663",
-      "sureSn": 19
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-27T05:46:20Z",
-      "durum": "ok",
-      "runId": "40457209141",
-      "sureSn": 20
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-27T04:42:00Z",
-      "durum": "ok",
-      "runId": "40451166498",
-      "sureSn": 30
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-27T04:02:46Z",
-      "durum": "ok",
-      "runId": "40447539015",
-      "sureSn": 45
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-10-27T00:50:07Z",
-      "durum": "ok",
-      "runId": "40428887287",
-      "sureSn": 14
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-10-26T23:41:58Z",
-      "durum": "ok",
-      "runId": "40421508390",
-      "sureSn": 25
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-10-26T23:36:01Z",
-      "durum": "ok",
-      "runId": "40420847638",
-      "sureSn": 46
     }
   ],
   "workflowTurOzet": [
@@ -2427,37 +2427,31 @@
       "ad": "Panel",
       "toplam": 7,
       "oran": 86,
-      "ortSureSn": 39
+      "ortSureSn": 38
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 14,
+      "oran": 100,
+      "ortSureSn": 59
     },
     {
       "ad": "Gönder",
       "toplam": 6,
       "oran": 100,
-      "ortSureSn": 60
+      "ortSureSn": 61
     },
     {
       "ad": "Aforizma",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 16
+      "ortSureSn": 17
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
+      "toplam": 6,
       "oran": 100,
       "ortSureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 15,
-      "oran": 100,
-      "ortSureSn": 72
-    },
-    {
-      "ad": "Temizle",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 23
     }
   ],
   "kocKararlari": [],
