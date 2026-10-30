@@ -283,6 +283,45 @@
     color: var(--white);
   }
 
+  /* ---------- SAYFA GEÇMİŞİ İÇİN SAYFALAMA (pager) ---------- */
+  .pager {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pager-btn {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 4px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    min-width: 30px;
+  }
+
+  .pager-btn.active {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+
+  .pager-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .pager-btn:not(:disabled):not(.active):hover {
+    background: var(--bg);
+  }
+
   .section-divider {
     height: 1px;
     background: var(--border);
@@ -604,6 +643,7 @@
         <tbody id="gunlukTablo"></tbody>
       </table>
       </div>
+      <div class="pager" id="gunlukPager"></div>
     </div>
 
     <div class="section">
@@ -619,6 +659,7 @@
         <tbody id="hedefTablo"></tbody>
       </table>
       </div>
+      <div class="pager" id="hedefPager"></div>
     </div>
 
   </div>
@@ -952,47 +993,104 @@
       });
     });
 
+    // ---------- ORTAK SAYFALAMA YARDIMCISI ----------
+    // tbodyId: tablo gövdesi id'si, pagerId: sayfa butonları konteynırı id'si
+    // liste: tüm kayıtlar (orijinal indeksleriyle), sayfaBasi: sayfa başına kayıt
+    // satirYap(öğe, orijinalIdx): bir <tr> string'i döndürür
+    // sonrasi: render bittikten sonra çalışacak fonksiyon (ör. click handler bağlama)
+    function sayfalamaKur(tbodyId, pagerId, liste, sayfaBasi, satirYap, bosMesaj, sonrasi) {
+      const tbody = document.getElementById(tbodyId);
+      const pager = document.getElementById(pagerId);
+      const toplamSayfa = Math.max(1, Math.ceil(liste.length / sayfaBasi));
+      let sayfa = 1;
+
+      function sayfayiCiz() {
+        if (!liste.length) {
+          tbody.innerHTML = bosMesaj;
+          pager.innerHTML = '';
+          return;
+        }
+        const basla = (sayfa - 1) * sayfaBasi;
+        const dilim = liste.slice(basla, basla + sayfaBasi);
+        tbody.innerHTML = dilim.map((öğe, i) => satirYap(öğe, basla + i)).join('');
+        if (sonrasi) sonrasi();
+
+        if (toplamSayfa <= 1) {
+          pager.innerHTML = '';
+          return;
+        }
+        let html = `<button class="pager-btn" data-git="prev" ${sayfa === 1 ? 'disabled' : ''}>&lsaquo;</button>`;
+        for (let s = 1; s <= toplamSayfa; s++) {
+          html += `<button class="pager-btn ${s === sayfa ? 'active' : ''}" data-git="${s}">${s}</button>`;
+        }
+        html += `<button class="pager-btn" data-git="next" ${sayfa === toplamSayfa ? 'disabled' : ''}>&rsaquo;</button>`;
+        pager.innerHTML = html;
+        pager.querySelectorAll('.pager-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const git = btn.dataset.git;
+            if (git === 'prev') sayfa = Math.max(1, sayfa - 1);
+            else if (git === 'next') sayfa = Math.min(toplamSayfa, sayfa + 1);
+            else sayfa = parseInt(git, 10);
+            sayfayiCiz();
+          });
+        });
+      }
+      sayfayiCiz();
+    }
+
+    const SAYFA_BASI_KAYIT = 7;
+
     // ---------- GÜNLÜK HEDEF GEÇMİŞİ ----------
-    document.getElementById('gunlukTablo').innerHTML = veri.gunlukGorevGecmisi.map((g, idx) => {
-      const yapilan = g.gorevler.filter(x => x.durum === 'Yapıldı').length;
-      return `
-        <tr class="log-row" data-gun-idx="${idx}">
-          <td>${g.tarih} <span style="color:var(--text-muted); font-weight:500;">&middot; ${g.gunAdi}</span></td>
-          <td>${yapilan}/${g.gorevler.length} görev tamamlandı</td>
-          <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
-        </tr>
-      `;
-    }).join('') || '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok.</td></tr>';
-    document.querySelectorAll('#gunlukTablo tr[data-gun-idx]').forEach(row => {
-      row.addEventListener('click', () => {
-        const g = veri.gunlukGorevGecmisi[row.dataset.gunIdx];
-        const gövde = g.gorevler.map(t => `
-          <div class="modal-item"><span>${t.metin}</span>${durumBadge(t.durum)}</div>
-        `).join('');
-        modalAc(`${g.tarih} (${g.gunAdi})`, gövde);
-      });
-    });
+    sayfalamaKur('gunlukTablo', 'gunlukPager', veri.gunlukGorevGecmisi, SAYFA_BASI_KAYIT,
+      (g, idx) => {
+        const yapilan = g.gorevler.filter(x => x.durum === 'Yapıldı').length;
+        return `
+          <tr class="log-row" data-gun-idx="${idx}">
+            <td>${g.tarih} <span style="color:var(--text-muted); font-weight:500;">&middot; ${g.gunAdi}</span></td>
+            <td>${yapilan}/${g.gorevler.length} görev tamamlandı</td>
+            <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
+          </tr>
+        `;
+      },
+      '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok.</td></tr>',
+      () => {
+        document.querySelectorAll('#gunlukTablo tr[data-gun-idx]').forEach(row => {
+          row.addEventListener('click', () => {
+            const g = veri.gunlukGorevGecmisi[row.dataset.gunIdx];
+            const gövde = g.gorevler.map(t => `
+              <div class="modal-item"><span>${t.metin}</span>${durumBadge(t.durum)}</div>
+            `).join('');
+            modalAc(`${g.tarih} (${g.gunAdi})`, gövde);
+          });
+        });
+      }
+    );
 
     // ---------- HAFTALIK HEDEF GEÇMİŞİ ----------
-    document.getElementById('hedefTablo').innerHTML = veri.haftalikHedefGecmisi.map((h, idx) => {
-      const tutturulan = h.hedefler.filter(x => x.durum === 'Yapıldı').length;
-      return `
-        <tr class="log-row" data-hafta-idx="${idx}">
-          <td>${h.hafta}</td>
-          <td>${tutturulan}/${h.hedefler.length} hedef tutturuldu</td>
-          <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
-        </tr>
-      `;
-    }).join('') || '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok.</td></tr>';
-    document.querySelectorAll('#hedefTablo tr[data-hafta-idx]').forEach(row => {
-      row.addEventListener('click', () => {
-        const h = veri.haftalikHedefGecmisi[row.dataset.haftaIdx];
-        const gövde = h.hedefler.map(x => `
-          <div class="modal-item"><span>${x.hedef}</span>${durumBadge(x.durum)}</div>
-        `).join('');
-        modalAc(h.hafta, gövde);
-      });
-    });
+    sayfalamaKur('hedefTablo', 'hedefPager', veri.haftalikHedefGecmisi, SAYFA_BASI_KAYIT,
+      (h, idx) => {
+        const tutturulan = h.hedefler.filter(x => x.durum === 'Yapıldı').length;
+        return `
+          <tr class="log-row" data-hafta-idx="${idx}">
+            <td>${h.hafta}</td>
+            <td>${tutturulan}/${h.hedefler.length} hedef tutturuldu</td>
+            <td style="text-align:right; color:var(--navy); font-weight:600;">Detay &rsaquo;</td>
+          </tr>
+        `;
+      },
+      '<tr><td colspan="3" style="color:var(--text-muted);">Henüz kayıt yok.</td></tr>',
+      () => {
+        document.querySelectorAll('#hedefTablo tr[data-hafta-idx]').forEach(row => {
+          row.addEventListener('click', () => {
+            const h = veri.haftalikHedefGecmisi[row.dataset.haftaIdx];
+            const gövde = h.hedefler.map(x => `
+              <div class="modal-item"><span>${x.hedef}</span>${durumBadge(x.durum)}</div>
+            `).join('');
+            modalAc(h.hafta, gövde);
+          });
+        });
+      }
+    );
 
     // ---------- TEKNİK: GENEL BAKIŞ ----------
     const basarili = veri.workflowGecmisi.filter(w => w.durum === 'ok').length;
