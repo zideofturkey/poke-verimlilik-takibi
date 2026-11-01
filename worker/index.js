@@ -69,8 +69,85 @@
  * içindeki mevcut "zaten cevaplanmış mı" kontrolleri fazladan mesaj
  * gitmesini zaten engelliyor (idempotent), bu yüzden çakışma riski yok.
  */
+const PANEL_ORIGIN = "https://poke-observability.ediz-kacmaz19.workers.dev";
+
+function panelCors(request) {
+  const origin = request.headers.get("Origin");
+  return {
+    "Access-Control-Allow-Origin": origin === PANEL_ORIGIN ? PANEL_ORIGIN : "null",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Max-Age": "600",
+    "Vary": "Origin",
+  };
+}
+
+/**
+ * Panelin "Verileri çek" butonu için: panel_guncelle.yml'i anında tetikler.
+ * Tarayıcıya GitHub token koyamayacağımız için bu uç worker'da duruyor
+ * (GITHUB_TOKEN zaten bu worker'ın secret'ı).
+ *
+ * Kötüye kullanım sınırı: sadece panelin kendi origin'inden gelen istekler
+ * kabul edilir; ayrıca zaten SIRADA bekleyen (henüz başlamamış) bir panel
+ * çalıştırması varsa yenisi açılmaz - o sıradaki zaten en güncel veriyi
+ * okuyacaktır. Çalışmakta olan (in_progress) bir çalıştırma engellemez:
+ * o, butona basılmadan ÖNCEKİ veriyle başlamış olabilir.
+ */
+async function panelYenile(request, env) {
+  const cors = panelCors(request);
+  const json = (obj, status = 200) =>
+    new Response(JSON.stringify(obj), {
+      status,
+      headers: { ...cors, "Content-Type": "application/json" },
+    });
+
+  if (request.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: cors });
+  }
+  if (request.method !== "POST") {
+    return json({ durum: "hata", mesaj: "Sadece POST" }, 405);
+  }
+  if (request.headers.get("Origin") !== PANEL_ORIGIN) {
+    return json({ durum: "hata", mesaj: "Yetkisiz origin" }, 403);
+  }
+
+  const gh = {
+    "Authorization": `Bearer ${env.GITHUB_TOKEN}`,
+    "Accept": "application/vnd.github+json",
+    "User-Agent": "poke-panel-yenile",
+  };
+  const base = "https://api.github.com/repos/zideofturkey/poke-verimlilik-takibi/actions/workflows/panel_guncelle.yml";
+
+  try {
+    const q = await fetch(`${base}/runs?status=queued&per_page=1`, { headers: gh });
+    if (q.ok) {
+      const d = await q.json();
+      if (d.total_count > 0) {
+        return json({ durum: "zaten_sirada" });
+      }
+    }
+    const r = await fetch(`${base}/dispatches`, {
+      method: "POST",
+      headers: { ...gh, "Content-Type": "application/json" },
+      body: JSON.stringify({ ref: "main" }),
+    });
+    if (!r.ok) {
+      console.log("Panel yenile dispatch hatasi:", r.status, await r.text());
+      return json({ durum: "hata", mesaj: "GitHub tetiklenemedi" }, 502);
+    }
+    return json({ durum: "baslatildi" });
+  } catch (err) {
+    console.log("Panel yenile hatasi:", err.message);
+    return json({ durum: "hata", mesaj: "Beklenmeyen hata" }, 500);
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
+    if (new URL(request.url).pathname === "/panel-yenile") {
+      return panelYenile(request, env);
+    }
+
     if (request.method !== "POST") {
       return new Response("OK", { status: 200 });
     }

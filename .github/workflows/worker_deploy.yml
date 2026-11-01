@@ -1,0 +1,31 @@
+name: Worker - Cloudflare Deploy
+
+# worker/ klasöründeki değişiklikler main'e girince (veya elle) Telegram
+# webhook worker'ını Cloudflare'e deploy eder. Worker secret'ları
+# (GITHUB_TOKEN, BOT_TOKEN) Cloudflare'de kalıcıdır, deploy bunları silmez.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Worker'ı deploy et
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler deploy

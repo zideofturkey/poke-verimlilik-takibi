@@ -559,6 +559,42 @@
     font-weight: 500;
   }
 
+  /* ---------- VERİ DURUMU (sağ üst, silik) ---------- */
+  .veri-durum {
+    position: absolute;
+    top: 10px;
+    right: 32px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.62);
+    white-space: nowrap;
+  }
+  .veri-zaman.eski { color: rgba(255,226,170,0.85); }
+  .veri-cek-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.72);
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .veri-cek-btn:hover:not(:disabled) { background: rgba(255,255,255,0.18); color: #fff; }
+  .veri-cek-btn:disabled { cursor: default; opacity: 0.75; }
+  .veri-cek-btn svg { width: 12px; height: 12px; }
+  .veri-cek-btn.donuyor svg { animation: veri-don 1s linear infinite; }
+  @keyframes veri-don { to { transform: rotate(360deg); } }
+
   .gh-link {
     color: var(--navy);
     text-decoration: none;
@@ -571,6 +607,8 @@
   @media (max-width: 640px) {
     .content { margin-top: -36px; padding: 0 16px; }
     .hero { padding: 22px 16px 68px; }
+    .veri-durum { top: 7px; right: 14px; font-size: 10.5px; gap: 6px; }
+    .veri-cek-btn { font-size: 10.5px; padding: 2px 8px; }
     .routine-row { grid-template-columns: 110px 1fr 44px; }
     .heatmap { grid-template-columns: repeat(10, 1fr); }
   }
@@ -579,6 +617,13 @@
 <body>
 
 <div class="hero">
+  <div class="veri-durum">
+    <span class="veri-zaman" id="veriZaman"></span>
+    <button class="veri-cek-btn" id="veriCek" type="button" title="Verileri şimdi Sheets'ten çek ve paneli güncelle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+      <span id="veriCekMetin">Verileri çek</span>
+    </button>
+  </div>
   <div class="hero-top">
     <div class="brand">
       <img src="assets/poke-logo.png" alt="Poke">
@@ -832,6 +877,88 @@
     });
   });
 
+  // ---------- VERİ ZAMANI + "VERİLERİ ÇEK" BUTONU ----------
+  const YENILE_URL = 'https://poke-telegram-webhook.ediz-kacmaz19.workers.dev/panel-yenile';
+  let sonUretim = null;
+
+  function veriZamaniGoster() {
+    const el = document.getElementById('veriZaman');
+    if (!sonUretim || isNaN(sonUretim)) { el.textContent = ''; return; }
+    const dkOnce = Math.max(0, Math.round((Date.now() - sonUretim.getTime()) / 60000));
+    let gore;
+    if (dkOnce < 1) gore = 'az önce';
+    else if (dkOnce < 60) gore = dkOnce + ' dk önce';
+    else if (dkOnce < 1440) gore = Math.floor(dkOnce / 60) + ' sa ' + (dkOnce % 60) + ' dk önce';
+    else gore = Math.floor(dkOnce / 1440) + ' gün önce';
+    const opt = { timeZone: 'Europe/Istanbul' };
+    const saat = sonUretim.toLocaleTimeString('tr-TR', { ...opt, hour: '2-digit', minute: '2-digit' });
+    const bugunMu = sonUretim.toLocaleDateString('tr-TR', opt) === new Date().toLocaleDateString('tr-TR', opt);
+    const gun = bugunMu ? '' : sonUretim.toLocaleDateString('tr-TR', { ...opt, day: 'numeric', month: 'short' }) + ' ';
+    el.textContent = `Son veri: ${gun}${saat} · ${gore}`;
+    el.classList.toggle('eski', dkOnce >= 120);
+  }
+  setInterval(veriZamaniGoster, 30000);
+
+  (function veriCekBaglantisi() {
+    const btn = document.getElementById('veriCek');
+    const metin = document.getElementById('veriCekMetin');
+    const bekle = ms => new Promise(r => setTimeout(r, ms));
+    const normal = () => { btn.disabled = false; btn.classList.remove('donuyor'); metin.textContent = 'Verileri çek'; };
+
+    btn.addEventListener('click', async () => {
+      if (btn.disabled) return;
+      const onceki = sonUretim ? sonUretim.getTime() : 0;
+      btn.disabled = true;
+      btn.classList.add('donuyor');
+      metin.textContent = 'İstek gönderiliyor…';
+
+      try {
+        const r = await fetch(YENILE_URL, { method: 'POST' });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || j.durum === 'hata') throw new Error(j.mesaj || 'İstek başarısız');
+      } catch (e) {
+        metin.textContent = 'Tetiklenemedi';
+        btn.classList.remove('donuyor');
+        await bekle(3000);
+        normal();
+        return;
+      }
+
+      // Workflow (~1-2 dk) bitip yeni data.json deploy edilene kadar bekle (en fazla 5 dk)
+      const basla = Date.now();
+      while (Date.now() - basla < 5 * 60 * 1000) {
+        metin.textContent = `Veri çekiliyor… ${Math.round((Date.now() - basla) / 1000)}sn`;
+        await bekle(8000);
+        try {
+          const resp = await fetch('./data.json?t=' + Date.now(), { cache: 'no-store' });
+          const v = await resp.json();
+          if (new Date(v.uretim_zamani).getTime() > onceki) {
+            try {
+              const aktif = document.querySelector('.tab-btn.active');
+              if (aktif) sessionStorage.setItem('pokeSekme', aktif.dataset.tab);
+            } catch (e) {}
+            location.reload();
+            return;
+          }
+        } catch (e) { /* bir sonraki turda tekrar dene */ }
+      }
+      metin.textContent = 'Henüz gelmedi, birazdan tekrar dene';
+      btn.classList.remove('donuyor');
+      await bekle(4000);
+      normal();
+    });
+
+    // Yenilemeden sonra kullanıcının baktığı sekmeye dön
+    try {
+      const t = sessionStorage.getItem('pokeSekme');
+      if (t) {
+        sessionStorage.removeItem('pokeSekme');
+        const hedef = document.querySelector(`.tab-btn[data-tab="${t}"]`);
+        if (hedef) hedef.click();
+      }
+    } catch (e) {}
+  })();
+
   async function veriyiYukleVeCiz() {
     let veri;
     try {
@@ -843,6 +970,9 @@
         `<div class="section"><p>Veri şu an yüklenemedi (${e.message}). Birkaç dakika içinde otomatik güncellenir, tekrar dener misin?</p></div>`;
       return;
     }
+
+    sonUretim = veri.uretim_zamani ? new Date(veri.uretim_zamani) : null;
+    veriZamaniGoster();
 
     // ---------- HERO STATLARI ----------
     const sonHafta = veri.haftalikHedefGecmisi[0];

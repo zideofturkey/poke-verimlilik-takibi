@@ -9,6 +9,15 @@ permissions:
   contents: write
   actions: read
 
+# Panel artık birden çok yerden tetiklenebiliyor (cron, webhook sonrası,
+# gonder sonrası, panelin "Verileri çek" butonu). Aynı anda iki çalıştırma
+# data.json'a push yarışına girmesin diye sıraya alınıyor; sırada bekleyen
+# birden fazla varsa sadece en yenisi kalır (hepsi aynı veriyi üreteceği için
+# kayıp yok).
+concurrency:
+  group: panel-guncelle
+  cancel-in-progress: false
+
 jobs:
   guncelle:
     runs-on: ubuntu-latest

@@ -32,6 +32,10 @@ on:
           - hafta_ortasi
           - pazar
 
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   gonder:
     runs-on: ubuntu-latest
@@ -58,6 +62,15 @@ jobs:
         run: |
           GOREV="${{ inputs.gorev }}"
           python gonder.py "$GOREV"
+
+      # Veri değişti -> paneli GitHub'ın (saatlerce kayabilen) 30 dk cron'unu
+      # beklemeden hemen tazele. Başarısız olursa asıl işi bozmasın.
+      - name: Paneli hemen tazelemek için tetikle
+        if: success()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run panel_guncelle.yml --repo "${{ github.repository }}" --ref main
 
       - name: service_account.json'ı sil (güvenlik)
         if: always()
