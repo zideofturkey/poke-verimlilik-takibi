@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-01T18:51:00.828221+03:00",
+  "uretim_zamani": "2026-11-01T21:01:04.546828+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 37
   },
@@ -2415,10 +2415,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T15:50:42Z",
+      "zaman": "2026-11-01T18:00:47Z",
       "durum": "warn",
+      "runId": "41334368274",
+      "sureSn": 4
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-11-01T18:00:26Z",
+      "durum": "ok",
+      "runId": "41334334280",
+      "sureSn": 25
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T15:50:42Z",
+      "durum": "ok",
       "runId": "41323263108",
-      "sureSn": 3
+      "sureSn": 45
     },
     {
       "ad": "Panel",
@@ -2503,28 +2517,20 @@
       "durum": "ok",
       "runId": "41321120534",
       "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:06Z",
-      "durum": "ok",
-      "runId": "41321117430",
-      "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:03Z",
-      "durum": "ok",
-      "runId": "41321113086",
-      "sureSn": 37
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
+      "toplam": 6,
+      "oran": 83,
+      "ortSureSn": 37
+    },
+    {
+      "ad": "Gönder",
       "toplam": 5,
-      "oran": 80,
-      "ortSureSn": 35
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Worker - Cloudflare Deploy",
@@ -2540,21 +2546,15 @@
     },
     {
       "ad": "Aforizma",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 16
     },
     {
       "ad": "Dinle",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 30
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 31
     }
   ],
   "kocKararlari": [],
