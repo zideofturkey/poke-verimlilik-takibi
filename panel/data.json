@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-02T00:17:57.911968+03:00",
+  "uretim_zamani": "2026-11-02T00:29:38.255066+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -2336,15 +2336,15 @@
         },
         {
           "hedef": "Hektor ile 1 araştırma",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "hedef": "PM projesini bitir",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "hedef": "Mobil Uygulama rapor projesine başla",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         }
       ]
     },
@@ -2419,10 +2419,59 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T21:17:42Z",
+      "zaman": "2026-11-01T21:29:08Z",
       "durum": "warn",
+      "runId": "41352235569",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T21:29:08Z",
+      "durum": "warn",
+      "runId": "41352235417",
+      "sureSn": 1
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T21:29:07Z",
+      "durum": "warn",
+      "runId": "41352234433",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T21:28:38Z",
+      "durum": "ok",
+      "runId": "41352194772",
+      "sureSn": 33
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T21:28:37Z",
+      "durum": "ok",
+      "runId": "41352193815",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T21:28:36Z",
+      "durum": "ok",
+      "runId": "41352192422",
+      "sureSn": 37
+    },
+    {
+      "ad": "Analiz",
+      "zaman": "2026-11-01T21:25:21Z",
+      "durum": "warn",
+      "runId": "41351922600",
+      "sureSn": 4
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T21:17:42Z",
+      "durum": "ok",
       "runId": "41351264376",
-      "sureSn": 3
+      "sureSn": 42
     },
     {
       "ad": "Panel",
@@ -2472,69 +2521,26 @@
       "durum": "warn",
       "runId": "41349484701",
       "sureSn": 37
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T20:57:20Z",
-      "durum": "warn",
-      "runId": "41349465557",
-      "sureSn": 51
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T20:57:16Z",
-      "durum": "ok",
-      "runId": "41349461442",
-      "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T20:56:51Z",
-      "durum": "ok",
-      "runId": "41349425502",
-      "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T20:56:46Z",
-      "durum": "ok",
-      "runId": "41349418155",
-      "sureSn": 34
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T20:56:43Z",
-      "durum": "ok",
-      "runId": "41349414699",
-      "sureSn": 334
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T20:55:14Z",
-      "durum": "ok",
-      "runId": "41349293386",
-      "sureSn": 45
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T20:49:46Z",
-      "durum": "ok",
-      "runId": "41348846790",
-      "sureSn": 334
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
       "toplam": 21,
-      "oran": 62,
-      "ortSureSn": 36
+      "oran": 52,
+      "ortSureSn": 32
     },
     {
       "ad": "Webhook",
       "toplam": 16,
       "oran": 94,
       "ortSureSn": 90
+    },
+    {
+      "ad": "Analiz",
+      "toplam": 1,
+      "oran": 0,
+      "ortSureSn": 4
     },
     {
       "ad": "Aforizma",
@@ -2547,12 +2553,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 28
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 25
     }
   ],
   "kocKararlari": [],
@@ -2735,6 +2735,11 @@
   "hataGecmisi": [
     {
       "tarih": "2026-11-02",
+      "saat": "00:29",
+      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:14b)"
+    },
+    {
+      "tarih": "2026-11-02",
       "saat": "00:15",
       "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
     },
@@ -2802,11 +2807,6 @@
       "tarih": "2026-10-25",
       "saat": "18:22",
       "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
-    },
-    {
-      "tarih": "2026-10-25",
-      "saat": "11:22",
-      "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
     }
   ]
 }
