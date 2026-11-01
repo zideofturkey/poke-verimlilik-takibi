@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-02T00:02:27.775401+03:00",
+  "uretim_zamani": "2026-11-02T00:13:24.095659+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1573,7 +1573,7 @@
         },
         {
           "metin": "OtoHemen bütçelerini dengeleme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -2419,10 +2419,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T21:02:10Z",
+      "zaman": "2026-11-01T21:13:07Z",
       "durum": "warn",
-      "runId": "41349880344",
+      "runId": "41350865148",
       "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T21:12:29Z",
+      "durum": "ok",
+      "runId": "41350808724",
+      "sureSn": 43
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T21:12:27Z",
+      "durum": "warn",
+      "runId": "41350805472",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T21:02:10Z",
+      "durum": "ok",
+      "runId": "41349880344",
+      "sureSn": 44
     },
     {
       "ad": "Panel",
@@ -2500,41 +2521,20 @@
       "durum": "ok",
       "runId": "41346041477",
       "sureSn": 40
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-01T19:36:56Z",
-      "durum": "ok",
-      "runId": "41342625375",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-01T19:28:35Z",
-      "durum": "ok",
-      "runId": "41341912617",
-      "sureSn": 28
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T19:01:54Z",
-      "durum": "ok",
-      "runId": "41339624772",
-      "sureSn": 51
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 19,
-      "oran": 58,
-      "ortSureSn": 35
+      "toplam": 20,
+      "oran": 60,
+      "ortSureSn": 36
     },
     {
       "ad": "Webhook",
-      "toplam": 17,
-      "oran": 94,
-      "ortSureSn": 69
+      "toplam": 16,
+      "oran": 88,
+      "ortSureSn": 70
     },
     {
       "ad": "Aforizma",
