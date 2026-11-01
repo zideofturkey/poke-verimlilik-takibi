@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-01T18:41:52.012483+03:00",
+  "uretim_zamani": "2026-11-01T18:51:00.828221+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 37
   },
@@ -2415,10 +2415,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T15:41:32Z",
+      "zaman": "2026-11-01T15:50:42Z",
       "durum": "warn",
+      "runId": "41323263108",
+      "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T15:41:32Z",
+      "durum": "ok",
       "runId": "41322501359",
-      "sureSn": 4
+      "sureSn": 47
     },
     {
       "ad": "Worker - Cloudflare Deploy",
@@ -2510,13 +2517,6 @@
       "durum": "ok",
       "runId": "41321113086",
       "sureSn": 37
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-01T15:02:45Z",
-      "durum": "ok",
-      "runId": "41319185234",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
@@ -2524,7 +2524,7 @@
       "ad": "Panel",
       "toplam": 5,
       "oran": 80,
-      "ortSureSn": 34
+      "ortSureSn": 35
     },
     {
       "ad": "Worker - Cloudflare Deploy",
