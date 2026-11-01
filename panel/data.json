@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-11-01T21:01:04.546828+03:00",
+  "uretim_zamani": "2026-11-01T21:58:25.009450+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 37
+    "haftaTamamlamaYuzdesi": 49
   },
   "heatmap": [
     {
@@ -1168,7 +1168,7 @@
     {
       "tarih": "31 October 2026",
       "tarih_iso": "2026-10-31",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1184,7 +1184,7 @@
         },
         {
           "isim": "Verimli video izleme",
-          "durum": "Yapılmadı"
+          "durum": "Telafi"
         },
         {
           "isim": "Mewing",
@@ -1195,27 +1195,27 @@
     {
       "tarih": "01 November 2026",
       "tarih_iso": "2026-11-01",
-      "level": 0,
+      "level": 3,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapıldı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 48
+      "oran": 45
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -1235,7 +1235,7 @@
     },
     {
       "isim": "Verimli video izleme",
-      "oran": 89
+      "oran": 95
     },
     {
       "isim": "Mewing",
@@ -1541,11 +1541,11 @@
       "gorevler": [
         {
           "metin": "Ekim portföy listesini güncelleme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "FollowUrFirm geri bildirimleri ve opus değerlendirmelerini işleme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "20 sayfa kitap okuma",
@@ -2415,10 +2415,94 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T18:00:47Z",
+      "zaman": "2026-11-01T18:58:19Z",
       "durum": "warn",
-      "runId": "41334368274",
+      "runId": "41339314023",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:58:09Z",
+      "durum": "warn",
+      "runId": "41339300648",
       "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:57:50Z",
+      "durum": "warn",
+      "runId": "41339272325",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:57:44Z",
+      "durum": "ok",
+      "runId": "41339264410",
+      "sureSn": 29
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:55:38Z",
+      "durum": "warn",
+      "runId": "41339092233",
+      "sureSn": 40
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:55:28Z",
+      "durum": "warn",
+      "runId": "41339078565",
+      "sureSn": 11
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:55:26Z",
+      "durum": "warn",
+      "runId": "41339076682",
+      "sureSn": 4
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:55:21Z",
+      "durum": "warn",
+      "runId": "41339070189",
+      "sureSn": 21
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:55:07Z",
+      "durum": "ok",
+      "runId": "41339050086",
+      "sureSn": 35
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:54:59Z",
+      "durum": "ok",
+      "runId": "41339037523",
+      "sureSn": 33
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:54:54Z",
+      "durum": "ok",
+      "runId": "41339031882",
+      "sureSn": 37
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:54:51Z",
+      "durum": "ok",
+      "runId": "41339027732",
+      "sureSn": 35
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:00:47Z",
+      "durum": "ok",
+      "runId": "41334368274",
+      "sureSn": 44
     },
     {
       "ad": "Gönder",
@@ -2433,104 +2517,26 @@
       "durum": "ok",
       "runId": "41323263108",
       "sureSn": 45
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T15:41:32Z",
-      "durum": "ok",
-      "runId": "41322501359",
-      "sureSn": 47
-    },
-    {
-      "ad": "Worker - Cloudflare Deploy",
-      "zaman": "2026-11-01T15:40:43Z",
-      "durum": "ok",
-      "runId": "41322434611",
-      "sureSn": 26
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:26:45Z",
-      "durum": "ok",
-      "runId": "41321258171",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:26:43Z",
-      "durum": "ok",
-      "runId": "41321254278",
-      "sureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:26:21Z",
-      "durum": "ok",
-      "runId": "41321223378",
-      "sureSn": 31
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:26:15Z",
-      "durum": "ok",
-      "runId": "41321215368",
-      "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:26:13Z",
-      "durum": "ok",
-      "runId": "41321212579",
-      "sureSn": 32
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:23Z",
-      "durum": "ok",
-      "runId": "41321143166",
-      "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:21Z",
-      "durum": "ok",
-      "runId": "41321140261",
-      "sureSn": 34
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:16Z",
-      "durum": "ok",
-      "runId": "41321131766",
-      "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:10Z",
-      "durum": "ok",
-      "runId": "41321123611",
-      "sureSn": 35
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T15:25:08Z",
-      "durum": "ok",
-      "runId": "41321120534",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 6,
-      "oran": 83,
-      "ortSureSn": 37
+      "toplam": 9,
+      "oran": 33,
+      "ortSureSn": 24
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 25,
+      "oran": 96,
+      "ortSureSn": 63
     },
     {
       "ad": "Gönder",
-      "toplam": 5,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 20
+      "ortSureSn": 21
     },
     {
       "ad": "Worker - Cloudflare Deploy",
@@ -2539,22 +2545,16 @@
       "ortSureSn": 26
     },
     {
-      "ad": "Webhook",
-      "toplam": 21,
-      "oran": 100,
-      "ortSureSn": 70
-    },
-    {
       "ad": "Aforizma",
-      "toplam": 4,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 16
+      "ortSureSn": 15
     },
     {
       "ad": "Dinle",
-      "toplam": 3,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 28
     }
   ],
   "kocKararlari": [],
