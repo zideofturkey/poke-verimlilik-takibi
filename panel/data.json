@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-01T21:59:24.920550+03:00",
+  "uretim_zamani": "2026-11-01T22:01:37.340666+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 49
   },
@@ -1561,11 +1561,11 @@
         },
         {
           "metin": "Ekim aylık gelir-giderlerini raporlama",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Moto Dijital reklamına görsel ekleme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "OtoHemen bütçelerini dengeleme",
@@ -2415,10 +2415,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T18:59:00Z",
+      "zaman": "2026-11-01T19:01:19Z",
       "durum": "warn",
-      "runId": "41339368604",
+      "runId": "41339573705",
       "sureSn": 5
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:59:00Z",
+      "durum": "ok",
+      "runId": "41339368604",
+      "sureSn": 49
     },
     {
       "ad": "Panel",
@@ -2510,27 +2517,20 @@
       "durum": "ok",
       "runId": "41339037523",
       "sureSn": 33
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T18:54:54Z",
-      "durum": "ok",
-      "runId": "41339031882",
-      "sureSn": 37
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 11,
-      "oran": 36,
-      "ortSureSn": 27
+      "toplam": 12,
+      "oran": 42,
+      "ortSureSn": 29
     },
     {
       "ad": "Webhook",
-      "toplam": 23,
+      "toplam": 22,
       "oran": 100,
-      "ortSureSn": 68
+      "ortSureSn": 69
     },
     {
       "ad": "Gönder",
