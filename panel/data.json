@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-01T22:02:18.715469+03:00",
+  "uretim_zamani": "2026-11-01T23:17:15.475216+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 49
   },
@@ -2415,10 +2415,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-01T19:01:54Z",
+      "zaman": "2026-11-01T20:16:58Z",
       "durum": "warn",
+      "runId": "41346041477",
+      "sureSn": 2
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-11-01T19:36:56Z",
+      "durum": "ok",
+      "runId": "41342625375",
+      "sureSn": 13
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-11-01T19:28:35Z",
+      "durum": "ok",
+      "runId": "41341912617",
+      "sureSn": 28
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T19:01:54Z",
+      "durum": "ok",
       "runId": "41339624772",
-      "sureSn": 11
+      "sureSn": 51
     },
     {
       "ad": "Panel",
@@ -2496,65 +2517,44 @@
       "durum": "warn",
       "runId": "41339078565",
       "sureSn": 11
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T18:55:26Z",
-      "durum": "warn",
-      "runId": "41339076682",
-      "sureSn": 4
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T18:55:21Z",
-      "durum": "warn",
-      "runId": "41339070189",
-      "sureSn": 21
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T18:55:07Z",
-      "durum": "ok",
-      "runId": "41339050086",
-      "sureSn": 35
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 13,
-      "oran": 46,
-      "ortSureSn": 31
+      "toplam": 14,
+      "oran": 50,
+      "ortSureSn": 32
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 14
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 2,
+      "oran": 100,
+      "ortSureSn": 28
     },
     {
       "ad": "Webhook",
-      "toplam": 21,
+      "toplam": 20,
       "oran": 100,
-      "ortSureSn": 53
+      "ortSureSn": 34
     },
     {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 21
+      "ortSureSn": 25
     },
     {
       "ad": "Worker - Cloudflare Deploy",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 26
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 28
     }
   ],
   "kocKararlari": [],
