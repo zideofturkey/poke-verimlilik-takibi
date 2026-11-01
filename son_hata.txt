@@ -1,4 +1,4 @@
-Zaman: 2026-11-01T12:54:24.246633+03:00
+Zaman: 2026-11-01T12:57:18.525317+03:00
 Bağlam: slm_sorgula deneme 2/5 (model=qwen2.5:7b)
 
 Traceback (most recent call last):
@@ -71,23 +71,23 @@ requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434
 
 
 --- ollama serve logu (son 2000 karakter) ---
-aunch_slot_: id  0 | task -1 | sampler params: 
+  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 4096 tokens, 8589934592 est)
+srv  get_availabl: prompt cache update took 0.01 ms
+slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  0 | task -1 | sampler params: 
 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.300
 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
 slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
-slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 2970
+slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 2910
 slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    512, progress = 0.17, t =  20.24 s / 25.30 tokens per second
+slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    512, progress = 0.18, t =  23.70 s / 21.60 tokens per second
 slot   operator(): id  0 | task 0 | cached n_tokens = 512, memory_seq_rm [512, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1024, progress = 0.34, t =  41.28 s / 24.81 tokens per second
+slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1024, progress = 0.35, t =  48.26 s / 21.22 tokens per second
 slot   operator(): id  0 | task 0 | cached n_tokens = 1024, memory_seq_rm [1024, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1536, progress = 0.52, t =  63.17 s / 24.32 tokens per second
+slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1536, progress = 0.53, t =  73.69 s / 20.84 tokens per second
 slot   operator(): id  0 | task 0 | cached n_tokens = 1536, memory_seq_rm [1536, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2048, progress = 0.69, t =  85.89 s / 23.85 tokens per second
+slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2048, progress = 0.70, t =  99.97 s / 20.49 tokens per second
 slot   operator(): id  0 | task 0 | cached n_tokens = 2048, memory_seq_rm [2048, end)
-slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2560, progress = 0.86, t = 109.44 s / 23.39 tokens per second
-slot   operator(): id  0 | task 0 | cached n_tokens = 2560, memory_seq_rm [2560, end)
-slot init_sampler: id  0 | task 0 | init sampler, took 0.35 ms, tokens: text = 2970, total = 2970
-[GIN] 2026/11/01 - 09:51:47 | 500 |     2m0s |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2026/11/01 - 09:54:36 | 500 |     2m0s |       127.0.0.1 | POST     "/api/generate"
