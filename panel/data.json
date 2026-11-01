@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-01T21:58:25.009450+03:00",
+  "uretim_zamani": "2026-11-01T21:59:24.920550+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 49
   },
@@ -2415,24 +2415,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
+      "zaman": "2026-11-01T18:59:00Z",
+      "durum": "warn",
+      "runId": "41339368604",
+      "sureSn": 5
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-01T18:59:00Z",
+      "durum": "warn",
+      "runId": "41339368139",
+      "sureSn": 2
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:58:30Z",
+      "durum": "ok",
+      "runId": "41339327832",
+      "sureSn": 33
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-01T18:58:28Z",
+      "durum": "ok",
+      "runId": "41339325294",
+      "sureSn": 38
+    },
+    {
+      "ad": "Panel",
       "zaman": "2026-11-01T18:58:19Z",
       "durum": "warn",
       "runId": "41339314023",
-      "sureSn": 2
+      "sureSn": 43
     },
     {
       "ad": "Panel",
       "zaman": "2026-11-01T18:58:09Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "41339300648",
-      "sureSn": 4
+      "sureSn": 39
     },
     {
       "ad": "Webhook",
       "zaman": "2026-11-01T18:57:50Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "41339272325",
-      "sureSn": 3
+      "sureSn": 34
     },
     {
       "ad": "Webhook",
@@ -2489,48 +2517,20 @@
       "durum": "ok",
       "runId": "41339031882",
       "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-01T18:54:51Z",
-      "durum": "ok",
-      "runId": "41339027732",
-      "sureSn": 35
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T18:00:47Z",
-      "durum": "ok",
-      "runId": "41334368274",
-      "sureSn": 44
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-01T18:00:26Z",
-      "durum": "ok",
-      "runId": "41334334280",
-      "sureSn": 25
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-01T15:50:42Z",
-      "durum": "ok",
-      "runId": "41323263108",
-      "sureSn": 45
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 9,
-      "oran": 33,
-      "ortSureSn": 24
+      "toplam": 11,
+      "oran": 36,
+      "ortSureSn": 27
     },
     {
       "ad": "Webhook",
-      "toplam": 25,
-      "oran": 96,
-      "ortSureSn": 63
+      "toplam": 23,
+      "oran": 100,
+      "ortSureSn": 68
     },
     {
       "ad": "Gönder",
