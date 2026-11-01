@@ -188,6 +188,27 @@ Telegram → Toplayıcı → [Ortak Hafıza: Google Sheets] → Değerlendirici,
 Her dosyanın başında `[MULTI-AGENT ROL: ...]` etiketiyle hangi agent'ı
 temsil ettiği açıkça belirtilmiştir.
 
+## Panel Tazeleme (1 Kasım 2026)
+
+**Sorun:** `panel_guncelle.yml`'deki `*/30` GitHub cron'u pratikte 2-8 saatte bir
+çalışıyordu (son 20 çalıştırmada 115-476 dk aralık; `gonder.yml`'deki kayma ile
+aynı platform sorunu). Sabah yazılan görevler panele saatlerce yansımıyordu.
+
+**Çözüm (olay güdümlü):**
+- `webhook.yml` (her Telegram mesajı/butonu) ve `gonder.yml` işini bitirince
+  `gh workflow run panel_guncelle.yml` ile paneli hemen tetikler (`actions: write`).
+- `panel_guncelle.yml` `concurrency: panel-guncelle` grubunda; birden çok tetikleyici
+  data.json push yarışına girmez. 30 dk cron yedek olarak duruyor.
+- Panel sağ üstte `uretim_zamani`'ndan "Son veri: SS:DD · X dk önce" rozeti gösterir
+  (2 saatten eskiyse hafif sıcak ton) ve **Verileri çek** butonu vardır.
+- Buton, Telegram worker'ındaki `POST /panel-yenile` ucunu çağırır (token tarayıcıya
+  konamayacağı için). Uç sadece panel origin'ini kabul eder; zaten sırada bekleyen bir
+  panel çalıştırması varsa yenisini açmaz. Yeni `uretim_zamani` gelince sayfa yenilenir,
+  aktif sekme korunur.
+- `worker_deploy.yml`: `worker/**` değişince worker Cloudflare'e otomatik deploy olur
+  (CI'daki `CLOUDFLARE_API_TOKEN` worker'ı da deploy edebiliyor; artık elle
+  `wrangler deploy` gerekmiyor). Worker secret'ları deploy'da korunur.
+
 ## Roadmap Durumu
 
 - Seviye 1 (✅ tamamlandı): mesaj/ton değişimi + en riskli rutin en üste sıralanır
