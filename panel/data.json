@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-04T01:46:30.055820+03:00",
+  "uretim_zamani": "2026-11-04T01:47:17.210236+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 51
   },
@@ -1545,11 +1545,11 @@
       "gorevler": [
         {
           "metin": "9.00 sporu",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "11.00 okulu",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "FitCheck shines mail gönderimi",
@@ -2461,25 +2461,32 @@
   ],
   "workflowGecmisi": [
     {
+      "ad": "Panel",
+      "zaman": "2026-11-03T22:46:53Z",
+      "durum": "warn",
+      "runId": "41733745709",
+      "sureSn": 4
+    },
+    {
       "ad": "Webhook",
       "zaman": "2026-11-03T22:46:25Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "41733684660",
-      "sureSn": 0
+      "sureSn": 32
     },
     {
       "ad": "Webhook",
       "zaman": "2026-11-03T22:46:25Z",
       "durum": "warn",
       "runId": "41733682725",
-      "sureSn": 3
+      "sureSn": 35
     },
     {
       "ad": "Panel",
       "zaman": "2026-11-03T22:46:13Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "41733656260",
-      "sureSn": 4
+      "sureSn": 41
     },
     {
       "ad": "Webhook",
@@ -2557,27 +2564,20 @@
       "durum": "ok",
       "runId": "41700900844",
       "sureSn": 79
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-03T18:01:11Z",
-      "durum": "ok",
-      "runId": "41689762932",
-      "sureSn": 73
     }
   ],
   "workflowTurOzet": [
     {
-      "ad": "Webhook",
-      "toplam": 11,
-      "oran": 73,
-      "ortSureSn": 61
+      "ad": "Panel",
+      "toplam": 18,
+      "oran": 89,
+      "ortSureSn": 53
     },
     {
-      "ad": "Panel",
-      "toplam": 17,
-      "oran": 88,
-      "ortSureSn": 54
+      "ad": "Webhook",
+      "toplam": 10,
+      "oran": 80,
+      "ortSureSn": 70
     },
     {
       "ad": "Aforizma",
