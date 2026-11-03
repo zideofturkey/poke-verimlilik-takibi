@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-03T13:24:15.555550+03:00",
+  "uretim_zamani": "2026-11-03T14:40:44.841637+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 57
   },
@@ -2462,10 +2462,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-03T10:23:59Z",
+      "zaman": "2026-11-03T11:40:28Z",
       "durum": "warn",
+      "runId": "41629420775",
+      "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-03T10:23:59Z",
+      "durum": "ok",
       "runId": "41618934468",
-      "sureSn": 4
+      "sureSn": 40
     },
     {
       "ad": "Webhook",
@@ -2557,20 +2564,13 @@
       "durum": "ok",
       "runId": "41562706487",
       "sureSn": 20
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-02T23:23:35Z",
-      "durum": "ok",
-      "runId": "41545071784",
-      "sureSn": 40
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 67,
+      "toplam": 19,
+      "oran": 68,
       "ortSureSn": 40
     },
     {
@@ -2581,7 +2581,7 @@
     },
     {
       "ad": "Gönder",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 24
     },
