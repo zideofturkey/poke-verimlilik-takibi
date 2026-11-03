@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-11-03T13:01:27.334287+03:00",
+  "uretim_zamani": "2026-11-03T13:24:15.555550+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 54
+    "haftaTamamlamaYuzdesi": 57
   },
   "heatmap": [
     {
@@ -1195,27 +1195,27 @@
     {
       "tarih": "03 November 2026",
       "tarih_iso": "2026-11-03",
-      "level": 0,
+      "level": 1,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Sabah telefonsuzluğu",
-          "durum": null
+          "durum": "Yapıldı"
         },
         {
           "isim": "Gece telefonsuzluğu",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Verimli video izleme",
-          "durum": null
+          "durum": "Yapılmadı"
         },
         {
           "isim": "Mewing",
-          "durum": null
+          "durum": "Yapılmadı"
         }
       ]
     }
@@ -1227,7 +1227,7 @@
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 43
+      "oran": 45
     },
     {
       "isim": "Gece telefonsuzluğu",
@@ -2462,10 +2462,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-03T10:01:02Z",
+      "zaman": "2026-11-03T10:23:59Z",
       "durum": "warn",
-      "runId": "41615707053",
+      "runId": "41618934468",
       "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-03T10:23:30Z",
+      "durum": "ok",
+      "runId": "41618867250",
+      "sureSn": 34
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-03T10:01:02Z",
+      "durum": "ok",
+      "runId": "41615707053",
+      "sureSn": 47
     },
     {
       "ad": "Gönder",
@@ -2550,20 +2564,6 @@
       "durum": "ok",
       "runId": "41545071784",
       "sureSn": 40
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-02T22:25:18Z",
-      "durum": "ok",
-      "runId": "41537115147",
-      "sureSn": 49
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-02T21:02:37Z",
-      "durum": "ok",
-      "runId": "41524692613",
-      "sureSn": 100
     }
   ],
   "workflowTurOzet": [
@@ -2574,6 +2574,12 @@
       "ortSureSn": 40
     },
     {
+      "ad": "Webhook",
+      "toplam": 10,
+      "oran": 100,
+      "ortSureSn": 74
+    },
+    {
       "ad": "Gönder",
       "toplam": 5,
       "oran": 100,
@@ -2581,15 +2587,9 @@
     },
     {
       "ad": "Aforizma",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 19
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 9,
-      "oran": 100,
-      "ortSureSn": 78
+      "ortSureSn": 20
     },
     {
       "ad": "Dinle",
