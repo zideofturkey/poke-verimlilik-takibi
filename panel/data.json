@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-05T21:10:23.646993+03:00",
+  "uretim_zamani": "2026-11-05T21:40:25.091246+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1545,11 +1545,11 @@
       "gorevler": [
         {
           "metin": "10.00 yucuf ziyareti",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "13.00 sporu",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Evde Mobil Uygulama projesine devam etme",
@@ -2466,10 +2466,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-05T18:09:26Z",
+      "zaman": "2026-11-05T18:40:13Z",
       "durum": "warn",
+      "runId": "42086458914",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-05T18:40:05Z",
+      "durum": "warn",
+      "runId": "42086437145",
+      "sureSn": 5
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-05T18:39:39Z",
+      "durum": "ok",
+      "runId": "42086367380",
+      "sureSn": 39
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-05T18:39:38Z",
+      "durum": "ok",
+      "runId": "42086365029",
+      "sureSn": 33
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-05T18:09:26Z",
+      "durum": "ok",
       "runId": "42081516500",
-      "sureSn": 44
+      "sureSn": 85
     },
     {
       "ad": "Panel",
@@ -2540,48 +2568,20 @@
       "durum": "ok",
       "runId": "42040902246",
       "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-05T10:01:02Z",
-      "durum": "ok",
-      "runId": "42007151236",
-      "sureSn": 49
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-05T10:00:47Z",
-      "durum": "ok",
-      "runId": "42007114862",
-      "sureSn": 18
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-05T09:23:59Z",
-      "durum": "ok",
-      "runId": "42002045750",
-      "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-05T09:04:09Z",
-      "durum": "ok",
-      "runId": "41999341508",
-      "sureSn": 51
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 19,
-      "oran": 79,
-      "ortSureSn": 49
+      "toplam": 20,
+      "oran": 75,
+      "ortSureSn": 45
     },
     {
       "ad": "Webhook",
-      "toplam": 10,
+      "toplam": 9,
       "oran": 100,
-      "ortSureSn": 86
+      "ortSureSn": 90
     },
     {
       "ad": "Gönder",
