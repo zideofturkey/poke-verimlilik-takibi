@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-06T06:33:16.870317+03:00",
+  "uretim_zamani": "2026-11-06T09:01:20.371608+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1643,11 +1643,11 @@
         },
         {
           "metin": "YZG yunuscan dokümanını okuma",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "metin": "Kitaplı kahve",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -2470,10 +2470,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-06T03:32:58Z",
+      "zaman": "2026-11-06T06:01:01Z",
       "durum": "warn",
+      "runId": "42171799230",
+      "sureSn": 4
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-11-06T06:00:46Z",
+      "durum": "ok",
+      "runId": "42171772632",
+      "sureSn": 18
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-06T03:32:58Z",
+      "durum": "ok",
       "runId": "42157218417",
-      "sureSn": 3
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -2558,32 +2572,24 @@
       "durum": "ok",
       "runId": "42116468772",
       "sureSn": 43
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-05T21:51:18Z",
-      "durum": "ok",
-      "runId": "42116372363",
-      "sureSn": 45
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-05T21:32:51Z",
-      "durum": "ok",
-      "runId": "42113625712",
-      "sureSn": 48
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 83,
+      "toplam": 19,
+      "oran": 84,
       "ortSureSn": 53
     },
     {
+      "ad": "Gönder",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 23
+    },
+    {
       "ad": "Aforizma",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
       "ortSureSn": 17
     },
@@ -2598,12 +2604,6 @@
       "toplam": 12,
       "oran": 100,
       "ortSureSn": 84
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 3,
-      "oran": 100,
-      "ortSureSn": 23
     }
   ],
   "kocKararlari": [],
