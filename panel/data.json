@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-07T17:01:26.680319+03:00",
+  "uretim_zamani": "2026-11-07T20:31:34.927953+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -2470,10 +2470,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-07T14:01:07Z",
+      "zaman": "2026-11-07T17:31:14Z",
       "durum": "warn",
-      "runId": "42379593464",
+      "runId": "42396710276",
       "sureSn": 4
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-11-07T16:15:09Z",
+      "durum": "ok",
+      "runId": "42390348481",
+      "sureSn": 32
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-11-07T14:28:12Z",
+      "durum": "ok",
+      "runId": "42381733172",
+      "sureSn": 11
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-07T14:01:07Z",
+      "durum": "ok",
+      "runId": "42379593464",
+      "sureSn": 45
     },
     {
       "ad": "Gönder",
@@ -2551,27 +2572,6 @@
       "durum": "ok",
       "runId": "42326543151",
       "sureSn": 18
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-06T23:41:40Z",
-      "durum": "ok",
-      "runId": "42313586716",
-      "sureSn": 41
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-06T22:57:17Z",
-      "durum": "ok",
-      "runId": "42308476134",
-      "sureSn": 34
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-06T22:13:42Z",
-      "durum": "ok",
-      "runId": "42303062503",
-      "sureSn": 16
     }
   ],
   "workflowTurOzet": [
@@ -2582,22 +2582,22 @@
       "ortSureSn": 46
     },
     {
-      "ad": "Gönder",
-      "toplam": 7,
-      "oran": 100,
-      "ortSureSn": 21
-    },
-    {
       "ad": "Dinle",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 32
     },
     {
       "ad": "Aforizma",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 16
+      "ortSureSn": 15
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 21
     },
     {
       "ad": "Webhook",
