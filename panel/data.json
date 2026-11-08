@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-08T04:52:27.387739+03:00",
+  "uretim_zamani": "2026-11-08T05:00:00.724702+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 57
   },
@@ -1545,27 +1545,27 @@
       "gorevler": [
         {
           "metin": "10.00 dersi",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "MUG projesini bitirme",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "PM proje pdf'ini son kez okuma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Doğru Spot teklifini sunma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Lojistik soru bankasını bitirme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "YZ sınavına çalışma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -2470,10 +2470,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-08T01:51:49Z",
+      "zaman": "2026-11-08T01:59:56Z",
       "durum": "warn",
+      "runId": "42436607534",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-08T01:59:47Z",
+      "durum": "warn",
+      "runId": "42436598420",
+      "sureSn": 11
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-08T01:59:45Z",
+      "durum": "warn",
+      "runId": "42436595482",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-08T01:59:18Z",
+      "durum": "ok",
+      "runId": "42436566953",
+      "sureSn": 30
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-08T01:59:18Z",
+      "durum": "warn",
+      "runId": "42436566326",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-08T01:59:16Z",
+      "durum": "ok",
+      "runId": "42436564277",
+      "sureSn": 36
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-08T01:51:49Z",
+      "durum": "ok",
       "runId": "42436067213",
-      "sureSn": 19
+      "sureSn": 60
     },
     {
       "ad": "Panel",
@@ -2530,62 +2572,20 @@
       "durum": "ok",
       "runId": "42436030749",
       "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-08T01:51:06Z",
-      "durum": "ok",
-      "runId": "42436020960",
-      "sureSn": 49
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-08T01:50:53Z",
-      "durum": "ok",
-      "runId": "42436003937",
-      "sureSn": 34
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-08T01:41:02Z",
-      "durum": "ok",
-      "runId": "42435304012",
-      "sureSn": 13
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-08T01:08:10Z",
-      "durum": "ok",
-      "runId": "42432911738",
-      "sureSn": 41
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-08T00:21:03Z",
-      "durum": "ok",
-      "runId": "42429348640",
-      "sureSn": 31
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-07T22:28:21Z",
-      "durum": "ok",
-      "runId": "42420761589",
-      "sureSn": 18
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
       "toplam": 16,
-      "oran": 56,
-      "ortSureSn": 30
+      "oran": 44,
+      "ortSureSn": 26
     },
     {
       "ad": "Webhook",
-      "toplam": 13,
+      "toplam": 16,
       "oran": 69,
-      "ortSureSn": 85
+      "ortSureSn": 73
     },
     {
       "ad": "Aforizma",
@@ -2595,15 +2595,15 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 31
+      "ortSureSn": 32
     },
     {
       "ad": "Gönder",
-      "toplam": 3,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 23
+      "ortSureSn": 25
     }
   ],
   "kocKararlari": [],
