@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-11-08T22:22:19.449939+03:00",
+  "uretim_zamani": "2026-11-09T02:00:58.053447+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 57
+    "haftaTamamlamaYuzdesi": 46
   },
   "heatmap": [
-    {
-      "tarih": "25 September 2026",
-      "tarih_iso": "2026-09-25",
-      "level": 4,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": "Yapılmadı"
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": "Telafi"
-        },
-        {
-          "isim": "Mewing",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
     {
       "tarih": "26 September 2026",
       "tarih_iso": "2026-09-26",
@@ -1218,6 +1191,33 @@
           "durum": null
         }
       ]
+    },
+    {
+      "tarih": "09 November 2026",
+      "tarih_iso": "2026-11-09",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
@@ -1243,26 +1243,6 @@
     }
   ],
   "haftalikRutinHeatmap": [
-    {
-      "tarih": "17 - 23 Ağu",
-      "tarih_iso": "2026-08-17",
-      "level": 3,
-      "maks": 3,
-      "rutinler": [
-        {
-          "isim": "Oda tozu alma",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Uzun metraj izlence",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Making Music",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
     {
       "tarih": "24 - 30 Ağu",
       "tarih_iso": "2026-08-24",
@@ -1518,20 +1498,27 @@
           "durum": "Bekliyor"
         }
       ]
+    },
+    {
+      "tarih": "9 - 15 Kas",
+      "tarih_iso": "2026-11-09",
+      "level": 0,
+      "maks": 1,
+      "rutinler": []
     }
   ],
   "haftalikRutinOranlari": [
     {
       "isim": "Oda tozu alma",
-      "oran": 67
+      "oran": 64
     },
     {
       "isim": "Uzun metraj izlence",
-      "oran": 83
+      "oran": 82
     },
     {
       "isim": "Making Music",
-      "oran": 42
+      "oran": 36
     },
     {
       "isim": "Haftada 3 gün spor",
@@ -2470,10 +2457,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-08T19:22:02Z",
+      "zaman": "2026-11-08T23:00:04Z",
       "durum": "warn",
+      "runId": "42532969906",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-11-08T22:50:32Z",
+      "durum": "ok",
+      "runId": "42532229637",
+      "sureSn": 16
+    },
+    {
+      "ad": "Analiz",
+      "zaman": "2026-11-08T21:24:51Z",
+      "durum": "ok",
+      "runId": "42525078934",
+      "sureSn": 404
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-11-08T19:29:21Z",
+      "durum": "ok",
+      "runId": "42515281189",
+      "sureSn": 30
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-08T19:22:02Z",
+      "durum": "ok",
       "runId": "42514679521",
-      "sureSn": 4
+      "sureSn": 44
     },
     {
       "ad": "Aforizma",
@@ -2544,34 +2559,6 @@
       "durum": "ok",
       "runId": "42469576657",
       "sureSn": 19
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-08T07:57:23Z",
-      "durum": "ok",
-      "runId": "42460865818",
-      "sureSn": 22
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-08T07:45:46Z",
-      "durum": "ok",
-      "runId": "42460101664",
-      "sureSn": 38
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-08T07:06:45Z",
-      "durum": "ok",
-      "runId": "42457433813",
-      "sureSn": 28
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-08T07:00:47Z",
-      "durum": "ok",
-      "runId": "42457017537",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
@@ -2579,25 +2566,31 @@
       "ad": "Panel",
       "toplam": 16,
       "oran": 75,
-      "ortSureSn": 37
+      "ortSureSn": 38
     },
     {
       "ad": "Aforizma",
       "toplam": 5,
       "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 16
+    },
+    {
+      "ad": "Analiz",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 404
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 27
     },
     {
       "ad": "Gönder",
       "toplam": 5,
       "oran": 100,
       "ortSureSn": 24
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 4,
-      "oran": 100,
-      "ortSureSn": 29
     },
     {
       "ad": "Webhook",
@@ -2785,6 +2778,11 @@
   ],
   "hataGecmisi": [
     {
+      "tarih": "2026-11-09",
+      "saat": "00:29",
+      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:14b)"
+    },
+    {
       "tarih": "2026-11-07",
       "saat": "22:41",
       "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
@@ -2853,11 +2851,6 @@
       "tarih": "2026-11-01",
       "saat": "23:53",
       "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
-    },
-    {
-      "tarih": "2026-11-01",
-      "saat": "12:57",
-      "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
     }
   ]
 }
