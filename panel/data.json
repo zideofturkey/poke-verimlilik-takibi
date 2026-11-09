@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-11-09T21:01:35.243861+03:00",
+  "uretim_zamani": "2026-11-10T00:23:30.558831+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 46
+    "haftaTamamlamaYuzdesi": 34
   },
   "heatmap": [
-    {
-      "tarih": "26 September 2026",
-      "tarih_iso": "2026-09-26",
-      "level": 5,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Mewing",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
     {
       "tarih": "27 September 2026",
       "tarih_iso": "2026-09-27",
@@ -1195,6 +1168,33 @@
     {
       "tarih": "09 November 2026",
       "tarih_iso": "2026-11-09",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
+    },
+    {
+      "tarih": "10 November 2026",
+      "tarih_iso": "2026-11-10",
       "level": 0,
       "rutinler": [
         {
@@ -2457,10 +2457,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-09T18:01:11Z",
+      "zaman": "2026-11-09T21:23:14Z",
       "durum": "warn",
+      "runId": "42702007019",
+      "sureSn": 3
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-11-09T20:05:04Z",
+      "durum": "ok",
+      "runId": "42689509376",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-09T18:01:11Z",
+      "durum": "ok",
       "runId": "42670201054",
-      "sureSn": 11
+      "sureSn": 54
     },
     {
       "ad": "Gönder",
@@ -2545,28 +2559,20 @@
       "durum": "ok",
       "runId": "42569786152",
       "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-09T02:52:59Z",
-      "durum": "ok",
-      "runId": "42553330755",
-      "sureSn": 41
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-09T02:10:06Z",
-      "durum": "ok",
-      "runId": "42549405576",
-      "sureSn": 23
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 17,
-      "oran": 88,
-      "ortSureSn": 47
+      "toplam": 16,
+      "oran": 94,
+      "ortSureSn": 49
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 7,
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "Gönder",
@@ -2585,12 +2591,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 22
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 6,
-      "oran": 100,
-      "ortSureSn": 18
     },
     {
       "ad": "Analiz",
