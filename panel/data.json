@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-10T06:43:15.307710+03:00",
+  "uretim_zamani": "2026-11-10T09:01:30.408287+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 34
   },
@@ -1483,19 +1483,19 @@
       "rutinler": [
         {
           "isim": "Oda tozu alma",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "isim": "Uzun metraj izlence",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "isim": "Making Music",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         },
         {
           "isim": "Haftada 3 gün spor",
-          "durum": "Bekliyor"
+          "durum": "Süresi Doldu"
         }
       ]
     },
@@ -2457,10 +2457,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-10T03:42:58Z",
+      "zaman": "2026-11-10T06:01:13Z",
       "durum": "warn",
-      "runId": "42751219238",
+      "runId": "42765719347",
       "sureSn": 4
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-11-10T06:00:47Z",
+      "durum": "ok",
+      "runId": "42765667265",
+      "sureSn": 30
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-10T03:42:58Z",
+      "durum": "ok",
+      "runId": "42751219238",
+      "sureSn": 43
     },
     {
       "ad": "Aforizma",
@@ -2545,28 +2559,20 @@
       "durum": "ok",
       "runId": "42597749665",
       "sureSn": 47
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-09T10:00:47Z",
-      "durum": "ok",
-      "runId": "42597712488",
-      "sureSn": 20
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-09T09:41:32Z",
-      "durum": "ok",
-      "runId": "42595348663",
-      "sureSn": 17
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 15,
-      "oran": 93,
+      "toplam": 16,
+      "oran": 94,
       "ortSureSn": 47
+    },
+    {
+      "ad": "Gönder",
+      "toplam": 8,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Aforizma",
@@ -2576,15 +2582,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 7,
+      "toplam": 6,
       "oran": 100,
-      "ortSureSn": 30
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 8,
-      "oran": 100,
-      "ortSureSn": 23
+      "ortSureSn": 31
     },
     {
       "ad": "Temizle",
