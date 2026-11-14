@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-14T04:59:25.663173+03:00",
+  "uretim_zamani": "2026-11-14T09:01:25.635041+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 0
   },
@@ -2458,10 +2458,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-14T01:59:03Z",
+      "zaman": "2026-11-14T06:01:08Z",
       "durum": "warn",
-      "runId": "43543716768",
+      "runId": "43564260590",
       "sureSn": 4
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-11-14T06:00:47Z",
+      "durum": "ok",
+      "runId": "43564228871",
+      "sureSn": 25
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-11-14T02:59:39Z",
+      "durum": "ok",
+      "runId": "43549245645",
+      "sureSn": 36
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-14T01:59:03Z",
+      "durum": "ok",
+      "runId": "43543716768",
+      "sureSn": 48
     },
     {
       "ad": "Aforizma",
@@ -2539,53 +2560,32 @@
       "durum": "ok",
       "runId": "43438718246",
       "sureSn": 22
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-13T10:01:01Z",
-      "durum": "ok",
-      "runId": "43405833271",
-      "sureSn": 44
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-13T10:00:47Z",
-      "durum": "ok",
-      "runId": "43405798799",
-      "sureSn": 18
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-13T07:59:14Z",
-      "durum": "ok",
-      "runId": "43389688507",
-      "sureSn": 19
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 78,
+      "toplam": 17,
+      "oran": 76,
       "ortSureSn": 41
     },
     {
-      "ad": "Aforizma",
+      "ad": "Gönder",
       "toplam": 7,
       "oran": 100,
-      "ortSureSn": 19
+      "ortSureSn": 22
     },
     {
       "ad": "Dinle",
-      "toplam": 5,
-      "oran": 100,
-      "ortSureSn": 31
-    },
-    {
-      "ad": "Gönder",
       "toplam": 6,
       "oran": 100,
-      "ortSureSn": 22
+      "ortSureSn": 32
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 6,
+      "oran": 100,
+      "ortSureSn": 20
     },
     {
       "ad": "Webhook",
