@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-16T01:05:13.596550+03:00",
+  "uretim_zamani": "2026-11-16T01:05:50.700373+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 11
   },
@@ -1482,12 +1482,12 @@
     {
       "tarih": "9 - 15 Kas",
       "tarih_iso": "2026-11-09",
-      "level": 1,
+      "level": 2,
       "maks": 4,
       "rutinler": [
         {
           "isim": "Oda tozu alma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Uzun metraj izlence",
@@ -1514,7 +1514,7 @@
   "haftalikRutinOranlari": [
     {
       "isim": "Oda tozu alma",
-      "oran": 55
+      "oran": 64
     },
     {
       "isim": "Uzun metraj izlence",
@@ -2441,31 +2441,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
+      "zaman": "2026-11-15T22:05:14Z",
+      "durum": "warn",
+      "runId": "43767272383",
+      "sureSn": 24
+    },
+    {
+      "ad": "Panel",
       "zaman": "2026-11-15T22:05:10Z",
       "durum": "warn",
       "runId": "43767266014",
-      "sureSn": 0
+      "sureSn": 6
     },
     {
       "ad": "Panel",
       "zaman": "2026-11-15T22:04:49Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "43767227678",
-      "sureSn": 5
+      "sureSn": 47
     },
     {
       "ad": "Webhook",
       "zaman": "2026-11-15T22:04:26Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "43767189653",
-      "sureSn": 3
+      "sureSn": 54
     },
     {
       "ad": "Webhook",
       "zaman": "2026-11-15T22:04:23Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "43767186160",
-      "sureSn": 4
+      "sureSn": 53
     },
     {
       "ad": "Webhook",
@@ -2536,33 +2543,26 @@
       "durum": "ok",
       "runId": "43766600388",
       "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-15T21:58:08Z",
-      "durum": "ok",
-      "runId": "43766588873",
-      "sureSn": 53
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 56,
-      "ortSureSn": 35
+      "toplam": 19,
+      "oran": 58,
+      "ortSureSn": 37
     },
     {
       "ad": "Webhook",
       "toplam": 15,
-      "oran": 87,
-      "ortSureSn": 62
+      "oran": 100,
+      "ortSureSn": 69
     },
     {
       "ad": "Aforizma",
-      "toplam": 3,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 17
+      "ortSureSn": 14
     },
     {
       "ad": "Dinle",
