@@ -479,6 +479,23 @@ def _sorguyu_cevapla(text):
     # hepsi tek seferde yakalansın - tıpkı "öncek\w* gün" regex'inde
     # olduğu gibi, sabit kelime listelerinin doğası gereği eksik kalması
     # sorununu tekrarlamamak için.
+    # "Geçmişten kalan HAFTALIK görev/hedeflerim" / "süresi dolan haftalık
+    # hedefler" - biten haftalardan işaretlenmemiş HaftalikHedefler. Bu
+    # kontrol aşağıdaki "geçen hafta" regex'inden ÖNCE gelmeli: 'geçen
+    # haftalardaki haftalık hedefleri sorgula' orada GÜNLÜK görev/rutin
+    # listesine gidiyordu. Ayrım sinyali açık bir 'haftalık' + görev/hedef
+    # ifadesi (+ geçmiş/süresi-dolmuş sinyali, rutin kelimesi YOK).
+    # 'kalan' kelimesi bilerek tetikleyici DEĞİL: 'kalan haftalık
+    # hedeflerimi hatırlat' BU haftayı sorar.
+    gecmis_sinyali = re.search(r"geçmiş|geçen|geçtiğimiz|önceki|eski|süresi\s+dol", metin_kucuk)
+    hedef_gorev_var = any(k in metin_kucuk for k in ["hedef", "görev", "gorev"])
+    if "rutin" not in metin_kucuk and hedef_gorev_var and (
+        (("haftalık" in metin_kucuk or "haftalik" in metin_kucuk) and gecmis_sinyali)
+        or (re.search(r"süresi\s+dol", metin_kucuk) and "hafta" in metin_kucuk)
+    ):
+        _gecmis_haftalarin_hedeflerini_cevapla()
+        return
+
     if re.search(r"\b(geç(en|tiğimiz)|önceki)\s+hafta", metin_kucuk):
         _gecen_hafta_bekleyenleri_cevapla()
         return
@@ -614,6 +631,61 @@ def _haftalik_hedef_durumu_cevapla():
         for i, (satir_no, _) in enumerate(bekleyenler)
     ]
     send_message(mesaj, buttons=buton_satirlari)
+    return True
+
+
+def _gecmis_haftalarin_hedeflerini_cevapla():
+    """GEÇMİŞ haftalardan kalan, hâlâ işaretlenmemiş haftalık hedefleri
+    ('Süresi Doldu' ve hâlâ 'Bekliyor' kalanlar) tıklanabilir butonlarla
+    gönderir. GERÇEK EKSİK (kullanıcı bildirdi): bu sorgu hiç yoktu -
+    'geçmişten kalan haftalık görevlerimi sorgula' sadece BU haftanın
+    hedeflerine (_haftalik_hedef_durumu_cevapla), 'geçen haftalardaki
+    haftalık hedefleri sorgula' ise biten haftanın GÜNLÜK görev/rutinlerine
+    (_gecen_hafta_bekleyenleri_cevapla) gidiyordu; sistemin 'Süresi Doldu'
+    saydığı bir hedefi gerçekten yaptığını sonradan işaretlemenin yolu
+    yoktu. Butonlar mevcut `hedef_<satır>_evet/hayir` callback'ini
+    kullanır (evet -> Yapıldı, hayır -> Yapılmadı), yeni bir callback yok.
+    Bu haftanın hedefleri BURADA yok - onlar _haftalik_hedef_durumu_cevapla'da."""
+    ws = get_haftalik_sheet()
+    bu_hafta = hafta_baslangic_str()
+    rows = ws.get_all_records()
+
+    adaylar = []  # (satir_no, hafta, metin, durum)
+    for i, r in enumerate(rows):
+        hafta = str(r.get("HaftaBaslangic", ""))
+        durum = r.get("Durum", "")
+        if hafta and hafta < bu_hafta and durum in ("Süresi Doldu", "Bekliyor"):
+            adaylar.append((i + 2, hafta, r.get("HedefMetni", ""), durum))  # +2: header + 1-index
+
+    if not adaylar:
+        send_message("Geçmiş haftalardan işaretlenmemiş (süresi dolmuş ya da bekleyen) haftalık hedefin yok. 🎉")
+        return True
+
+    adaylar.sort(key=lambda a: (a[1], a[0]))
+    PARCA = 15  # Telegram'da mesaj/buton sayısını makul tut
+    for baslangic in range(0, len(adaylar), PARCA):
+        parca = adaylar[baslangic:baslangic + PARCA]
+        satirlar = []
+        son_hafta = None
+        for n, (_, hafta, metin, durum) in enumerate(parca, start=1):
+            if hafta != son_hafta:
+                satirlar.append(f"\n📅 {hafta} haftası:")
+                son_hafta = hafta
+            isaret = "⌛" if durum == "Süresi Doldu" else "⏳"
+            satirlar.append(f"{n}. {isaret} {metin}")
+        baslik = (
+            "Geçmiş haftalardan işaretlenmemiş hedeflerin "
+            "(yaptıklarını ✅ ile işaretleyebilirsin):"
+            if baslangic == 0 else "Devamı:"
+        )
+        buton_satirlari = [
+            [
+                {"text": f"{n}️⃣ ✅", "callback_data": f"hedef_{satir_no}_evet"},
+                {"text": f"{n}️⃣ ❌", "callback_data": f"hedef_{satir_no}_hayir"},
+            ]
+            for n, (satir_no, _, _, _) in enumerate(parca, start=1)
+        ]
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
     return True
 
 
