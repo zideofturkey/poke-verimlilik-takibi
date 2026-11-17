@@ -1,36 +1,9 @@
 {
-  "uretim_zamani": "2026-11-16T21:01:43.826495+03:00",
+  "uretim_zamani": "2026-11-17T03:58:16.496545+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 11
   },
   "heatmap": [
-    {
-      "tarih": "03 October 2026",
-      "tarih_iso": "2026-10-03",
-      "level": 4,
-      "rutinler": [
-        {
-          "isim": "Fransızca çalışma",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Sabah telefonsuzluğu",
-          "durum": "Yapılmadı"
-        },
-        {
-          "isim": "Gece telefonsuzluğu",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Verimli video izleme",
-          "durum": "Yapıldı"
-        },
-        {
-          "isim": "Mewing",
-          "durum": "Yapıldı"
-        }
-      ]
-    },
     {
       "tarih": "04 October 2026",
       "tarih_iso": "2026-10-04",
@@ -1218,28 +1191,55 @@
           "durum": null
         }
       ]
+    },
+    {
+      "tarih": "17 November 2026",
+      "tarih_iso": "2026-11-17",
+      "level": 0,
+      "rutinler": [
+        {
+          "isim": "Fransızca çalışma",
+          "durum": null
+        },
+        {
+          "isim": "Sabah telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Gece telefonsuzluğu",
+          "durum": null
+        },
+        {
+          "isim": "Verimli video izleme",
+          "durum": null
+        },
+        {
+          "isim": "Mewing",
+          "durum": null
+        }
+      ]
     }
   ],
   "rutinOranlari": [
     {
       "isim": "Fransızca çalışma",
-      "oran": 71
+      "oran": 75
     },
     {
       "isim": "Sabah telefonsuzluğu",
-      "oran": 44
+      "oran": 47
     },
     {
       "isim": "Gece telefonsuzluğu",
-      "oran": 89
-    },
-    {
-      "isim": "Verimli video izleme",
       "oran": 88
     },
     {
+      "isim": "Verimli video izleme",
+      "oran": 87
+    },
+    {
       "isim": "Mewing",
-      "oran": 93
+      "oran": 92
     }
   ],
   "haftalikRutinHeatmap": [
@@ -2441,10 +2441,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-16T18:01:25Z",
+      "zaman": "2026-11-17T00:57:51Z",
       "durum": "warn",
+      "runId": "43991836324",
+      "sureSn": 3
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-11-16T20:13:39Z",
+      "durum": "ok",
+      "runId": "43947556288",
+      "sureSn": 32
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-11-16T18:26:24Z",
+      "durum": "ok",
+      "runId": "43928811504",
+      "sureSn": 16
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-16T18:01:25Z",
+      "durum": "ok",
       "runId": "43924442489",
-      "sureSn": 4
+      "sureSn": 48
     },
     {
       "ad": "Gönder",
@@ -2522,35 +2543,26 @@
       "durum": "ok",
       "runId": "43844750268",
       "sureSn": 49
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-16T09:59:08Z",
-      "durum": "ok",
-      "runId": "43844686880",
-      "sureSn": 39
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-16T09:59:07Z",
-      "durum": "ok",
-      "runId": "43844686236",
-      "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-16T09:58:58Z",
-      "durum": "ok",
-      "runId": "43844661979",
-      "sureSn": 42
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 20,
-      "oran": 75,
-      "ortSureSn": 40
+      "toplam": 18,
+      "oran": 78,
+      "ortSureSn": 41
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 28
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 3,
+      "oran": 100,
+      "ortSureSn": 17
     },
     {
       "ad": "Gönder",
@@ -2569,18 +2581,6 @@
       "toplam": 10,
       "oran": 100,
       "ortSureSn": 164
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 26
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 2,
-      "oran": 100,
-      "ortSureSn": 17
     },
     {
       "ad": "Analiz",
