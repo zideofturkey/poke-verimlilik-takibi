@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-18T17:01:27.431354+03:00",
+  "uretim_zamani": "2026-11-18T20:01:45.866536+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 34
   },
@@ -1507,26 +1507,43 @@
       "tarih": "16 - 22 Kas",
       "tarih_iso": "2026-11-16",
       "level": 0,
-      "maks": 1,
-      "rutinler": []
+      "maks": 4,
+      "rutinler": [
+        {
+          "isim": "Oda tozu alma",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Uzun metraj izlence",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Making Music",
+          "durum": "Bekliyor"
+        },
+        {
+          "isim": "Haftada 3 gün spor",
+          "durum": "Bekliyor"
+        }
+      ]
     }
   ],
   "haftalikRutinOranlari": [
     {
       "isim": "Oda tozu alma",
-      "oran": 64
+      "oran": 58
     },
     {
       "isim": "Uzun metraj izlence",
-      "oran": 73
+      "oran": 67
     },
     {
       "isim": "Making Music",
-      "oran": 45
+      "oran": 42
     },
     {
       "isim": "Haftada 3 gün spor",
-      "oran": 40
+      "oran": 36
     }
   ],
   "gunlukGorevGecmisi": [
@@ -2441,10 +2458,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-18T14:01:07Z",
+      "zaman": "2026-11-18T17:01:12Z",
       "durum": "warn",
+      "runId": "44353881986",
+      "sureSn": 5
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-11-18T17:00:47Z",
+      "durum": "ok",
+      "runId": "44353800207",
+      "sureSn": 30
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-18T14:01:07Z",
+      "durum": "ok",
       "runId": "44319686045",
-      "sureSn": 4
+      "sureSn": 45
     },
     {
       "ad": "Gönder",
@@ -2529,34 +2560,20 @@
       "durum": "ok",
       "runId": "44275565091",
       "sureSn": 28
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-18T09:24:02Z",
-      "durum": "ok",
-      "runId": "44275552260",
-      "sureSn": 42
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-18T09:23:58Z",
-      "durum": "ok",
-      "runId": "44275542694",
-      "sureSn": 34
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 20,
-      "oran": 55,
-      "ortSureSn": 36
+      "toplam": 19,
+      "oran": 63,
+      "ortSureSn": 39
     },
     {
       "ad": "Gönder",
-      "toplam": 6,
+      "toplam": 7,
       "oran": 100,
-      "ortSureSn": 23
+      "ortSureSn": 24
     },
     {
       "ad": "Dinle",
