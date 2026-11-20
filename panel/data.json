@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-21T01:21:23.396835+03:00",
+  "uretim_zamani": "2026-11-21T01:22:02.498552+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1557,7 +1557,7 @@
         },
         {
           "metin": "Doğru Spot web sitesini gözden geçirme (seo’ya uygunluk)",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Bahar Spot 850’li numara sorununu bulma ve çözme",
@@ -2462,10 +2462,17 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-20T22:21:07Z",
+      "zaman": "2026-11-20T22:21:36Z",
       "durum": "warn",
+      "runId": "44828293773",
+      "sureSn": 14
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-20T22:21:07Z",
+      "durum": "ok",
       "runId": "44828226435",
-      "sureSn": 4
+      "sureSn": 41
     },
     {
       "ad": "Webhook",
@@ -2477,9 +2484,9 @@
     {
       "ad": "Webhook",
       "zaman": "2026-11-20T22:20:37Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "44828157770",
-      "sureSn": 4
+      "sureSn": 66
     },
     {
       "ad": "Webhook",
@@ -2557,13 +2564,6 @@
       "durum": "ok",
       "runId": "44827739040",
       "sureSn": 56
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-20T22:17:09Z",
-      "durum": "ok",
-      "runId": "44827658598",
-      "sureSn": 38
     }
   ],
   "workflowTurOzet": [
@@ -2576,8 +2576,8 @@
     {
       "ad": "Webhook",
       "toplam": 16,
-      "oran": 69,
-      "ortSureSn": 49
+      "oran": 75,
+      "ortSureSn": 53
     },
     {
       "ad": "Dinle",
