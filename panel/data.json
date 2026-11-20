@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-21T01:16:41.883375+03:00",
+  "uretim_zamani": "2026-11-21T01:18:14.273203+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 43
   },
@@ -1231,7 +1231,7 @@
     },
     {
       "isim": "Gece telefonsuzluğu",
-      "oran": 78
+      "oran": 74
     },
     {
       "isim": "Verimli video izleme",
@@ -1565,11 +1565,11 @@
         },
         {
           "metin": "Finans kitabı okuma",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         },
         {
           "metin": "21.30 BBB yayını",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -2462,10 +2462,52 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-20T22:16:13Z",
+      "zaman": "2026-11-20T22:17:59Z",
       "durum": "warn",
+      "runId": "44827777622",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-20T22:17:43Z",
+      "durum": "warn",
+      "runId": "44827740682",
+      "sureSn": 19
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-20T22:17:42Z",
+      "durum": "warn",
+      "runId": "44827739040",
+      "sureSn": 5
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-20T22:17:09Z",
+      "durum": "ok",
+      "runId": "44827658598",
+      "sureSn": 38
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-20T22:17:08Z",
+      "durum": "ok",
+      "runId": "44827655694",
+      "sureSn": 40
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-20T22:17:07Z",
+      "durum": "ok",
+      "runId": "44827651000",
+      "sureSn": 59
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-20T22:16:13Z",
+      "durum": "ok",
       "runId": "44827540247",
-      "sureSn": 18
+      "sureSn": 53
     },
     {
       "ad": "Panel",
@@ -2522,61 +2564,19 @@
       "durum": "ok",
       "runId": "44820423641",
       "sureSn": 40
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-20T19:54:36Z",
-      "durum": "ok",
-      "runId": "44806503280",
-      "sureSn": 25
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-20T18:48:18Z",
-      "durum": "ok",
-      "runId": "44796211332",
-      "sureSn": 14
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-20T18:01:07Z",
-      "durum": "ok",
-      "runId": "44788766208",
-      "sureSn": 45
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-20T18:00:47Z",
-      "durum": "ok",
-      "runId": "44788707936",
-      "sureSn": 24
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-20T14:01:06Z",
-      "durum": "ok",
-      "runId": "44749443998",
-      "sureSn": 43
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-20T14:00:47Z",
-      "durum": "ok",
-      "runId": "44749392020",
-      "sureSn": 23
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 19,
-      "oran": 63,
-      "ortSureSn": 35
+      "toplam": 18,
+      "oran": 72,
+      "ortSureSn": 39
     },
     {
       "ad": "Webhook",
-      "toplam": 9,
-      "oran": 78,
+      "toplam": 10,
+      "oran": 80,
       "ortSureSn": 62
     },
     {
