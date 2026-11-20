@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-21T01:19:54.298275+03:00",
+  "uretim_zamani": "2026-11-21T01:21:23.396835+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 46
   },
@@ -1553,7 +1553,7 @@
       "gorevler": [
         {
           "metin": "Staj fotokopisini alma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Doğru Spot web sitesini gözden geçirme (seo’ya uygunluk)",
@@ -2461,6 +2461,27 @@
   ],
   "workflowGecmisi": [
     {
+      "ad": "Panel",
+      "zaman": "2026-11-20T22:21:07Z",
+      "durum": "warn",
+      "runId": "44828226435",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-20T22:20:41Z",
+      "durum": "ok",
+      "runId": "44828166742",
+      "sureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-20T22:20:37Z",
+      "durum": "warn",
+      "runId": "44828157770",
+      "sureSn": 4
+    },
+    {
       "ad": "Webhook",
       "zaman": "2026-11-20T22:19:07Z",
       "durum": "warn",
@@ -2477,9 +2498,9 @@
     {
       "ad": "Panel",
       "zaman": "2026-11-20T22:18:57Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "44827920295",
-      "sureSn": 45
+      "sureSn": 81
     },
     {
       "ad": "Panel",
@@ -2543,36 +2564,9 @@
       "durum": "ok",
       "runId": "44827658598",
       "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-20T22:17:08Z",
-      "durum": "ok",
-      "runId": "44827655694",
-      "sureSn": 40
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-20T22:17:07Z",
-      "durum": "ok",
-      "runId": "44827651000",
-      "sureSn": 59
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-20T22:16:13Z",
-      "durum": "ok",
-      "runId": "44827540247",
-      "sureSn": 53
     }
   ],
   "workflowTurOzet": [
-    {
-      "ad": "Webhook",
-      "toplam": 14,
-      "oran": 71,
-      "ortSureSn": 53
-    },
     {
       "ad": "Panel",
       "toplam": 17,
@@ -2580,10 +2574,16 @@
       "ortSureSn": 41
     },
     {
+      "ad": "Webhook",
+      "toplam": 16,
+      "oran": 69,
+      "ortSureSn": 49
+    },
+    {
       "ad": "Dinle",
-      "toplam": 3,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 30
+      "ortSureSn": 28
     },
     {
       "ad": "Aforizma",
@@ -2593,9 +2593,9 @@
     },
     {
       "ad": "Gönder",
-      "toplam": 4,
+      "toplam": 3,
       "oran": 100,
-      "ortSureSn": 24
+      "ortSureSn": 25
     }
   ],
   "kocKararlari": [],
