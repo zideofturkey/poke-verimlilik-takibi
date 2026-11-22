@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-23T01:12:14.380853+03:00",
+  "uretim_zamani": "2026-11-23T02:44:24.980416+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -2449,10 +2449,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-22T22:11:51Z",
+      "zaman": "2026-11-22T23:44:03Z",
       "durum": "warn",
+      "runId": "45084826109",
+      "sureSn": 2
+    },
+    {
+      "ad": "Analiz",
+      "zaman": "2026-11-22T22:53:27Z",
+      "durum": "ok",
+      "runId": "45080212531",
+      "sureSn": 410
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-22T22:11:51Z",
+      "durum": "ok",
       "runId": "45076347162",
-      "sureSn": 4
+      "sureSn": 46
     },
     {
       "ad": "Webhook",
@@ -2537,20 +2551,6 @@
       "durum": "ok",
       "runId": "45030499278",
       "sureSn": 49
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-22T14:00:47Z",
-      "durum": "ok",
-      "runId": "45030474792",
-      "sureSn": 16
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-22T11:08:08Z",
-      "durum": "ok",
-      "runId": "45015808015",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
@@ -2559,6 +2559,12 @@
       "toplam": 18,
       "oran": 67,
       "ortSureSn": 37
+    },
+    {
+      "ad": "Analiz",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 410
     },
     {
       "ad": "Webhook",
@@ -2574,9 +2580,9 @@
     },
     {
       "ad": "Dinle",
-      "toplam": 3,
+      "toplam": 2,
       "oran": 100,
-      "ortSureSn": 30
+      "ortSureSn": 31
     },
     {
       "ad": "Gönder",
@@ -2764,6 +2770,11 @@
   ],
   "hataGecmisi": [
     {
+      "tarih": "2026-11-23",
+      "saat": "01:57",
+      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:14b)"
+    },
+    {
       "tarih": "2026-11-22",
       "saat": "13:57",
       "baglam": "slm_sorgula deneme 2/5 (model=qwen2.5:7b)"
@@ -2831,11 +2842,6 @@
     {
       "tarih": "2026-11-07",
       "saat": "22:39",
-      "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
-    },
-    {
-      "tarih": "2026-11-06",
-      "saat": "00:57",
       "baglam": "slm_sorgula deneme 1/5 (model=qwen2.5:7b)"
     }
   ]
