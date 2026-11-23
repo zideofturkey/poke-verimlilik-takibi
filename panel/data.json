@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-23T13:01:28.018402+03:00",
+  "uretim_zamani": "2026-11-23T17:01:32.284403+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 60
   },
@@ -2449,10 +2449,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-23T10:01:12Z",
+      "zaman": "2026-11-23T14:01:04Z",
       "durum": "warn",
-      "runId": "45152242273",
+      "runId": "45189697877",
       "sureSn": 4
+    },
+    {
+      "ad": "Gönder",
+      "zaman": "2026-11-23T14:00:47Z",
+      "durum": "ok",
+      "runId": "45189643784",
+      "sureSn": 22
+    },
+    {
+      "ad": "Temizle",
+      "zaman": "2026-11-23T11:55:18Z",
+      "durum": "ok",
+      "runId": "45169475809",
+      "sureSn": 23
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-23T10:01:12Z",
+      "durum": "ok",
+      "runId": "45152242273",
+      "sureSn": 39
     },
     {
       "ad": "Gönder",
@@ -2530,41 +2551,26 @@
       "durum": "ok",
       "runId": "45121349013",
       "sureSn": 41
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-23T06:00:47Z",
-      "durum": "ok",
-      "runId": "45121313626",
-      "sureSn": 20
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-23T01:51:59Z",
-      "durum": "ok",
-      "runId": "45096951552",
-      "sureSn": 13
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-23T00:43:10Z",
-      "durum": "ok",
-      "runId": "45090410747",
-      "sureSn": 32
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 72,
-      "ortSureSn": 40
+      "toplam": 17,
+      "oran": 82,
+      "ortSureSn": 44
     },
     {
       "ad": "Gönder",
-      "toplam": 4,
+      "toplam": 5,
       "oran": 100,
       "ortSureSn": 22
+    },
+    {
+      "ad": "Temizle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 23
     },
     {
       "ad": "Aforizma",
@@ -2580,9 +2586,9 @@
     },
     {
       "ad": "Webhook",
-      "toplam": 9,
+      "toplam": 8,
       "oran": 100,
-      "ortSureSn": 91
+      "ortSureSn": 98
     },
     {
       "ad": "Analiz",
