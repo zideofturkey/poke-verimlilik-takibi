@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-25T02:38:02.576644+03:00",
+  "uretim_zamani": "2026-11-25T02:39:13.981995+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1548,7 +1548,7 @@
         },
         {
           "metin": "OtoHemen yeni video kurgulama",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Doğru Spot içerik yazımına geçme",
@@ -1556,7 +1556,7 @@
         },
         {
           "metin": "Orzax raporunun kalanını okuma ve duruma bağlı yatırım yapma",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -2449,10 +2449,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-24T23:37:08Z",
+      "zaman": "2026-11-24T23:38:54Z",
       "durum": "warn",
+      "runId": "45511734092",
+      "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-24T23:38:44Z",
+      "durum": "warn",
+      "runId": "45511709761",
+      "sureSn": 7
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-24T23:38:19Z",
+      "durum": "ok",
+      "runId": "45511652605",
+      "sureSn": 28
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-24T23:38:18Z",
+      "durum": "ok",
+      "runId": "45511651439",
+      "sureSn": 42
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-24T23:37:08Z",
+      "durum": "ok",
       "runId": "45511496251",
-      "sureSn": 43
+      "sureSn": 77
     },
     {
       "ad": "Panel",
@@ -2523,48 +2551,20 @@
       "durum": "ok",
       "runId": "45454901362",
       "sureSn": 48
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-24T18:00:47Z",
-      "durum": "ok",
-      "runId": "45454827917",
-      "sureSn": 27
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-24T17:26:00Z",
-      "durum": "ok",
-      "runId": "45448510416",
-      "sureSn": 36
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-24T16:22:29Z",
-      "durum": "ok",
-      "runId": "45436366124",
-      "sureSn": 20
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-24T15:07:41Z",
-      "durum": "ok",
-      "runId": "45421864148",
-      "sureSn": 48
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
       "toplam": 18,
-      "oran": 67,
-      "ortSureSn": 54
+      "oran": 61,
+      "ortSureSn": 45
     },
     {
       "ad": "Webhook",
       "toplam": 13,
-      "oran": 77,
-      "ortSureSn": 62
+      "oran": 85,
+      "ortSureSn": 61
     },
     {
       "ad": "Gönder",
