@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-25T21:47:24.496944+03:00",
+  "uretim_zamani": "2026-11-25T21:48:57.200530+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -1557,7 +1557,7 @@
       "gorevler": [
         {
           "metin": "BigData lesson",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "DoğruSeo apple, yandex harita tamamlama - içerik yazımına geçme",
@@ -1565,7 +1565,7 @@
         },
         {
           "metin": "OtoHemen reklamda kalite artırma araştırması",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Kitaplı kahve",
@@ -2461,6 +2461,34 @@
   ],
   "workflowGecmisi": [
     {
+      "ad": "Panel",
+      "zaman": "2026-11-25T18:48:45Z",
+      "durum": "warn",
+      "runId": "45678920389",
+      "sureSn": 1
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-25T18:48:40Z",
+      "durum": "warn",
+      "runId": "45678910384",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-25T18:48:13Z",
+      "durum": "ok",
+      "runId": "45678837412",
+      "sureSn": 31
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-25T18:48:12Z",
+      "durum": "ok",
+      "runId": "45678834237",
+      "sureSn": 39
+    },
+    {
       "ad": "Webhook",
       "zaman": "2026-11-25T18:46:35Z",
       "durum": "warn",
@@ -2477,9 +2505,9 @@
     {
       "ad": "Panel",
       "zaman": "2026-11-25T18:46:23Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "45678535445",
-      "sureSn": 41
+      "sureSn": 84
     },
     {
       "ad": "Panel",
@@ -2536,66 +2564,38 @@
       "durum": "ok",
       "runId": "45660170735",
       "sureSn": 52
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-25T17:00:46Z",
-      "durum": "ok",
-      "runId": "45660109431",
-      "sureSn": 21
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-25T14:01:05Z",
-      "durum": "ok",
-      "runId": "45629488793",
-      "sureSn": 48
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-25T14:00:46Z",
-      "durum": "ok",
-      "runId": "45629430754",
-      "sureSn": 23
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-25T12:30:47Z",
-      "durum": "ok",
-      "runId": "45614460564",
-      "sureSn": 53
     }
   ],
   "workflowTurOzet": [
     {
-      "ad": "Webhook",
-      "toplam": 13,
-      "oran": 85,
-      "ortSureSn": 104
+      "ad": "Panel",
+      "toplam": 19,
+      "oran": 68,
+      "ortSureSn": 34
     },
     {
-      "ad": "Panel",
-      "toplam": 18,
-      "oran": 72,
-      "ortSureSn": 37
+      "ad": "Webhook",
+      "toplam": 15,
+      "oran": 87,
+      "ortSureSn": 95
     },
     {
       "ad": "Gönder",
-      "toplam": 5,
+      "toplam": 4,
       "oran": 100,
       "ortSureSn": 24
     },
     {
       "ad": "Dinle",
-      "toplam": 2,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 42
+      "ortSureSn": 53
     },
     {
       "ad": "Aforizma",
-      "toplam": 2,
+      "toplam": 1,
       "oran": 100,
-      "ortSureSn": 15
+      "ortSureSn": 16
     }
   ],
   "kocKararlari": [],
