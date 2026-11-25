@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-25T21:46:37.227859+03:00",
+  "uretim_zamani": "2026-11-25T21:47:24.496944+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -2465,21 +2465,21 @@
       "zaman": "2026-11-25T18:46:35Z",
       "durum": "warn",
       "runId": "45678563657",
-      "sureSn": 0
+      "sureSn": 34
     },
     {
       "ad": "Webhook",
       "zaman": "2026-11-25T18:46:29Z",
       "durum": "warn",
       "runId": "45678551504",
-      "sureSn": 3
+      "sureSn": 40
     },
     {
       "ad": "Panel",
       "zaman": "2026-11-25T18:46:23Z",
       "durum": "warn",
       "runId": "45678535445",
-      "sureSn": 2
+      "sureSn": 41
     },
     {
       "ad": "Panel",
@@ -2491,9 +2491,9 @@
     {
       "ad": "Panel",
       "zaman": "2026-11-25T18:46:21Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "45678530182",
-      "sureSn": 4
+      "sureSn": 42
     },
     {
       "ad": "Webhook",
@@ -2571,13 +2571,13 @@
       "ad": "Webhook",
       "toplam": 13,
       "oran": 85,
-      "ortSureSn": 99
+      "ortSureSn": 104
     },
     {
       "ad": "Panel",
       "toplam": 18,
-      "oran": 67,
-      "ortSureSn": 32
+      "oran": 72,
+      "ortSureSn": 37
     },
     {
       "ad": "Gönder",
