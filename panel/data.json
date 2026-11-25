@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-11-26T00:21:04.226687+03:00",
+  "uretim_zamani": "2026-11-26T01:08:32.877650+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 66
+    "haftaTamamlamaYuzdesi": 69
   },
   "heatmap": [
     {
@@ -1168,7 +1168,7 @@
     {
       "tarih": "25 November 2026",
       "tarih_iso": "2026-11-25",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1184,7 +1184,7 @@
         },
         {
           "isim": "Verimli video izleme",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         },
         {
           "isim": "Mewing",
@@ -2462,10 +2462,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-25T21:20:48Z",
+      "zaman": "2026-11-25T22:08:13Z",
       "durum": "warn",
-      "runId": "45703486917",
+      "runId": "45710597766",
       "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-25T22:07:44Z",
+      "durum": "ok",
+      "runId": "45710524224",
+      "sureSn": 32
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-25T21:20:48Z",
+      "durum": "ok",
+      "runId": "45703486917",
+      "sureSn": 39
     },
     {
       "ad": "Webhook",
@@ -2550,20 +2564,6 @@
       "durum": "ok",
       "runId": "45678535445",
       "sureSn": 84
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-25T18:46:22Z",
-      "durum": "warn",
-      "runId": "45678532579",
-      "sureSn": 3
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-25T18:46:21Z",
-      "durum": "ok",
-      "runId": "45678530182",
-      "sureSn": 42
     }
   ],
   "workflowTurOzet": [
@@ -2571,13 +2571,13 @@
       "ad": "Panel",
       "toplam": 19,
       "oran": 74,
-      "ortSureSn": 39
+      "ortSureSn": 38
     },
     {
       "ad": "Webhook",
       "toplam": 16,
       "oran": 88,
-      "ortSureSn": 83
+      "ortSureSn": 59
     },
     {
       "ad": "Aforizma",
