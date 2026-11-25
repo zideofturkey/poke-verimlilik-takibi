@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-25T21:48:57.200530+03:00",
+  "uretim_zamani": "2026-11-25T21:49:36.076084+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 71
   },
@@ -2465,14 +2465,14 @@
       "zaman": "2026-11-25T18:48:45Z",
       "durum": "warn",
       "runId": "45678920389",
-      "sureSn": 1
+      "sureSn": 38
     },
     {
       "ad": "Panel",
       "zaman": "2026-11-25T18:48:40Z",
-      "durum": "warn",
+      "durum": "ok",
       "runId": "45678910384",
-      "sureSn": 4
+      "sureSn": 41
     },
     {
       "ad": "Webhook",
@@ -2570,8 +2570,8 @@
     {
       "ad": "Panel",
       "toplam": 19,
-      "oran": 68,
-      "ortSureSn": 34
+      "oran": 74,
+      "ortSureSn": 38
     },
     {
       "ad": "Webhook",
