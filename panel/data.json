@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-26T09:01:33.026633+03:00",
+  "uretim_zamani": "2026-11-26T09:39:26.766539+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 69
   },
@@ -1561,7 +1561,7 @@
         },
         {
           "metin": "DoğruSeo apple, yandex harita tamamlama - içerik yazımına geçme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "OtoHemen reklamda kalite artırma araştırması",
@@ -2462,10 +2462,38 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-26T06:01:14Z",
+      "zaman": "2026-11-26T06:39:11Z",
       "durum": "warn",
+      "runId": "45769669436",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-26T06:39:10Z",
+      "durum": "warn",
+      "runId": "45769668071",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-26T06:38:41Z",
+      "durum": "ok",
+      "runId": "45769613055",
+      "sureSn": 34
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-26T06:38:37Z",
+      "durum": "ok",
+      "runId": "45769606039",
+      "sureSn": 38
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-26T06:01:14Z",
+      "durum": "ok",
       "runId": "45765333862",
-      "sureSn": 3
+      "sureSn": 42
     },
     {
       "ad": "Gönder",
@@ -2536,42 +2564,20 @@
       "durum": "ok",
       "runId": "45696505134",
       "sureSn": 46
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-25T20:35:23Z",
-      "durum": "ok",
-      "runId": "45696400189",
-      "sureSn": 45
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-25T19:28:18Z",
-      "durum": "ok",
-      "runId": "45685512696",
-      "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-25T19:06:19Z",
-      "durum": "ok",
-      "runId": "45681838672",
-      "sureSn": 47
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-25T18:48:45Z",
-      "durum": "ok",
-      "runId": "45678920389",
-      "sureSn": 74
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 19,
-      "oran": 74,
-      "ortSureSn": 39
+      "toplam": 18,
+      "oran": 83,
+      "ortSureSn": 42
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 13,
+      "oran": 85,
+      "ortSureSn": 48
     },
     {
       "ad": "Gönder",
@@ -2590,12 +2596,6 @@
       "toplam": 2,
       "oran": 100,
       "ortSureSn": 17
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 12,
-      "oran": 83,
-      "ortSureSn": 49
     }
   ],
   "kocKararlari": [],
