@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-28T00:53:12.978306+03:00",
+  "uretim_zamani": "2026-11-28T01:24:05.363284+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 54
   },
@@ -1557,15 +1557,15 @@
       "gorevler": [
         {
           "metin": "10.00 dersi",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "SabriAbi görüşme",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "DoğruSpot tabela",
-          "durum": "Bekliyor"
+          "durum": "Yapıldı"
         },
         {
           "metin": "Bir filme başlama",
@@ -2466,10 +2466,73 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-27T21:52:46Z",
+      "zaman": "2026-11-27T22:23:53Z",
       "durum": "warn",
-      "runId": "46073105964",
+      "runId": "46076392544",
+      "sureSn": 2
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-27T22:23:52Z",
+      "durum": "warn",
+      "runId": "46076389953",
       "sureSn": 3
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-27T22:23:49Z",
+      "durum": "warn",
+      "runId": "46076384910",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:23:48Z",
+      "durum": "warn",
+      "runId": "46076384396",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:23:45Z",
+      "durum": "warn",
+      "runId": "46076378937",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:23:43Z",
+      "durum": "warn",
+      "runId": "46076376091",
+      "sureSn": 3
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:23:23Z",
+      "durum": "ok",
+      "runId": "46076342381",
+      "sureSn": 33
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:23:21Z",
+      "durum": "ok",
+      "runId": "46076339084",
+      "sureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:23:21Z",
+      "durum": "ok",
+      "runId": "46076338705",
+      "sureSn": 38
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-27T21:52:46Z",
+      "durum": "ok",
+      "runId": "46073105964",
+      "sureSn": 46
     },
     {
       "ad": "Panel",
@@ -2505,89 +2568,26 @@
       "durum": "ok",
       "runId": "46068204389",
       "sureSn": 335
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T21:07:21Z",
-      "durum": "ok",
-      "runId": "46068193091",
-      "sureSn": 286
-    },
-    {
-      "ad": "gecici_repair",
-      "zaman": "2026-11-27T21:06:33Z",
-      "durum": "ok",
-      "runId": "46068099324",
-      "sureSn": 15
-    },
-    {
-      "ad": "gecici_diag",
-      "zaman": "2026-11-27T21:05:35Z",
-      "durum": "ok",
-      "runId": "46067995476",
-      "sureSn": 15
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-27T20:51:47Z",
-      "durum": "ok",
-      "runId": "46066479004",
-      "sureSn": 44
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-27T20:48:27Z",
-      "durum": "ok",
-      "runId": "46066117486",
-      "sureSn": 48
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T20:47:12Z",
-      "durum": "ok",
-      "runId": "46065980599",
-      "sureSn": 281
-    },
-    {
-      "ad": "Aforizma",
-      "zaman": "2026-11-27T20:17:21Z",
-      "durum": "ok",
-      "runId": "46062602744",
-      "sureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "zaman": "2026-11-27T18:03:23Z",
-      "durum": "ok",
-      "runId": "46046538855",
-      "sureSn": 27
-    },
-    {
-      "ad": "Gönder",
-      "zaman": "2026-11-27T18:00:46Z",
-      "durum": "warn",
-      "runId": "46046200411",
-      "sureSn": 15
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 67,
-      "ortSureSn": 36
+      "toplam": 16,
+      "oran": 69,
+      "ortSureSn": 34
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 11,
+      "oran": 73,
+      "ortSureSn": 124
     },
     {
       "ad": "gecici_cbtest",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 15
-    },
-    {
-      "ad": "Webhook",
-      "toplam": 9,
-      "oran": 89,
-      "ortSureSn": 155
     },
     {
       "ad": "gecici_repair",
