@@ -1,7 +1,7 @@
 {
-  "uretim_zamani": "2026-11-28T01:27:48.642910+03:00",
+  "uretim_zamani": "2026-11-28T01:30:00.823602+03:00",
   "heroStats": {
-    "haftaTamamlamaYuzdesi": 63
+    "haftaTamamlamaYuzdesi": 66
   },
   "heatmap": [
     {
@@ -1168,7 +1168,7 @@
     {
       "tarih": "27 November 2026",
       "tarih_iso": "2026-11-27",
-      "level": 3,
+      "level": 4,
       "rutinler": [
         {
           "isim": "Fransızca çalışma",
@@ -1188,7 +1188,7 @@
         },
         {
           "isim": "Mewing",
-          "durum": "Yapılmadı"
+          "durum": "Yapıldı"
         }
       ]
     },
@@ -2466,10 +2466,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-27T22:27:26Z",
+      "zaman": "2026-11-27T22:29:43Z",
       "durum": "warn",
+      "runId": "46076965090",
+      "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-27T22:29:17Z",
+      "durum": "ok",
+      "runId": "46076921439",
+      "sureSn": 29
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-27T22:27:26Z",
+      "durum": "ok",
       "runId": "46076748175",
-      "sureSn": 8
+      "sureSn": 46
     },
     {
       "ad": "Panel",
@@ -2554,34 +2568,20 @@
       "durum": "ok",
       "runId": "46076502221",
       "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T22:24:58Z",
-      "durum": "ok",
-      "runId": "46076500850",
-      "sureSn": 37
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T22:24:56Z",
-      "durum": "ok",
-      "runId": "46076498947",
-      "sureSn": 33
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 17,
-      "oran": 47,
-      "ortSureSn": 31
+      "toplam": 18,
+      "oran": 50,
+      "ortSureSn": 32
     },
     {
       "ad": "Webhook",
-      "toplam": 17,
-      "oran": 82,
-      "ortSureSn": 80
+      "toplam": 18,
+      "oran": 83,
+      "ortSureSn": 77
     },
     {
       "ad": "gecici_cbtest",
@@ -2606,18 +2606,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 18
-    },
-    {
-      "ad": "Dinle",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 27
-    },
-    {
-      "ad": "Gönder",
-      "toplam": 1,
-      "oran": 0,
-      "ortSureSn": 15
     }
   ],
   "kocKararlari": [],
