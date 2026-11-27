@@ -7,6 +7,8 @@ bunlar workflow dosyası tarafından secrets'tan enjekte edilir.
 import os
 import re
 import time
+import copy
+import hashlib
 import datetime
 from datetime import timezone, timedelta
 import requests
@@ -14,6 +16,25 @@ import gspread
 from gspread.exceptions import APIError
 from dotenv import load_dotenv
 from google.oauth2.service_account import Credentials
+
+
+# GERÇEK OLAY (2026-11-27): gspread'in append_row'u, tablonun nerede bittiğini
+# Google'ın "tablo tespiti"ne bırakıyordu. Eski bir mesajdaki buton, silinmiş
+# satırlar yüzünden boş bir satırın D sütununa tek bir "Yapıldı" yazınca
+# (alttaki callback düzeltmesine bakın), sonraki HER ekleme o serseri hücrenin
+# yanına, her seferinde bir sütun sağa kayarak yazıldı: bot başlıklarla
+# (Tarih/GorevMetni) okuduğu için sabah girilen görevleri hiç göremedi.
+# Artık HER append_row, tabloyu açıkça A1'den başlayan bitişik blok olarak
+# tanımlıyor - aradaki boşluğun ötesindeki serseri hücreler yeri kaydıramaz.
+_orijinal_append_row = gspread.Worksheet.append_row
+
+
+def _a1_tabanli_append_row(self, values, *args, **kwargs):
+    kwargs.setdefault("table_range", "A1")
+    return _orijinal_append_row(self, values, *args, **kwargs)
+
+
+gspread.Worksheet.append_row = _a1_tabanli_append_row
 
 load_dotenv()  # Yerelde .env varsa oradan okur; Actions'ta zaten env var olarak gelir
 
@@ -807,7 +828,7 @@ def guvenli_append_row(ws, degerler):
 
     creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
     gc = gspread.authorize(creds)
-    url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}/values/{ws.title}!A:Z:append"
+    url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}/values/{ws.title}!A1:append"
     params = {"valueInputOption": "RAW", "insertDataOption": "INSERT_ROWS"}
     body = {"values": [degerler]}
     resp = gc.http_client.request("POST", url, params=params, json=body)
@@ -944,9 +965,110 @@ def log_to_sheet(gorev, durum, detay="", tarih=None):
     print(f"Sheets'e yazıldı: {gorev} | {durum} | {detay}")
 
 
+def satir_imzasi(*parcalar):
+    """Bir satırın (tarih + metin gibi) kısa, kararlı parmak izi. Butonlar
+    satır NUMARASI taşıyordu; temizle.py eski satırları silince numaralar
+    kayıyor ve eski bir mesajdaki buton boş ya da BAŞKA bir satıra yazıyordu
+    (gerçek olay: 'None kaydedildi'). İmza sayesinde callback, satırın hâlâ
+    aynı görev olup olmadığını doğrulayabilir ya da doğru satırı arayıp bulur."""
+    ham = "|".join((p or "").strip().lower() for p in parcalar)
+    return hashlib.md5(ham.encode("utf-8")).hexdigest()[:5]
+
+
+# kaynak -> (sheet getter adı, imzayı oluşturan sütun indeksleri, metin sütunu indeksi)
+_BUTON_KAYNAKLARI = {
+    "gorev": ("get_gorevler_sheet", (0, 2), 2),
+    "hedef": ("get_haftalik_sheet", (0, 1), 1),
+    "haftarutin": ("get_haftalik_rutin_takip_sheet", (0, 2), 2),
+}
+
+
+def _satir_imzasi_hesapla(kaynak, satir):
+    _, sutunlar, _ = _BUTON_KAYNAKLARI[kaynak]
+    return satir_imzasi(*[satir[i] if i < len(satir) else "" for i in sutunlar])
+
+
+def _satir_dolu_mu(kaynak, satir):
+    _, _, metin_sutunu = _BUTON_KAYNAKLARI[kaynak]
+    return len(satir) > metin_sutunu and bool(str(satir[metin_sutunu]).strip())
+
+
+def butonlara_imza_ekle(buttons):
+    """Gönderilmeden hemen ÖNCE butonlardaki satır numaralarının işaret ettiği
+    satırları okuyup callback_data'ya imza ekler:
+    gorev_<satır>_<sonuc> -> gorev_<satır>_<imza>_<sonuc>,
+    sil_gorev_<satır> -> sil_gorev_<satır>_<imza>. Okuma başarısız olursa
+    butonlar olduğu gibi (eski biçim) gider - callback yine boş satırı
+    reddeder."""
+    kalip_islem = re.compile(r"^(gorev|hedef|haftarutin)_(\d+)_(evet|hayir)$")
+    kalip_sil = re.compile(r"^sil_(gorev|hedef)_(\d+)$")
+    gerekenler = set()
+    for satir in buttons:
+        for b in satir:
+            veri = b.get("callback_data", "")
+            m = kalip_islem.match(veri) or kalip_sil.match(veri)
+            if m:
+                gerekenler.add(m.group(1))
+    if not gerekenler:
+        return buttons
+
+    degerler = {}
+    for kaynak in gerekenler:
+        try:
+            getter = globals()[_BUTON_KAYNAKLARI[kaynak][0]]
+            degerler[kaynak] = getter().get_all_values()
+        except Exception as e:
+            print(f"butonlara_imza_ekle: {kaynak} okunamadı ({e}), imzasız gidiyor.")
+
+    yeni = copy.deepcopy(buttons)
+    for satir in yeni:
+        for b in satir:
+            veri = b.get("callback_data", "")
+            m = kalip_islem.match(veri)
+            if m:
+                kaynak, no, sonuc = m.group(1), int(m.group(2)), m.group(3)
+                tum = degerler.get(kaynak)
+                if tum and 0 < no <= len(tum) and _satir_dolu_mu(kaynak, tum[no - 1]):
+                    b["callback_data"] = f"{kaynak}_{no}_{_satir_imzasi_hesapla(kaynak, tum[no - 1])}_{sonuc}"
+                continue
+            m = kalip_sil.match(veri)
+            if m:
+                kaynak, no = m.group(1), int(m.group(2))
+                tum = degerler.get(kaynak)
+                if tum and 0 < no <= len(tum) and _satir_dolu_mu(kaynak, tum[no - 1]):
+                    b["callback_data"] = f"sil_{kaynak}_{no}_{_satir_imzasi_hesapla(kaynak, tum[no - 1])}"
+    return yeni
+
+
+def callback_satirini_coz(kaynak, satir_no, imza):
+    """Bir butonun işaret ettiği satırı GÜVENLE çözer. Döner: (ws, satır_no,
+    satır_değerleri); bulunamazsa satır_no None. İmza varsa: numaradaki satır
+    imzayla eşleşiyorsa o; değilse tüm sheet'te imzaya göre arar (satırlar
+    kaymış olabilir). İmza yoksa (eski buton): sadece o numarada DOLU bir satır
+    varsa kabul edilir - boş satıra asla yazılmaz."""
+    getter = globals()[_BUTON_KAYNAKLARI[kaynak][0]]
+    ws = getter()
+    tum = ws.get_all_values()
+    if imza:
+        if 0 < satir_no <= len(tum) and _satir_dolu_mu(kaynak, tum[satir_no - 1]) \
+                and _satir_imzasi_hesapla(kaynak, tum[satir_no - 1]) == imza:
+            return ws, satir_no, tum[satir_no - 1]
+        for i, satir in enumerate(tum[1:], start=2):
+            if _satir_dolu_mu(kaynak, satir) and _satir_imzasi_hesapla(kaynak, satir) == imza:
+                return ws, i, satir
+        return ws, None, None
+    if 1 < satir_no <= len(tum) and _satir_dolu_mu(kaynak, tum[satir_no - 1]):
+        return ws, satir_no, tum[satir_no - 1]
+    return ws, None, None
+
+
 def send_message(text, buttons=None):
     payload = {"chat_id": CHAT_ID, "text": text}
     if buttons:
+        try:
+            buttons = butonlara_imza_ekle(buttons)
+        except Exception as e:
+            print(f"Buton imzası eklenemedi ({e}), olduğu gibi gönderiliyor.")
         payload["reply_markup"] = {"inline_keyboard": buttons}
     requests.post(f"{BASE_URL}/sendMessage", json=payload)
 

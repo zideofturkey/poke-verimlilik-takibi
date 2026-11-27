@@ -60,6 +60,7 @@ def satirlari_ayikla(text):
 from common import (
     send_message,
     answer_callback,
+    callback_satirini_coz,
     log_to_sheet,
     save_last_update_id,
     get_gorevler_sheet,
@@ -100,6 +101,23 @@ from common import (
 
 def bugun_str():
     return datetime.datetime.now(TR_TZ).strftime("%Y-%m-%d")
+
+
+_ESKI_BUTON_MESAJI = (
+    "Bu buton eski görünüyor (aradan satırlar silindiği/kaydığı için bu kayıt "
+    "artık o yerde değil), hiçbir şeyi değiştirmedim. Güncel listeyi almak için "
+    "ör. 'süresi dolan görevlerimi sorgula' ya da 'geçmişten kalan günlük "
+    "görevlerimi hatırlatır mısın' yaz."
+)
+
+
+def _buton_parcala(callback_data):
+    """<önek>_<satır>[_<imza>]_<sonuç> -> (satır_no, imza_ya_da_None, sonuç)."""
+    parcalar = callback_data.split("_")
+    sonuc = parcalar[-1]
+    satir_no = int(parcalar[1])
+    imza = parcalar[2] if len(parcalar) == 4 else None
+    return satir_no, imza, sonuc
 
 
 def process_callback(cq):
@@ -343,12 +361,19 @@ def process_callback(cq):
             send_message(f"Tamam, '{isim}' için şu anki düzen kalsın 👍")
 
     elif callback_data.startswith("gorev_"):
-        # format: gorev_<satirNo>_evet / gorev_<satirNo>_hayir
-        _, satir_no, sonuc = callback_data.split("_")
-        ws = get_gorevler_sheet()
-        satir_no = int(satir_no)
-        gorev_tarihi = ws.cell(satir_no, 1).value
-        gorev_metni = ws.cell(satir_no, 3).value
+        # format: gorev_<satır>_<imza>_evet/hayir (yeni) ya da
+        # gorev_<satır>_evet/hayir (eski, imzasız).
+        # GERÇEK BUG (2026-11-25): satır numarası mesaj gönderildiği andaki
+        # numaraydı; temizle.py eski satırları silince numaralar kayıyor,
+        # eski bir mesajdaki buton boş bir satıra 'Yapıldı' yazıp
+        # "'None' kaydedildi" diyordu (ve Takip'e de 'None' loglanıyordu).
+        satir_no, imza, sonuc = _buton_parcala(callback_data)
+        ws, satir_no, satir = callback_satirini_coz("gorev", satir_no, imza)
+        if satir_no is None:
+            send_message(_ESKI_BUTON_MESAJI)
+            return
+        gorev_tarihi = satir[0] if len(satir) > 0 else None
+        gorev_metni = satir[2]
         durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
         ws.update_cell(satir_no, 4, durum)
         log_to_sheet(gorev_metni, durum, tarih=gorev_tarihi)
@@ -358,21 +383,13 @@ def process_callback(cq):
             send_message(f"Sorun değil, '{gorev_metni}' için yarın devam edelim 👍")
 
     elif callback_data.startswith("hedef_"):
-        # format: hedef_<satirNo>_evet / hedef_<satirNo>_hayir
-        # GERÇEK BUG (kullanıcı bildirdi): bu callback hep "Yapıldı"/
-        # "Yapılmadı" YAZIYORDU (satırın altındaki durum değişkenine
-        # bak), ama _haftalik_hedef_durumu_cevapla (sorgu fonksiyonu)
-        # SADECE "Yolunda"/"Geride" durumlarını tanıyordu - callback'in
-        # kendi gönderdiği onay mesajı bile yanıltıcıydı ("yolunda olarak
-        # kaydedildi" diyordu ama Sheets'e "Yapıldı" yazıyordu). Sonuç:
-        # kullanıcı butona tıklayıp işaretlediği HER hedef, sorguladığında
-        # "Yapıldı" tanınmadığı için ⏳ bekliyor gibi gösterilip TEKRAR
-        # soruluyordu. Mesaj metni artık gerçekten yazılan değerle
-        # (Yapıldı/Yapılmadı) tutarlı.
-        _, satir_no, sonuc = callback_data.split("_")
-        ws = get_haftalik_sheet()
-        satir_no = int(satir_no)
-        hedef_metni = ws.cell(satir_no, 2).value
+        # format: hedef_<satır>_<imza>_evet/hayir ya da eski hedef_<satır>_evet/hayir
+        satir_no, imza, sonuc = _buton_parcala(callback_data)
+        ws, satir_no, satir = callback_satirini_coz("hedef", satir_no, imza)
+        if satir_no is None:
+            send_message(_ESKI_BUTON_MESAJI)
+            return
+        hedef_metni = satir[1]
         durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
         ws.update_cell(satir_no, 3, durum)
         if sonuc == "evet":
@@ -381,11 +398,13 @@ def process_callback(cq):
             send_message(f"Not aldım, '{hedef_metni}' yapılamamış — gelecek haftaya bakarsın 💪")
 
     elif callback_data.startswith("haftarutin_"):
-        # format: haftarutin_<satirNo>_evet / haftarutin_<satirNo>_hayir
-        _, satir_no, sonuc = callback_data.split("_")
-        ws = get_haftalik_rutin_takip_sheet()
-        satir_no = int(satir_no)
-        rutin_isim = ws.cell(satir_no, 3).value
+        # format: haftarutin_<satır>_<imza>_evet/hayir ya da eski haftarutin_<satır>_evet/hayir
+        satir_no, imza, sonuc = _buton_parcala(callback_data)
+        ws, satir_no, satir = callback_satirini_coz("haftarutin", satir_no, imza)
+        if satir_no is None:
+            send_message(_ESKI_BUTON_MESAJI)
+            return
+        rutin_isim = satir[2]
         durum = "Yapıldı" if sonuc == "evet" else "Yapılmadı"
         ws.update_cell(satir_no, 4, durum)
         if sonuc == "evet":
@@ -394,24 +413,28 @@ def process_callback(cq):
             send_message(f"Sorun değil, '{rutin_isim}' için hafta bitmeden hâlâ vaktin var 👍")
 
     elif callback_data.startswith("sil_"):
-        # format: sil_gorev_<satirNo> / sil_hedef_<satirNo> - kullanıcının
-        # "silinebilecek görevlerimi listele" sorgusuna cevap olarak gönderilen
-        # listedeki butonlar. Onay adımı BİLİNÇLİ OLARAK YOK (kullanıcının
-        # kendi isteği) - ama GOREV_SIL serbest-metin yoluyla AYNI şekilde
-        # önce çöp kutusuna taşıyıp sonra siliyor, bu yüzden buton da aynı
-        # güvenlik ağına (7 gün geri alınabilirlik) sahip.
-        _, kaynak, satir_no = callback_data.split("_")
-        satir_no = int(satir_no)
+        # format: sil_gorev_<satır>_<imza> / sil_hedef_<satır>_<imza>.
+        # İmzasız ESKİ sil butonları artık REDDEDİLİR: silme geri
+        # alınamaz kadar yıkıcı, kaymış bir satır numarası BAŞKA bir görevi
+        # silerdi (çöp kutusu 7 gün kurtarsa da yanlış görevi sildirmek
+        # kabul edilemez).
+        parcalar = callback_data.split("_")
+        if len(parcalar) != 4:
+            send_message(_ESKI_BUTON_MESAJI)
+            return
+        _, kaynak, satir_no, imza = parcalar
+        ws, satir_no, ham_satir = callback_satirini_coz(
+            "gorev" if kaynak == "gorev" else "hedef", int(satir_no), imza
+        )
+        if satir_no is None:
+            send_message(_ESKI_BUTON_MESAJI)
+            return
         if kaynak == "gorev":
-            ws = get_gorevler_sheet()
-            ham_satir = ws.row_values(satir_no)
             gorev_metni = ham_satir[2] if len(ham_satir) > 2 else "?"
             _cop_kutusuna_tasi("GunlukGorevler", ham_satir)
             ws.delete_rows(satir_no)
             send_message(f"🗑️ '{gorev_metni}' günlük görevini sildim (7 gün çöp kutusunda kalacak).")
         else:
-            ws = get_haftalik_sheet()
-            ham_satir = ws.row_values(satir_no)
             hedef_metni = ham_satir[1] if len(ham_satir) > 1 else "?"
             _cop_kutusuna_tasi("HaftalikHedefler", ham_satir)
             ws.delete_rows(satir_no)
@@ -434,6 +457,20 @@ def _sorguyu_cevapla(text):
     # sorgusuna düşmesin diye).
     if re.search(r"\bsil(ine|eb)[a-zçğıöşü]*\b", metin_kucuk) or "çöp kutusu" in metin_kucuk:
         _silinebilecek_gorevleri_listele()
+        return
+
+    # "Süresi doldu olarak işaretlediğin görevleri sorgula" - günlük VE/VEYA
+    # haftalık. 'hafta' ya da 'hedef' geçiyorsa haftalık hedefler, 'hafta'
+    # geçmiyorsa günlük görevler (ikisi birden de olabilir: "görev ve hedef").
+    if re.search(r"süresi\s+dol", metin_kucuk) and "rutin" not in metin_kucuk:
+        haftalik_istendi = "hafta" in metin_kucuk or "hedef" in metin_kucuk
+        gunluk_istendi = "hafta" not in metin_kucuk and (
+            any(k in metin_kucuk for k in ["görev", "gorev", "günlük"]) or not haftalik_istendi
+        )
+        if gunluk_istendi:
+            _suresi_dolan_gorevleri_cevapla()
+        if haftalik_istendi:
+            _gecmis_haftalarin_hedeflerini_cevapla()
         return
 
     if any(k in metin_kucuk for k in ["seri", "streak", "kaç gündür"]):
@@ -684,6 +721,52 @@ def _gecmis_haftalarin_hedeflerini_cevapla():
                 {"text": f"{n}️⃣ ❌", "callback_data": f"hedef_{satir_no}_hayir"},
             ]
             for n, (satir_no, _, _, _) in enumerate(parca, start=1)
+        ]
+        send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
+    return True
+
+
+def _suresi_dolan_gorevleri_cevapla():
+    """'Süresi Doldu' olarak otomatik işaretlenmiş GÜNLÜK görevleri tıklanabilir
+    butonlarla gönderir. GERÇEK EKSİK (kullanıcı bildirdi): kullanıcı aslında
+    yaptığı ama işaretlemeyi unuttuğu görevleri sonradan 'yaptım' diye
+    işaretlemek istedi, ama bunu getiren bir sorgu yoktu (eski mesajlardaki
+    butonlar da satır kayması yüzünden bozuktu). Butonlar mevcut
+    gorev_<satır>_evet/hayir callback'ini kullanır (send_message imzayı
+    ekler); evet -> Yapıldı, ayrıca Takip'e (panel) tarihiyle loglanır."""
+    ws = get_gorevler_sheet()
+    rows = ws.get_all_values()
+    adaylar = []  # (satir_no, tarih, metin)
+    for i, row in enumerate(rows[1:], start=2):
+        if len(row) >= 4 and row[3] == "Süresi Doldu" and row[2].strip():
+            adaylar.append((i, row[0], row[2]))
+
+    if not adaylar:
+        send_message("'Süresi Doldu' olarak işaretlenmiş günlük görevin yok. 🎉")
+        return True
+
+    adaylar.sort(key=lambda a: (a[1], a[0]))
+    PARCA = 15
+    for baslangic in range(0, len(adaylar), PARCA):
+        parca = adaylar[baslangic:baslangic + PARCA]
+        satirlar = []
+        son_tarih = None
+        for n, (_, tarih, metin) in enumerate(parca, start=1):
+            if tarih != son_tarih:
+                satirlar.append(f"\n📅 {tarih}:")
+                son_tarih = tarih
+            satirlar.append(f"{n}. ⌛ {metin}")
+        baslik = (
+            f"'Süresi Doldu' işaretli {len(adaylar)} günlük görevin var "
+            "(yaptıklarını ✅ ile işaretleyebilirsin):"
+            if baslangic == 0 else "Devamı:"
+        )
+        buton_satirlari = [
+            [
+                {"text": f"{n}️⃣ ✅", "callback_data": f"gorev_{satir_no}_evet"},
+                {"text": f"{n}️⃣ ❌", "callback_data": f"gorev_{satir_no}_hayir"},
+            ]
+            for n, (satir_no, _, _) in enumerate(parca, start=1)
         ]
         send_message(baslik + "\n" + "\n".join(satirlar), buttons=buton_satirlari)
     return True
@@ -1711,6 +1794,16 @@ def _sorgu_niyeti_var_mi(metin_kucuk):
     ]
     for kok in tek_kok_kaliplari:
         if re.search(rf"\b{kok}(?!r\w)(?!ge)(?!iş)", metin_kucuk):
+            return True
+    # Bota yöneltilmiş soru/şikâyet: 'niye/neden/nasıl' ya da 2. tekil olumsuz
+    # geçmiş ('yollamadın', 'göndermedin', 'kaydetmedin'). GERÇEK OLAY
+    # (2026-11-27): "Bugünün görevlerini niye yollamadın" SLM tarafından
+    # GUNLUK_GOREV sanılıp sahte bir görev olarak KAYDEDİLDİ. Numaralı liste
+    # içeren mesajlarda uygulanmaz (görev metni 'nasıl' içerebilir).
+    if not re.search(r"(?m)^\s*\d+[\.\)\-]", metin_kucuk):
+        if re.search(r"\b(niye|neden|niçin|nicin|nasıl|ne zaman)\b", metin_kucuk):
+            return True
+        if re.search(r"\b\w+(mad[ıiuü]n|med[ıiuü]n|mad[ıiuü]n[ıiuü]z|med[ıiuü]n[ıiuü]z)\b", metin_kucuk):
             return True
     # Soru kipi PARÇACIĞI (mı/mi/mu/mü ve türevleri) - Türkçe'de bu her
     # zaman AYRI bir kelimedir ('yaptın mı', 'geliyor musun'), bir isme
