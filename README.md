@@ -209,6 +209,15 @@ aynı platform sorunu). Sabah yazılan görevler panele saatlerce yansımıyordu
   (CI'daki `CLOUDFLARE_API_TOKEN` worker'ı da deploy edebiliyor; artık elle
   `wrangler deploy` gerekmiyor). Worker secret'ları deploy'da korunur.
 
+## Düzeltmeler (28 Kasım 2026)
+
+- **Buton satır kayması:** callback_data artık mutlak satır no + `md5[:5]` imza taşıyor (`common.butonlara_imza_ekle`, `callback_satirini_coz`). `temizle.py` 15 günden eski satırları silince eski butonlar yanlış satıra yazıyordu ("'None' kaydedildi", panel güncellenmiyor). Artık satır imzayla doğrulanır/yeniden bulunur; bulunamazsa "buton eski" denir, imzasız eski butonlar reddedilir.
+- **append_row kayması:** sekmede serseri hücre olunca gspread tabloyu yanlış algılayıp her kayıt bir sütun sağa kayıyordu. `common.py` başında monkeypatch: `table_range="A1"`; ham API yedeği de `!A1:append`.
+- **Süresi Doldu günlük görev sorgusu:** `_suresi_dolan_gorevleri_cevapla` — "süresi doldu olarak işaretlediğin görevleri sorgula" imzalı ✅/❌ butonlu liste döner (hafta/hedef geçerse haftalık hedefler: `_gecmis_haftalarin_hedeflerini_cevapla`).
+- **Soru kipi:** "niye/neden/nasıl/ne zaman" ve "-madın/-medin" kalıpları görev kaydı sayılmıyor ("Bugünün görevlerini niye yollamadın" görev diye kaydedilmişti).
+- **"listelerini" olayı:** "listele" alt dizgisi sorgu sanılıyordu; kelime sınırlı eşleşme + 3+ numaralı satır koruması.
+- **Kalan not:** GunlukGorevArsiv'de eski kayma artığı satırlar panel hatasına yol açmıştı, temizlendi; Ollama 7b ilk deneme zaman aşımı nedeni hâlâ incelenmedi.
+
 ## Roadmap Durumu
 
 - Seviye 1 (✅ tamamlandı): mesaj/ton değişimi + en riskli rutin en üste sıralanır
