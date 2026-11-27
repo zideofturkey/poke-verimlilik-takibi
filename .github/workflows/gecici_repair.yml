@@ -1,4 +1,4 @@
-name: gecici_diag
+name: gecici_repair
 on: workflow_dispatch
 permissions:
   contents: write
@@ -20,6 +20,6 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: python temp_diag.py
+        run: python temp_repair.py
       - run: rm -f service_account.json
         if: always()
