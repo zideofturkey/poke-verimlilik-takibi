@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-28T01:30:00.823602+03:00",
+  "uretim_zamani": "2026-11-28T06:44:38.890320+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -2466,10 +2466,31 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-27T22:29:43Z",
+      "zaman": "2026-11-28T03:44:24Z",
       "durum": "warn",
+      "runId": "46104277504",
+      "sureSn": 2
+    },
+    {
+      "ad": "Aforizma",
+      "zaman": "2026-11-28T02:49:38Z",
+      "durum": "ok",
+      "runId": "46099940799",
+      "sureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "zaman": "2026-11-28T01:50:43Z",
+      "durum": "ok",
+      "runId": "46095136102",
+      "sureSn": 25
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-27T22:29:43Z",
+      "durum": "ok",
       "runId": "46076965090",
-      "sureSn": 4
+      "sureSn": 43
     },
     {
       "ad": "Webhook",
@@ -2547,27 +2568,6 @@
       "durum": "warn",
       "runId": "46076551558",
       "sureSn": 7
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-27T22:25:24Z",
-      "durum": "ok",
-      "runId": "46076549641",
-      "sureSn": 56
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T22:24:59Z",
-      "durum": "ok",
-      "runId": "46076502449",
-      "sureSn": 30
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T22:24:58Z",
-      "durum": "ok",
-      "runId": "46076502221",
-      "sureSn": 37
     }
   ],
   "workflowTurOzet": [
@@ -2575,13 +2575,25 @@
       "ad": "Panel",
       "toplam": 18,
       "oran": 50,
-      "ortSureSn": 32
+      "ortSureSn": 31
+    },
+    {
+      "ad": "Aforizma",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 16
+    },
+    {
+      "ad": "Dinle",
+      "toplam": 1,
+      "oran": 100,
+      "ortSureSn": 25
     },
     {
       "ad": "Webhook",
-      "toplam": 18,
-      "oran": 83,
-      "ortSureSn": 77
+      "toplam": 17,
+      "oran": 82,
+      "ortSureSn": 65
     },
     {
       "ad": "gecici_cbtest",
@@ -2600,12 +2612,6 @@
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 15
-    },
-    {
-      "ad": "Aforizma",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 18
     }
   ],
   "kocKararlari": [],
