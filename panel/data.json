@@ -1,5 +1,5 @@
 {
-  "uretim_zamani": "2026-11-28T09:01:18.823656+03:00",
+  "uretim_zamani": "2026-11-28T11:40:16.902771+03:00",
   "heroStats": {
     "haftaTamamlamaYuzdesi": 66
   },
@@ -1569,7 +1569,7 @@
         },
         {
           "metin": "Bir filme başlama",
-          "durum": "Bekliyor"
+          "durum": "Yapılmadı"
         }
       ]
     },
@@ -2466,10 +2466,24 @@
   "workflowGecmisi": [
     {
       "ad": "Panel",
-      "zaman": "2026-11-28T06:01:02Z",
+      "zaman": "2026-11-28T08:39:58Z",
       "durum": "warn",
-      "runId": "46114659823",
+      "runId": "46126870924",
       "sureSn": 4
+    },
+    {
+      "ad": "Webhook",
+      "zaman": "2026-11-28T08:39:28Z",
+      "durum": "ok",
+      "runId": "46126835300",
+      "sureSn": 34
+    },
+    {
+      "ad": "Panel",
+      "zaman": "2026-11-28T06:01:02Z",
+      "durum": "ok",
+      "runId": "46114659823",
+      "sureSn": 42
     },
     {
       "ad": "Gönder",
@@ -2554,28 +2568,20 @@
       "durum": "ok",
       "runId": "46076695603",
       "sureSn": 38
-    },
-    {
-      "ad": "Webhook",
-      "zaman": "2026-11-27T22:26:28Z",
-      "durum": "ok",
-      "runId": "46076654019",
-      "sureSn": 29
-    },
-    {
-      "ad": "Panel",
-      "zaman": "2026-11-27T22:25:30Z",
-      "durum": "warn",
-      "runId": "46076559763",
-      "sureSn": 71
     }
   ],
   "workflowTurOzet": [
     {
       "ad": "Panel",
-      "toplam": 18,
-      "oran": 50,
-      "ortSureSn": 31
+      "toplam": 19,
+      "oran": 53,
+      "ortSureSn": 32
+    },
+    {
+      "ad": "Webhook",
+      "toplam": 17,
+      "oran": 82,
+      "ortSureSn": 50
     },
     {
       "ad": "Gönder",
@@ -2596,19 +2602,7 @@
       "ortSureSn": 25
     },
     {
-      "ad": "Webhook",
-      "toplam": 17,
-      "oran": 82,
-      "ortSureSn": 65
-    },
-    {
       "ad": "gecici_cbtest",
-      "toplam": 1,
-      "oran": 100,
-      "ortSureSn": 15
-    },
-    {
-      "ad": "gecici_repair",
       "toplam": 1,
       "oran": 100,
       "ortSureSn": 15
